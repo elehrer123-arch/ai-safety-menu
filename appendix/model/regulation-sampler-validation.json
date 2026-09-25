@@ -1,0 +1,87 @@
+{
+  "seed": 260925,
+  "draws": 100000,
+  "runway_mean_days": 18.217262191236742,
+  "bundle_means": {
+    "sb-53": {
+      "recurring_release_lag_days": 1.5418590260762137,
+      "recurring_internal_use_lag_days": 0.22966635353516726,
+      "annual_event_release_equivalent_days": 0.0,
+      "annual_event_internal_equivalent_days": 0.1203454962080301,
+      "first_year_setup_release_equivalent_days": 0.0,
+      "first_year_setup_internal_equivalent_days": 0.0
+    },
+    "raise-act": {
+      "recurring_release_lag_days": 1.5418590260762137,
+      "recurring_internal_use_lag_days": 0.22966635353516726,
+      "annual_event_release_equivalent_days": 0.0,
+      "annual_event_internal_equivalent_days": 0.0,
+      "first_year_setup_release_equivalent_days": 0.0,
+      "first_year_setup_internal_equivalent_days": 0.0
+    },
+    "sb-1047": {
+      "recurring_release_lag_days": 3.162256205438202,
+      "recurring_internal_use_lag_days": 1.1532368863492672,
+      "annual_event_release_equivalent_days": 2.8420926412219707,
+      "annual_event_internal_equivalent_days": 0.7358711495211674,
+      "first_year_setup_release_equivalent_days": 2.2169294900664336,
+      "first_year_setup_internal_equivalent_days": 0.36815627860356487
+    },
+    "eu-ai-act": {
+      "recurring_release_lag_days": 2.4906943908598174,
+      "recurring_internal_use_lag_days": 0.2645824166691377,
+      "annual_event_release_equivalent_days": 0.0,
+      "annual_event_internal_equivalent_days": 0.0,
+      "first_year_setup_release_equivalent_days": 0.0,
+      "first_year_setup_internal_equivalent_days": 0.0
+    },
+    "ai-risk-evaluation-act": {
+      "recurring_release_lag_days": 10.806697050970806,
+      "recurring_internal_use_lag_days": 0.918535528951057,
+      "annual_event_release_equivalent_days": 0.0,
+      "annual_event_internal_equivalent_days": 0.0,
+      "first_year_setup_release_equivalent_days": 0.0,
+      "first_year_setup_internal_equivalent_days": 0.0
+    },
+    "secure-ai-development-act": {
+      "recurring_release_lag_days": 3.4201997640695363,
+      "recurring_internal_use_lag_days": 0.20604628783382284,
+      "annual_event_release_equivalent_days": 0.0,
+      "annual_event_internal_equivalent_days": 0.0,
+      "first_year_setup_release_equivalent_days": 0.0,
+      "first_year_setup_internal_equivalent_days": 0.0
+    },
+    "frontier-act": {
+      "recurring_release_lag_days": 1.5418590260762137,
+      "recurring_internal_use_lag_days": 0.22966635353516726,
+      "annual_event_release_equivalent_days": 4.613456141792119,
+      "annual_event_internal_equivalent_days": 1.663153469114954,
+      "first_year_setup_release_equivalent_days": 0.0,
+      "first_year_setup_internal_equivalent_days": 0.0
+    },
+    "pause-letter": {
+      "recurring_release_lag_days": 0.0,
+      "recurring_internal_use_lag_days": 0.0,
+      "annual_event_release_equivalent_days": 0.0,
+      "annual_event_internal_equivalent_days": 0.0,
+      "first_year_setup_release_equivalent_days": 0.0,
+      "first_year_setup_internal_equivalent_days": 0.0
+    }
+  },
+  "policy_means": {
+    "safety-case-train": {
+      "first_full_eligible_year_training_loss_days": 33.45925848494404,
+      "raw_wait_days": 36.158138499084004,
+      "effective_per_stage_days": 22.290956583971536
+    },
+    "training-notice-30": {
+      "first_full_eligible_year_training_loss_days": 3.621297568896211,
+      "raw_wait_days": 4.263229035937282,
+      "effective_per_stage_days": 2.4134849688057423
+    }
+  },
+  "liability": {
+    "net_input_loss_mean_fraction": 0.005032176578508864,
+    "negative_loss_prior_probability": 0.19502
+  }
+}

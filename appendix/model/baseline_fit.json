@@ -1,0 +1,21 @@
+{
+  "dataset": "Epoch September1 frozen reasoning-frontier table",
+  "n": 13,
+  "first_release": "2024-09-12",
+  "last_release": "2026-06-09",
+  "ols_eci_per_year": 14.1826945717092,
+  "intercept": 137.29723590937533,
+  "rmse_eci": 1.0635762656092056,
+  "expanding_window_n": 7,
+  "expanding_window_mae_eci": 1.12996200475806,
+  "expanding_window_errors_eci": [
+    -2.3335959233173185,
+    -0.01660986143750165,
+    1.2030627094769955,
+    -0.015825602118439974,
+    1.3159915209675148,
+    2.327587496520266,
+    0.6970609194683846
+  ],
+  "validation_limit": "Temporal backtest uses a retrospectively fitted September ECI scale; it is not a fully prospective benchmark-calibration backtest. This slope is a unit ruler, not identification of any policy effect. The frozen table ends June9, not the current full frontier."
+}
