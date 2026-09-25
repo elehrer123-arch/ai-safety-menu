@@ -1,0 +1,71 @@
+{
+  "status": "Analyst priors; not measured coefficients or expert-elicited consensus",
+  "parameters": [
+    {
+      "name": "research_spillover",
+      "distribution": {
+        "type": "triangular",
+        "low": 0,
+        "mode": 0.15,
+        "high": 0.4
+      },
+      "definition": "Marginal long-run response of Chinese capability to a U.S. research-quality shock, separate from teacher access.",
+      "rationale": "No direct causal estimate. This analyst prior allows negligible reliance through substantial dependence, with independent Chinese research dominant.",
+      "evidence_status": "analyst_prior"
+    },
+    {
+      "name": "teacher_spillover",
+      "distribution": {
+        "type": "triangular",
+        "low": 0,
+        "mode": 0.1,
+        "high": 0.35
+      },
+      "definition": "Marginal response to the quality of accessible U.S. models as teachers/research tools.",
+      "rationale": "Analyst prior; first-party distillation activity and teacher-student ablations show a channel but do not measure national foreign dependence.",
+      "evidence_status": "analyst_prior"
+    },
+    {
+      "name": "knowledge_lag_days",
+      "distribution": {
+        "type": "triangular",
+        "low": 14,
+        "mode": 45,
+        "high": 120
+      },
+      "definition": "Lag before new U.S. knowledge or teacher quality affects Chinese development.",
+      "rationale": "Analyst prior separating access from assimilation and incorporation into a new model.",
+      "evidence_status": "analyst_prior"
+    },
+    {
+      "name": "absorption_days",
+      "distribution": {
+        "type": "triangular",
+        "low": 21,
+        "mode": 60,
+        "high": 150
+      },
+      "definition": "Time constant for the diffusion response after the lag.",
+      "rationale": "Analyst prior allowing gradual adjustment and substitute discovery.",
+      "evidence_status": "analyst_prior"
+    },
+    {
+      "name": "reverse_spillover",
+      "distribution": {
+        "type": "triangular",
+        "low": 0,
+        "mode": 0.025,
+        "high": 0.1
+      },
+      "definition": "Marginal U.S. capability response to Chinese knowledge shocks.",
+      "rationale": "Analyst prior; reverse diffusion is possible but smaller in this frontier-led baseline.",
+      "evidence_status": "analyst_prior"
+    }
+  ],
+  "sources": [
+    "https://proceedings.mlr.press/v267/busbridge25a.html",
+    "https://www.anthropic.com/news/detecting-and-preventing-distillation-attacks",
+    "https://arxiv.org/abs/2606.15999"
+  ],
+  "sensitivity_contract": "Report zero, half, and double forward reliance, and zero reverse reliance. Replace teacher prior with the access module derived parameter if supported by its calibration."
+}

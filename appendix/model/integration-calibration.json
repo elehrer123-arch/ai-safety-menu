@@ -1,0 +1,68 @@
+{
+  "inputs": [
+    {
+      "name": "gate_ramp_days",
+      "units": "days",
+      "distribution": {
+        "type": "triangular",
+        "low": 7,
+        "mode": 30,
+        "high": 90
+      },
+      "evidence_status": "analyst_prior",
+      "rationale": "New obligations first affect successive checkpoints; smooth rollout is a fluid approximation, not observed enactment effect."
+    },
+    {
+      "name": "first_training_effect_days",
+      "units": "days",
+      "distribution": {
+        "type": "triangular",
+        "low": 30,
+        "mode": 90,
+        "high": 180
+      },
+      "evidence_status": "analyst_prior",
+      "rationale": "Already trained models remain available; an authorization gate affects subsequent checkpoints after a training pipeline delay."
+    },
+    {
+      "name": "one_time_release_recovery_days",
+      "units": "days",
+      "distribution": {
+        "type": "triangular",
+        "low": 14,
+        "mode": 45,
+        "high": 120
+      },
+      "evidence_status": "analyst_prior",
+      "rationale": "A one-time release engineering hold ceases to constrain later releases; no repeated annual charge."
+    },
+    {
+      "name": "reverse_spillover",
+      "units": "fraction",
+      "distribution": {
+        "type": "triangular",
+        "low": 0,
+        "mode": 0.025,
+        "high": 0.1
+      },
+      "evidence_status": "analyst_prior",
+      "rationale": "Small but nonzero U.S. reliance on marginal Chinese frontier research/models, including open weights. No identified national elasticity."
+    },
+    {
+      "name": "china_pause_relative_exposure",
+      "units": "ratio",
+      "distribution": {
+        "type": "triangular",
+        "low": 0.5,
+        "mode": 1,
+        "high": 1.5
+      },
+      "evidence_status": "analyst_prior",
+      "rationale": "Universal-pause sensitivity: Chinese capability lost relative to U.S. direct loss, allowing different binding thresholds and adaptation."
+    }
+  ],
+  "notes": [
+    "All national effects use a representative frontier production path with broad jurisdictional coverage. There is no fitted multi-lab maximum or causal policy panel.",
+    "At 36months postyear1 resource assumptions persist unless a policy expires; these are scenario sensitivities."
+  ]
+}
