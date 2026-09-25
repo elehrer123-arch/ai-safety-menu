@@ -1,0 +1,11 @@
+{
+  "policy_count": 35,
+  "all_headlines_numeric": true,
+  "all_info_pages_present": true,
+  "local_links_resolve": true,
+  "notebook_executed_no_errors": true,
+  "charts_visually_inspected": true,
+  "html_browser_preview": "blocked_by_browser_URL_policy_for_local_file",
+  "html_structure_checked": true,
+  "max_step_difference_days": 0.06849444806655924
+}
