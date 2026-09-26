@@ -1,0 +1,1320 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The AI Safety Menu</title>
+<meta name="description" content="You have 213 days of lead over China. Spend them on AI safety.">
+<meta property="og:title" content="The AI Safety Menu">
+<meta property="og:description" content="You have 213 days of lead over China. Spend them on AI safety.">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="https://elehrer123-arch.github.io/ai-safety-menu/og/default.png">
+<meta property="og:url" content="https://elehrer123-arch.github.io/ai-safety-menu/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600&family=Source+Serif+4:ital,opsz,wght@1,8..60,400&display=swap">
+<style>
+:root{
+  --paper:#F6F3EC; --paper-2:#ECE7DC; --card:#FFFFFF; --ink:#1B1A17; --ink-2:#55514A; --ink-3:#8A857B; --rule:#DDD6C8;
+  --cost:#C0392B; --gain:#1E7A45; --free:#8A857B; --risk:#6B4FA0; --track:#E4DED0;
+  --t-free:#E3EBDD; --t-release:#F6E3B4; --t-train:#F4D0C8; --t-china:#D3E2F2;
+  --d-free:#3F6B45; --d-release:#8A5A00; --d-train:#A3281E; --d-china:#1F4E86;
+  --bar:#1B1A17; --bar-ink:#F6F3EC; --bar-2:#A39E92; --road:#3A3730; --road-line:#6E685D;
+  --us:#2B4C8C; --us-ink:#FFFFFF; --cn:#C8261D; --cn-ink:#F7D046;
+  --accent:#C0392B; --accent-ink:#FFFFFF; --tilemix:100%;
+  --receipt:#FFFFFF; --receipt-ink:#141414;
+  --shadow:0 1px 2px rgba(0,0,0,.06), 0 8px 22px rgba(0,0,0,.07);
+  --display:"Big Shoulders Display",Impact,"Arial Narrow",sans-serif;
+  --sans:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --mono:"IBM Plex Mono",Menlo,Consolas,monospace;
+  --serif:"Source Serif 4",Georgia,serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#141613; --paper-2:#1C1F1B; --card:#20241F; --ink:#EEEAE0; --ink-2:#BEB8AB; --ink-3:#8C877C; --rule:#343831;
+    --cost:#F0796B; --gain:#6FCB8F; --free:#8C877C; --risk:#B9A3F0; --track:#57534B;
+    --t-free:#2A3A2C; --t-release:#43381B; --t-train:#4A2723; --t-china:#1F3247;
+    --d-free:#A8D3AE; --d-release:#F1CD73; --d-train:#F4A195; --d-china:#9CC3EE;
+    --bar:#0B0C0A; --bar-ink:#EEEAE0; --bar-2:#8C877C; --road:#2A2D28; --road-line:#4E534B;
+    --us:#5B82CF; --cn:#E0463B; --accent:#F0796B; --accent-ink:#141613; --tilemix:32%;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 22px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#141613; --paper-2:#1C1F1B; --card:#20241F; --ink:#EEEAE0; --ink-2:#BEB8AB; --ink-3:#8C877C; --rule:#343831;
+  --cost:#F0796B; --gain:#6FCB8F; --free:#8C877C; --risk:#B9A3F0; --track:#57534B;
+  --t-free:#2A3A2C; --t-release:#43381B; --t-train:#4A2723; --t-china:#1F3247;
+  --d-free:#A8D3AE; --d-release:#F1CD73; --d-train:#F4A195; --d-china:#9CC3EE;
+  --bar:#0B0C0A; --bar-ink:#EEEAE0; --bar-2:#8C877C; --road:#2A2D28; --road-line:#4E534B;
+  --us:#5B82CF; --cn:#E0463B; --accent:#F0796B; --accent-ink:#141613; --tilemix:32%;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 22px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{background:var(--paper);color:var(--ink)}
+body{margin:0;font-family:var(--sans);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+input{font:inherit;color:inherit}
+h1,h2,h3{font-family:var(--display);font-weight:900;line-height:1;margin:0;text-transform:uppercase;letter-spacing:.01em;text-wrap:balance}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:20px}
+@media (max-width:480px){.wrap{padding-inline:16px}}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.num{font-variant-numeric:tabular-nums}
+.cost{color:var(--cost)}.gain{color:var(--gain)}.free{color:var(--free)}
+.muted{color:var(--ink-3);font-size:.88rem}
+
+/* header + hero + balance */
+.top{background:var(--card);border-bottom:1px solid var(--rule)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:14px}
+.brand{font-family:var(--display);font-weight:900;font-size:1.5rem;text-transform:uppercase;text-decoration:none;line-height:1}
+.brand span{color:var(--accent)}
+.toplink{font-weight:600;font-size:.92rem;color:var(--ink-2);text-decoration:none}
+.toplink:hover{color:var(--ink)}
+.hero{background:var(--card)}
+.hero-in{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;padding-block:30px 28px}
+.hero-ico{width:112px;height:112px;border-radius:50%;background:var(--paper-2);display:grid;place-items:center}
+.hero-ico svg{width:84px;height:84px}
+.hero h1{font-size:clamp(2.4rem,6.4vw,3.8rem)}
+.hero p{margin:0;color:var(--ink-2);font-size:1.05rem;max-width:44em;text-wrap:balance}
+.bal{position:sticky;top:env(safe-area-inset-top,0px);z-index:8;background:var(--us);color:#fff;transition:background .35s}
+.bal.up{background:#1E7A45}.bal.down{background:#A3281E}
+.bal .wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;padding-block:14px}
+.bal-c{display:flex;align-items:baseline;justify-content:center;gap:10px;flex-wrap:wrap}
+.bal-v{font-family:var(--display);font-weight:900;font-size:clamp(2.3rem,5.4vw,3.2rem);line-height:1;font-variant-numeric:tabular-nums}
+.bal-s{font-weight:600;font-size:1.02rem;opacity:.9}
+#balR{justify-self:end}
+.bal-btn{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.88rem;text-decoration:none;border:1.5px solid rgba(255,255,255,.65);border-radius:999px;padding:6px 14px;color:#fff;background:none;white-space:nowrap}
+@media (max-width:640px){.bal .wrap{grid-template-columns:1fr;padding-block:10px}.bal .wrap>span:first-child{display:none}.bal-s{font-size:.9rem}#balR{display:none}}
+.meter{height:12px;background:rgba(255,255,255,.25);border-radius:999px;overflow:hidden}
+.meter i{display:block;height:100%;background:#fff;border-radius:999px;transition:width .4s}
+
+/* race */
+.race{position:relative;height:34px}
+.race .road{position:absolute;left:0;right:0;top:12px;height:10px;border-radius:999px;background:var(--road)}
+.race .road::after{content:"";position:absolute;left:8px;right:8px;top:4px;height:2px;background:repeating-linear-gradient(90deg,var(--road-line) 0 8px,transparent 8px 16px)}
+.race .rn{position:absolute;top:3px;width:28px;height:28px;margin-left:-14px;border-radius:50%;display:grid;place-items:center;font-size:.64rem;font-weight:700;letter-spacing:.02em;transition:left .6s cubic-bezier(.2,.8,.2,1);box-shadow:0 0 0 2px var(--bar)}
+.race .rn.us{background:var(--us);color:var(--us-ink);z-index:2}
+.race .rn.cn{background:var(--cn);color:var(--cn-ink);z-index:1}
+.race .rn.ghost{background:transparent;border:2px dashed var(--bar-2);box-shadow:none;opacity:.6}
+@media (prefers-reduced-motion:reduce){.race .rn,.meter i,.bal-v{transition:none}}
+
+/* layout */
+main{padding-block:26px 72px;min-width:0}
+.head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:10px 20px;margin-bottom:14px}
+.head h1{font-size:clamp(1.9rem,4.4vw,3rem)}
+.head p{margin:6px 0 0;color:var(--ink-2);max-width:52ch}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+
+/* worldview */
+.wv{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 16px;align-items:center;background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:10px 12px;margin:0 0 14px}
+.wv-q{font-weight:600;font-size:.9rem;max-width:15em;line-height:1.25}
+.wv-q button{background:none;border:0;padding:0;color:var(--ink-3);text-decoration:underline;font-size:.8rem;font-weight:500}
+.seg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;background:var(--paper-2);border-radius:10px;padding:3px}
+.seg button{border:0;background:transparent;border-radius:8px;padding:6px 6px 7px;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:.78rem;font-weight:600;color:var(--ink-2);line-height:1.15;text-align:center}
+.seg button[aria-pressed="true"]{background:var(--card);color:var(--ink);box-shadow:var(--shadow)}
+.pips{display:flex;gap:3px}
+.pips i{width:9px;height:9px;border-radius:2px;background:var(--rule)}
+.pips i.f{background:var(--cn)}
+@media (max-width:640px){.wv{grid-template-columns:1fr}.wv-q{max-width:none}.seg button{font-size:.7rem}}
+
+/* famous orders */
+.lbl{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin:18px 0 8px}
+
+/* legend */
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.8rem;color:var(--ink-2);margin:4px 0 10px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:12px;height:12px;border-radius:4px}
+
+/* rigor details (detail and backup pages only) */
+.facts{background:var(--card);border:1px solid var(--rule);border-radius:16px;padding:14px 18px;margin-top:12px}
+.facts p{margin:8px 0 0;max-width:70ch}
+.basis{font-size:.74rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:3px 10px}
+.b-partial{background:var(--t-free);color:var(--d-free)}.b-estimate{background:var(--t-release);color:var(--d-release)}
+.alts{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline;margin-top:8px;font-size:.88rem}
+.alt{background:var(--paper-2);border-radius:8px;padding:2px 8px}.alt.on{outline:2px solid var(--us)}
+.sec2{font-size:.72rem;font-weight:700;background:var(--t-release);color:var(--d-release);border-radius:6px;padding:1px 6px}
+ul.plain{margin:8px 0 0;padding-left:20px}ul.plain li{margin-bottom:6px;color:var(--ink-2)}
+.per{display:block;font-family:var(--sans);font-weight:600;font-size:.7rem;color:var(--ink-3);letter-spacing:.02em}
+/* illustrations */
+.art{display:grid;place-items:center;background:color-mix(in srgb, var(--tb, var(--paper-2)) var(--tilemix), var(--card));border-radius:12px;color:var(--us)}
+.art svg{width:64%;height:64%}
+.art.hd{width:96px;height:96px;border-radius:20px}.art.hd svg{width:72px;height:72px}
+.art.wide{height:150px;border-radius:0}.art.wide svg{width:110px;height:110px}
+.art.sm{width:60px;height:60px;flex:none;border-radius:14px}.art.sm svg{width:44px;height:44px}
+.art.xs{width:26px;height:26px;border-radius:7px;margin-left:-6px}.art.xs svg{width:22px;height:22px}
+.face{position:relative;display:inline-grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--ink);color:var(--paper);overflow:hidden;flex:none;font-weight:700;font-size:.8rem}
+.face::before{content:attr(data-ini)}
+.face img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+.face.lg{width:76px;height:76px;font-size:1.2rem;margin-bottom:14px}
+/* items */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+@media (max-width:560px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
+.item{position:relative;background:var(--card);border-radius:14px;padding:0 14px 14px;overflow:hidden;display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;border:2px solid transparent;box-shadow:var(--shadow);min-width:0}
+.item.on{border-color:var(--us)}
+.item>.art{height:132px;margin:0 -14px 12px;border-radius:0;align-self:stretch}.item>.art svg{width:92px;height:92px}
+.item.on>.art{box-shadow:inset 0 -4px 0 var(--us)}
+.iname{font-weight:700;font-size:1.06rem;line-height:1.2;min-height:2.4em;display:flex;align-items:center;justify-content:center}
+.iprice{font-family:var(--display);font-weight:900;font-size:1.55rem;line-height:1.1;color:var(--us)}
+.iprice.gain{color:var(--gain)}
+.ibtns{display:grid;grid-template-columns:1fr 1.25fr;gap:8px;width:100%;margin-top:12px}
+.ibtns button{border:0;border-radius:8px;padding:10px 4px;font-weight:700;font-size:.92rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.b-rm{background:var(--paper-2);color:var(--ink-3)}
+.b-rm:not([disabled]){background:#F2D3CE;color:#8A2219}
+.b-add{background:var(--us);color:#fff}
+.b-add[disabled]{background:var(--paper-2);color:var(--ink-2)}
+.ibtns button[disabled]{cursor:default}
+.info{position:absolute;top:10px;right:10px;z-index:1;width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.9);color:#1B1A17!important;color:var(--ink-2);display:grid;place-items:center;text-decoration:none;font-family:var(--serif);font-style:italic;font-weight:600;font-size:.92rem}
+.info:hover{background:var(--ink);color:var(--paper)}
+@media (max-width:560px){.item{padding:0 10px 10px}.item>.art{height:104px;margin:0 -10px 10px}.item>.art svg{width:72px;height:72px}.ico{width:64px;height:64px}.ico svg{width:32px;height:32px}.iname{font-size:.94rem}.iprice{font-size:1.3rem}.ibtns{gap:6px}.ibtns button{font-size:.82rem;padding:9px 2px}}
+.sec{font-size:clamp(1.5rem,3.4vw,2rem);text-align:center;margin:44px 0 4px}
+.sub{text-align:center;color:var(--ink-3);margin:0 0 16px}
+.more{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:14px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:700;font-size:.95rem;padding:10px 18px;border-radius:999px;border:1.5px solid var(--ink);background:transparent;text-decoration:none;white-space:nowrap}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.dark{background:var(--ink);color:var(--paper)}
+.btn[disabled]{opacity:.4;cursor:default}
+.links{display:flex;flex-wrap:wrap;gap:4px 16px;margin-top:12px;font-size:.88rem}
+.links a,.links button{background:none;border:0;padding:0;color:var(--ink-2);text-decoration:underline;font-weight:500}
+
+/* bar rows (charts) */
+.bars{display:grid;gap:4px}
+.br{display:grid;grid-template-columns:minmax(0,15em) minmax(0,1fr) 5.5em;gap:10px;align-items:center;min-height:26px}
+.br .l{font-size:.86rem;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-decoration:none}
+a.l:hover{text-decoration:underline}
+.br .p{position:relative;height:18px}
+.br .z{position:absolute;top:-4px;bottom:-4px;width:1.5px;background:var(--ink-3)}
+.br .b{position:absolute;top:3px;height:12px;border-radius:3px;transition:left .5s,width .5s}
+.br .b.cost{background:var(--cost)}.br .b.gain{background:var(--gain)}.br .b.ink{background:var(--ink)}.br .b.soft{background:var(--ink-3)}
+.br .b.gap{background:var(--us)}.br .b.eval{background:var(--d-release)}.br .b.pace{background:var(--ink-3)}
+.br .b.mkt{background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.5) 0 3px,transparent 3px 6px)}
+.br .d{position:absolute;top:2px;width:14px;height:14px;margin-left:-7px;border-radius:50%;transition:left .5s}
+.br .d.me{background:var(--ink)}.br .d.them{background:var(--card);border:2.5px solid var(--cn)}
+.br .ln{position:absolute;top:8px;height:2px;background:var(--ink-3);transition:left .5s,width .5s}
+.br .v{font-family:var(--display);font-weight:900;font-size:1.05rem;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.br.hl .l{color:var(--ink)}.br.hl{background:var(--paper-2);border-radius:6px}
+.br.tot .l{font-weight:700}.br.tot{border-top:1.5px solid var(--ink);padding-top:4px;margin-top:2px}
+.bars.wide .br{grid-template-columns:minmax(0,14em) minmax(0,1fr) 9.5em}
+@media (max-width:560px){.br{grid-template-columns:minmax(0,9.5em) minmax(0,1fr) 4.6em;gap:6px}.br .l{font-size:.78rem}.bars.wide .br{grid-template-columns:minmax(0,7.5em) minmax(0,1fr) 7.4em}.bars.wide .br .v{font-size:.88rem}}
+.axis{display:flex;justify-content:space-between;font-size:.72rem;font-weight:600;color:var(--ink-3);margin:2px 0 6px}
+
+/* detail */
+.dt{max-width:860px}
+.back{font-size:.88rem;font-weight:600;color:var(--ink-2);text-decoration:none}
+.dhead{display:grid;grid-template-columns:96px minmax(0,1fr);gap:18px;align-items:center;margin:14px 0 18px}
+.dhead .art.hd{margin:0}
+.dhead h1{font-size:clamp(1.8rem,4.4vw,2.8rem)}
+.dhead p{margin:6px 0 0;color:var(--ink-2)}
+@media (max-width:520px){.dhead .art.hd{width:64px;height:64px;border-radius:14px}.dhead .art.hd svg{width:48px;height:48px}.dhead{grid-template-columns:64px minmax(0,1fr);gap:12px}.dhead .tile{height:64px;border-radius:14px}.dhead .tile svg{width:32px;height:32px}}
+.big{display:flex;flex-wrap:wrap;align-items:end;gap:10px 24px;padding:18px 20px;background:var(--card);border:1px solid var(--rule);border-radius:16px}
+.big .n{font-family:var(--display);font-weight:900;font-size:clamp(3rem,9vw,4.6rem);line-height:.85}
+.big .s{color:var(--ink-2);font-size:.92rem;padding-bottom:4px}
+.big .s b{display:block;color:var(--ink);font-size:1rem}
+.panel{background:var(--card);border:1px solid var(--rule);border-radius:16px;padding:16px 18px;margin-top:14px}
+.panel h3{font-size:1.1rem;margin-bottom:10px;letter-spacing:.03em}
+.clocks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.clk{border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;gap:4px;align-items:flex-start}
+.clk svg{width:26px;height:26px}
+.clk b{font-size:.84rem}
+.clk span{font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.clk.yes{background:var(--t-train);color:var(--d-train)}.clk.cond{background:var(--t-release);color:var(--d-release)}.clk.no{background:var(--t-free);color:var(--d-free)}
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:720px){.twocol{grid-template-columns:1fr}}
+details.acc{border-top:1px solid var(--rule);padding:12px 0}
+.lead{font-size:1.12rem;line-height:1.55;margin:0;max-width:66ch}
+details.seemore{margin-top:16px}
+details.seemore>summary{list-style:none;cursor:pointer;display:flex;width:fit-content;align-items:center;gap:8px;font-weight:700;padding:10px 18px;border-radius:999px;border:1.5px solid var(--ink)}
+details.seemore>summary::-webkit-details-marker{display:none}
+details.seemore>summary::after{content:"↓";font-weight:400}
+details.seemore[open]>summary::after{content:"↑"}
+details.seemore[open]>summary{margin-bottom:6px}
+.more-in h3{font-size:1.15rem;margin:22px 0 8px;letter-spacing:.03em}
+.more-in p,.more-in li{color:var(--ink-2);max-width:68ch}
+.more-in ul,.more-in ol{padding-left:20px}
+.more-in a{word-break:break-word}
+ul.who{list-style:none;padding:0}
+ul.who li{padding:8px 0;border-bottom:1px solid var(--rule)}
+ul.who b{color:var(--ink)}
+details.acc:last-of-type{border-bottom:1px solid var(--rule)}
+details.acc summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:10px}
+details.acc summary::-webkit-details-marker{display:none}
+details.acc summary::after{content:"+";font-weight:400;font-size:1.3rem;line-height:1;color:var(--ink-3)}
+details.acc[open] summary::after{content:"–"}
+details.acc p,details.acc li{max-width:68ch;color:var(--ink-2)}
+details.acc ul,details.acc ol{padding-left:20px}
+details.acc a{word-break:break-word}
+
+/* quotes */
+@media (max-width:640px){.qbig{grid-template-columns:1fr}}
+
+/* games */
+.dots{display:flex;gap:6px;margin-bottom:12px}
+.dots i{width:10px;height:10px;border-radius:50%;background:var(--rule)}
+.dots i.ok{background:var(--gain)}.dots i.no{background:var(--cost)}.dots i.cur{background:var(--ink)}
+@media (max-width:520px){.choices{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.result{background:var(--card);border:1px solid var(--rule);border-radius:18px;padding:22px;margin:0 0 14px;max-width:720px}
+.result p{margin:8px 0 0;font-size:1.05rem}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.chips span{font-size:.8rem;font-weight:600;border-radius:999px;padding:4px 10px;background:var(--paper-2)}
+
+/* method */
+.eq{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-weight:700;margin:6px 0 4px}
+.eq span{border-radius:10px;padding:10px 14px;font-size:.95rem}
+.eq .a{background:var(--t-train);color:var(--d-train)}.eq .b{background:var(--t-free);color:var(--d-free)}.eq .c{background:var(--t-china);color:var(--d-china)}.eq .r{background:var(--ink);color:var(--paper)}
+.eq em{font-style:normal;font-size:1.4rem;color:var(--ink-3)}
+.pipe{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;counter-reset:s}
+@media (max-width:620px){.pipe{grid-template-columns:1fr}}
+.pipe div{border-radius:12px;padding:12px 14px}
+.pipe b{display:block;font-family:var(--display);font-weight:900;font-size:1.3rem;text-transform:uppercase}
+.pipe span{font-size:.86rem}
+.sheet{position:fixed;inset:0;z-index:30;background:rgba(0,0,0,.45);display:flex;align-items:flex-start;justify-content:center;padding:calc(env(safe-area-inset-top,0px) + 70px) 16px 16px}
+.sheet-in{background:var(--card);color:var(--ink);border-radius:18px;max-width:460px;width:100%;padding:20px;box-shadow:var(--shadow)}
+.slider{display:grid;grid-template-columns:1fr auto;gap:2px 12px;margin-top:14px}
+.slider span{font-size:.9rem;font-weight:600}
+.slider b{font-family:var(--display);font-size:1.3rem}
+.slider input{grid-column:1/-1;width:100%;accent-color:var(--accent)}
+body.has-cta .toast{bottom:calc(env(safe-area-inset-bottom,0px) + 96px)}
+.toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 18px);transform:translateX(-50%);background:var(--ink);color:var(--paper);font-weight:600;font-size:.88rem;padding:9px 16px;border-radius:999px;z-index:40;box-shadow:var(--shadow);max-width:90vw}
+.float{position:fixed;z-index:35;font-family:var(--display);font-weight:900;font-size:1.3rem;pointer-events:none;padding:2px 10px;border-radius:999px;background:var(--ink);color:var(--paper);animation:floatup .9s ease-out forwards}
+.float.up{background:var(--gain);color:#fff}.float.down{background:var(--cost);color:#fff}
+@keyframes floatup{from{transform:translate(-50%,0);opacity:1}to{transform:translate(-50%,-46px);opacity:0}}
+footer{border-top:1px solid var(--rule);padding-block:18px 28px;font-size:.88rem;color:var(--ink-3)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;align-items:center}
+footer nav{display:flex;flex-wrap:wrap;gap:4px 16px}
+footer nav a{text-decoration:none;font-weight:600;color:var(--ink-2)}
+footer nav a.on{color:var(--ink);text-decoration:underline}
+
+/* p(doom): the second currency */
+.bal-d{display:inline-flex;align-items:baseline;gap:6px;padding-left:12px;margin-left:2px;border-left:1.5px solid rgba(255,255,255,.45)}
+.bal-dv{font-family:var(--display);font-weight:900;font-size:clamp(1.7rem,4vw,2.4rem);line-height:1;font-variant-numeric:tabular-nums}
+.bal-d small{font-weight:600;font-size:.95rem;opacity:.9}
+.bal-d.pulse .bal-dv{animation:dpulse .9s ease-out}
+@keyframes dpulse{0%{color:#fff}25%{color:#D9CCFF;transform:scale(1.08)}100%{color:#fff}}
+.irisk{display:flex;align-items:center;justify-content:center;gap:6px;font-size:.74rem;font-weight:700;color:var(--risk);min-height:1.2em}
+.irisk.adds{color:var(--cost)}.irisk.none{color:var(--free);font-weight:600}
+.rpips{display:inline-flex;gap:3px}.rpips i{width:8px;height:8px;border-radius:50%;background:var(--rule)}.rpips i.f{background:var(--risk)}.rpips.adds i.f{background:var(--cost)}
+.rpips.lg i{width:14px;height:14px}
+.float.doom{background:var(--risk);color:#fff;font-size:1.05rem}
+.hfilter{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;margin:4px 0 18px}
+.hfilter>span{font-weight:600;color:var(--ink-2);font-size:.92rem}
+.hfilter button{border:1.5px solid var(--rule);background:var(--card);border-radius:999px;padding:6px 14px;font-weight:700;font-size:.88rem;color:var(--ink-2)}
+.hfilter button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.hchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}.hchip{font-size:.8rem;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper-2);color:var(--ink-2)}
+.rbox{display:flex;gap:16px;align-items:center;margin-top:14px;padding:14px 16px;border-radius:12px;background:color-mix(in srgb,var(--risk) 10%,var(--card))}
+.rbox b{font-size:1.1rem}
+.pdseg{grid-template-columns:repeat(4,minmax(0,1fr))}.pdseg button b{font-family:var(--display);font-weight:900;font-size:1.25rem;line-height:1;color:var(--risk)}
+/* endings map, ratings, p(doom) picker */
+.chk{display:flex;gap:8px;align-items:center;font-size:.9rem;margin:10px 0}
+.rwhy{width:100%;min-height:62px;border:1.5px solid var(--rule);border-radius:10px;padding:8px 10px;font:inherit;background:var(--paper);color:var(--ink);resize:vertical}
+.crowd{margin-top:10px;font-size:.9rem;color:var(--ink-2)}.crowd b{color:var(--ink)}
+.rtab{width:100%;border-collapse:collapse;font-size:.9rem}.rtab td,.rtab th{padding:8px 6px;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top}.rtab .diff{color:var(--cost);font-weight:700}
+.bal #balPd{display:block;max-width:640px;margin:0 auto;padding:0 16px 12px}.bal #balPd[hidden]{display:none}#balPd .seg{background:rgba(255,255,255,.14)}#balPd .seg button{color:#fff}#balPd .seg button[aria-pressed="true"]{color:var(--ink)}#balPd .pdseg button b{color:inherit}
+#balPd p{margin:0 0 8px;font-size:.88rem;opacity:.92;text-align:center}#balPd a{color:#fff}
+/* rule assumptions */
+.kgrp{border-top:1px solid var(--rule);margin-top:14px;padding-top:12px}.kgh{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}.kgh b{font-size:1rem}
+.kout{font-weight:800;color:var(--risk)}.knote{font-size:.84rem;color:var(--ink-2);margin:6px 0 2px}.kwhy{font-size:.76rem;color:var(--ink-3);margin:2px 0 0;line-height:1.35}
+.nsl-w.plain input[type=range]::-webkit-slider-runnable-track{background:var(--track)}.nsl-w.plain input[type=range]::-moz-range-track{background:var(--track)}
+.kdirect{margin-top:14px}.kfold{margin-top:12px}.wvfold>summary{cursor:pointer;list-style:revert}.wvfold[open]>summary{margin-bottom:6px}
+.wvx.pw{font-size:.82rem}.wvx.pw .pwl{min-width:0;flex:0 0 42%;text-align:left;font-weight:600;color:var(--ink-2)}.wvx.pw span[data-pwv]{min-width:3em}
+/* your numbers: sliders */
+.nsl{margin:14px 0 6px}.nsl-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}.nsl-h b{font-size:.92rem}.nsl-v{font-weight:800;color:var(--risk);font-size:1rem}
+.nsl-w{position:relative;padding-top:14px}.nsl-w input[type=range]{-webkit-appearance:none;appearance:none;width:100%;margin:0;height:30px;background:transparent;cursor:pointer}
+.nsl-w input[type=range]::-webkit-slider-runnable-track{height:8px;border-radius:4px;background:linear-gradient(90deg,var(--track) calc(50% - 1px),var(--ink-3) calc(50% - 1px) calc(50% + 1px),var(--track) calc(50% + 1px))}
+.nsl-w input[type=range]::-moz-range-track{height:8px;border-radius:4px;background:linear-gradient(90deg,var(--track) calc(50% - 1px),var(--ink-3) calc(50% - 1px) calc(50% + 1px),var(--track) calc(50% + 1px))}
+.nsl-w input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--risk);border:3px solid var(--card);box-shadow:0 1px 4px rgba(0,0,0,.35);margin-top:-7px}
+.nsl-w input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--risk);border:3px solid var(--card);box-shadow:0 1px 4px rgba(0,0,0,.35)}
+.nsl-w input[type=range]:focus-visible{outline:2px solid var(--risk);outline-offset:2px;border-radius:6px}
+.nsl-m{position:absolute;top:0;left:calc(var(--x)*1% + (0.5 - var(--x)/100)*22px);transform:translateX(-50%);font-size:.6rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;background:var(--risk);color:#fff;border-radius:4px;padding:0 5px;line-height:1.5;pointer-events:none}
+.nsl-m::after{content:"";position:absolute;left:50%;bottom:-4px;margin-left:-4px;border:4px solid transparent;border-bottom:0;border-top-color:var(--risk)}
+.nsl-t{position:relative;height:16px;font-size:.68rem;color:var(--ink-3)}.nsl-t span:first-child{transform:none!important;left:0!important}.nsl-t span:last-child{transform:none!important;left:auto!important;right:0}.nsl-t span{position:absolute;left:calc(var(--x)*1% + (0.5 - var(--x)/100)*22px);transform:translateX(-50%);white-space:nowrap}
+/* your numbers, settings panel, position page */
+.item .yours{position:absolute;left:8px;top:8px;z-index:2;font-size:.66rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;background:var(--risk);color:#fff;border-radius:6px;padding:2px 6px}
+.yours.in{display:inline-block;font-size:.66rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;background:var(--risk);color:#fff;border-radius:6px;padding:1px 6px;vertical-align:middle}
+.toplinks{display:flex;gap:16px;align-items:center}button.toplink{background:none;border:0;padding:0;cursor:pointer;font-family:inherit}
+@media (max-width:560px){.toplinks{gap:12px}.toplink{font-size:.82rem}}.toplink,.brand{white-space:nowrap}
+.wvs{display:flex;flex-direction:column;gap:8px;margin:16px 0}.wvs>b{font-size:.98rem}.wvs .muted{font-size:.85rem}.wvs input[type=range]{width:100%}
+.wvs .chips{display:flex;flex-wrap:wrap;gap:6px}.wvs .chips a{background:var(--paper-2);border-radius:999px;padding:4px 10px;font-size:.85rem;font-weight:600;text-decoration:none;color:var(--ink)}
+.linkbtn{background:none;border:0;padding:0;color:var(--ink-2);text-decoration:underline;font:inherit;font-size:.88rem;align-self:flex-start;cursor:pointer}
+.sheet-in{max-height:88vh;overflow:auto}
+.pos{background:var(--card);border:1px solid var(--rule);border-radius:16px;padding:28px 32px;max-width:760px;margin:0 auto;font-size:1rem;line-height:1.55}
+.pos-k{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}.pos h1{font-family:var(--display);font-weight:900;font-size:clamp(2.4rem,7vw,3.6rem);text-transform:uppercase;line-height:1;margin:6px 0 10px}
+.pos h2{font-size:1.05rem;letter-spacing:.04em;text-transform:uppercase;margin:22px 0 8px;border-bottom:1.5px solid var(--rule);padding-bottom:4px}.pos-by{font-weight:700;margin:0}.pos-name{display:flex;gap:8px;align-items:center;font-size:.9rem;color:var(--ink-2)}.pos-name input{border:1.5px solid var(--rule);border-radius:8px;padding:4px 8px;font:inherit;background:var(--paper)}
+.pos-t{width:100%;border-collapse:collapse;font-size:.92rem}.pos-t th,.pos-t td{text-align:left;padding:6px 6px;border-bottom:1px solid var(--rule);vertical-align:top}.pos-t th{font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.pos-l{margin:0;padding-left:20px}.pos-l li{margin:4px 0}.pos-f{margin-top:24px;font-size:.8rem;color:var(--ink-3)}.printonly{display:none}
+@media print{header.top,.bal,footer,.cta,.noprint,#wv,.toast,.float{display:none!important}body{background:#fff!important}.pos{border:0;padding:0;max-width:none}.printonly{display:block}a{color:inherit;text-decoration:none}}
+.cmpme td{font-size:.86rem}.cmpme td:first-child{font-weight:600}
+.mtools{display:flex;gap:8px;margin:4px 0 10px}.mtools input{flex:1;min-width:0;border:1.5px solid var(--rule);border-radius:999px;padding:8px 14px;font:inherit;font-size:.92rem;background:var(--card);color:var(--ink)}.mtools select{border:1.5px solid var(--rule);border-radius:999px;padding:8px 12px;font:inherit;font-size:.88rem;background:var(--card);color:var(--ink);max-width:48%}
+.wvx{display:flex;align-items:center;gap:10px;font-size:.85rem;color:var(--ink-2);margin-top:6px}.wvx input{flex:1;accent-color:var(--risk)}.wvx span{min-width:5.5em;text-align:right;font-weight:700;color:var(--ink)}
+.fab{position:fixed;right:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 18px);z-index:21;display:inline-flex;align-items:center;gap:6px;border:0;border-radius:999px;padding:10px 16px;background:var(--ink);color:var(--paper);font:inherit;font-weight:700;font-size:.9rem;box-shadow:0 6px 18px rgba(0,0,0,.25);cursor:pointer}
+.fab svg{width:18px;height:18px}.fab .fdot{position:absolute;top:6px;right:8px;width:9px;height:9px;border-radius:50%;background:var(--accent);border:2px solid var(--ink)}
+body.has-cta .fab{bottom:calc(env(safe-area-inset-bottom,0px) + 84px)}
+.fpanel{position:fixed;right:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 72px);z-index:22;width:min(420px,calc(100vw - 32px));max-height:70vh;overflow:auto;background:var(--card);border:1px solid var(--rule);border-radius:16px;padding:14px 16px;box-shadow:0 16px 40px rgba(0,0,0,.22)}
+body.has-cta .fpanel{bottom:calc(env(safe-area-inset-bottom,0px) + 138px)}
+.fp-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.fp-h b{font-size:1rem}
+.fpanel .mtools{flex-direction:column;margin:0 0 10px}.fpanel .mtools select{max-width:none}
+.fpanel .hfilter{flex-wrap:wrap!important;overflow:visible!important;justify-content:flex-start;margin:0 0 8px!important;padding:0!important}.fpanel .hfilter>span{flex-basis:100%!important;font-size:.85rem}
+.factive{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;background:var(--paper-2);border-radius:12px;padding:8px 14px;margin:0 0 12px;font-size:.9rem}.factive span{font-weight:600;flex:1;min-width:180px}
+@media print{.fab,.fpanel{display:none!important}}
+/* moments */
+.moment{position:fixed;left:50%;top:38%;transform:translate(-50%,-50%);z-index:45;font-family:var(--display);font-weight:900;font-size:clamp(1.6rem,6vw,2.6rem);text-transform:uppercase;text-align:center;line-height:1.05;padding:18px 26px;border-radius:18px;color:#fff;background:var(--ink);box-shadow:0 12px 40px rgba(0,0,0,.3);pointer-events:none;animation:moment 2.6s ease-out forwards;max-width:86vw}
+.moment.cn{background:var(--cn)}.moment.us{background:var(--us)}.moment.doom{background:var(--risk)}
+@keyframes moment{0%{opacity:0;transform:translate(-50%,-50%) scale(.7)}12%{opacity:1;transform:translate(-50%,-50%) scale(1.04)}20%{transform:translate(-50%,-50%) scale(1)}80%{opacity:1}100%{opacity:0;transform:translate(-50%,-60%)}}
+@media (prefers-reduced-motion:reduce){.moment{animation:none;opacity:1}}
+/* phone: get to the cards fast */
+@media (max-width:640px){
+.hero-ico{display:none}.hero-in{padding-block:18px 16px;gap:8px}.hero h1{font-size:2rem;line-height:1}.hero p{font-size:.92rem}
+.bal .wrap{padding-block:8px}.bal-c{flex-wrap:nowrap;gap:6px;white-space:nowrap}.bal-v{font-size:1.75rem}.bal-s{font-size:.78rem}.bal-d{padding-left:8px;margin-left:2px;border-left:1.5px solid rgba(255,255,255,.45)}.bal-dv{font-size:1.45rem}.bal-d small{font-size:.72rem}
+.hfilter{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;margin:0 -16px 12px;padding:2px 16px;scrollbar-width:none}.hfilter::-webkit-scrollbar{display:none}.hfilter>span{flex:none!important;flex-basis:auto!important;text-align:left!important}.hfilter button{flex:none}
+}
+@media (max-width:400px){.brand{font-size:1.15rem}.toplinks{gap:10px}.toplink{font-size:.76rem}}
+/* lock-in and results */
+.lockin{display:flex;justify-content:center;margin:36px 0 12px}.btn.big{font-size:1.1rem;padding:16px 28px}
+.cta{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;justify-content:center;align-items:center;gap:14px;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));background:var(--card);border-top:1px solid var(--rule);box-shadow:0 -6px 20px rgba(0,0,0,.08)}
+.cta span{font-weight:700;color:var(--ink-2)}body.has-cta footer{padding-bottom:84px}
+.res{max-width:760px;margin:0 auto}.res>.row,.res>.links{justify-content:center}.res>.links{margin-bottom:6px}.res-top{text-align:center;margin:10px 0 18px}.res-top .ek,.stat .ek{font-weight:700;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.res-top h1{font-family:var(--display);font-weight:900;font-size:clamp(3rem,11vw,5.6rem);line-height:.95;text-transform:uppercase;margin:6px 0 8px}.res-top p{margin:0;font-size:1.15rem;color:var(--ink-2)}
+.res-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}.stat{background:var(--card);border:1px solid var(--rule);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:8px}
+.stat>b{font-family:var(--display);font-weight:900;font-size:clamp(1.9rem,5vw,2.6rem);line-height:1}.stat .muted{font-size:.88rem}
+.dmeter{position:relative;height:14px;border-radius:7px;background:var(--paper-2);margin-top:14px}.dmeter i{position:absolute;left:0;top:0;bottom:0;border-radius:7px;background:var(--risk)}.dmeter b{position:absolute;top:-6px;bottom:-6px;width:0;border-left:2.5px dashed var(--ink)}
+.dmeter-l{display:flex;justify-content:space-between;font-size:.75rem;color:var(--ink-3)}
+.cmp-h,.cmp-r{display:grid;grid-template-columns:minmax(0,1.3fr) 1fr 1fr;gap:10px;align-items:center}.cmp-h{font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
+.cmp-r{padding:6px 0;border-top:1px solid var(--rule)}.cmp-r.me{font-weight:800}.cmp-r.me .cmp-n{color:var(--us)}.cmp-n{font-size:.9rem}
+.cmp-b{position:relative;height:22px;background:var(--paper-2);border-radius:5px;overflow:hidden}.cmp-b::before{content:"";position:absolute;left:50%;top:0;bottom:0;border-left:1.5px solid var(--ink-3)}.cmp-b i{position:absolute;top:3px;bottom:3px;border-radius:3px}.cmp-b i.lead{background:color-mix(in srgb,var(--us) 45%,transparent)}.cmp-b i.doom{background:color-mix(in srgb,var(--risk) 45%,transparent)}.cmp-b i.bad{background:color-mix(in srgb,var(--cost) 40%,transparent)}
+.cmp-b em{position:absolute;top:0;font-style:normal;font-size:.75rem;font-weight:700;line-height:22px;white-space:nowrap}.cmp-b em.r{left:6px}.cmp-b em.l{right:6px}
+.cmp-b em{position:relative;font-style:normal;font-size:.8rem;font-weight:700;padding-left:6px;line-height:22px}
+.an{list-style:none;margin:0;padding:0;display:grid;gap:10px}.an li{display:flex;gap:12px;align-items:center}.an .art{flex:none}
+.res .chips{display:flex;flex-wrap:wrap;gap:6px}.res .chips a{background:var(--paper-2);border-radius:999px;padding:5px 12px;font-size:.88rem;font-weight:600;text-decoration:none;color:var(--ink)}
+@media (max-width:640px){.res-stats{grid-template-columns:1fr}.cta{gap:10px}.cta span{display:none}.cmp-h,.cmp-r{grid-template-columns:minmax(0,1fr) 1fr 1fr;gap:6px}.cmp-n{font-size:.8rem}}
+@media (max-width:640px){.bal-d{padding-left:0;border-left:0;margin-left:0}.bal-d small{font-size:.8rem}.hfilter{gap:6px}.hfilter>span{flex-basis:100%;text-align:center;font-size:.85rem}.hfilter button{padding:5px 11px;font-size:.82rem}.irisk{font-size:.68rem;gap:4px}}
+</style>
+</head>
+<body>
+
+
+<header class="top">
+  <div class="wrap"><a class="brand" href="#/">The AI Safety <span>Menu</span></a><span class="toplinks"><button class="toplink" id="assumeBtn" type="button">Your assumptions</button><a class="toplink" id="toplink" href="#/method">How it works</a></span></div>
+</header>
+
+<section class="hero" id="hero" hidden>
+  <div class="wrap hero-in">
+    <span class="hero-ico" id="heroArt" aria-hidden="true"></span>
+    <h1>Spend America's Lead to Make AI Safe</h1>
+    <p id="heroP"></p>
+  </div>
+</section>
+
+<section class="bal" id="bal" aria-label="America's lead" hidden>
+  <div class="wrap">
+    <span></span>
+    <div class="bal-c"><span class="bal-v" id="balV" aria-live="polite">213 days</span><span class="bal-s" id="balS">ahead of China</span><button class="bal-d" id="balD" type="button" aria-expanded="false" aria-controls="balPd" title="Chance of an AI catastrophe as bad as human extinction. Tap to change whose estimate you start from." style="color:inherit;background:none;border-top:0;border-right:0;border-bottom:0;cursor:pointer;font:inherit"><span class="bal-dv" id="balDV">5%</span><small>p(doom) ▾</small></button></div>
+    <div id="balR"></div>
+  </div>
+  <div class="wrap" id="balMeterWrap" hidden style="padding-bottom:12px"><div class="meter"><i id="balMeterI"></i></div></div>
+</section>
+
+<div class="wrap"><main id="view"></main></div>
+<div class="cta" id="cta" hidden></div>
+<button class="fab" id="fab" type="button" hidden aria-expanded="false" aria-controls="fpanel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg><span>Filter</span><i class="fdot" hidden></i></button>
+<div class="fpanel" id="fpanel" hidden role="dialog" aria-label="Search, sort and filter"></div>
+
+<div class="sheet" id="wv" hidden role="dialog" aria-modal="true" aria-labelledby="wvT">
+  <div class="sheet-in">
+    <div class="row" style="justify-content:space-between"><h2 id="wvT" style="font-size:1.6rem">Your assumptions</h2><button class="btn" id="wvClose">Done</button></div>
+    <div id="wvBody"></div>
+  </div>
+</div>
+
+<footer><div class="wrap"><nav id="tabs" aria-label="Sections"><a href="#/">Menu</a><a href="#/method">How it works</a></nav><span id="ver"></span></div></footer>
+
+<script src="data.js?v=10.1"></script>
+<script src="risk.js?v=10.1"></script>
+<script src="knobs.js?v=10.1"></script>
+<script src="art.js?v=10.1"></script>
+<script>
+(function(){
+'use strict';
+const D = window.MENU_DATA;
+const $ = s => document.querySelector(s);
+const esc = s => String(s==null?'':s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const ALL = D.policies.concat(D.combos);
+const byId = id => ALL.find(p => p.id===id);
+const FROM_CODE = {}; Object.keys(D.codes).forEach(id => FROM_CODE[D.codes[id]] = id);
+const DPM = 30.44, Z = {low:0,central:0,high:0};
+const REDUCED = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+const defaultLam = (D.stances.find(s=>s.id===D.default_stance)||{lam:.5}).lam;
+const SHORT = { own:'Not at all', some:'A little', lot:'A lot', most:'Mostly' };
+const RK = window.MENU_RISK, HARMS = D.risk.harms;
+
+/* ---------- state ---------- */
+const SORTS = { shuffle: 'Shuffled', cost: 'Cheapest first', risk: 'Biggest risk cut', value: 'Most risk cut per day of lead', az: 'A to Z' };
+const S = { lam: defaultLam, lead: 7, cart: [], name: '', hook: null, onboarded: false, pd: D.risk.default_baseline, harm: null, my: {}, sort: 'shuffle', q: '', kn: {}, pw: null, bills: false };
+function load(k, d){ try{ const v = localStorage.getItem('menu2.'+k); return v==null ? d : JSON.parse(v); }catch(e){ return d; } }
+function store(k, v){ try{ localStorage.setItem('menu2.'+k, JSON.stringify(v)); }catch(e){} }
+(function(){ const c = load('cart', []); if(Array.isArray(c)) S.cart = c.filter(byId);
+  const l = load('lam', null); if(typeof l==='number' && l>=0 && l<=1) S.lam = l;
+  const m = load('lead', null); if(typeof m==='number' && m>=1 && m<=18) S.lead = m;
+  const pd = load('pd', null); if(D.risk.baselines.some(b => b.id===pd) || /^c\d{1,4}$/.test(pd||'')) S.pd = pd; const so = load('sort', 'shuffle'); if(SORTS[so]) S.sort = so; const hm = load('harm', null); if(HARMS[hm]) S.harm = hm;
+  const my = load('my', {}); if(my && typeof my === 'object') Object.keys(my).forEach(id => { const p = byId(id); if(p && !p.components) S.my[id] = Object.assign({}, my[id]); });
+  const kn = load('kn', {}); if(kn && typeof kn === 'object') Object.keys(kn).forEach(id => { if(byId(id)) S.kn[id] = kn[id]; });
+  const pw = load('pw', null); if(pw && typeof pw === 'object') S.pw = pw; S.bills = !!load('bills', false);
+  S.name = String(load('name','')||'').slice(0,24); S.onboarded = !!load('onboarded', false); })();
+function save(){ store('bills',S.bills); store('kn',S.kn); store('pw',S.pw); store('sort',S.sort); store('my',S.my); store('pd',S.pd); store('harm',S.harm); store('cart',S.cart); store('lam',S.lam); store('lead',S.lead); store('name',S.name); store('onboarded',S.onboarded); }
+
+/* ---------- pricing ---------- */
+// Cost to America's lead = delay to U.S. frontier − share copied × delay to China's access − direct slowdown to China
+/* ---------- personal numbers ----------
+   A player can replace any rule's lead cost or p(doom) cut with their own step. Their numbers then drive
+   the menu, the totals and the results for them, and travel inside share links. */
+const LEAD_S = [{l:'Gains months', d:-60},{l:'Gains weeks', d:-14},{l:'Gains days', d:-3},{l:'Under a day', d:0.3},{l:'Days', d:4},{l:'Weeks', d:21},{l:'1–2 months', d:45},{l:'3+ months', d:120}];
+const RISK_S = [{l:'Raises it a lot', r:-0.10},{l:'Raises it', r:-0.03},{l:'No effect', r:0},{l:'Tiny', r:0.01},{l:'Small', r:0.03},{l:'Medium', r:0.07},{l:'Large', r:0.15},{l:'Huge', r:0.35}];
+const leadIdx = m => { const d = m*DPM; return d <= -30 ? 0 : d <= -7 ? 1 : d <= -0.95 ? 2 : d < 0.95 ? 3 : d < 14.5 ? 4 : d < 30 ? 5 : d < 75 ? 6 : 7; };
+const riskIdx = r => r <= -0.06 ? 0 : r <= -0.005 ? 1 : r < 0.005 ? 2 : r < 0.02 ? 3 : r < 0.05 ? 4 : r < 0.1 ? 5 : r < 0.25 ? 6 : 7;
+// Numbers saved by v8.0 were steps; turn them into exact values once.
+Object.keys(S.my).forEach(id => { const p = byId(id), m = S.my[id]; if(m.l == null && m.r == null) return;
+  if(m.l != null && m.ld == null && m.l !== leadIdx(menuNet(p, S.lam).central)) m.ld = LEAD_S[m.l].d; if(m.r != null && m.rr == null && p.risk && m.r !== riskIdx(p.risk.central)) m.rr = RISK_S[m.r].r; delete m.l; delete m.r; });
+const SL = { ld: { neg: 180, pos: 365, snap: d => Math.abs(d) < 0.05 ? 0 : Math.abs(d) < 10 ? Math.round(d*10)/10 : Math.round(d) },
+             rr: { neg: 30, pos: 60, snap: v => Math.abs(v) < 0.05 ? 0 : Math.abs(v) < 10 ? Math.round(v*10)/10 : Math.round(v) } }; // rr slider works in percent
+const slTo = (k, t) => { const c = SL[k], M = t < 0 ? c.neg : c.pos, v = Math.sign(t)*(Math.exp(Math.abs(t)/1000*Math.log(1+M)) - 1); return c.snap(Math.abs(t) < 12 ? 0 : v); };
+const slFrom = (k, v) => { const c = SL[k], M = v < 0 ? c.neg : c.pos; return Math.max(-1000, Math.min(1000, Math.round(Math.sign(v)*1000*Math.log(1+Math.abs(v))/Math.log(1+M)))); };
+const leadPhrase = m => m < -EPS ? 'gains '+lc(words(m))+' of lead' : m <= EPS ? 'costs no lead' : 'costs '+lc(words(m))+' of lead';
+const riskPhrase = r => r > 0.0005 ? 'removes about '+RK.pct(r)+' of the risk' : r < -0.0005 ? 'adds about '+RK.pct(r)+' to the risk' : 'does nothing for p(doom)';
+let OVR = null; // someone else's numbers while rendering their shared results
+const myMap = () => OVR || S.my;
+function myLead(p, lam){ const m = myMap()[p.id]; return (!m || m.ld == null || p.components) ? null : m.ld/DPM; }
+function myRiskOv(){ const o = {}, mm = myMap(); Object.keys(mm).forEach(id => { const m = mm[id], p = byId(id); if(p && p.risk && m.rr != null) o[id] = m.rr; }); return o; }
+/* ---------- assumption knobs ----------
+   Modeled rules: the simulation model's three most influential inputs, precomputed on a 7x7x7 grid (src/knobs.js)
+   and interpolated here; results shift the menu's estimate by the model's change. Hand-priced rules: the parts of
+   our estimate. p(doom): each rule's cut = how much risk it targets x how well it works x how likely it is followed. */
+const KT = window.MENU_KNOBS || {};
+let KOVR = null; // someone else's knobs while rendering their shared results
+const knMap = () => KOVR ? KOVR.kn : S.kn;
+const pwMap = () => KOVR ? KOVR.pw : S.pw;
+function handKnobs(p){ const ks = [];
+  const mk = (key, label, o, scale) => { if(!o) return; const lo = o.low*DPM*scale, c = o.central*DPM*scale, hi = o.high*DPM*scale; if(Math.abs(hi-lo) < 0.05) return;
+    ks.push({ name: key, label, fmt: key, values: [lo, lo+(c-lo)/3, lo+2*(c-lo)/3, c, c+(hi-c)/3, c+2*(hi-c)/3, hi], default: 3, evidence: 'our estimate', why: '' }); };
+  mk('us', 'How much it changes U.S. progress', p.d_us, 1);
+  if(p.d_china && (p.d_china.low || p.d_china.high)) mk('cn', 'How much it changes China\'s progress directly', p.d_china, 1);
+  if(p.d_access && (p.d_access.low || p.d_access.high)) mk('acc', 'How much China loses through its reliance on U.S. models, at "a little"', p.d_access, 0.25);
+  return ks; }
+const knobsFor = p => p.components ? [] : KT[p.id] ? KT[p.id].knobs : handKnobs(p);
+const knobPos = (p, ks) => { const k = (knMap()[p.id] || {}).k || []; return ks.map((x, i) => k[i] != null ? Math.max(0, Math.min(6, k[i])) : x.default); };
+const valueAt = (x, pos) => { const b = Math.min(5, Math.floor(pos)), f = pos - b; return x.values[b] + (x.values[b+1] - x.values[b]) * f; };
+function interp(tab, pos){ const n = pos.length, base = pos.map(x => Math.min(5, Math.floor(x))), fr = pos.map((x, i) => x - base[i]); let acc = 0;
+  for(let m = 0; m < (1 << n); m++){ let w = 1, idx = 0; for(let i = 0; i < n; i++){ const b = (m >> i) & 1; w *= b ? fr[i] : 1 - fr[i]; idx = idx*7 + base[i] + b; } if(w) acc += w*tab[idx]; }
+  return acc; }
+const knobsChanged = p => { const k = (knMap()[p.id] || {}).k; if(!k) return false; const ks = knobsFor(p); return k.some((v, i) => v != null && ks[i] && Math.abs(v - ks[i].default) > 0.05); };
+// Change in days to U.S. loss, China's direct loss and China's loss through U.S. models, from this rule's knobs.
+function leadDelta(p){
+  if(p.components){ let d = null; p.components.map(byId).filter(Boolean).forEach(c => { const x = leadDelta(c); if(x){ d = d || { us: 0, direct: 0, diff: 0 }; d.us += x.us; d.direct += x.direct; d.diff += x.diff; } }); return d; }
+  if(!knobsChanged(p)) return null; const ks = knobsFor(p); if(!ks.length) return null; const pos = knobPos(p, ks);
+  if(KT[p.id]){ const t = KT[p.id], def = ks.map(x => x.default); return { us: interp(t.us, pos) - interp(t.us, def), direct: interp(t.direct, pos) - interp(t.direct, def), diff: interp(t.diff, pos) - interp(t.diff, def) }; }
+  const d = { us: 0, direct: 0, diff: 0 }; ks.forEach((x, i) => { const v = valueAt(x, pos[i]) - x.values[x.default]; if(x.name === 'us') d.us = v; else if(x.name === 'cn') d.direct = v; else d.diff = v; }); return d; }
+const shift = (o, v) => ({ low: o.low + v, central: o.central + v, high: o.high + v });
+function comp(p){ const d = leadDelta(p); if(!d) return p; return Object.assign({}, p, { d_us: shift(p.d_us, d.us/DPM), d_china: shift(p.d_china || Z, d.direct/DPM), d_access: shift(p.d_access, d.diff/0.25/DPM) }); }
+// p(doom) knobs
+const PW0 = Object.fromEntries(D.risk.pathways.map(x => [x.id, x.weight]));
+function weights(){ const pw = pwMap(); if(!pw) return PW0; const raw = D.risk.pathways.map(x => Math.max(0, pw[x.id] != null ? pw[x.id] : x.weight*100)), tot = raw.reduce((a,b) => a+b, 0) || 1; return Object.fromEntries(D.risk.pathways.map((x, i) => [x.id, raw[i]/tot])); }
+const targetShare = (tg, w) => Object.keys(tg).reduce((a, k) => a + (w[k]||0)*tg[k], 0);
+const worksDefault = r => Math.min(1, Math.abs(r.central) / Math.max(1e-9, targetShare(r.targets, PW0)*r.adherence));
+function riskKnobs(p){ const r = p.risk; if(!r || !r.targets || !r.central) return null; const k = knMap()[p.id] || {}, w = weights();
+  const e = k.e != null ? k.e : worksDefault(r), a = k.a != null ? k.a : r.adherence; return { e, a, T: targetShare(r.targets, w), val: Math.sign(r.central)*targetShare(r.targets, w)*e*a }; }
+function myRiskAdj(){ const o = {}, kn = knMap(), custom = !!pwMap(); D.policies.forEach(p => { const r = p.risk; if(!r || !r.targets || !r.central) return; const k = kn[p.id] || {};
+  if(!custom && k.e == null && k.a == null) return; o[p.id] = riskKnobs(p).val / r.central; }); return o; }
+const riskKnobsChanged = p => { const k = knMap()[p.id] || {}, r = p.risk; if(!r || !r.targets || !r.central) return false; return (k.e != null && Math.abs(k.e - worksDefault(r)) > 0.005) || (k.a != null && Math.abs(k.a - r.adherence) > 0.005); };
+const hasMine = p => { if(p.components) return { l: false, r: false }; const m = myMap()[p.id] || {}; return { l: m.ld != null || knobsChanged(p), r: m.rr != null || riskKnobsChanged(p) }; };
+const mineCount = () => [...new Set(Object.keys(myMap()).concat(Object.keys(knMap())))].filter(id => { const p = byId(id), h = p ? hasMine(p) : {}; return h.l || h.r; }).length;
+function net(p, lam){ const o = myLead(p, lam); return o != null ? { low: o, central: o, high: o } : netRaw(p, lam); }
+// The estimate after the player's assumption changes (before any direct override).
+function netRaw(p, lam){ return netOf(comp(p), lam); }
+function menuNet(p, lam){ return netOf(p, lam); }
+function netOf(p, lam){ const u=p.d_us, a=p.d_access, c=p.d_china||Z; return { low: u.low - lam*a.high - c.high, central: u.central - lam*a.central - c.central, high: u.high - lam*a.low - c.low }; }
+function totals(ids, lam){ const t = {gross:0,disc:0,credit:0,net:0,low:0,high:0}; ids.map(byId).filter(Boolean).map(comp).forEach(p => { const o = myLead(p, lam); if(o != null){ t.gross += o; t.low += o; t.high += o; return; } t.gross += p.d_us.central; t.disc += lam*p.d_access.central; t.credit += (p.d_china||Z).central; const n = netOf(p,lam); t.low += n.low; t.high += n.high; }); // Security measures share one theft budget, so ordering several cannot remove more theft risk than exists.
+  const th = ids.map(byId).filter(p => p && p.theft_cut && myLead(p, lam) == null).map(comp);
+  if(th.length > 1 && D.theft_pool){ const left = th.reduce((a,p) => a*(1-p.theft_cut), 1), P = D.theft_pool;
+    const over = k => th.reduce((a,p) => a + p.d_china[k], 0) - P[k]*(1-left);
+    t.credit -= over('central'); t.low += over('high'); t.high += over('low'); }
+  t.net = t.gross - t.disc - t.credit; return t; }
+function fmt(m){ if(m==null||isNaN(m)) return '—'; const v = Math.abs(m), d = v*DPM; let s;
+  if(v < EPS) s = '0'; else if(d < 0.95) s = '<1 day'; else if(Math.round(d) <= 14){ const n = Math.max(1, Math.round(d)); s = n + (n===1?' day':' days'); }
+  else if(v < 0.95) s = Math.round(d/7) + ' wks';
+  else { const mo = Math.round(v*2)/2; s = (mo%1?mo.toFixed(1):mo) + ' mo'; }
+  return (m < -EPS ? '−' : '') + s; }
+// Effect on the lead: a cost shrinks it (−), a gain grows it (+)
+const AP = D.appendix_base || '', EPS = 1e-6, UNDER = 1/DPM; // one day, in months
+const eff = m => Math.abs(m) < EPS ? 'Free' : (m > 0 ? '−' + fmt(m) : '+' + fmt(-m));
+const effCls = m => m > EPS ? 'cost' : m < -EPS ? 'gain' : 'free';
+const nameOf = p => (D.short_names && D.short_names[p.id]) || p.name;
+// Plain-words price: "Free", "Under a day", "3 days", "4 weeks", "1.5 months"; gains read "+4 weeks"
+function wordsU(m){ const v = Math.abs(m), d = v*DPM;
+  if(v < EPS) return 'Free';
+  if(d < 0.95) return 'Under a day';
+  if(Math.round(d) <= 14){ const n = Math.max(1, Math.round(d)); return n + (n===1?' day':' days'); }
+  if(v < 0.95){ const w = Math.round(d/7); return w + ' weeks'; }
+  const mo = Math.round(v*2)/2; return (mo%1?mo.toFixed(1):mo) + (mo===1?' month':' months'); }
+const words = wordsU, lc = w => w.replace(/^Under/, 'under');
+function rangeText(n){ const lo = n.low, hi = n.high, words = m => lc(wordsU(m));
+  if(lo >= -EPS) return words(lo) === words(hi) ? words(lo) : (Math.abs(lo) < EPS ? 'nothing' : words(lo)) + ' to ' + words(hi);
+  if(hi <= EPS) return words(hi) + ' to ' + words(lo) + ' gained';
+  return 'anywhere from ' + words(lo) + ' gained to ' + words(hi) + ' lost'; }
+const BASIS = { model: ['Modeled', 'From a simulation of U.S. and Chinese AI progress over the 12 months after a rule takes effect. Every input is published in the technical appendix; most are stated assumptions, not measurements.'], partial: ['Partly sourced', 'Built from published data, with our judgment connecting the data to days of lead.'], estimate: ['Our estimate', 'Our judgment, informed by the sources listed. No direct data measures this cost.'] };
+function perText(){ return ''; } // every price is the effect 12 months after a rule takes effect
+const priceText = (m, mkt) => m < -EPS ? (-m < UNDER*0.95 ? 'Gains under a day' : '+' + words(m)) : (mkt && m > EPS ? '~' : '') + words(m);
+const days = m => Math.round(m*DPM);
+const fmtDays = d => { const a = Math.abs(Math.round(d)); return a.toLocaleString('en-US') + (a===1?' day':' days'); };
+const stanceOf = lam => D.stances.find(s => Math.abs(s.lam-lam) < 0.001) || null;
+const stanceLabel = lam => { const s = stanceOf(lam); return s ? s.label : 'China depends on U.S. models: ' + (Math.round(lam/0.25*100)/100) + '× the model\'s central estimate'; };
+/* ---------- p(doom) ---------- */
+// Each rule removes a share of the remaining risk; see src/risk.js. p(doom) = starting estimate × (1 − share removed).
+const P0 = pd => RK.baseline(D, pd||S.pd).p;
+const riskOf = (p, k) => RK.one(p, D, k, myRiskOv(), myRiskAdj());
+const cutOf = (ids, k) => RK.cut(ids, D, k, myRiskOv(), myRiskAdj());
+const doomAfter = (ids, pd) => P0(pd) * (1 - cutOf(ids));
+const fmtP = RK.fmtP;
+const harmsOf = p => p.harms || [...new Set((p.components||[]).flatMap(c => (byId(c)||{}).harms || []))];
+function pips(r, cls){ const b = RK.band(r); return '<span class="rpips'+(b.adds?' adds':'')+(cls?' '+cls:'')+'" aria-hidden="true">'+[0,1,2,3].map(k=>'<i class="'+(k<b.pips?'f':'')+'"></i>').join('')+'</span>'; }
+function riskHead(r){ const b = RK.band(r); return b.adds ? 'Adds about '+RK.pct(r)+' to the risk' : b.pips ? 'Removes about '+RK.pct(r)+' of the risk' : 'No clear effect on p(doom)'; }
+function riskTag(p){ const r = riskOf(p), b = RK.band(r), lbl = b.adds ? 'Raises p(doom)' : b.pips ? 'Cuts p(doom)' : 'No p(doom) effect';
+  return '<span class="irisk'+(b.adds?' adds':b.pips?'':' none')+'" title="'+esc(riskHead(r))+'" aria-label="'+esc(lbl+(b.pips?': '+b.label.toLowerCase():''))+'">'+esc(lbl)+(b.pips?pips(r):'')+'</span>'; }
+const sgnPct = x => (x < -0.0005 ? '+' : x > 0.0005 ? '−' : '') + RK.pct(x);
+function doomDelta(before, after){ const d = (after-before)*100; if(Math.abs(d) < 1e-6) return null; return 'p(doom) '+(d<0?'−':'+')+Number(Math.abs(d).toPrecision(2))+'%'; }
+function pdSeg(){ return '<div class="seg pdseg" role="group" aria-label="Starting p(doom)">' + D.risk.baselines.map(b => '<button data-pd="'+b.id+'" aria-pressed="'+(b.id===S.pd)+'" title="'+esc(b.who)+'"><b>'+esc(b.short)+'</b>'+esc(b.label)+'</button>').join('') + '</div>'; }
+function setPd(id){ S.pd = id; save(); pulseDoom(); render(true); }
+function pulseDoom(){ const d = $('#balD'); if(!d) return; d.classList.remove('pulse'); void d.offsetWidth; d.classList.add('pulse'); }
+function category(p){ if(p.clocks.training==='yes'||p.clocks.training==='cond') return 'train'; if((p.d_china||Z).central > 0 && p.d_us.central <= 0.1) return 'china'; if(p.clocks.release!=='no') return 'release'; return 'free'; }
+const CATS = [['free','Paperwork'],['release','Release gate'],['train','Stops training'],['china','Slows China']];
+function includedBy(id, cart){ return (cart||S.cart).map(byId).find(c => c && c.components && c.components.includes(id)); }
+function normalize(ids){ let out = []; ids.forEach(id => { const p = byId(id); if(!p || out.includes(id)) return; if(p.components) out = out.filter(x => !p.components.includes(x)); if(!includedBy(id, out)) out.push(id); }); return out; }
+// One random order per visit, stable while you click, so cards never jump around.
+const RANK = (() => { const ids = ALL.map(p => p.id); for(let i = ids.length-1; i > 0; i--){ const j = Math.floor(Math.random()*(i+1)); [ids[i], ids[j]] = [ids[j], ids[i]]; } const r = {}; ids.forEach((id,i) => r[id] = i); return r; })();
+const shuffled = list => list.slice().sort((a,b) => RANK[a.id] - RANK[b.id]);
+const sortByCost = (list, lam) => list.slice().sort((a,b) => net(a,lam).central - net(b,lam).central || a.name.localeCompare(b.name));
+
+/* ---------- crowd (off unless api_base is set) ---------- */
+async function api(path, body){ if(!D.api_base) return null; try{ const r = await fetch(D.api_base.replace(/\/$/,'') + '/' + path, body ? {method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify(body)} : {}); return r.ok ? await r.json() : null; }catch(e){ return null; } }
+let STATS = null;
+function loadStats(){ if(D.api_base && !STATS) api('stats').then(s => { if(s){ STATS = s; render(true); } }); }
+const logged = new Set();
+function logOrder(){ if(!S.cart.length) return; const k = payload(null,null,null,'',null,{},{},null); if(logged.has(k)) return; logged.add(k); api('order', {items: S.cart.map(id=>D.codes[id]), lam: Math.round(S.lam*100)}); }
+function percentile(hist, score){ const tot = hist.reduce((a,b)=>a+b,0); if(tot < 20) return null; let below = 0; for(let i=0;i<score && i<hist.length;i++) below += hist[i]; return Math.round(100*below/tot); }
+
+/* ---------- sharing ---------- */
+// Order-link format for personal numbers: CODE_leadTenthsOfADay_riskPerMille, entries joined by dots.
+function myCode(mm){ return Object.keys(mm||{}).filter(id => D.codes[id] && (mm[id].ld != null || mm[id].rr != null)).map(id => D.codes[id]+'_'+(mm[id].ld==null?'':Math.round(mm[id].ld*10))+'_'+(mm[id].rr==null?'':Math.round(mm[id].rr*1000))).join('.'); }
+// Knob settings in links: CODE_positions(tenths, dash-separated, blank = default)_works%_followed%; weights: seven whole numbers.
+function knCode(kn){ return Object.keys(kn||{}).filter(id => D.codes[id]).map(id => { const k = kn[id] || {}, ps = (k.k || []).map(v => v == null ? '' : Math.round(v*10)).join('-');
+  if(!ps.replace(/-/g,'') && k.e == null && k.a == null) return ''; return D.codes[id]+'_'+ps+'_'+(k.e == null ? '' : Math.round(k.e*100))+'_'+(k.a == null ? '' : Math.round(k.a*100)); }).filter(Boolean).join('.'); }
+const pwCode = pw => pw ? D.risk.pathways.map(x => Math.round(pw[x.id] != null ? pw[x.id] : x.weight*100)).join('-') : '';
+function payload(ids, lam, lead, name, pd, mm, kn, pw){ ids = ids||S.cart; lam = lam==null?S.lam:lam; lead = lead||S.lead; name = name==null?S.name:name; pd = pd||S.pd; mm = mm===undefined ? S.my : mm;
+  kn = kn === undefined ? S.kn : kn; pw = pw === undefined ? S.pw : pw;
+  const f = [ids.map(id=>D.codes[id]).join('.')||'-', Math.round(lam*100), lead, encodeURIComponent(name||''), pd, myCode(mm)], kc = knCode(kn), pc = pwCode(pw);
+  if(kc || pc) f.push(kc, pc); return f.join('~'); }
+function cleanName(s){ return String(s||'').replace(/[^\p{L}\p{N} .'\-]/gu,'').replace(/\s+/g,' ').trim().slice(0,24); }
+function parsePayload(s){ const [c,l,m,n,d,y,kk,ww] = String(s||'').split('~');
+  const ids = (c && c!=='-') ? c.split('.').map(x=>FROM_CODE[x]).filter(Boolean) : [];
+  let lam = parseInt(l,10); lam = isNaN(lam) ? S.lam : Math.min(100,Math.max(0,lam))/100;
+  let lead = parseInt(m,10); lead = isNaN(lead) ? 7 : Math.min(18,Math.max(1,lead));
+  let name = ''; try{ name = decodeURIComponent(n||''); }catch(e){}
+  const pd = (D.risk.baselines.some(b => b.id===d) || /^c\d{1,4}$/.test(d||'')) ? d : S.pd;
+  const my = {}; String(y||'').split('.').forEach(e => { const nw = e.includes('_'), [code, a1, a2] = e.split(nw ? '_' : '-'), id = FROM_CODE[code]; if(!id || byId(id).components) return; const p = byId(id), m = {};
+    if(nw){ const ld = parseInt(a1, 10)/10, rr = parseInt(a2, 10); if(a1 !== '' && isFinite(ld) && Math.abs(ld) <= 400) m.ld = ld; if(a2 !== '' && isFinite(rr) && Math.abs(rr) <= 700) m.rr = rr/1000; }
+    else { const L = parseInt(a1,10), Rr = parseInt(a2,10); if(L >= 0 && L < LEAD_S.length && L !== leadIdx(menuNet(p, S.lam).central)) m.ld = LEAD_S[L].d; if(Rr >= 0 && Rr < RISK_S.length && p.risk && Rr !== riskIdx(p.risk.central)) m.rr = RISK_S[Rr].r; }
+    if(m.ld != null || m.rr != null) my[id] = m; });
+  const kn = {}; String(kk||'').split('.').forEach(e => { const [code, ps, ee, aa] = e.split('_'), id = FROM_CODE[code]; if(!id) return; const o = {};
+    const pos = String(ps||'').split('-').map(x => x === '' ? null : Math.max(0, Math.min(60, parseInt(x,10)))/10); if(pos.some(x => x != null && isFinite(x))) o.k = pos.map(x => x != null && isFinite(x) ? x : null);
+    const E = parseInt(ee,10), A = parseInt(aa,10); if(isFinite(E) && E >= 0 && E <= 100) o.e = E/100; if(isFinite(A) && A >= 0 && A <= 100) o.a = A/100; if(Object.keys(o).length) kn[id] = o; });
+  let pw = null; const wv = String(ww||'').split('-').map(x => parseInt(x,10)); if(wv.length === D.risk.pathways.length && wv.every(x => isFinite(x) && x >= 0 && x <= 100)) pw = Object.fromEntries(D.risk.pathways.map((x, i) => [x.id, wv[i]]));
+  return { ids: normalize(ids), lam, lead, name: cleanName(name), pd, my, kn, pw }; }
+// On the public site, results links pass through /r/<type>/ so link previews show the player's type.
+function typeUrl(type, path){ const base = String(D.site_url||'').replace(/\/$/,''); return (D.stub_links && base && D.types[type]) ? base + '/r/' + type + '/#/' + path : shareUrl(path); }
+function shareUrl(path){ const base = String(D.site_url||'').replace(/\/$/,'');
+  if(base && (D.pretty_links || D.stub_links) && /^(p|claim)\//.test(path)) return base + '/' + path + '/';
+  if(D.pretty_links && base) return base + '/' + path;
+  return (base || location.href.split('#')[0]) + '#/' + path.replace(/^p\//,'policy/').replace(/^claim\//,'quote/'); }
+function toast(t){ const el = document.createElement('div'); el.className = 'toast'; el.setAttribute('role','status'); el.textContent = t; document.body.appendChild(el); setTimeout(()=>el.remove(), 2000); }
+async function copy(t, msg){ try{ await navigator.clipboard.writeText(t); toast(msg||'Copied'); }catch(e){ window.prompt('Copy this:', t); } }
+async function shareNative(o){ if(navigator.share){ try{ await navigator.share({title:o.title, text:o.text, url:o.url}); return; }catch(e){ if(e && e.name==='AbortError') return; } } copy(o.text + ' ' + o.url, 'Link copied'); }
+const xLink = (text, url) => 'https://x.com/intent/post?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(url);
+let SHARES = {};
+function shareBtns(o, more){
+  const id = 's' + Object.keys(SHARES).length; SHARES[id] = o;
+  return '<div class="row"><button class="btn primary" data-share="'+id+'">Share</button>' + (o.img ? '<button class="btn" data-img="'+id+'">Save image</button>' : '') + '<button class="btn" data-copylink="'+id+'">Copy link</button></div>' +
+    (more ? '<div class="links">' + more + '</div>' : '');
+}
+async function saveCanvas(cv, filename){
+  const blob = await new Promise(res => cv.toBlob(res, 'image/png'));
+  let dls = null; try{ if(window.claude && typeof window.claude.use==='function') dls = await window.claude.use('downloads'); }catch(e){}
+  if(dls){ try{ await dls.save({filename, data: blob}); toast('Saved'); }catch(e){ if(!(e && e.code==='declined')) toast('Could not save here. Take a screenshot.'); } return; }
+  try{ const a = document.createElement('a'); a.download = filename; a.href = URL.createObjectURL(blob); document.body.appendChild(a); a.click(); a.remove(); toast('Downloading'); }catch(e){ toast('Download blocked here. Take a screenshot.'); }
+}
+
+/* ---------- icons ---------- */
+const ICONS = {
+  siren:'<path d="M7 18v-6a5 5 0 0 1 10 0v6"/><path d="M5 21h14v-3H5z"/><path d="M12 3v2M4.2 6.2l1.4 1.4M19.8 6.2l-1.4 1.4"/>',
+  book:'<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5M8 7h7"/>',
+  doc:'<path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/>',
+  megaphone:'<path d="M3 10v4h4l7 4V6L7 10z"/><path d="M17 9a4 4 0 0 1 0 6"/>',
+  power:'<path d="M12 3v8"/><path d="M6.3 7.3a8 8 0 1 0 11.4 0"/>',
+  clipboard:'<path d="M9 4h6v3H9z"/><path d="M7 5H5v16h14V5h-2"/><path d="M9 13l2 2 4-4"/>',
+  flask:'<path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/><path d="M7.5 15h9"/>',
+  magnifier:'<circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5.5 5.5"/>',
+  hourglass:'<path d="M6 3h12M6 21h12"/><path d="M7 3v2a5 5 0 0 0 10 0V3"/><path d="M7 21v-2a5 5 0 0 1 10 0v2"/>',
+  target:'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/>',
+  scales:'<path d="M12 4v16M8 20h8M5 7h14"/><path d="M5 7l-3 6a3 3 0 0 0 6 0zM19 7l-3 6a3 3 0 0 0 6 0z"/>',
+  stamp:'<path d="M9 3h6v5l3 4H6l3-4z"/><path d="M5 12h14v4H5zM5 20h14"/>',
+  calendar:'<path d="M4 6h16v14H4zM4 10h16M8 3v5M16 3v5"/>',
+  pause:'<path d="M8.5 5v14M15.5 5v14" stroke-width="3"/>',
+  gauge:'<path d="M4 16a8 8 0 1 1 16 0"/><path d="M12 16l4-5"/>',
+  lock:'<path d="M6 11h12v10H6z"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',
+  vault:'<path d="M3 4h18v16H3z"/><circle cx="12" cy="12" r="4"/><path d="M12 8v1M12 15v1M8 12h1M15 12h1"/>',
+  idcard:'<path d="M3 5h18v14H3z"/><circle cx="9" cy="11" r="2.2"/><path d="M5.8 16c.6-1.6 1.8-2.4 3.2-2.4s2.6.8 3.2 2.4M14 9h4M14 13h4"/>',
+  fingerprint:'<path d="M6 10a6 6 0 0 1 12 0v2"/><path d="M9 20c1-2 1-5 1-8a2 2 0 0 1 4 0c0 3 0 6-1 8"/><path d="M6 14c0 2-.5 4-1.5 5.5M18 15c0 2-.3 3.5-1 5"/>',
+  chip:'<path d="M7 7h10v10H7z"/><path d="M10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4"/>',
+  capitol:'<path d="M3 21h18M5 21v-8M9 21v-8M15 21v-8M19 21v-8M3 13h18"/><path d="M5 13a7 5 0 0 1 14 0"/><path d="M12 5v3"/>',
+  letter:'<path d="M3 6h18v12H3z"/><path d="M3 7l9 6 9-6"/>',
+  lab:'<path d="M4 21V8l8-5 8 5v13"/><path d="M9 21v-6h6v6M4 21h16"/>',
+  robot:'<rect x="5" y="8" width="14" height="11" rx="2"/><path d="M12 4v4M9.5 13h.01M14.5 13h.01M9 16.5h6"/>',
+  pie:'<circle cx="12" cy="12" r="8.5"/><path d="M12 3.5V12l7.4 4.2"/>',
+  gavel:'<path d="M13 3l8 8-3 3-8-8z"/><path d="M11.5 9.5L4 17l3 3 7.5-7.5"/><path d="M13 21h8"/>',
+  books:'<path d="M4 4h4v16H4zM10 4h4v16h-4z"/><path d="M16 5.2l3.4-.9 3.1 15.4-3.4.9z"/>',
+  badge:'<rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="10" r="2.5"/><path d="M8.5 16c.7-1.6 2-2.4 3.5-2.4s2.8.8 3.5 2.4"/>',
+  rocket:'<path d="M12 3c3 2 5 6 5 10l-2 3H9l-2-3c0-4 2-8 5-10z"/><circle cx="12" cy="10" r="1.6"/><path d="M9 16l-2 4 3-1M15 16l2 4-3-1"/>'
+};
+const svg = key => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (ICONS[key]||ICONS.doc) + '</svg>';
+const ART = window.MENU_ART || {};
+const icon = id => svg(D.icons[id]);
+// Full-colour illustration on its own tile; falls back to the line icon.
+const art = (id, cls) => ART[id] ? '<span class="art'+(cls?' '+cls:'')+'" style="--tb:'+ART[id].bg+'">'+ART[id].svg+'</span>' : '<span class="art'+(cls?' '+cls:'')+'">'+icon(id)+'</span>';
+const initials = name => String(name).replace(/[^A-Za-z0-9 ]/g,'').split(' ').filter(Boolean).slice(0,2).map(w=>w[0]).join('').toUpperCase();
+function face(cm, cls){ const ini = cm.speaker === 'Andreessen Horowitz' ? 'a16z' : initials(cm.speaker);
+  return '<span class="face'+(cls?' '+cls:'')+'" data-ini="'+esc(ini)+'">' + (cm.photo ? '<img src="'+esc(cm.photo)+'" alt="'+esc(cm.speaker)+'" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">' : '') + '</span>'; }
+
+/* ---------- race ---------- */
+function raceGeom(lead, rem){ const lo = Math.min(0, rem), hi = Math.max(lead, rem), pad = Math.max(0.8, (hi-lo)*0.12); const pos = v => 100*(v-(lo-pad))/((hi+pad)-(lo-pad)); return { cn: pos(0), us: pos(rem), ghost: pos(lead) }; }
+function raceHTML(lead, rem){ const g = raceGeom(lead, rem);
+  return '<div class="race" role="img" aria-label="'+esc(rem>=0 ? 'U.S. ahead by '+fmtDays(days(rem)) : 'China ahead by '+fmtDays(days(-rem)))+'"><div class="road"></div>' +
+    (Math.abs(rem-lead) > 0.02 ? '<span class="rn ghost" style="left:'+g.ghost+'%"></span>' : '') +
+    '<span class="rn cn" style="left:'+g.cn+'%">CN</span><span class="rn us" style="left:'+g.us+'%">US</span></div>'; }
+
+/* ---------- balance bar ---------- */
+const BAL = new Set(['menu','policy']);
+function animateNumber(el, to, f){ const from = typeof el._v==='number' ? el._v : to; el._v = to;
+  if(REDUCED || from===to || document.hidden){ cancelAnimationFrame(el._raf); el.textContent = f(to); return; }
+  const t0 = performance.now(); cancelAnimationFrame(el._raf);
+  const step = now => { const k = Math.min(1,(now-t0)/520), e = 1-Math.pow(1-k,3); el.textContent = f(from+(to-from)*e); if(k<1) el._raf = requestAnimationFrame(step); };
+  el._raf = requestAnimationFrame(step); }
+function flash(dir){ const b = $('#bal'); b.classList.remove('up','down'); if(!dir) return; void b.offsetWidth; b.classList.add(dir); clearTimeout(b._t); b._t = setTimeout(()=>b.classList.remove('up','down'), 800); }
+function updateBalance(){
+  const r = route(), bar = $('#bal');
+  $('#balMeterWrap').hidden = true; $('#balR').style.display = '';
+  if(!BAL.has(r.name)){ bar.hidden = true; $('#cta').hidden = true; document.body.classList.remove('has-cta'); return; }
+  bar.hidden = false;
+  const rem = S.lead - totals(S.cart, S.lam).net;
+  animateNumber($('#balV'), Math.abs(days(rem)), fmtDays);
+  $('#balS').textContent = rem >= 0 ? 'ahead of China' : 'behind China';
+  animateNumber($('#balDV'), doomAfter(S.cart), fmtP);
+  $('#balR').innerHTML = S.cart.length ? '<a class="bal-btn" href="#/results">Lock in '+S.cart.length+' →</a>' : '';
+  const cta = $('#cta'); cta.hidden = !S.cart.length; if(S.cart.length) cta.innerHTML = '<span>'+S.cart.length+(S.cart.length===1?' pick':' picks')+'</span><a class="btn primary" href="#/results">Lock in and see my results</a>'; document.body.classList.toggle('has-cta', !cta.hidden);
+}
+
+/* ---------- worldview ---------- */
+function seg(cur, attr, extra){
+  return '<div class="seg" role="group"'+(extra?' style="grid-template-columns:repeat(5,minmax(0,1fr))"':'')+'>' + (extra||'') + D.stances.map((s,i) => '<button '+attr+'="'+s.lam+'" aria-pressed="'+(cur!=null && Math.abs(cur-s.lam)<0.001)+'" title="'+esc(s.blurb)+'"><span class="pips">'+[0,1,2,3].map(k=>'<i class="'+(k<i?'f':'')+'"></i>').join('')+'</span>'+esc(SHORT[s.id]||s.label)+'</button>').join('') + '</div>';
+}
+function wvBlock(){ return '<div class="wv"><div class="wv-q">How much does China copy U.S. models? <button id="adjust">Adjust</button></div>' + seg(S.lam, 'data-lam') + '</div>'; }
+function setLam(l){ const before = S.lead - totals(S.cart,S.lam).net; S.lam = l; S.onboarded = true; save(); const after = S.lead - totals(S.cart,S.lam).net; flash(after>before+0.01?'up':after<before-0.01?'down':null); render(true); }
+const lamWords = l => { const s = stanceOf(l); return s ? SHORT[s.id] : (Math.round(l/0.25*100)/100) + '× the model\'s estimate'; };
+function wvHTML(){ const n = mineCount();
+  const pdT = t => 0.001*Math.exp(t/1000*Math.log(600)), pdFrom = p => Math.round(1000*Math.log(p/0.001)/Math.log(600)), p0 = P0();
+  return '<div class="wvs"><b>How much does China depend on U.S. models?</b>' + seg(S.lam, 'data-lam') +
+      '<label class="wvx">Or exactly: <input type="range" id="lamX" min="0" max="100" step="1" value="'+Math.round(S.lam*100)+'" aria-label="China\'s dependence on U.S. models"><span id="lamXV">'+esc(lamWords(S.lam))+'</span></label></div>' +
+    '<div class="wvs"><b>Whose p(doom) do you start from?</b><span class="muted">p(doom) is the chance of an AI catastrophe as bad as human extinction.</span>' + pdSeg() +
+      '<label class="wvx">Or your own: <input type="range" id="pdX" min="0" max="1000" step="1" value="'+Math.max(0, Math.min(1000, pdFrom(p0)))+'" aria-label="Your own starting p(doom)"><span id="pdXV">'+esc(fmtP(p0))+'</span></label></div>' +
+    '<details class="wvs wvfold"'+(S.pw ? ' open' : '')+'><summary><b>Where the risk comes from</b></summary><span class="muted">How much of p(doom) each source accounts for. Each rule\'s cut depends on the sources it targets.</span>' +
+      D.risk.pathways.map(x => { const w = weights()[x.id], raw = (S.pw && S.pw[x.id] != null) ? S.pw[x.id] : Math.round(x.weight*100); return '<label class="wvx pw"><span class="pwl" title="'+esc(x.blurb)+'">'+esc(x.label)+'</span><input type="range" min="0" max="100" step="1" value="'+raw+'" data-pw="'+x.id+'" aria-label="'+esc(x.label)+'"><span data-pwv="'+x.id+'">'+Math.round(w*100)+'%</span></label>'; }).join('') +
+      (S.pw ? '<button class="linkbtn" id="pwReset">Reset to the menu\'s split</button>' : '') + '</details>' +
+    '<div class="wvs"><b>America\'s lead today: <span id="leadV">'+S.lead+' months</span></b><input type="range" id="lead" min="1" max="18" step="1" value="'+S.lead+'" aria-label="Lead in months"></div>' +
+    '<div class="wvs"><b>Your numbers</b><span class="muted">'+(n ? 'You replaced the menu\'s numbers on '+n+(n===1?' rule':' rules')+'. They apply everywhere for you.' : 'You haven\'t changed any of the menu\'s numbers. Open any rule and pick your own under Your numbers.')+'</span>' +
+    (n ? '<div class="chips">' + [...new Set(Object.keys(S.my).concat(Object.keys(S.kn)))].map(byId).filter(p => p && (hasMine(p).l || hasMine(p).r)).map(p => '<a href="#/policy/'+p.id+'">'+esc(nameOf(p))+'</a>').join('') + '</div><button class="linkbtn" id="resetAll">Reset all to the menu\'s numbers</button>' : '') + '</div>' +
+    '<div class="row"><a class="btn dark" href="#/position">Print what I think</a><a class="btn" href="#/assumptions">Where these come from</a></div>'; }
+function openAdjust(){ const b = $('#wvBody'); b.innerHTML = wvHTML(); $('#wv').hidden = false; $('#wvClose').focus();
+  b.querySelectorAll('[data-lam]').forEach(x => x.addEventListener('click', () => { setLam(+x.dataset.lam); openAdjust(); }));
+  b.querySelectorAll('[data-pd]').forEach(x => x.addEventListener('click', () => { setPd(x.dataset.pd); openAdjust(); }));
+  b.querySelectorAll('a').forEach(x => x.addEventListener('click', () => closeAdjust()));
+  const lx = b.querySelector('#lamX'); lx.addEventListener('input', () => { b.querySelector('#lamXV').textContent = lamWords(+lx.value/100); }); lx.addEventListener('change', () => { S.lam = +lx.value/100; S.onboarded = true; save(); render(true); openAdjust(); });
+  const px = b.querySelector('#pdX'); const pv = () => { const p = 0.001*Math.exp(+px.value/1000*Math.log(600)); return Math.max(1, Math.min(9000, Math.round(p*10000))); };
+  px.addEventListener('input', () => { b.querySelector('#pdXV').textContent = fmtP(pv()/10000); }); px.addEventListener('change', () => { setPd('c' + pv()); openAdjust(); });
+  const ld = b.querySelector('#lead'); ld.addEventListener('input', () => { S.lead = +ld.value; b.querySelector('#leadV').textContent = S.lead + ' months'; save(); render(true); });
+  b.querySelectorAll('[data-pw]').forEach(x => { x.addEventListener('input', () => { S.pw = Object.assign(Object.fromEntries(D.risk.pathways.map(q => [q.id, Math.round(q.weight*100)])), S.pw || {}, { [x.dataset.pw]: +x.value }); const w = weights(); D.risk.pathways.forEach(q => { const e = b.querySelector('[data-pwv="'+q.id+'"]'); if(e) e.textContent = Math.round(w[q.id]*100) + '%'; }); updateBalance(); });
+    x.addEventListener('change', () => { save(); render(true); openAdjust(); }); });
+  const pr = b.querySelector('#pwReset'); if(pr) pr.addEventListener('click', () => { S.pw = null; save(); render(true); openAdjust(); });
+  const ra = b.querySelector('#resetAll'); if(ra) ra.addEventListener('click', () => { if(!confirm('Reset all your numbers and rule assumptions to the menu\'s?')) return; S.my = {}; S.kn = {}; save(); render(true); openAdjust(); }); }
+function closeAdjust(){ $('#wv').hidden = true; }
+$('#wvClose').onclick = closeAdjust;
+$('#balD').addEventListener('click', () => openAdjust());
+$('#assumeBtn').addEventListener('click', () => openAdjust());
+$('#wv').addEventListener('click', e => { if(e.target.id==='wv') closeAdjust(); });
+document.addEventListener('keydown', e => { if(e.key==='Escape' && !$('#wv').hidden) closeAdjust(); });
+
+
+/* ---------- cart ---------- */
+function floatAt(el, text, dir, dy){ if(REDUCED || !el || !text) return; const r = el.getBoundingClientRect(); const f = document.createElement('span'); f.className = 'float ' + (dir||''); f.textContent = text; f.style.left = (r.left + r.width/2) + 'px'; f.style.top = (r.top + 30 + (dy||0)) + 'px'; document.body.appendChild(f); setTimeout(()=>f.remove(), 950); }
+// Moments: a big message when an order crosses a line that matters.
+function stateNow(){ const p0 = P0(); return { rem: S.lead - totals(S.cart, S.lam).net, p: doomAfter(S.cart), p0 }; }
+function moment(a, b){ let t = null, cls = '';
+  if(a.rem >= 0 && b.rem < 0){ t = 'China just took the lead'; cls = 'cn'; }
+  else if(a.rem < 0 && b.rem >= 0){ t = 'America is back in front'; cls = 'us'; }
+  else if(a.p <= b.p0 && b.p > b.p0 + 1e-9){ t = 'p(doom) is now higher than when you started'; cls = 'cn'; }
+  else if(a.p > b.p0*0.1 && b.p <= b.p0*0.1){ t = 'You cut p(doom) by 90%'; cls = 'doom'; }
+  else if(a.p > b.p0*0.5 && b.p <= b.p0*0.5){ t = 'You cut p(doom) in half'; cls = 'doom'; }
+  if(!t) return; const el = document.createElement('div'); el.className = 'moment ' + cls; el.setAttribute('role','status'); el.textContent = t; document.body.appendChild(el); setTimeout(() => el.remove(), 2600); }
+function toggle(id, el){ const st0 = stateNow();
+  const p = byId(id); if(!p) return; const before = totals(S.cart,S.lam).net, d0 = doomAfter(S.cart); const i = S.cart.indexOf(id);
+  if(i >= 0) S.cart.splice(i,1);
+  else { const inc = includedBy(id); if(inc){ toast('Already in ' + inc.name); return; } if(p.components) S.cart = S.cart.filter(x => !p.components.includes(x)); S.cart.push(id); }
+  S.onboarded = true; save();
+  const change = before - totals(S.cart,S.lam).net; const dir = change > EPS ? 'up' : change < -EPS ? 'down' : null;
+  floatAt(el, Math.abs(change) < EPS ? 'Free' : (change > 0 ? '+' : '−') + fmt(Math.abs(change)), dir); flash(dir);
+  const d1 = doomAfter(S.cart); floatAt(el, doomDelta(d0, d1), 'doom', 36); if(d1 < d0 - 1e-9) pulseDoom();
+  const f = document.activeElement && document.activeElement.dataset ? document.activeElement.dataset.add : null;
+  render(true); if(f){ const b = document.querySelector('[data-add="'+f+'"]'); if(b) b.focus({preventScroll:true}); }
+  moment(st0, stateNow());
+}
+function loadPreset(pid){ const pr = D.presets.find(p=>p.id===pid); if(!pr) return; const before = totals(S.cart,S.lam).net, d0 = doomAfter(S.cart); S.cart = normalize(pr.items); S.onboarded = true; save(); const after = totals(S.cart,S.lam).net; flash(after<before-0.01?'up':after>before+0.01?'down':null); if(doomAfter(S.cart) < d0 - 1e-9) pulseDoom(); toast(pr.name + ' loaded'); render(true); }
+
+/* ---------- items ---------- */
+function card(p, mode){
+  mode = mode||{}; const lam = mode.lam==null ? S.lam : mode.lam; const m = net(p,lam).central;
+  const ch = !!mode.picked, on = ch ? mode.picked.includes(p.id) : S.cart.includes(p.id);
+  const inc = !ch && !on && includedBy(p.id), cant = ch && !on && !mode.canAdd(p);
+  const attr = ch ? 'data-ch' : 'data-add';
+  const addTxt = inc ? 'In ' + nameOf(inc) : cant ? "Can't afford" : on ? (ch ? 'Passed' : 'Added') : (ch ? 'Pass' : 'Add');
+  const hm = hasMine(p);
+  return '<div class="item'+(on?' on':'')+'"><a class="info" href="#/policy/'+p.id+'" aria-label="Why '+esc(p.name)+' costs this">i</a>' + (hm.l || hm.r ? '<span class="yours" title="You changed this rule\'s numbers">Your numbers</span>' : '') +
+    art(p.id)+'<span class="iname">'+esc(nameOf(p))+'</span><span class="iprice'+(m < -EPS?' gain':'')+'">'+esc(priceText(m, p.market_price))+(perText(p) ? '<small class="per">'+perText(p)+'</small>' : '')+'</span>' + riskTag(p) +
+    '<div class="ibtns"><button class="b-rm" '+attr+'="'+p.id+'" '+(on?'':'disabled')+' aria-label="'+(ch?'Repeal ':'Remove ')+esc(p.name)+'">'+(ch?'Repeal':'Remove')+'</button>' +
+    '<button class="b-add" '+attr+'="'+p.id+'" '+(on||inc||cant?'disabled':'')+' aria-label="'+(ch?'Pass ':'Add ')+esc(p.name)+', '+esc(priceText(m, p.market_price))+'">'+esc(addTxt)+'</button></div></div>';
+}
+
+/* ---------- bar rows ---------- */
+function barRows(rows, opts){
+  opts = opts||{}; let vals = [0]; rows.forEach(r => { vals.push(r.from||0, r.to); if(r.to2!=null) vals.push(r.to2); });
+  let lo = opts.lo!=null ? opts.lo : Math.min.apply(null, vals), hi = opts.hi!=null ? opts.hi : Math.max.apply(null, vals);
+  if(hi - lo < 1e-6) hi = lo + 0.25; const pad = (hi-lo)*0.03; lo -= (lo<0?pad:0); hi += pad;
+  const pos = v => (100*(v-lo)/(hi-lo)).toFixed(2);
+  let h = '<div class="bars'+(opts.wide?' wide':'')+'">';
+  rows.forEach(r => {
+    const from = r.from||0, a = Math.min(from, r.to), b = Math.max(from, r.to);
+    h += '<div class="br'+(r.hl?' hl':'')+(r.tot?' tot':'')+'">' + (r.href ? '<a class="l" href="'+r.href+'">'+esc(r.label)+'</a>' : '<span class="l">'+esc(r.label)+'</span>') + '<span class="p">';
+    if(lo < 0) h += '<span class="z" style="left:'+pos(0)+'%"></span>';
+    if(r.to2 != null){ const x = Math.min(r.to, r.to2), y = Math.max(r.to, r.to2); h += '<span class="ln" style="left:'+pos(x)+'%;width:'+(pos(y)-pos(x)).toFixed(2)+'%"></span><span class="d them" style="left:'+pos(r.to2)+'%"></span><span class="d me" style="left:'+pos(r.to)+'%"></span>'; }
+    else if(b - a > 1e-6) h += '<span class="b '+(r.cls||effCls(r.to-from))+(r.mkt?' mkt':'')+'" style="left:'+pos(a)+'%;width:'+Math.max(0.6, pos(b)-pos(a)).toFixed(2)+'%"></span>';
+    h += '</span><span class="v '+(r.vcls||'')+'">'+esc(r.val)+'</span></div>';
+  });
+  h += '</div>';
+  if(opts.axis) h += '<div class="axis"><span>'+(lo<0?'← gains lead':'')+'</span><span>'+esc(opts.axis)+'</span></div>';
+  return h;
+}
+
+/* ---------- endings: where an order lands ---------- */
+// x: months ahead of China after the order. y: p(doom) after the order. No point on the map is "correct".
+const TYPES = Object.fromEntries(Object.entries(D.types).map(([k, t]) => [k, [t.name, t.line]]));
+function typeOf(o){ if(!o.ids.length) return 'water';
+  const t = totals(o.ids, o.lam), cut = cutOf(o.ids), spent = t.net*DPM, rem = o.lead - t.net;
+  const intl = RK.expand(o.ids, D).filter(p => p.risk.group === 'international').map(p => p.id), intlCut = intl.length ? cutOf(intl) : 0;
+  if(cut >= 0.5) return 'brakes';
+  if(cut >= 0.15 && intlCut >= cut*0.5) return 'diplomat';
+  if(rem < 0) return cut >= 0.2 ? 'second' : 'worst';
+  if(spent <= -14 && cut < -0.01) return 'racer';
+  if(spent <= -7) return cut >= 0.1 ? 'winwin' : 'hawk';
+  if(cut < -0.01) return 'racer';
+  if(spent < 7 && cut >= 0.15) return 'cheap';
+  if(cut >= 0.3) return 'serious';
+  if(spent >= 30 && cut < 0.15) return 'splurge';
+  if(spent < 7) return 'starter';
+  return 'balancer'; }
+function orderOf(o){ const t = totals(o.ids, o.lam), p0 = P0(o.pd), cut = cutOf(o.ids); return { t, p0, cut, p1: p0*(1-cut), rem: o.lead - t.net }; }
+// p(doom) meter: bar filled to your p(doom); dashed tick where you started.
+function doomMeter(p0, p1){ const top = Math.max(p0*1.35, p1*1.1), pct = v => Math.min(100, 100*v/top).toFixed(1);
+  return '<div class="dmeter" role="img" aria-label="p(doom) '+esc(fmtP(p0))+' before, '+esc(fmtP(p1))+' after"><i style="width:'+pct(p1)+'%"></i><b style="left:'+pct(p0)+'%"></b></div><div class="dmeter-l"><span>0%</span><span>started at '+esc(fmtP(p0))+'</span></div>'; }
+function orderShare(o){ const m = orderOf(o), n = o.ids.length, who = o.name ? o.name+"'s" : 'My', ty = TYPES[typeOf(o)];
+  const text = n ? 'I\'m "'+ty[0]+'" on The AI Safety Menu. My '+n+(n===1?' rule ':' rules ')+(m.t.net < -EPS ? 'gain America '+fmt(-m.t.net)+' of lead' : 'cost '+fmt(m.t.net)+' of America\'s lead')+' and take p(doom) from '+fmtP(m.p0)+' to '+fmtP(m.p1)+'. What would you pick?' : 'I picked nothing on The AI Safety Menu. What would you pick?';
+  return { title: who+' AI safety results', text, url: typeUrl(typeOf(o), 'o/'+payload(o.ids,o.lam,o.lead,o.name,o.pd,o.my,o.kn,o.pw)), img: () => typeCanvas(o), file:'ai-safety-menu-results.png' }; }
+async function typeCanvas(o){ await fontsReady(); const W = 1080, H = 1350, M = 80, m = orderOf(o), ty = TYPES[typeOf(o)];
+  const cv = document.createElement('canvas'); cv.width = W; cv.height = H; const ctx = cv.getContext('2d'); frame(ctx, W, H);
+  ctx.textAlign = 'left'; ctx.fillStyle = '#8A857B'; ctx.font = '700 30px '+SANS; ctx.fillText((o.name ? o.name+'\'s' : 'My').toUpperCase()+' AI SAFETY RESULTS', M, 120);
+  ctx.fillStyle = '#1B1A17'; ctx.font = '900 128px '+DISP; let y = 250; wrapLines(ctx, ty[0].toUpperCase(), W-2*M).slice(0,2).forEach(l => { ctx.fillText(l, M-4, y); y += 118; });
+  ctx.fillStyle = '#55514A'; ctx.font = '500 36px '+SANS; y -= 50; wrapLines(ctx, ty[1], W-2*M).slice(0,3).forEach(l => { ctx.fillText(l, M, y); y += 48; });
+  const box = (by, label, big, color) => { ctx.textAlign = 'left'; ctx.fillStyle = '#fff'; ctx.fillRect(M, by, W-2*M, 290); ctx.fillStyle = '#8A857B'; ctx.font = '700 28px '+SANS; ctx.fillText(label, M+40, by+62); ctx.fillStyle = color; ctx.font = '900 96px '+DISP; ctx.fillText(big, M+40, by+160); };
+  let by = Math.max(y + 20, 500);
+  box(by, 'LEAD OVER CHINA', (m.rem < 0 ? '' : '') + fmtDays(Math.abs(m.rem*DPM)) + (m.rem < 0 ? ' behind' : ' ahead'), m.rem < 0 ? '#C8261D' : '#2B4C8C'); drawRace(ctx, M+50, W-M-50, by+228, o.lead, m.rem);
+  by += 320; box(by, 'P(DOOM)', fmtP(m.p0) + ' → ' + fmtP(m.p1), '#6B4FA0');
+  const top = Math.max(m.p0*1.35, m.p1*1.1), bx0 = M+50, bx1 = W-M-50, bx = v => bx0 + (bx1-bx0)*Math.min(1, v/top);
+  ctx.fillStyle = '#e6e2d8'; ctx.fillRect(bx0, by+215, bx1-bx0, 26); ctx.fillStyle = '#6B4FA0'; ctx.fillRect(bx0, by+215, bx(m.p1)-bx0, 26);
+  ctx.strokeStyle = '#1B1A17'; ctx.lineWidth = 4; ctx.setLineDash([6,6]); ctx.beginPath(); ctx.moveTo(bx(m.p0), by+200); ctx.lineTo(bx(m.p0), by+256); ctx.stroke(); ctx.setLineDash([]);
+  const names = o.ids.map(byId).filter(Boolean).map(nameOf); if(names.length){ ctx.textAlign = 'left'; ctx.fillStyle = '#55514A'; ctx.font = '600 30px '+SANS; let ty2 = by + 350;
+    wrapLines(ctx, names.length + (names.length===1?' pick: ':' picks: ') + names.slice(0,5).join(', ') + (names.length > 5 ? ', and ' + (names.length-5) + ' more' : ''), W-2*M).slice(0,3).forEach(l => { ctx.fillText(l, M, ty2); ty2 += 42; }); }
+  return cv; }
+function analysis(o){ const ps = o.ids.map(byId).filter(Boolean), c = p => net(p, o.lam).central, r = p => riskOf(p), out = [];
+  if(!ps.length) return out;
+  const risky = ps.filter(p => r(p) > 0.0005).sort((a,b) => r(b) - r(a));
+  const costTxt = p => c(p) <= EPS ? 'at no cost to the lead' : 'for ' + lc(words(c(p))) + ' of lead';
+  const dear = ps.slice().sort((a,b) => c(b) - c(a))[0], dearOk = c(dear)*DPM >= 0.95;
+  if(risky.length) out.push(['Biggest risk cut', risky[0], riskHead(r(risky[0])) + (dearOk && dear === risky[0] ? ', and it was also your most expensive pick at ' + lc(words(c(dear))) + '.' : '.')]);
+  if(dearOk && dear !== risky[0]) out.push(['Most expensive', dear, 'Costs ' + lc(words(c(dear))) + ' of lead. ' + riskHead(r(dear)) + '.']);
+  const deal = risky.slice().sort((a,b) => r(b)/Math.max(c(b)*DPM, 0.5) - r(a)/Math.max(c(a)*DPM, 0.5))[0]; if(deal && deal !== risky[0]) out.push(['Best bargain', deal, riskHead(r(deal)) + ' ' + costTxt(deal) + '.']);
+  const adds = ps.filter(p => r(p) < -0.0005); if(adds.length) out.push(['Added risk', adds[0], (adds.length > 1 ? 'And ' + (adds.length-1) + ' more. ' : '') + 'Together your race picks add about ' + RK.pct(-cutOf(adds.map(p=>p.id))) + ' to p(doom).']);
+  const got = new Set(RK.expand(o.ids, D).map(p => p.id));
+  const skip = D.policies.filter(p => !got.has(p.id) && r(p) >= 0.015 && c(p)*DPM < 7).sort((a,b) => r(b) - r(a)).slice(0, 3);
+  if(skip.length){ const more = cutOf(o.ids.concat(skip.map(p=>p.id))) - cutOf(o.ids); out.push(['Cheap cuts you skipped', skip[0], skip.map(p => nameOf(p)).join(', ') + ' would remove another ' + RK.pct(more) + ' of the risk for under a week of lead.', true]); }
+  return out; }
+function compareRows(o){ const rows = [{ name: o.self ? 'You' : 'This order', ids: o.ids, me: true }].concat(D.presets.map(pr => ({ name: pr.name, ids: normalize(pr.items), link: pr.items.length === 1 ? pr.items[0] : null })));
+  rows.forEach(x => { x.dl = -totals(x.ids, o.lam).net*DPM; x.cut = cutOf(x.ids); });
+  const lmax = Math.max(1, Math.max.apply(null, rows.map(x => Math.abs(x.dl)))), cmax = Math.max(0.01, Math.max.apply(null, rows.map(x => Math.abs(x.cut))));
+  // Diverging bars around a centre line: right is good (lead gained, risk removed), left is bad.
+  const bar = (v, max, good, label) => { const w = (50*Math.min(1, Math.abs(v)/max)).toFixed(1), right = v >= 0;
+    return '<span class="cmp-b"><i class="'+(right ? good : 'bad')+'" style="'+(right ? 'left:50%' : 'right:50%')+';width:'+w+'%"></i><em class="'+(right?'r':'l')+'">'+esc(label)+'</em></span>'; };
+  const sorted = rows.slice().sort((a,b) => b.cut - a.cut);
+  return '<div class="cmp"><div class="cmp-h"><span></span><span>Lead</span><span>Risk</span></div>' + sorted.map(x => '<div class="cmp-r'+(x.me?' me':'')+'"><span class="cmp-n">'+(x.link ? '<a href="#/policy/'+x.link+'">'+esc(x.name)+'</a>' : esc(x.name))+'</span>' +
+    bar(x.dl, lmax, 'lead', Math.abs(x.dl) < 0.5 ? 'no change' : (x.dl > 0 ? '+' : '−') + fmtDays(Math.abs(x.dl))) + bar(x.cut, cmax, 'doom', Math.abs(x.cut) < 0.0005 ? 'no change' : (x.cut > 0 ? '−' : '+') + RK.pct(x.cut))+'</div>').join('') + '</div>'; }
+// Places where a player's picks and their own beliefs pull against each other.
+function voice(t, v){ if(v === 'you') return t; const I = v === 'i';
+  return t.replace(/\bYou picked\b/g, I?'I picked':'They picked').replace(/\byou think\b/g, I?'I think':'they think').replace(/\bYou think\b/g, I?'I think':'They think')
+    .replace(/\byou didn't\b/g, I?"I didn't":"they didn't").replace(/\bYou pull\b/g, I?'I pull':'They pull').replace(/\bYou start\b/g, I?'I start':'They start')
+    .replace(/\bnone of your picks\b/g, I?'none of my picks':'none of their picks').replace(/\bcost you less\b/g, I?'cost me less':'cost them less').replace(/\bYou think\b/g, I?'I think':'They think'); }
+function tensions(o, v){ return tensionsRaw(o).map(t => voice(t, v || 'you')); }
+function tensionsRaw(o){ const out = [], mm = myMap(), ps = o.ids.map(byId).filter(Boolean), got = new Set(RK.expand(o.ids, D).map(p => p.id).concat(o.ids));
+  const c = p => net(p, o.lam).central*DPM, r = p => riskOf(p), m = orderOf(o), costW = d => d < 0.95 ? 'under a day' : lc(words(d/DPM));
+  ps.filter(p => !p.components && hasMine(p).r && r(p) <= 0.0005 && c(p) >= 0.95 && (p.harms||[]).includes('catastrophe')).forEach(p => out.push('You picked '+nameOf(p)+' even though you think it does nothing for p(doom), and it costs '+costW(c(p))+' of lead.'));
+  Object.keys(mm).map(byId).filter(p => p && !p.components && !got.has(p.id) && hasMine(p).r && r(p) >= 0.05 && c(p) < 14.5).forEach(p => out.push('You think '+nameOf(p)+' removes '+RK.pct(r(p))+' of the risk for '+costW(Math.max(0, c(p)))+' of lead, but you didn\'t pick it.'));
+  const adds = ps.filter(p => r(p) < -0.005), brakes = ps.filter(p => c(p) >= 30 && r(p) > 0.02);
+  if(adds.length && brakes.length) out.push('You pull both ways: '+nameOf(brakes[0])+' spends lead to cut risk, while '+nameOf(adds[0])+' buys lead and adds risk.');
+  if(ps.length && m.p0 >= 0.15 && m.cut < 0.1) out.push('You start from a '+fmtP(m.p0)+' chance of catastrophe but removed less than a tenth of it.');
+  if(m.p0 <= 0.005 && m.t.net*DPM >= 60) out.push('You think catastrophe is very unlikely ('+fmtP(m.p0)+') but spent '+lc(words(m.t.net))+' of lead to lower it further.');
+  if(o.lam >= 0.5 && ps.length && !ps.some(p => (p.d_access && p.d_access.central > 0) || (p.d_china && p.d_china.central > 0)) && m.t.net*DPM > 7) out.push('You think China depends heavily on U.S. models, but none of your picks slow China. Rules that hold back releases or tighten security would cost you less.');
+  return out.slice(0, 5); }
+const lcFirst = t => t.charAt(0).toLowerCase() + t.slice(1);
+// The rule-level assumptions a player changed, in words.
+function knobChanges(p){ const out = [], k = knMap()[p.id] || {}, ks = knobsFor(p);
+  (k.k || []).forEach((v, i) => { if(v == null || !ks[i] || Math.abs(v - ks[i].default) < 0.05) return; out.push({ label: ks[i].label, mine: fmtKnob(ks[i], valueAt(ks[i], v)), menu: fmtKnob(ks[i], ks[i].values[ks[i].default]) }); });
+  const r = p.risk; if(r && r.targets && r.central){ const adds = r.central < 0;
+    if(k.e != null) out.push({ label: adds ? 'How much it worsens those risks' : 'How well it works, if followed', mine: Math.round(k.e*100)+'%', menu: Math.round(worksDefault(r)*100)+'%' });
+    if(k.a != null) out.push({ label: adds ? 'How likely it plays out as described' : 'How likely it is followed', mine: Math.round(k.a*100)+'%', menu: Math.round(r.adherence*100)+'%' }); }
+  return out; }
+function viewPosition(o){ const mine = !!o.self, m = orderOf(o), ty = TYPES[typeOf(o)], mm = myMap(), base = RK.baseline(D, o.pd), d = new Date();
+  const changed = [...new Set(Object.keys(mm).concat(Object.keys(knMap())))].map(byId).filter(p => p && !p.components && (hasMine(p).l || hasMine(p).r));
+  const pick = p => { const hm = hasMine(p), c = net(p, o.lam).central; return '<tr><td>'+esc(nameOf(p))+'</td><td>'+esc(priceText(c, p.market_price))+(hm.l?' <span class="yours in">mine</span>':'')+'</td><td>'+esc(riskHead(riskOf(p)))+(hm.r?' <span class="yours in">mine</span>':'')+'</td></tr>'; };
+  let h = '<div class="noprint row" style="justify-content:space-between;margin-bottom:10px"><a class="back" href="'+(mine?'#/results':'#/')+'" style="margin:0">'+(mine?'← Back to my results':'← Build your own')+'</a><div class="row">' + (mine ? '<button class="btn dark" id="printPos">Print or save as PDF</button><button class="btn" id="csvPos">Download my numbers</button>' : '') + '<button class="btn" data-copylink="pos">Copy link</button></div></div>';
+  SHARES.pos = { url: typeUrl(typeOf(o), 'position/'+payload(o.ids, o.lam, o.lead, o.name, o.pd, o.my, o.kn, o.pw)) };
+  h += '<article class="pos"><div class="pos-k">The AI Safety Menu · '+esc(d.toLocaleDateString('en-US', {year:'numeric', month:'long', day:'numeric'}))+'</div><h1>Here is what I think</h1>';
+  h += mine ? '<label class="pos-name noprint">Name on this page <input id="posName" maxlength="24" value="'+esc(S.name)+'" placeholder="optional"></label>' + (S.name ? '<p class="pos-by printonly">'+esc(S.name)+'</p>' : '') : (o.name ? '<p class="pos-by">'+esc(o.name)+'</p>' : '');
+  h += '<h2>My bottom line</h2><p><b>'+esc(ty[0])+'.</b> '+esc(ty[1])+'</p><p>With my choices, America ends '+esc(fmtDays(Math.abs(m.rem*DPM)))+(m.rem<0?' behind':' ahead of')+' China, a year after the rules take effect, and p(doom) goes from '+esc(fmtP(m.p0))+' to '+esc(fmtP(m.p1))+'.</p>';
+  h += '<h2>What I would do</h2>' + (o.ids.length ? '<table class="pos-t"><tr><th>Rule</th><th>Cost to the lead</th><th>Effect on p(doom)</th></tr>' + o.ids.map(byId).filter(Boolean).map(pick).join('') + '</table>' : '<p>Nothing. I would leave AI unregulated.</p>');
+  h += '<h2>Where I disagree with the menu</h2>' + (changed.length ? '<ul class="pos-l">' + changed.map(p => { const x = mm[p.id] || {};
+      const mD = menuNet(p, o.lam).central, mR = RK.one(p, D), yD = net(p, o.lam).central, yR = riskOf(p), ch = knobChanges(p);
+      return '<li><b>'+esc(nameOf(p))+'.</b> The menu says it '+esc(leadPhrase(mD))+' and '+esc(riskPhrase(mR))+'. I say it '+esc(leadPhrase(yD))+' and '+esc(riskPhrase(yR))+'.'+(ch.length ? ' <span class="muted">My assumptions: '+esc(ch.map(c => c.label+': '+c.mine+' (menu: '+c.menu+')').join('; '))+'.</span>' : '')+(mine && x.why ? ' <i>Why: '+esc(x.why)+'</i>' : '')+'</li>'; }).join('') + '</ul>' : '<p>Nowhere. I used the menu\'s numbers.</p>');
+  h += '<h2>My assumptions</h2><ul class="pos-l"><li>'+esc(stanceLabel(o.lam))+'.</li><li>Starting p(doom): '+esc(base.short)+', the estimate of '+esc(base.label.replace(/^(\w)/, c => c.toLowerCase()).replace(/^aI /,'AI '))+'.</li><li>America starts '+o.lead+' months ahead of China.</li>'+(pwMap() ? '<li>Where the risk comes from: '+esc(D.risk.pathways.map(x => lcFirst(x.label)+' '+Math.round(weights()[x.id]*100)+'%').join(', '))+'.</li>' : '')+'</ul>';
+  const tn = tensions(o, 'i'); h += '<h2>Tensions in my view</h2>' + (tn.length ? '<ul class="pos-l">' + tn.map(t => '<li>'+esc(t)+'</li>').join('') + '</ul>' : '<p>None found.</p>');
+  h += '<p class="pos-f">Made with The AI Safety Menu, '+esc(String(D.site_url||'').replace(/^https?:\/\//,''))+'. Lead costs are estimates 12 months after a rule takes effect; p(doom) cuts are coarse judgments. Both are there to argue with.</p></article>';
+  return h; }
+// Someone else's results next to yours: where your picks, numbers and assumptions differ.
+function withMine(fn){ const keep = OVR, keepK = KOVR; OVR = null; KOVR = null; try { return fn(); } finally { OVR = keep; KOVR = keepK; } }
+function compareWithMe(o){
+  if(!S.cart.length && !Object.keys(S.my).length) return '<div class="panel"><h3>You vs them</h3><p style="margin:0">Make your own picks first, then open this link again to see exactly where you differ. <a href="#/">Go to the menu</a></p></div>';
+  const me = { ids: S.cart, lam: S.lam, lead: S.lead, pd: S.pd, my: S.my, kn: S.kn, pw: S.pw, self: true };
+  const cell = (ord, p) => { const on = ord.ids.includes(p.id) || RK.expand(ord.ids, D).some(x => x.id === p.id), h = hasMine(p);
+    return { on, lead: priceText(net(p, ord.lam).central, p.market_price), risk: riskHead(riskOf(p)), own: h.l || h.r }; };
+  const ids = [...new Set(o.ids.concat(S.cart, Object.keys(o.my||{}), Object.keys(S.my), Object.keys(o.kn||{}), Object.keys(S.kn)))].filter(id => byId(id));
+  const them = orderOf(o), tk = typeOf(o), mine = withMine(() => ({ m: orderOf(me), k: typeOf(me) }));
+  const rows = ids.map(byId).map(p => { const a = cell(o, p), b = withMine(() => cell(me, p)); return { p, a, b, diff: a.on !== b.on || a.lead !== b.lead || a.risk !== b.risk }; }).filter(x => x.diff);
+  const td = c => '<td>'+(c.on ? '<b>Picked</b>' : '<span class="muted">Not picked</span>')+'<br><span class="muted">'+esc(c.lead)+' · '+esc(c.risk.toLowerCase())+(c.own ? ' <span class="yours in">own</span>' : '')+'</span></td>';
+  let h = '<div class="panel"><h3>You vs them</h3><table class="rtab cmpme"><tr><th></th><th>Them</th><th>You</th></tr>';
+  h += '<tr><td>Type</td><td><b>'+esc(TYPES[tk][0])+'</b></td><td><b>'+esc(TYPES[mine.k][0])+'</b></td></tr>';
+  h += '<tr><td>Lead over China</td><td>'+esc(fmtDays(Math.abs(them.rem*DPM)))+(them.rem<0?' behind':' ahead')+'</td><td>'+esc(fmtDays(Math.abs(mine.m.rem*DPM)))+(mine.m.rem<0?' behind':' ahead')+'</td></tr>';
+  h += '<tr><td>p(doom)</td><td>'+esc(fmtP(them.p0))+' → '+esc(fmtP(them.p1))+'</td><td>'+esc(fmtP(mine.m.p0))+' → '+esc(fmtP(mine.m.p1))+'</td></tr>';
+  h += '<tr><td>China\'s dependence</td><td>'+esc(lamWords(o.lam))+'</td><td>'+esc(lamWords(S.lam))+'</td></tr>';
+  h += '<tr><td>Starting p(doom)</td><td>'+esc(RK.baseline(D, o.pd).label)+'</td><td>'+esc(RK.baseline(D, S.pd).label)+'</td></tr></table>';
+  h += rows.length ? '<h3 style="margin-top:16px">Rules where you differ ('+rows.length+')</h3><table class="rtab cmpme"><tr><th>Rule</th><th>Them</th><th>You</th></tr>' + rows.map(x => '<tr><td><a href="#/policy/'+x.p.id+'">'+esc(nameOf(x.p))+'</a></td>'+td(x.a)+td(x.b)+'</tr>').join('') + '</table>' : '<p style="margin:12px 0 0">You picked the same rules with the same numbers.</p>';
+  return h + '</div>'; }
+// Save a text file: the artifact's downloads capability when present, a normal download otherwise.
+async function saveFile(filename, text, type){ const blob = new Blob([text], { type: type || 'text/plain' });
+  let dls = null; try{ if(window.claude && typeof window.claude.use==='function') dls = await window.claude.use('downloads'); }catch(e){}
+  if(dls){ try{ await dls.save({ filename, data: blob }); toast('Saved'); }catch(e){ if(!(e && e.code==='declined')) toast('Could not save here.'); } return; }
+  try{ const a = document.createElement('a'); a.download = filename; a.href = URL.createObjectURL(blob); document.body.appendChild(a); a.click(); a.remove(); toast('Downloading'); }catch(e){ toast('Download blocked here.'); } }
+function numbersCsv(){ const q = v => '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"', r1 = x => x == null ? '' : Math.round(x*10)/10;
+  const rows = [['rule_id','rule','in_my_picks','menu_lead_days','my_lead_days','menu_pdoom_cut_pct','my_pdoom_cut_pct','my_reason'].join(',')];
+  D.policies.forEach(p => { const m = S.my[p.id] || {}, on = S.cart.includes(p.id) || RK.expand(S.cart, D).some(x => x.id === p.id);
+    const h = hasMine(p); rows.push([q(p.id), q(nameOf(p)), on ? 'yes' : 'no', r1(menuNet(p, S.lam).central*DPM), h.l ? r1(net(p, S.lam).central*DPM) : '', r1(RK.one(p, D)*100), h.r ? r1(riskOf(p)*100) : '', q(m.why || '')].join(',')); });
+  const b = RK.baseline(D, S.pd), m = orderOf({ ids: S.cart, lam: S.lam, lead: S.lead, pd: S.pd });
+  const kc = []; D.policies.forEach(p => knobChanges(p).forEach(c => kc.push([q(p.id), q(c.label), q(c.mine), q(c.menu)].join(','))));
+  if(kc.length) rows.push('', 'rule_id,assumption,my_value,menu_value', ...kc);
+  if(S.pw) rows.push('', 'risk_source,my_share_pct,menu_share_pct', ...D.risk.pathways.map(x => [q(x.label), Math.round(weights()[x.id]*100), Math.round(x.weight*100)].join(',')));
+  rows.push('', 'setting,value', 'china_dependence,'+q(lamWords(S.lam)), 'starting_pdoom_pct,'+r1(b.p*100), 'starting_pdoom_source,'+q(b.label), 'lead_today_months,'+S.lead, 'lead_after_days,'+r1(m.rem*DPM), 'pdoom_after_pct,'+(Math.round(m.p1*10000)/100), 'type,'+q(TYPES[typeOf({ ids: S.cart, lam: S.lam, lead: S.lead, pd: S.pd })][0]));
+  return rows.join('\n') + '\n'; }
+let RES_CROWD = null; const RES_SENT = new Set();
+function viewResults(o){ const m = orderOf(o), k = typeOf(o), ty = TYPES[k], mine = !!o.self, n = o.ids.length;
+  if(mine && D.api_base){ const key = payload(o.ids, o.lam, o.lead, '', o.pd, {}, {}, null); if(!RES_SENT.has(key)){ RES_SENT.add(key); logOrder(); api('result', { type: k, cut: Math.max(0, Math.min(100, Math.round(100*m.cut))) }).then(r => { if(r && r.types){ RES_CROWD = r; render(true); } }); } }
+  let h = '<a class="back" href="#/">'+(mine ? '← Change my picks' : '← Build your own')+'</a><div class="res">';
+  h += '<div class="res-top"><div class="ek">'+(mine ? 'Your results' : esc(o.name ? o.name+'\'s results' : 'Their results'))+'</div><h1>'+esc(ty[0])+'</h1><p>'+esc(ty[1])+'</p></div>';
+  h += '<div class="res-stats"><div class="stat"><div class="ek">Lead over China</div><b style="color:'+(m.rem<0?'var(--cn)':'var(--us)')+'">'+esc(fmtDays(Math.abs(m.rem*DPM)))+(m.rem<0?' behind':' ahead')+'</b>'+raceHTML(o.lead, m.rem)+'<span class="muted">Started '+esc(fmtDays(o.lead*DPM))+' ahead. '+(n ? (m.t.net < -EPS ? (mine?'Your':'Their')+' picks bought back '+esc(lc(words(-m.t.net)))+'.' : (mine?'Your':'Their')+' picks spent '+esc(lc(words(m.t.net)))+'.') : '')+'</span></div>';
+  h += '<div class="stat"><div class="ek">p(doom)</div><b style="color:var(--risk)">'+esc(fmtP(m.p0))+' → '+esc(fmtP(m.p1))+'</b>'+doomMeter(m.p0, m.p1)+'<span class="muted">'+(m.cut > 0.0005 ? (mine?'You':'They')+' removed '+RK.pct(m.cut)+' of the risk.' : m.cut < -0.0005 ? (mine?'Your':'Their')+' picks added '+RK.pct(-m.cut)+' to the risk.' : 'No change in risk.')+'</span></div></div>';
+  const nm = mineCount(); if(nm) h += '<p class="muted" style="text-align:center;margin:0 0 12px">'+(mine?'Your':'Their')+' results use '+(mine?'your':'their')+' own numbers on '+nm+(nm===1?' rule':' rules')+'.</p>';
+  if(mine) h += shareBtns(orderShare(o), '<a href="#/position"><b>Print what I think</b></a><button id="openAssume">Change my assumptions</button><button id="clearCart">Start over</button>');
+  else h += '<div class="row"><a class="btn primary" href="#/">Build your own</a><button class="btn" id="startFrom">Start from their picks</button><a class="btn" href="#/position/'+esc(payload(o.ids, o.lam, o.lead, o.name, o.pd, o.my, o.kn, o.pw))+'">See their full position</a></div>';
+  if(!mine) h += compareWithMe(o);
+  const tn = tensions(o, mine ? 'you' : 'they'); if(tn.length) h += '<div class="panel"><h3>Tensions in '+(mine?'your':'their')+' view</h3><ul class="an">' + tn.map(t => '<li><span>'+esc(t)+'</span></li>').join('') + '</ul></div>';
+  if(RES_CROWD && mine){ const tot = Object.values(RES_CROWD.types).reduce((a,b)=>a+b,0), pc = percentile(RES_CROWD.cut, Math.max(0, Math.round(100*m.cut)));
+    if(tot >= 20) h += '<div class="panel"><h3>You vs other players</h3><p style="margin:0">'+Math.round(100*(RES_CROWD.types[k]||0)/tot)+'% of players end up as '+esc(ty[0])+'.'+(pc!=null ? ' You removed more risk than '+pc+'% of players.' : '')+'</p></div>'; }
+  h += '<div class="panel"><h3>How '+(mine?'you':'they')+' compare with real plans</h3><p class="muted" style="margin:0 0 10px">Bars to the right are good: more lead, less risk. Sorted by risk removed.</p>' + compareRows(o) + '</div>';
+  const an = analysis(o);
+  if(an.length) h += '<div class="panel"><h3>'+(mine?'Your':'Their')+' picks, analyzed</h3><ul class="an">' + an.map(([l, p, t, noName]) => '<li>'+art(p.id,'xs')+'<span><b>'+esc(l)+':</b> '+(noName ? '' : '<a href="#/policy/'+p.id+'">'+esc(nameOf(p))+'</a>. ')+esc(t)+'</span></li>').join('') + '</ul></div>';
+  if(n) h += '<div class="panel"><h3>'+(mine?'Your':'Their')+' '+n+(n===1?' pick':' picks')+'</h3><div class="chips">' + o.ids.map(byId).filter(Boolean).map(p => '<a href="#/policy/'+p.id+'">'+esc(nameOf(p))+'</a>').join('') + '</div></div>';
+  if(mine) h += '<div class="panel"><h3>What if?</h3><p class="muted" style="margin:0 0 8px">How much does China depend on U.S. models?</p>' + seg(S.lam, 'data-lam') + '<p class="muted" style="margin:14px 0 8px">Whose p(doom) do you start from?</p>' + pdSeg() + '</div>';
+  return h + '</div>'; }
+
+/* ---------- canvas ---------- *//* ---------- canvas ---------- */
+function wrapLines(ctx, text, maxW){ const words = String(text).split(' '), lines = []; let cur = ''; words.forEach(w => { const t = cur ? cur+' '+w : w; if(ctx.measureText(t).width > maxW && cur){ lines.push(cur); cur = w; } else cur = t; }); if(cur) lines.push(cur); return lines; }
+function fit(ctx, text, maxW){ if(ctx.measureText(text).width <= maxW) return text; let s = text; while(s.length > 3 && ctx.measureText(s+'…').width > maxW) s = s.slice(0,-1); return s+'…'; }
+async function fontsReady(){ try{ await Promise.all(['900 60px "Big Shoulders Display"','400 28px "IBM Plex Mono"','600 28px "IBM Plex Mono"','600 28px "Instrument Sans"','italic 40px "Source Serif 4"'].map(f => document.fonts.load(f))); }catch(e){} }
+const MONO = '"IBM Plex Mono", Menlo, monospace', DISP = '"Big Shoulders Display", Impact, sans-serif', SANS = '"Instrument Sans", Helvetica, Arial, sans-serif';
+function drawRace(ctx, x0, x1, y, lead, rem){ const g = raceGeom(lead, rem), tx = v => x0 + (x1-x0)*v/100;
+  ctx.fillStyle = '#e6e2d8'; ctx.beginPath(); ctx.roundRect ? ctx.roundRect(x0, y-10, x1-x0, 20, 10) : ctx.rect(x0, y-10, x1-x0, 20); ctx.fill();
+  if(Math.abs(rem-lead) > 0.02){ ctx.strokeStyle = '#aaa'; ctx.setLineDash([5,5]); ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(tx(g.ghost), y, 24, 0, 7); ctx.stroke(); ctx.setLineDash([]); }
+  [['cn', g.cn, '#C8261D', '#F7D046', 'CN'], ['us', g.us, '#2B4C8C', '#fff', 'US']].forEach(r => { ctx.fillStyle = r[2]; ctx.beginPath(); ctx.arc(tx(r[1]), y, 26, 0, 7); ctx.fill(); ctx.strokeStyle = '#fff'; ctx.lineWidth = 4; ctx.stroke(); ctx.fillStyle = r[3]; ctx.font = '700 22px '+SANS; ctx.textAlign = 'center'; ctx.fillText(r[4], tx(r[1]), y+8); }); }
+function frame(ctx, W, H){ ctx.fillStyle = '#F6F3EC'; ctx.fillRect(0,0,W,H); ctx.fillStyle = '#1B1A17'; ctx.fillRect(0, H-110, W, 110);
+  ctx.font = '900 56px '+DISP; ctx.textAlign = 'left'; ctx.fillStyle = '#F6F3EC'; ctx.fillText('THE AI SAFETY ', 70, H-38); const w = ctx.measureText('THE AI SAFETY ').width; ctx.fillStyle = '#FF8A7A'; ctx.fillText('MENU', 70+w, H-38);
+  ctx.fillStyle = '#A39E92'; ctx.font = '500 24px '+SANS; ctx.textAlign = 'right'; ctx.fillText(String(D.site_url||'').replace(/^https?:\/\//,'').slice(0,48), W-70, H-44); }
+/* ---------- view: menu ---------- */
+function sorted(list){ const c = p => net(p, S.lam).central, r = p => riskOf(p), val = p => r(p) / Math.max(c(p)*DPM, 0.5);
+  if(S.sort === 'cost') return list.slice().sort((a,b) => c(a) - c(b));
+  if(S.sort === 'risk') return list.slice().sort((a,b) => r(b) - r(a));
+  if(S.sort === 'value') return list.slice().sort((a,b) => { const ga = c(a) <= 0 && r(a) >= 0, gb = c(b) <= 0 && r(b) >= 0; return ga !== gb ? (ga ? -1 : 1) : ga ? r(b) - r(a) : val(b) - val(a); });
+  if(S.sort === 'az') return list.slice().sort((a,b) => nameOf(a).localeCompare(nameOf(b)));
+  return shuffled(list); }
+const matches = p => { const q = S.q.trim().toLowerCase(); if(!q) return true; return [nameOf(p), p.name, p.short, p.protects].some(t => String(t||'').toLowerCase().includes(q)); };
+function menuTools(){ return '<div class="mtools"><input type="search" id="mq" placeholder="Search '+D.policies.length+' rules" value="'+esc(S.q)+'" aria-label="Search rules"><select id="msort" aria-label="Sort rules">' + Object.keys(SORTS).map(k => '<option value="'+k+'"'+(S.sort===k?' selected':'')+'>'+esc(SORTS[k])+'</option>').join('') + '</select></div>'; }
+const filtersOn = () => !!(S.q.trim() || S.sort !== 'shuffle' || S.harm || S.bills);
+function activeLine(n){ if(!filtersOn()) return ''; const bits = [];
+  if(S.harm) bits.push('protects against ' + HARMS[S.harm].label.toLowerCase()); if(S.q.trim()) bits.push('matching "' + esc(S.q.trim()) + '"'); if(S.sort !== 'shuffle') bits.push(esc(SORTS[S.sort].toLowerCase())); if(S.bills) bits.push('with real bills');
+  return '<div class="factive"><span>' + (n != null ? n + (n === 1 ? ' rule' : ' rules') + ', ' : '') + bits.join(', ') + '</span><button class="linkbtn" id="fedit">Change</button><button class="linkbtn" id="fclear">Clear</button></div>'; }
+function viewMenu(){
+  const want0 = p => (!S.harm || harmsOf(p).includes(S.harm)) && matches(p);
+  if(S.sort !== 'shuffle' || S.q.trim()){ const list = sorted(D.policies.concat(S.bills ? D.combos : []).filter(want0));
+    let h = activeLine(list.length);
+    h += list.length ? '<div class="grid">' + list.map(p => card(p)).join('') + '</div>' : '<p class="sub">No rules match. <button class="linkbtn" id="fclear2">Clear the search</button></p>';
+    return h + '<div class="lockin"><button class="btn primary big" id="lockIn">'+(S.cart.length ? 'Lock in my '+S.cart.length+(S.cart.length===1?' pick':' picks')+' and see my results' : 'Pick some rules first')+'</button></div>'; }
+  const costs = [], gains = [], OTHER = ['offmenu', 'speedups'];
+  const other = shuffled(D.policies.filter(p => OTHER.includes(p.section)));
+  const want = p => !S.harm || harmsOf(p).includes(S.harm);
+  shuffled(D.policies.filter(p => !OTHER.includes(p.section) && want(p))).forEach(p => (net(p, S.lam).central < -EPS ? gains : costs).push(p));
+  return activeLine(null) + menuBody(costs, gains, other, want, S.bills ? shuffled(D.combos.filter(want)) : []); }
+function fpanelHTML(){ return '<div class="fp-h"><b>Find rules</b><button class="linkbtn" id="fpClose">Done</button></div>' + menuTools() + harmChips() + '<label class="chk" style="margin:4px 0 8px"><input type="checkbox" id="fpBills"'+(S.bills?' checked':'')+'> Show real bills, like California SB 53 and the EU AI Act</label>' + (filtersOn() ? '<button class="linkbtn" id="fpClear">Clear everything</button>' : ''); }
+function openFilter(){ const pn = $('#fpanel'), fb = $('#fab'); pn.innerHTML = fpanelHTML(); pn.hidden = false; fb.setAttribute('aria-expanded', 'true'); bindFilter(); const q = pn.querySelector('#mq'); if(q && window.matchMedia && !matchMedia('(max-width:640px)').matches) q.focus(); }
+function closeFilter(){ $('#fpanel').hidden = true; $('#fab').setAttribute('aria-expanded', 'false'); syncFab(); }
+function refreshFilter(){ render(true); const pn = $('#fpanel'); if(pn.hidden) return; const q = pn.querySelector('#mq'), had = document.activeElement === q, pos = q ? q.selectionStart : 0;
+  pn.innerHTML = fpanelHTML(); bindFilter(); if(had){ const n = pn.querySelector('#mq'); n.focus(); try{ n.setSelectionRange(pos, pos); }catch(e){} } }
+function bindFilter(){ const pn = $('#fpanel');
+  const q = pn.querySelector('#mq'); q.addEventListener('input', () => { S.q = q.value; refreshFilter(); });
+  pn.querySelector('#msort').addEventListener('change', e => { S.sort = e.target.value; save(); refreshFilter(); });
+  pn.querySelectorAll('[data-harm]').forEach(b => b.addEventListener('click', () => { S.harm = b.dataset.harm || null; save(); refreshFilter(); }));
+  pn.querySelector('#fpClose').addEventListener('click', closeFilter);
+  pn.querySelector('#fpBills').addEventListener('change', e => { S.bills = e.target.checked; save(); refreshFilter(); });
+  const c = pn.querySelector('#fpClear'); if(c) c.addEventListener('click', () => { S.q = ''; S.sort = 'shuffle'; S.harm = null; S.bills = false; save(); refreshFilter(); }); }
+// The button appears once you scroll into the rules, or whenever a filter is on.
+function syncFab(){ const fb = $('#fab'), pn = $('#fpanel'), onMenu = route().name === 'menu';
+  if(!onMenu){ fb.hidden = true; pn.hidden = true; return; }
+  const g = document.querySelector('#view .grid'), past = window.scrollY > 160 && (g ? g.getBoundingClientRect().top < window.innerHeight*0.6 : false);
+  fb.hidden = !(past || filtersOn() || !pn.hidden); fb.querySelector('.fdot').hidden = !filtersOn(); }
+$('#fab').addEventListener('click', () => $('#fpanel').hidden ? openFilter() : closeFilter());
+window.addEventListener('scroll', () => syncFab(), { passive: true });
+document.addEventListener('keydown', e => { if(e.key === 'Escape' && !$('#fpanel').hidden) closeFilter(); });
+document.addEventListener('click', e => { const pn = $('#fpanel'); if(!pn.hidden && !pn.contains(e.target) && !$('#fab').contains(e.target) && e.target.isConnected) closeFilter(); });
+function harmChips(){ return '<div class="hfilter" role="group" aria-label="Filter by what a rule protects against"><span>Protects against</span>' + [[null,'Anything']].concat(Object.keys(HARMS).map(k => [k, HARMS[k].label])).map(([k,l]) => '<button data-harm="'+(k||'')+'" aria-pressed="'+(S.harm===k)+'"'+(k?' title="'+esc(HARMS[k].blurb)+'"':'')+'>'+esc(l)+'</button>').join('') + '</div>' }
+function menuBody(costs, gains, other, want, bills){ let h = '';
+  h += '<div class="grid">' + costs.map(p => card(p)).join('') + '</div>';
+  if(gains.length) h += '<h2 class="sec">Safety rules that also gain lead</h2><p class="sub">They slow China more than America, for example by keeping stolen models and smuggled chips out of Chinese hands.</p><div class="grid">' + gains.map(p => card(p)).join('') + '</div>';
+  if(other.length && S.harm) other.splice(0, other.length, ...other.filter(want));
+  if(bills && bills.length) h += '<h2 class="sec">Real bills</h2><p class="sub">Laws and bills, priced as a package. Adding one replaces any of its parts in your picks.</p><div class="grid">' + bills.map(p => card(p)).join('') + '</div>';
+  if(other.length) h += '<h2 class="sec">Race to win</h2><p class="sub">Not safety rules. Most buy lead back, and many raise p(doom) to do it.</p><div class="grid">' + other.map(p => card(p)).join('') + '</div>';
+  h += '<div class="lockin"><button class="btn primary big" id="lockIn">'+(S.cart.length ? 'Lock in my '+S.cart.length+(S.cart.length===1?' pick':' picks')+' and see my results' : 'Pick some rules first')+'</button></div>';
+  return h;
+}
+
+const VS = { me: null, them: null, fromLink: false, arg: null, shared: null };
+function viewShared(arg){ const o = parsePayload(arg); VS.shared = o; OVR = o.my; KOVR = { kn: o.kn, pw: o.pw }; try { return viewResults(o); } finally { OVR = null; KOVR = null; } }
+
+/* ---------- view: detail ---------- */
+const CONF = { 'High':5, 'Medium-high':4, 'Medium':3, 'Medium-low':2, 'Low-medium':2, 'Low':1 };
+function viewPolicy(id){
+  const p = byId(id); if(!p) return '<p>Not on the menu. <a href="#/">Back</a></p>';
+  const m = net(p, S.lam).central, on = S.cart.includes(p.id), inc = !on && includedBy(p.id), gain = m < -EPS;
+  const price = priceText(m, p.market_price);
+  let h = '<div class="dt"><a class="back" href="#/">← Menu</a>';
+  h += '<div class="dhead">'+art(p.id, 'hd')+'<div><h1>'+esc(nameOf(p))+'</h1>'+(p.name!==nameOf(p) ? '<p>'+esc(p.name)+'</p>' : '')+'</div></div>';
+  if(p.protects) h += '<p class="lead protects" style="margin:4px 0 14px;font-size:1.15rem"><b>'+(/^Not a safety rule/.test(p.protects) || /removes protections/.test(p.protects) ? 'What it does:' : 'What it protects against:')+'</b> '+esc(p.protects)+'</p>';
+  h += '<div class="big"><div class="n" style="color:'+(gain ? 'var(--gain)' : 'var(--us)')+'">'+esc(price)+'</div><div class="s"><b>'+(Math.abs(m) < UNDER*0.95 ? (m ? 'effect on America\'s lead' : 'costs America\'s lead nothing') : gain ? 'of lead gained' : 'of America\'s lead')+(p.market_price ? ', roughly' : '')+'</b>'+esc(stanceLabel(S.lam))+' · 12 months after it takes effect'+(hasMine(p).l ? '<br><b style="color:var(--risk)">'+((myMap()[p.id]||{}).ld != null ? 'Your number.' : 'From your assumptions.')+'</b> The menu says '+esc(lc(priceText(menuNet(p, S.lam).central, p.market_price)))+'. <a href="#ratebox">Change</a>' : '')+'</div></div>';
+  const n = menuNet(p, S.lam), basis = BASIS[p.basis] || BASIS.estimate, mr = n.central, yoursL = hasMine(p).l;
+  let facts = '<div class="facts"><div class="row"><span class="basis b-'+(p.basis||'estimate')+'" title="'+esc(basis[1])+'">'+esc(basis[0])+'</span><span><b>Likely range'+(perText(p)==='a year' ? ' per year' : perText(p)==='per model' ? ' per model' : '')+':</b> '+esc(rangeText(n))+'</span></div>' +
+    '<p><b>How we got this:</b> '+esc(p.how||'')+'</p>' +
+    '<div class="alts"><span class="muted">If China depends on U.S. models</span>' + D.stances.map(s => { const v = menuNet(p, s.lam).central; return '<span class="alt'+(Math.abs(s.lam-S.lam)<0.001?' on':'')+'">'+esc(SHORT[s.id])+': <b class="'+(v < -EPS ? 'gain' : '')+'">'+esc(priceText(v, p.market_price))+'</b></span>'; }).join('') + '</div>' +
+    '<p class="muted" style="margin:8px 0 0">'+esc(basis[1])+' <a href="#/assumptions">What this assumes</a>'+(p.model_page ? ' · <a href="'+esc(AP+p.model_page)+'" target="_blank" rel="noopener">Full calculation</a>' : '')+'</p></div>';
+  const sid = 's' + Object.keys(SHARES).length; SHARES[sid] = { title:p.name, text: nameOf(p)+': '+price+(gain?' of lead gained':' of America\'s lead')+'. The AI Safety Menu prices every AI safety rule.', url: shareUrl('p/'+p.id) };
+  h += '<div class="row" style="margin-top:12px">' + (inc ? '<button class="btn" disabled>In '+esc(nameOf(inc))+'</button>' : '<button class="btn '+(on?'':'dark')+'" data-add="'+p.id+'">'+(on?'Remove from order':'Add to order')+'</button>') + '<button class="btn" data-share="'+sid+'">Share</button><button class="btn" data-copylink="'+sid+'">Copy link</button></div>';
+  // 1. what it means
+  h += '<section class="panel"><h3>What it means in practice</h3><p class="lead">'+esc(p.practice||p.short)+'</p><p class="muted" style="margin:10px 0 0">Applies to: '+esc(p.trigger)+(p.status ? ' '+statusLabel()+': '+esc(p.status.replace(/\.+$/,''))+'.' : '')+'</p></section>';
+  // 2. why it costs this
+  const u = p.d_us.central, a = S.lam*p.d_access.central, c = (p.d_china||Z).central, rows = [];
+  rows.push(u >= 0 ? {label:'Slows the U.S.', from:0, to:u, cls:'cost', val: u > EPS ? '−'+fmt(u) : '0'} : {label:'Speeds the U.S. up', from:0, to:u, cls:'gain', val:'+'+fmt(-u)});
+  if(a > EPS) rows.push({label:'Slows China\'s copying', from:u, to:u-a, cls:'gain', val:'+'+fmt(a)});
+  if(c > 0) rows.push({label:'Slows China directly', from:u-a, to:u-a-c, cls:'gain', val:'+'+fmt(c)});
+  else if(c < 0) rows.push({label:'Speeds China up', from:u-a, to:u-a-c, cls:'cost', val:'−'+fmt(-c)});
+  rows.push({label:'Net', from:0, to:mr, val:eff(mr), vcls:effCls(mr), tot:true});
+  h += '<section class="panel"><h3>'+(yoursL ? 'Why the menu says ' + esc(lc(priceText(mr, p.market_price))) : (gain ? 'Why it gains ' : 'Why it costs ')+esc(lc(words(m)).replace(/^free$/,'nothing')))+'</h3><p class="lead">'+esc(p.why||'')+'</p></section>';
+  // 3. what it buys
+  h += riskPanel(p);
+  // 4. the technical estimate, folded for beginners
+  let bars = '<div class="twocol" style="margin-top:14px"><div><div class="muted" style="font-weight:700;margin-bottom:6px">How it adds up</div>' + barRows(rows) + '</div>';
+  bars += '<div><div class="muted" style="font-weight:700;margin-bottom:6px">What it holds up</div><div class="clocks">' + [['training','Training','chip'],['internal','Lab\'s own use','flask'],['release','Public launch','rocket']].map(k => { const v = p.clocks[k[0]]; return '<div class="clk '+(v==='yes'?'yes':v==='no'?'no':'cond')+'">'+svg(k[2])+'<b>'+k[1]+'</b><span>'+(v==='yes'?'Held up':v==='no'?'Not affected':'Sometimes')+'</span></div>'; }).join('') + '</div></div></div>';
+  h += '<details class="seemore priced"><summary>How we priced this</summary><div class="more-in">' + facts + bars + '</div></details>';
+  // 3. see more
+  const adv = p.advocates || {};
+  const who = list => '<ul class="who">' + list.map(x => '<li><b>'+esc(x.who)+'</b> '+esc(x.what)+(x.url ? ' <a href="'+esc(x.url)+'" target="_blank" rel="noopener">Source</a>' : '')+'</li>').join('') + '</ul>';
+  let more = '';
+  if(adv.for && adv.for.length) more += '<h3>Who is for it</h3>' + who(adv.for);
+  if(adv.against && adv.against.length) more += '<h3>Who is against it</h3>' + who(adv.against);
+  more += '<h3>What exists today</h3><p>'+esc(p.baseline)+'</p>';
+  more += '<h3>The other side</h3><p>'+esc(p.steelman)+'</p>';
+  more += '<h3>The full reasoning</h3>' + p.reasoning.split('\n').map(x => '<p>'+esc(x)+'</p>').join('') + (p.model_page ? '<p><a href="'+esc(AP+p.model_page)+'" target="_blank" rel="noopener">See the full calculation in the technical appendix</a></p>' : '');
+  more += '<h3>'+(p.kind==='combo' ? 'What the bill requires' : 'What the rule requires')+'</h3><ul>'+p.requires.map(r=>'<li>'+esc(r)+'</li>').join('')+'</ul>';
+  if(p.components) more += '<h3>Menu items inside this bill</h3><ul>'+p.components.map(cid => { const q = byId(cid); return q ? '<li><a href="#/policy/'+q.id+'">'+esc(nameOf(q))+'</a></li>' : ''; }).join('')+'</ul>';
+  more += '<h3>Confidence</h3><p>'+esc(p.confidence)+'. The biggest unknown: '+esc(p.uncertainty.charAt(0).toLowerCase()+p.uncertainty.slice(1))+' Confidence means how sure we are that the true cost falls in the likely range.</p>';
+  more += '<h3>Sources</h3><ol>'+p.sources.map(s=>'<li><a href="'+esc(s.url)+'" target="_blank" rel="noopener">'+esc(s.title)+'</a>'+(s.note?': '+esc(s.note):'')+(s.secondary?' <span class="sec2">Secondary report: '+esc(s.secondary)+'</span>':'')+'</li>').join('')+'</ol><p class="muted">Last priced '+esc(p.updated||D.updated)+'. '+dispute()+'</p>';
+  h += ratePanel(p);
+  h += '<details class="seemore"><summary>Who is for and against it, sources and more</summary><div class="more-in">'+more+'</div></details>';
+  return h + '</div>';
+}
+// Status lines are dated; after four months they say they may be out of date.
+function statusLabel(){ const d = new Date(String(D.status_as_of||D.updated) + 'T12:00:00'); const txt = 'Status as of ' + d.toLocaleDateString('en-US', { month:'long', day:'numeric', year:'numeric' });
+  return (Date.now() - d.getTime() > 120*86400000) ? txt + ' (may be out of date)' : txt; }
+function riskPanel(p){
+  const r = riskOf(p), lo = riskOf(p,'low'), hi = riskOf(p,'high'), p0 = P0(), hs = harmsOf(p), G = p.risk && p.risk.group && D.risk.groups[p.risk.group];
+  const why = p.risk ? p.risk.why : 'A bill counts as its parts: ' + p.components.map(c => nameOf(byId(c))).join(', ') + '. Parts that do similar things overlap, so the total is less than the sum.';
+  let h = '<section class="panel"><h3>What it buys</h3>'+(hs.length ? '' : '<p class="lead" style="margin:0">Not a safety rule.</p>');
+  if(hs.length) h += '<div class="hchips" style="margin-top:0">' + hs.map(k => '<span class="hchip" title="'+esc(HARMS[k].blurb)+'">'+esc(HARMS[k].label)+'</span>').join('') + '</div>';
+  h += '<div class="rbox">'+pips(r,'lg')+'<div><b>'+esc(riskHead(r))+'</b>'+(hasMine(p).r ? ' <span class="yours in">Your number</span><br><span class="muted">The menu says: '+esc(riskHead(RK.one(p, D)).toLowerCase())+'.</span>' : '')+'<br><span class="muted">'+(Math.abs(r) < 0.0005 ? 'p(doom) stays at '+fmtP(p0) : 'p(doom) '+fmtP(p0)+' → '+fmtP(p0*(1-r)))+', starting from '+esc(RK.baseline(D,S.pd).short)+' ('+esc(RK.baseline(D,S.pd).label)+')</span></div></div>';
+  h += '<p style="margin:12px 0 0">'+esc(why)+'</p>';
+  h += '<p class="muted" style="margin:8px 0 0">Likely range: '+(sgnPct(hi)===sgnPct(lo) ? sgnPct(hi) : sgnPct(hi)+' to '+sgnPct(lo))+' of the risk. '+(G ? 'It overlaps with other rules on '+esc(G.label)+': together they can remove at most '+RK.pct(G.cap)+'. ' : '')+'Our judgment, in coarse steps. <a href="#/assumptions">How p(doom) works here</a></p></section>';
+  return h; }
+/* ---------- your numbers: players replace our estimates with theirs ---------- */
+const RT = { crowd: {}, expert: !!load('expert', false), timers: {}, open: new Set() };
+function crowdLine(c){ if(!c) return ''; const top = (arr, S2) => { const n = arr.reduce((a,b)=>a+b,0); if(!n) return null; const i = arr.indexOf(Math.max.apply(null, arr)); return [S2[i].l, Math.round(100*arr[i]/n), n]; };
+  const a = top(c.l, LEAD_S), b = top(c.r, RISK_S), xa = top(c.xl, LEAD_S), xb = top(c.xr, RISK_S); if(!a || !b) return '';
+  return '<div class="crowd">Most players say <b>'+esc(a[0])+'</b> ('+a[1]+'%) and <b>'+esc(b[0])+'</b> ('+b[1]+'%), from '+a[2].toLocaleString('en-US')+(a[2]===1?' rating':' ratings')+'.' + (xa && xa[2] >= 5 ? ' People in AI policy or safety say <b>'+esc(xa[0])+'</b> and <b>'+esc(xb[0])+'</b> ('+xa[2]+').' : '') + '</div>'; }
+// Send a rating to the team a few seconds after the player stops changing it, so one visit counts once.
+function queueSend(id){ clearTimeout(RT.timers[id]); RT.timers[id] = setTimeout(async () => { const p = byId(id); if(!p || !D.api_base) return; const m = S.my[id] || {};
+  const res = await api('rate', { id, lead: leadIdx(net(p, S.lam).central), risk: riskIdx(riskOf(p)), expert: RT.expert, reason: m.why || '' }); if(res && res.l){ RT.crowd[id] = res; if(route().name==='policy' && route().arg===id) render(true); } }, 4000); }
+// Rate mode: send the rating itself, without changing the player's menu.
+function sendRate(id){ clearTimeout(RT.timers['r'+id]); RT.timers['r'+id] = setTimeout(() => { const p = byId(id), m = RM.vals[id] || {}; if(!p || !D.api_base || m.ld == null || m.rr == null) return;
+  api('rate', { id, lead: leadIdx(m.ld/DPM), risk: riskIdx(m.rr), expert: RT.expert, reason: m.why || '' }); }, 1500); }
+function setMine(id, key, v){ const m = Object.assign({}, S.my[id]); if(key === 'why') m.why = String(v).slice(0, 280); else m[key] = v; S.my[id] = m; save(); queueSend(id); }
+const slLabel = (k, v, touched) => touched === false ? 'Move the slider' : k === 'ld' ? (v === 0 ? 'Costs no lead' : v < 0 ? 'Gains ' + lc(words(v/DPM)) + ' of lead' : 'Costs ' + lc(words(v/DPM)) + ' of lead') : riskHead(v/100);
+function numRows(p, pick){ const cur = (pick ? RM.vals[p.id] : S.my[p.id]) || {}, menuD = menuNet(p, S.lam).central*DPM, menuR = p.risk.central*100;
+  const row = (k, title, v, menu, ticks) => { const t = v == null ? 0 : slFrom(k, v), touched = pick ? (RM.touched[p.id+k] || false) : null, x = t => ((t+1000)/20).toFixed(2);
+    return '<div class="nsl"><div class="nsl-h"><b>'+title+'</b><span class="nsl-v" data-slv="'+p.id+':'+k+'">'+esc(slLabel(k, v == null ? 0 : v, touched))+'</span></div><div class="nsl-w">' +
+      (pick ? '' : '<span class="nsl-m" style="--x:'+x(slFrom(k, menu))+'" title="The menu\'s number">menu</span>') +
+      '<input type="range" min="-1000" max="1000" step="1" value="'+t+'" data-sl="'+p.id+'" data-k="'+k+'" aria-label="'+esc(title)+'" aria-valuetext="'+esc(slLabel(k, v == null ? 0 : v))+'"></div>' +
+      '<div class="nsl-t">' + ticks.map(([val, lab]) => '<span style="--x:'+x(slFrom(k, val))+'">'+lab+'</span>').join('') + '</div></div>'; };
+  return row('ld', 'Cost to America\'s lead', cur.ld != null ? cur.ld : (pick ? null : SL.ld.snap(menuD)), SL.ld.snap(menuD), [[-180,'+6 mo'],[-30,'+1 mo'],[0,'0'],[7,'1 wk'],[30,'1 mo'],[365,'1 yr']]) +
+         row('rr', 'Effect on p(doom)', cur.rr != null ? cur.rr*100 : (pick ? null : SL.rr.snap(menuR)), SL.rr.snap(menuR), [[-30,'+30%'],[-5,'+5%'],[0,'0'],[5,'−5%'],[20,'−20%'],[60,'−60%']]); }
+function fmtKnob(x, v){ const d1 = n => Math.abs(n) < 10 ? String(Math.round(n*10)/10) : String(Math.round(n));
+  switch(x.fmt){
+    case 'pct': return Math.round(v*100) + '%'; case 'pct1': return (Math.round(v*1000)/10) + '%'; case 'pct2': return (Math.round(v*10000)/100) + '%';
+    case 'days': return d1(v) + (d1(v) === '1' ? ' day' : ' days'); case 'staff': return d1(v) + ' staff days'; case 'hours': return d1(v) + ' hours';
+    case 'mult': return '×' + Math.exp(v).toFixed(2); case 'num': return d1(v); case 'num1': return d1(v) + ' million';
+    case 'us': return Math.abs(v) < 0.05 ? 'no change' : d1(Math.abs(v)) + (v > 0 ? ' days slower' : ' days faster');
+    case 'cn': return Math.abs(v) < 0.05 ? 'no change' : 'China ' + d1(Math.abs(v)) + (v > 0 ? ' days slower' : ' days faster');
+    case 'acc': return d1(v) + ' days';
+    default: return d1(v); } }
+const pathLabel = id => (D.risk.pathways.find(x => x.id === id) || {}).label || id;
+function knobRow(p, x, i, pos){ const X = t => (t/6*100).toFixed(2);
+  return '<div class="nsl"><div class="nsl-h"><b>'+esc(x.label)+'</b><span class="nsl-v" data-kv="'+p.id+':'+i+'">'+esc(fmtKnob(x, valueAt(x, pos)))+'</span></div><div class="nsl-w plain">' +
+    '<span class="nsl-m" style="--x:'+X(x.default)+'" title="The estimate\'s value">'+(KT[p.id] ? 'model' : 'menu')+'</span><input type="range" min="0" max="60" step="1" value="'+Math.round(pos*10)+'" data-knob="'+p.id+'" data-i="'+i+'" aria-label="'+esc(x.label)+'" aria-valuetext="'+esc(fmtKnob(x, valueAt(x, pos)))+'"></div>' +
+    '<div class="nsl-t"><span style="--x:0">'+esc(fmtKnob(x, x.values[0]))+'</span><span style="--x:100">'+esc(fmtKnob(x, x.values[6]))+'</span></div>' +
+    (x.why ? '<p class="kwhy">The model uses '+esc(fmtKnob(x, x.values[x.default]))+', '+esc(x.evidence)+'. '+esc(x.why)+'</p>' : '') + '</div>'; }
+function riskRow(p, key, label, v, def){ const X = t => (t*100).toFixed(2);
+  return '<div class="nsl"><div class="nsl-h"><b>'+esc(label)+'</b><span class="nsl-v" data-rv="'+p.id+':'+key+'">'+Math.round(v*100)+'%</span></div><div class="nsl-w plain">' +
+    '<span class="nsl-m" style="--x:'+X(def)+'" title="The menu\'s value">menu</span><input type="range" min="0" max="100" step="1" value="'+Math.round(v*100)+'" data-rk="'+p.id+'" data-k="'+key+'" aria-label="'+esc(label)+'"></div>' +
+    '<div class="nsl-t"><span style="--x:0">0%</span><span style="--x:100">100%</span></div></div>'; }
+function leadOut(p){ return priceText(net(p, S.lam).central, p.market_price) + (hasMine(p).l ? ' (menu: ' + lc(priceText(menuNet(p, S.lam).central, p.market_price)) + ')' : ''); }
+function riskOut(p){ return riskHead(riskOf(p)) + (hasMine(p).r ? ' (menu: ' + riskHead(RK.one(p, D)).toLowerCase().replace(/^removes about /,'').replace(/ of the risk$/,'') + ')' : ''); }
+function ratePanel(p){
+  if(p.components) return '<section class="panel" id="ratebox"><h3>Your assumptions</h3><p style="margin:0">A bill counts as its parts. To change its assumptions, change them on the parts: ' + p.components.map(c => '<a href="#/policy/'+c+'">'+esc(nameOf(byId(c)))+'</a>').join(', ') + '.</p></section>';
+  const cur = S.my[p.id] || {}, ks = knobsFor(p), pos = knobPos(p, ks), rk = riskKnobs(p), direct = cur.ld != null || cur.rr != null;
+  const open = hasMine(p).l || hasMine(p).r || cur.why || RT.open.has(p.id);
+  let h = '<section class="panel" id="ratebox"><h3>Your assumptions for this rule</h3><p class="muted" style="margin:0">Think the estimate assumes the wrong things? Change its assumptions and your versions apply everywhere for you: on the menu, in your totals, your results and your share links.</p>';
+  h += '<details class="seemore kfold" data-kfold="'+p.id+'"'+(open ? ' open' : '')+'><summary>Change the assumptions</summary><div class="more-in">';
+  h += '<div class="kgrp" style="border-top:0;margin-top:4px;padding-top:0"><div class="kgh"><b>Cost to America\'s lead</b><span class="kout" data-kout="'+p.id+':lead">'+esc(leadOut(p))+'</span></div>';
+  if(cur.ld != null) h += '<p class="knote">You set this number directly below, so these assumptions don\'t change it. <button class="linkbtn" data-clear="'+p.id+':ld">Use the assumptions instead</button></p>';
+  h += ks.length ? '<p class="knote">'+(KT[p.id] ? 'The three inputs that move the simulation model\'s estimate most. Its other inputs stay at their central values.' : 'We priced this rule by hand, so these are the parts of our estimate.')+'</p>' + ks.map((x, i) => knobRow(p, x, i, pos[i])).join('') : '<p class="knote">Nothing here to adjust.</p>';
+  h += '</div><div class="kgrp"><div class="kgh"><b>Effect on p(doom)</b><span class="kout" data-kout="'+p.id+':risk">'+esc(riskOut(p))+'</span></div>';
+  if(cur.rr != null) h += '<p class="knote">You set this number directly below, so these assumptions don\'t change it. <button class="linkbtn" data-clear="'+p.id+':rr">Use the assumptions instead</button></p>';
+  if(rk){ const r = p.risk, adds = r.central < 0, treaty = r.group === 'international', w = weights();
+    h += '<p class="knote">Its cut in p(doom) is how much of the risk it targets, times how well it works, times how likely it is to be followed. It targets: ' + Object.keys(r.targets).map(k => esc(/^AI/.test(pathLabel(k)) ? pathLabel(k) : lcFirst(pathLabel(k))) + ' ('+Math.round(r.targets[k]*100)+'% of it)').join(', ') + '. Together that is '+Math.round(rk.T*100)+'% of all the risk, given <button class="linkbtn" data-open-assume>how much each source matters</button>.'+(r.group && D.risk.groups[r.group] && !adds ? ' Rules on '+esc(D.risk.groups[r.group].label)+' overlap, so together they remove at most '+RK.pct(D.risk.groups[r.group].cap)+'.' : '')+'</p>';
+    h += riskRow(p, 'e', adds ? 'How much it worsens those risks' : 'How well it works, if followed', rk.e, worksDefault(r)) + riskRow(p, 'a', adds ? 'How likely it plays out as described' : treaty ? 'How likely China and others keep to it' : 'How likely it is followed and enforced', rk.a, r.adherence); }
+  else h += '<p class="knote">'+(p.risk && p.risk.high ? 'We rate this as no clear effect either way, so there is nothing to adjust. You can still set a number directly below.' : 'It isn\'t aimed at catastrophic risk, so there is nothing to adjust.')+'</p>';
+  h += '</div><details class="seemore kdirect"'+(direct ? ' open' : '')+'><summary>Or set the results directly</summary><div class="more-in">' + numRows(p, false) + '</div></details>';
+  h += '<label class="chk"><input type="checkbox" data-expert'+(RT.expert?' checked':'')+'> I work in AI policy or AI safety</label><textarea class="rwhy" data-why="'+p.id+'" maxlength="280" placeholder="Why? Optional. It goes on your printed position, and to our team if crowd ratings are on.">'+esc(cur.why||'')+'</textarea>';
+  h += crowdLine(RT.crowd[p.id]) + '</div></details>';
+  const any = hasMine(p).l || hasMine(p).r || cur.why;
+  return h + '<div class="links">' + (any ? '<button data-reset="'+p.id+'">Reset this rule to the menu</button>' : '') + '<a href="#/rate">Rate ten rules in a row</a><a href="#/position">Print what I think</a></div></section>'; }
+// Rate mode: ten rules in a row, with the menu's numbers hidden until the end.
+const RM = { q: [], i: 0, got: [], draft: {}, touched: {}, vals: {} };
+function rmStart(){ const pool = D.policies.slice().sort(() => Math.random() - 0.5); RM.q = pool.slice(0, 10).map(p => p.id); RM.i = 0; RM.got = []; RM.draft = {}; RM.touched = {}; RM.vals = {}; }
+function viewRate(){ if(!RM.q.length) rmStart();
+  if(RM.i >= RM.q.length){ const rows = RM.got.map(id => { const p = byId(id), m = RM.vals[id] || {}, oD = menuNet(p, S.lam).central*DPM, oR = p.risk.central, yD = m.ld != null ? m.ld : oD, yR = m.rr != null ? m.rr : oR, dl = Math.abs(slFrom('ld', yD) - slFrom('ld', SL.ld.snap(oD))) > 250, dr = Math.abs(slFrom('rr', yR*100) - slFrom('rr', SL.rr.snap(oR*100))) > 250;
+      return '<tr><td><a href="#/policy/'+p.id+'">'+esc(nameOf(p))+'</a></td><td class="'+(dl?'diff':'')+'">'+esc(priceText(yD/DPM))+'<br><span class="muted">menu: '+esc(priceText(oD/DPM))+'</span></td><td class="'+(dr?'diff':'')+'">'+esc(riskHead(yR))+'<br><span class="muted">menu: '+esc(riskHead(oR).toLowerCase())+'</span></td></tr>'; }).join('');
+    let h = '<a class="back" href="#/">← Back to the menu</a><div class="head"><div><h1>You rated '+RM.got.length+(RM.got.length===1?' rule':' rules')+'.</h1><p>These are your ratings. Red marks where you and the menu are far apart. They don\'t change the menu for you unless you choose to use them.</p></div></div>';
+    h += '<div class="panel"><table class="rtab"><tr><th>Rule</th><th>Lead cost</th><th>p(doom)</th></tr>'+rows+'</table></div>';
+    return h + '<div style="margin-top:14px">' + shareBtns({ title:'Check the AI Safety Menu', text:'The AI Safety Menu prices every AI safety rule in days of America\'s lead and p(doom). Think the numbers are wrong? Rate ten rules.', url: shareUrl('rate') }, '<button id="rmUse">Use these as my numbers</button><button id="rmAgain">Rate ten more</button><a href="#/position">Print what I think</a><a href="#/">Back to the menu</a>') + '</div>'; }
+  const p = byId(RM.q[RM.i]), d = RM.vals[p.id] || {};
+  let h = '<a class="back" href="#/">← Back to the menu</a><div class="dt"><div class="dots">' + RM.q.map((_,k) => '<i class="'+(k<RM.i?'ok':k===RM.i?'cur':'')+'"></i>').join('') + '</div>';
+  h += '<div class="dhead">'+art(p.id, 'hd')+'<div><h1>'+esc(nameOf(p))+'</h1><p>'+esc(p.name)+'</p></div></div>';
+  h += '<section class="panel"><p class="lead" style="margin:0">'+esc(p.practice||p.short)+'</p>'+(p.protects?'<p style="margin:10px 0 0"><b>'+(/^Not a safety rule/.test(p.protects)?'What it does:':'What it protects against:')+'</b> '+esc(p.protects)+'</p>':'')+'</section>';
+  h += '<section class="panel"><h3>What do you think it really costs and buys?</h3>' + numRows(p, true) + (RM.i===0 ? '<label class="chk"><input type="checkbox" data-expert'+(RT.expert?' checked':'')+'> I work in AI policy or AI safety</label>' : '') + '<textarea class="rwhy" data-why="'+p.id+'" maxlength="280" placeholder="Why? Optional.">'+esc(d.why||'')+'</textarea></section>';
+  const ready = RM.touched[p.id+'ld'] && RM.touched[p.id+'rr'];
+  return h + '<div class="row" style="margin-top:14px"><button class="btn dark" id="rmNext"'+(ready?'':' disabled')+'>'+(RM.i===RM.q.length-1?'See how you compare':'Next rule')+'</button><button class="btn" id="rmSkip">Skip</button></div></div>'; }
+function dispute(){ const u = String(D.dispute_url||'#/method'); return '<a href="'+esc(u)+'"'+(u.startsWith('#')?'':' target="_blank" rel="noopener"')+'>Dispute this price</a>'; }
+
+/* ---------- view: assumptions ---------- */
+function viewAssumptions(){
+  const partial = ALL.filter(p => p.basis === 'partial').map(p => nameOf(p));
+  let h = '<div class="dt"><a class="back" href="#/method">← How it works</a><div class="head"><div><h1>What this assumes</h1><p>Every price rests on the assumptions below. You can change China\'s dependence, America\'s lead and the starting p(doom) here or under Your assumptions, and each rule\'s own assumptions on its page. Every number updates.</p></div></div>';
+  h += '<section class="panel"><h3>1. How much China depends on U.S. models</h3><p class="lead">The key unknown: how much China\'s progress slows when U.S. models are held back or slowed. Chinese labs learn from U.S. models through distillation, published research and hired staff. "A little" is the central estimate from the simulation model behind these prices. "A lot" doubles it and "mostly" triples it. The site starts at "not at all," the least favourable case for safety rules.</p><div style="margin-top:12px">' + seg(S.lam, 'data-lam') + '</div></section>';
+  h += '<section class="panel"><h3>2. America\'s lead: '+S.lead+' months</h3><p class="lead">'+esc(D.lead_note)+'</p><div class="slider"><span>Lead in months</span><b id="aLeadV">'+S.lead+' mo</b><input type="range" id="aLead" min="1" max="18" step="1" value="'+S.lead+'" aria-label="America\'s lead in months"></div></section>';
+  h += '<section class="panel"><h3>3. Two prices, estimated separately</h3><p class="lead">Each rule has two prices: what it costs America\'s lead, and how much it lowers p(doom). Neither is folded into the other. Not counted:</p><ul class="plain"><li>Whether a smaller U.S. lead itself changes the risk. Some argue it raises risk because less careful labs could take the lead. Others argue a big lead only fuels the race. The site leaves that trade to you.</li><li>Lab revenue, investment and market share.</li><li>Researchers or companies moving abroad.</li><li>The cost of complying with many different state laws at once.</li></ul></section>';
+  h += '<section class="panel"><h3>4. One horizon, simple sums</h3><ul class="plain"><li>Every price is the change in the U.S.–China gap 12 months after a rule takes effect. A pause costs more while it lasts; labs partly catch up afterward.</li><li>An order adds up its items. A real bill replaces its parts, so a bill is not counted twice. Two separate bills can still overlap.</li><li>Security measures share one theft risk, set by the model at about three days of lead a year. Measures ordered together cannot remove more than all of it.</li><li>Staff time counts only through the research it displaces. That is why most paperwork rules cost under a day.</li></ul></section>';
+  h += '<section class="panel" id="basis"><h3>5. Most numbers are assumptions</h3><p class="lead">No price here is directly measured. Every rule page says which kind it is.</p><ul class="plain"><li><b>Modeled:</b> '+D.policies.filter(p => p.basis === 'model').length+' rules and '+D.combos.length+' real bills come from a simulation of U.S. and Chinese AI progress, calibrated to published data on compute, training runs and model releases. Most policy-specific inputs are stated assumptions. <a href="'+AP+'appendix/index.html" target="_blank" rel="noopener">Technical appendix</a></li><li><b>Partly sourced</b> and <b>Our estimate:</b> the other '+D.policies.filter(p => p.basis !== 'model').length+' rules, priced by hand on the same logic.</li><li>On any rule page you can change the inputs behind either kind.</li></ul></section>';
+  const G = D.risk.groups;
+  h += '<section class="panel" id="risk"><h3>6. How p(doom) works here</h3><p class="lead">p(doom) is the chance that AI causes a catastrophe as bad as human extinction. Nobody knows it. Pick whose estimate to start from:</p><div style="margin-top:12px">' + pdSeg() + '</div>' +
+    '<ul class="plain" style="margin-top:12px">' + D.risk.baselines.map(b => '<li><b>'+esc(b.short)+', '+esc(b.label)+':</b> '+esc(b.who)+' <a href="'+esc(b.url)+'" target="_blank" rel="noopener">'+esc(b.source)+'</a>'+(b.url2 ? ' · <a href="'+esc(b.url2)+'" target="_blank" rel="noopener">'+esc(b.source2)+'</a>' : '')+'</li>').join('') + '</ul>' +
+    '<p>The four estimates answer slightly different questions, so treat them as rough anchors.</p><ul class="plain"><li>Each rule removes a share of whatever risk is left, so rules multiply rather than add. U.S. rules alone remove at most about half the risk, because most of the rest sits outside U.S. law. Deals with China can remove far more, if they hold.</li>' +
+    '<li>Rules that do similar things overlap, unless you set a rule\'s number yourself, in which case it counts as you set it. Together they can remove at most: ' + Object.keys(G).map(k => esc(G[k].label)+' '+RK.pct(G[k].cap)).join(', ') + '.</li>' +
+    '<li>Each rule\'s cut is how much of the risk it targets, times how well it works if followed, times how likely it is to be followed. How much each source of risk matters is a setting you can change: ' + D.risk.pathways.map(x => esc(x.label.replace(/^(?!AI)(.)/, c => c.toLowerCase()))+' '+Math.round(x.weight*100)+'%').join(', ') + '. On any rule page you can change how well it works and how likely it is followed.</li><li>Our starting values for each rule are judgment in coarse steps: tiny is about 1%, small about 3%, medium about 5 to 8%, large 10% or more. Expert surveys such as <a href="'+esc(D.risk.expert_survey.url)+'" target="_blank" rel="noopener">'+esc(D.risk.expert_survey.title)+'</a> show which practices experts favour, not how much each one lowers the risk. Nobody has measured that.</li>' +
+    '<li>Lead costs are measured 12 months after a rule takes effect. Risk cuts are the lasting effect of keeping the rule.</li><li>A few non-safety items add risk, like removing state safety laws or a government race to build the most powerful AI.</li></ul></section>';
+  return h + '</div>';
+}
+
+/* ---------- view: method ---------- */
+function viewMethod(){
+  let h = '<a class="back" href="#/">← Back to the menu</a><div class="head"><div><h1>How it works</h1><p>Every rule has two prices. The first, what it costs America\'s lead, is one equation measured 12 months after a rule takes effect. The second is how much it lowers p(doom), the chance of an AI catastrophe. You choose the numbers nobody knows. Assumptions: <a href="#/assumptions">What this assumes</a>. Every input and calculation: <a href="'+AP+'appendix/index.html" target="_blank" rel="noopener"><b>Technical appendix</b></a>. Think a number is wrong? <a href="#/rate"><b>Rate ten rules</b></a>.</p></div></div>';
+  h += '<div class="panel"><h3>The equation</h3><div class="eq"><span class="a">Delay to the U.S.</span><em>−</em><span class="b">China\'s dependence on U.S. models × delay to China\'s access</span><em>−</em><span class="c">Direct slowdown to China</span><em>=</em><span class="r">Cost to the lead</span></div></div>';
+  h += '<div class="panel"><h3>Which clock does a rule stop?</h3><div class="pipe"><div class="clk yes"><b>Training</b><span>Costs real lead, though labs partly catch up afterward.</span></div><div class="clk cond"><b>Internal use</b><span>Costs only what the newest model would have added.</span></div><div class="clk no"><b>Public release</b><span>Delays China\'s access too. Can even gain lead.</span></div></div></div>';
+  const an = D.anchors.filter(a => a.days).slice().sort((a,b)=>b.days-a.days);
+  h += '<div class="panel"><h3>Time, to scale</h3><div class="legend"><span><i style="background:var(--us)"></i>Gaps between frontiers</span><span><i style="background:var(--d-release)"></i>Evaluation and release windows</span><span><i style="background:var(--ink-3)"></i>Pace of progress</span></div>' +
+    barRows(an.map(a => ({label:a.short||a.label, to:a.days, cls:a.kind, val: a.days>=60 ? (Math.round(a.days/DPM*10)/10)+' mo' : a.days+' d'})), {lo:0}) + '<p class="muted" style="margin:10px 0 0">Evaluation windows are days. The gap is months.</p></div>';
+  h += '<div class="panel"><h3>The second price: p(doom)</h3><div class="eq"><span class="a">Starting p(doom)</span><em>×</em><span class="b">share of the risk left after every rule you pick</span><em>=</em><span class="r">Your p(doom)</span></div><p class="muted" style="margin:10px 0 0">Rules that do similar things overlap, so their cuts shrink when combined. Details and sources: <a href="#/assumptions">What this assumes</a>.</p></div>';
+  const acc = (t, body) => '<details class="acc"><summary>'+esc(t)+'</summary>'+body+'</details>';
+  h += '<div style="margin-top:18px">';
+  h += acc('The model\'s principles', '<p>'+D.policies.filter(p => p.basis === 'model').length+' rules and all '+D.combos.length+' real bills are priced by a simulation model; the other '+D.policies.filter(p => p.basis !== 'model').length+' rules were priced by hand on the same logic. The model\'s full write-up, inputs and per-rule calculations are in the <a href="'+AP+'appendix/index.html" target="_blank" rel="noopener">technical appendix</a>. The appendix counts a positive number as closing the U.S. lead; its central case matches the "a little" setting here.</p><ol>'+D.rubric.map(r => '<li><b>'+esc(r.rule)+'</b> '+esc(r.charge)+'</li>').join('')+'</ol>');
+  h += acc('Why seven months', '<p>'+esc(D.lead_note)+'</p>');
+  h += acc('Sources for the scale', '<ul>'+D.anchors.map(a => '<li><a href="'+esc(a.url)+'" target="_blank" rel="noopener">'+esc(a.source)+'</a>: '+esc(a.label)+', '+esc(a.value)+'</li>').join('')+'</ul>');
+  h += acc('How the game scores', '<ul><li>The menu adds up the rules you pick. A real bill, which you can show from the Filter panel, replaces its parts so nothing is counted twice.</li><li>When you lock in your picks, your type depends on how much lead you spent or gained and how much risk you removed or added. There is no best answer: racing, braking and dealing with China all have their own types.</li><li>On any rule page you can change its assumptions. For the 27 rules priced by the simulation model, you move the three inputs that matter most; the site looks up the model\'s answer from a table of every combination, computed in advance. For rules priced by hand, you move the parts of our estimate. You can also set a rule\'s results directly.</li><li>You can replace any rule\'s numbers with your own on its page. Your numbers then drive the menu, your totals and your results, and they travel with your share links. Print what I think turns your picks, your numbers and your assumptions into a one-page position.</li><li>If crowd ratings are switched on, your numbers are also counted anonymously so we can improve the menu. Written reasons are read by the team and never shown on the site. We revise numbers by hand and log every change.</li>'+(D.api_base?'<li>Crowd numbers are anonymous counts.</li>':'')+'</ul>');
+  h += acc('What this is not', '<ul><li>Not a cost in dollars. Expensive rules can cost zero lead.</li><li>Not a measurement. The lead costs come from a model with stated assumptions. The p(doom) cuts are coarse judgments. Both are there to argue with.</li></ul>');
+  h += acc('Changelog and data', '<ul>'+D.changelog.map(c => '<li>'+esc(c.date)+': '+esc(c.note)+'</li>').join('')+'</ul><p><a href="menu.csv" target="_blank" rel="noopener">Download the spreadsheet</a> · '+dispute()+'</p>');
+  return h + '</div>';
+}
+
+/* ---------- router ---------- */
+function route(){ const h = (location.hash||'#/').replace(/^#\/?/,''); const i = h.indexOf('/'); const name = i<0 ? h : h.slice(0,i), arg = i<0 ? undefined : h.slice(i+1);
+  const alias = { '':'menu', spend:'menu', combos:'menu', claims:'quotes', claim:'quote', compare:'chart', rankings:'chart' }; return { name: alias[name]!=null ? alias[name] : name, arg }; }
+const TAB = { menu:'#/', policy:'#/', receipt:'#/', results:'#/', o:'#/', challenge:'#/challenge', c:'#/challenge', quiz:'#/quiz', quotes:'#/quotes', quote:'#/quotes', chart:'#/chart', vs:'#/chart', method:'#/method', assumptions:'#/method', rate:'#/method', position:'#/', results:'#/' };
+const GONE = new Set(['challenge','c','quiz','quotes','quote','chart','vs','compare','claims','claim','rankings']);
+function render(keep){
+  if(GONE.has(route().name)) history.replaceState(null, '', '#/');
+  const r = route(); SHARES = {}; let html;
+  switch(r.name){
+    case 'policy': html = viewPolicy(r.arg); break;
+    case 'receipt': case 'results': html = viewResults({ ids: S.cart, lam: S.lam, lead: S.lead, name: S.name, pd: S.pd, my: S.my, kn: S.kn, pw: S.pw, self: true }); break;
+    case 'o': html = viewShared(r.arg); break;
+    case 'method': html = viewMethod(); break;
+    case 'assumptions': html = viewAssumptions(); break;
+    case 'rate': html = viewRate(); break;
+    case 'position': if(r.arg){ const o = parsePayload(r.arg); OVR = o.my; KOVR = { kn: o.kn, pw: o.pw }; try { html = viewPosition(o); } finally { OVR = null; KOVR = null; } } else html = viewPosition({ ids: S.cart, lam: S.lam, lead: S.lead, name: S.name, pd: S.pd, my: S.my, kn: S.kn, pw: S.pw, self: true }); break;
+    default: html = viewMenu();
+  }
+  $('#hero').hidden = r.name !== 'menu'; if(!$('#heroArt').firstChild && ART._hero) $('#heroArt').innerHTML = ART._hero.svg;
+  $('#heroP').textContent = 'Every rule spends or buys back America\'s lead over China' + (S.lam > 0.001 ? (stanceOf(S.lam) ? ' (if ' + stanceLabel(S.lam) + ')' : ' (with your own China setting)') : '') + ', and moves p(doom), the chance of an AI catastrophe. Pick your rules and see where you land.';
+  const y = window.scrollY; $('#view').innerHTML = html; if(keep) window.scrollTo(0, y);
+  document.querySelectorAll('#tabs a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === (TAB[r.name]||'#/')));
+  const tl = $('#toplink'), narrow = window.matchMedia && matchMedia('(max-width:560px)').matches; $('#assumeBtn').textContent = narrow ? 'Assumptions' : 'Your assumptions';
+  if(r.name === 'menu'){ tl.href = '#/method'; tl.textContent = narrow ? 'How it works' : 'How it works'; } else { tl.href = '#/'; tl.textContent = narrow ? '← Menu' : '← Back to the menu'; }
+  bind(r); updateBalance(); syncFab(); $('#ver').textContent = 'v' + D.version + ' · ' + D.updated;
+}
+function bind(r){
+  const v = $('#view'), all = (s, f) => v.querySelectorAll(s).forEach(e => e.addEventListener('click', () => f(e))), one = (s, f) => { const e = v.querySelector(s); if(e) e.addEventListener('click', f); };
+  const ordering = r.name==='results';
+  all('[data-add]', b => toggle(b.dataset.add, b));
+  all('[data-preset]', b => loadPreset(b.dataset.preset));
+  all('[data-lam]', b => setLam(+b.dataset.lam));
+  all('[data-pd]', b => setPd(b.dataset.pd));
+  v.querySelectorAll('input[data-sl]').forEach(el => { const id = el.dataset.sl, k = el.dataset.k, isRate = r.name === 'rate'; let before = null;
+    const apply = () => { const val = slTo(k, +el.value), bag = isRate ? RM.vals : S.my; const m = Object.assign({}, bag[id]); m[k] = k === 'rr' ? val/100 : val; bag[id] = m; if(isRate) RM.touched[id+k] = true;
+      const lab = v.querySelector('[data-slv="'+id+':'+k+'"]'); if(lab) lab.textContent = slLabel(k, val); el.setAttribute('aria-valuetext', slLabel(k, val));
+      const nx = v.querySelector('#rmNext'); if(nx) nx.disabled = !(RM.touched[id+'ld'] && RM.touched[id+'rr']); updateBalance(); };
+    let st0 = null; el.addEventListener('pointerdown', () => { before = doomAfter(S.cart); st0 = stateNow(); });
+    el.addEventListener('input', apply);
+    el.addEventListener('change', () => { apply();
+      if(!isRate){ const p = byId(id), m = S.my[id]; if(k === 'ld' && m.ld === SL.ld.snap(menuNet(p, S.lam).central*DPM)) delete m.ld; if(k === 'rr' && m.rr*100 === SL.rr.snap(p.risk.central*100)) delete m.rr; }
+      save(); if(isRate) sendRate(id); else queueSend(id); if(before != null && doomAfter(S.cart) < before - 1e-9) pulseDoom(); if(!isRate){ render(true); toast('Using your number'); } if(st0){ moment(st0, stateNow()); st0 = null; } }); });
+  v.querySelectorAll('[data-why]').forEach(t => t.addEventListener('input', () => { if(r.name === 'rate'){ RM.vals[t.dataset.why] = Object.assign({}, RM.vals[t.dataset.why], { why: String(t.value).slice(0, 280) }); } else setMine(t.dataset.why, 'why', t.value); }));
+  v.querySelectorAll('[data-kfold]').forEach(d => d.addEventListener('toggle', () => { if(d.open) RT.open.add(d.dataset.kfold); else RT.open.delete(d.dataset.kfold); }));
+  one('#rmUse', () => { let n = 0; RM.got.forEach(id => { const p = byId(id), m = RM.vals[id] || {}, x = Object.assign({}, S.my[id]);
+      if(m.ld != null && m.ld !== SL.ld.snap(menuNet(p, S.lam).central*DPM)){ x.ld = m.ld; n++; } if(m.rr != null && m.rr*100 !== SL.rr.snap(p.risk.central*100)){ x.rr = m.rr; n++; } if(m.why) x.why = m.why; S.my[id] = x; });
+    save(); toast(n ? 'Using your ratings' : 'Your ratings match the menu'); render(true); });
+  v.querySelectorAll('[data-expert]').forEach(c => c.addEventListener('change', () => { RT.expert = c.checked; store('expert', RT.expert); }));
+  all('[data-reset]', b => { delete S.my[b.dataset.reset]; delete S.kn[b.dataset.reset]; save(); toast('Back to the menu\'s numbers'); render(true); });
+  all('[data-clear]', b => { const [id, k] = b.dataset.clear.split(':'); const m = Object.assign({}, S.my[id]); delete m[k]; S.my[id] = m; save(); render(true); });
+  all('[data-open-assume]', () => openAdjust());
+  const liveOut = id => { const p = byId(id), a = v.querySelector('[data-kout="'+id+':lead"]'), b = v.querySelector('[data-kout="'+id+':risk"]'); if(a) a.textContent = leadOut(p); if(b) b.textContent = riskOut(p); updateBalance(); };
+  v.querySelectorAll('input[data-knob]').forEach(el => { const id = el.dataset.knob, i = +el.dataset.i, p = byId(id), ks = knobsFor(p); let st0 = null;
+    el.addEventListener('pointerdown', () => { st0 = stateNow(); });
+    el.addEventListener('input', () => { const k = Object.assign({}, S.kn[id]); const arr = (k.k || []).slice(); while(arr.length < ks.length) arr.push(null); arr[i] = +el.value/10; k.k = arr; S.kn[id] = k;
+      const lab = v.querySelector('[data-kv="'+id+':'+i+'"]'); if(lab) lab.textContent = fmtKnob(ks[i], valueAt(ks[i], +el.value/10)); el.setAttribute('aria-valuetext', fmtKnob(ks[i], valueAt(ks[i], +el.value/10))); liveOut(id); });
+    el.addEventListener('change', () => { save(); queueSend(id); render(true); toast('Using your assumptions'); if(st0){ moment(st0, stateNow()); st0 = null; } }); });
+  v.querySelectorAll('input[data-rk]').forEach(el => { const id = el.dataset.rk, key = el.dataset.k; let st0 = null;
+    el.addEventListener('pointerdown', () => { st0 = stateNow(); });
+    el.addEventListener('input', () => { S.kn[id] = Object.assign({}, S.kn[id], { [key]: +el.value/100 }); const lab = v.querySelector('[data-rv="'+id+':'+key+'"]'); if(lab) lab.textContent = el.value + '%'; liveOut(id); });
+    el.addEventListener('change', () => { save(); queueSend(id); render(true); toast('Using your assumptions'); if(st0){ moment(st0, stateNow()); st0 = null; } }); });
+  one('#rmNext', () => { const id = RM.q[RM.i]; if(!(RM.touched[id+'ld'] && RM.touched[id+'rr'])) return; save(); RM.got.push(id); RM.i++; render(); window.scrollTo({top:0}); });
+  one('#rmSkip', () => { RM.i++; render(); window.scrollTo({top:0}); });
+  one('#rmAgain', () => { rmStart(); render(); window.scrollTo({top:0}); });
+  all('[data-harm]', b => { S.harm = b.dataset.harm || null; save(); render(true); });
+  all('[data-share]', b => { if(ordering) logOrder(); shareNative(SHARES[b.dataset.share]); });
+  all('[data-copylink]', b => { if(ordering) logOrder(); copy(SHARES[b.dataset.copylink].url, 'Link copied'); });
+  all('[data-img]', async b => { if(ordering) logOrder(); const o = SHARES[b.dataset.img]; b.disabled = true; try{ await saveCanvas(await o.img(), o.file||'ai-safety-menu.png'); } finally { b.disabled = false; } });
+  one('#dismiss', () => { S.onboarded = true; save(); render(true); });
+  one('#adjust', openAdjust);
+  one('#clearCart', () => { S.cart = []; save(); location.hash = '#/'; });
+  one('#fedit', openFilter);
+  one('#fclear', () => { S.q = ''; S.sort = 'shuffle'; S.harm = null; S.bills = false; save(); render(true); syncFab(); });
+  one('#fclear2', () => { S.q = ''; render(true); if(!$('#fpanel').hidden) refreshFilter(); });
+  one('#lockIn', () => { if(S.cart.length){ location.hash = '#/results'; } });
+  one('#printPos', () => window.print());
+  one('#csvPos', () => saveFile('ai-safety-menu-my-numbers.csv', numbersCsv(), 'text/csv'));
+  one('#openAssume', () => openAdjust());
+  const pn = v.querySelector('#posName'); if(pn) pn.addEventListener('change', () => { S.name = cleanName(pn.value); save(); render(true); });
+  one('#startFrom', () => { if(!VS.shared) return; S.cart = VS.shared.ids.slice(); S.pd = VS.shared.pd; S.my = Object.assign({}, VS.shared.my); S.kn = Object.assign({}, VS.shared.kn); S.pw = VS.shared.pw; S.onboarded = true; save(); location.hash = '#/'; toast('Their order is yours now'); });
+  const al = v.querySelector('#aLead'); if(al) al.addEventListener('input', () => { S.lead = +al.value; save(); v.querySelector('#aLeadV').textContent = S.lead + ' mo'; });
+  const nm = v.querySelector('#orderName'); if(nm) nm.addEventListener('change', () => { S.name = cleanName(nm.value); save(); render(true); });
+
+  if(r.name==='policy' && S.my[r.arg] && D.api_base && !RT.crowd[r.arg]) fetch(D.api_base.replace(/\/$/,'') + '/ratings?id=' + encodeURIComponent(r.arg)).then(x => x.ok ? x.json() : null).then(c => { if(c && c.l){ RT.crowd[r.arg] = c; render(true); } }).catch(() => {});
+}
+window.addEventListener('hashchange', () => { closeAdjust(); render(); window.scrollTo({top:0}); });
+if(!location.hash || location.hash==='#' || location.hash==='#/menu') history.replaceState(null, '', '#/');
+render(); loadStats();
+if(location.hostname==='localhost') window.__menuDebug = { typeCanvas, S, net, menuNet, riskOf, cutOf, totals, byId, knobsFor, leadDelta };
+})();
+</script>
+
+</body>
+</html>

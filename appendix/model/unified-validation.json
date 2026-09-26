@@ -1,0 +1,64 @@
+{
+  "checks": [
+    {
+      "check": "Zero intervention has exactly zero effect",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Half-speed US with no diffusion closes exactly half a year",
+      "passed": true,
+      "detail": 182.625
+    },
+    {
+      "check": "Symmetric ruler: half-speed China widens by half a year",
+      "passed": true,
+      "detail": -182.625
+    },
+    {
+      "check": "Equal direct country shocks cancel without spillovers",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Public delay does nothing with zero reliance",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Public-only delay with teacher reliance widens US lead",
+      "passed": true,
+      "detail": -2.9772321300891003
+    },
+    {
+      "check": "Public-only delay never mechanically delays internal US frontier",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Teacher effect linear in marginal reliance with no feedback",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "China dependency reduces unilateral-US restriction gap closure",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Unchanged research inputs preserve the baseline",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Research resource reduction causes negative algorithmic effect",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Diminishing returns prevents constant resource loss from unbounded linear accumulation",
+      "passed": true,
+      "detail": -0.24030843987684122
+    }
+  ]
+}
