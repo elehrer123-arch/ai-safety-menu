@@ -1,0 +1,160 @@
+{
+  "shapes_finiteness_positive_resources_decomposition": "passed",
+  "reproducible_seed": "passed",
+  "zero_shock_zero_effect": "passed",
+  "zero_research_elasticity_zero_algorithmic_effect": "passed",
+  "feedback_off_year1_mean_days": {
+    "safety-compute-share": 30.59470057722819,
+    "internal-deploy": 1.0660119884582426,
+    "ai-rnd-limits": 3.750972794811671,
+    "compute-cap": 117.53575242146633,
+    "pause-6": 41.58119290039195,
+    "data-licensing": 25.01038606696797
+  },
+  "constant_direct_level_not_repeated_annual_loss": "passed",
+  "compute_optimal_parameter_data_ratio": 0.05115409796375575,
+  "data_grid_121_vs_481_max_log_compute_error": 0.0002810761254740681,
+  "data_more_unique_monotone_and_no_constraint_boundary": "passed",
+  "data_no_loss_boundary": "passed",
+  "cap_no_substitution_year1_mean_days": 183.1215888899702,
+  "pause_expires_at_half_year": "passed",
+  "weekly_vs_halfweekly_endpoint_convergence": {
+    "safety-compute-share": {
+      "mean_abs_days": 0.0018537569981332315,
+      "max_abs_days": 0.07367417372282148
+    },
+    "internal-deploy": {
+      "mean_abs_days": 0.00030623015959738804,
+      "max_abs_days": 0.01103232688584832
+    },
+    "ai-rnd-limits": {
+      "mean_abs_days": 0.0002620787327546943,
+      "max_abs_days": 0.020253361498928868
+    },
+    "compute-cap": {
+      "mean_abs_days": 0.0005789707198950964,
+      "max_abs_days": 0.004703152070973715
+    },
+    "pause-6": {
+      "mean_abs_days": 0.044534746677651185,
+      "max_abs_days": 0.19201670547145255
+    },
+    "data-licensing": {
+      "mean_abs_days": 0.0017345944577078823,
+      "max_abs_days": 0.023996467220669615
+    }
+  },
+  "all_parameter_modes_days": {
+    "safety-compute-share": {
+      "year1": 46.52173940725789,
+      "year3": 69.17560657464621
+    },
+    "internal-deploy": {
+      "year1": 0.798111888196436,
+      "year3": 1.5697949985813275
+    },
+    "ai-rnd-limits": {
+      "year1": 2.439004435576804,
+      "year3": 6.929121831682707
+    },
+    "compute-cap": {
+      "year1": 159.64640432524462,
+      "year3": 524.055265165945
+    },
+    "pause-6": {
+      "year1": 48.349552737151846,
+      "year3": 8.693361530155704
+    },
+    "data-licensing": {
+      "year1": 17.242592856120012,
+      "year3": 20.748624067721412
+    }
+  },
+  "modal_one_at_a_time_sensitivity": {
+    "pause_catchup": [
+      {
+        "input_value": 0,
+        "local_year1_days": 87.55252511024995
+      },
+      {
+        "input_value": 0.5,
+        "local_year1_days": 48.349552737151846
+      },
+      {
+        "input_value": 0.9,
+        "local_year1_days": 16.19369674788957
+      }
+    ],
+    "cap_scale_substitution": [
+      {
+        "input_value": 0,
+        "local_year1_days": 211.71229846779863
+      },
+      {
+        "input_value": 0.25,
+        "local_year1_days": 159.64640432524462
+      },
+      {
+        "input_value": 0.6,
+        "local_year1_days": 86.54761053863623
+      }
+    ],
+    "internal_incremental_uplift": [
+      {
+        "input_value": 0.05,
+        "local_year1_days": 0.22723325167490896
+      },
+      {
+        "input_value": 0.2,
+        "local_year1_days": 0.798111888196436
+      },
+      {
+        "input_value": 0.6,
+        "local_year1_days": 1.8069234851853155
+      }
+    ],
+    "approval_reviewer_utilization": [
+      {
+        "input_value": 0.3,
+        "local_year1_days": 1.9587152300419983
+      },
+      {
+        "input_value": 0.65,
+        "local_year1_days": 2.439004435576804
+      },
+      {
+        "input_value": 0.9,
+        "local_year1_days": 4.2760857058891
+      }
+    ],
+    "data_recovery": [
+      {
+        "input_value": 0.2,
+        "local_year1_days": 31.091448047760657
+      },
+      {
+        "input_value": 0.65,
+        "local_year1_days": 17.242592856120012
+      },
+      {
+        "input_value": 0.95,
+        "local_year1_days": 12.525389398166658
+      }
+    ],
+    "safety_budget_expansion": [
+      {
+        "input_value": 0,
+        "local_year1_days": 63.547910220843825
+      },
+      {
+        "input_value": 0.08,
+        "local_year1_days": 46.52173940725789
+      },
+      {
+        "input_value": 0.25,
+        "local_year1_days": 13.372415597598627
+      }
+    ]
+  },
+  "safety_neutral_budget_expansion_at_other_modes": 0.3241860465116275
+}
