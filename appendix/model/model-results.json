@@ -1,0 +1,2637 @@
+{
+  "estimates": {
+    "safety-compute-share": {
+      "0.5": {
+        "mean_days": 25.533193882298377,
+        "median_days": 25.216546960131904,
+        "p05_days": 7.4217605783908125,
+        "p95_days": 44.61087673950381,
+        "probability_closes": 0.9930419921875,
+        "us_delay_days": 27.180834381871712,
+        "china_delay_days": 1.6476404995733365,
+        "mc_standard_error_days": 0.12484490464648246
+      },
+      "1": {
+        "mean_days": 31.722678828440344,
+        "median_days": 31.445038534682098,
+        "p05_days": 9.270462053653418,
+        "p95_days": 55.41527900163215,
+        "probability_closes": 0.9930419921875,
+        "us_delay_days": 35.069979738628405,
+        "china_delay_days": 3.3473009101880615,
+        "mc_standard_error_days": 0.15441771630577966,
+        "us_direct_days": 20.05687448839858,
+        "us_research_days": 14.917487038614292,
+        "china_direct_days": 0.0,
+        "china_research_days": 0.3500256700757665,
+        "china_spillover_days": 2.997275240112295,
+        "us_reverse_spillover_days": 0.09561821161553422
+      },
+      "3": {
+        "mean_days": 47.23928426624693,
+        "median_days": 46.12209804611727,
+        "p05_days": 13.00588713067967,
+        "p95_days": 85.28783492632283,
+        "probability_closes": 0.9930419921875,
+        "us_delay_days": 54.67136309321478,
+        "china_delay_days": 7.432078826967849,
+        "mc_standard_error_days": 0.24713947393666624
+      },
+      "convergence": {
+        "converged": true,
+        "max_last_change_days": 4.8994218517439067e-05,
+        "iterations": 5
+      }
+    },
+    "internal-deploy": {
+      "0.5": {
+        "mean_days": 0.6119208737565222,
+        "median_days": 0.4835000541879645,
+        "p05_days": 0.09898560219585588,
+        "p95_days": 1.5946432000376722,
+        "probability_closes": 1.0,
+        "us_delay_days": 0.6377391844041309,
+        "china_delay_days": 0.0258183106476087,
+        "mc_standard_error_days": 0.005463493894968847
+      },
+      "1": {
+        "mean_days": 1.1157139950162684,
+        "median_days": 0.8819032408935796,
+        "p05_days": 0.18088352944784367,
+        "p95_days": 2.8861817883174936,
+        "probability_closes": 1.0,
+        "us_delay_days": 1.2132962064392951,
+        "china_delay_days": 0.09758221142302666,
+        "mc_standard_error_days": 0.009944035128120076,
+        "us_direct_days": 0.0,
+        "us_research_days": 1.2110874205930884,
+        "china_direct_days": 0.0,
+        "china_research_days": 0.008529238806516622,
+        "china_spillover_days": 0.08905297261651006,
+        "us_reverse_spillover_days": 0.002208785846206647
+      },
+      "3": {
+        "mean_days": 2.2457823776984114,
+        "median_days": 1.7394969423129527,
+        "p05_days": 0.3495490803948192,
+        "p95_days": 5.930038737478731,
+        "probability_closes": 1.0,
+        "us_delay_days": 2.592684600975072,
+        "china_delay_days": 0.34690222327666087,
+        "mc_standard_error_days": 0.020742356760106776
+      },
+      "convergence": {
+        "converged": true,
+        "max_last_change_days": 5.4250666173483257e-05,
+        "iterations": 4
+      }
+    },
+    "ai-rnd-limits": {
+      "0.5": {
+        "mean_days": 1.2966494119502907,
+        "median_days": 1.1245540998649393,
+        "p05_days": 0.40016173958302187,
+        "p95_days": 2.708996938518662,
+        "probability_closes": 1.0,
+        "us_delay_days": 1.3377122756187187,
+        "china_delay_days": 0.041062863668427686,
+        "mc_standard_error_days": 0.008587852814106409
+      },
+      "1": {
+        "mean_days": 3.828929328762297,
+        "median_days": 3.3443540876814097,
+        "p05_days": 1.1695518988004103,
+        "p95_days": 8.029400715997058,
+        "probability_closes": 1.0,
+        "us_delay_days": 4.084118170902703,
+        "china_delay_days": 0.2551888421404058,
+        "mc_standard_error_days": 0.025024055126092685,
+        "us_direct_days": 0.0,
+        "us_research_days": 4.07937039042076,
+        "china_direct_days": 0.0,
+        "china_research_days": 0.018560561602740895,
+        "china_spillover_days": 0.23662828053766494,
+        "us_reverse_spillover_days": 0.004747780481943149
+      },
+      "3": {
+        "mean_days": 11.36934973621211,
+        "median_days": 9.764786345320573,
+        "p05_days": 3.2687767242153165,
+        "p95_days": 25.007410125266492,
+        "probability_closes": 1.0,
+        "us_delay_days": 13.024318899768147,
+        "china_delay_days": 1.6549691635560388,
+        "mc_standard_error_days": 0.07900799974129773
+      },
+      "convergence": {
+        "converged": true,
+        "max_last_change_days": 0.00022498091404177532,
+        "iterations": 4
+      }
+    },
+    "compute-cap": {
+      "0.5": {
+        "mean_days": 52.453078055898885,
+        "median_days": 51.775038890877134,
+        "p05_days": 26.520600593728673,
+        "p95_days": 81.0823812476363,
+        "probability_closes": 1.0,
+        "us_delay_days": 54.13125630199669,
+        "china_delay_days": 1.6781782460978083,
+        "mc_standard_error_days": 0.1832438183801815
+      },
+      "1": {
+        "mean_days": 119.17823087217131,
+        "median_days": 117.6287242832241,
+        "p05_days": 70.65805148379405,
+        "p95_days": 173.34877798866552,
+        "probability_closes": 1.0,
+        "us_delay_days": 127.57227630032193,
+        "china_delay_days": 8.394045428150623,
+        "mc_standard_error_days": 0.3430906553677746,
+        "us_direct_days": 113.93705778726282,
+        "us_research_days": 13.464824691264555,
+        "china_direct_days": 0.0,
+        "china_research_days": 0.5965746267005065,
+        "china_spillover_days": 7.7974708014501175,
+        "us_reverse_spillover_days": 0.17039382179456813
+      },
+      "3": {
+        "mean_days": 410.3428527415147,
+        "median_days": 405.1744285648831,
+        "p05_days": 255.51788068621298,
+        "p95_days": 578.7532488634798,
+        "probability_closes": 1.0,
+        "us_delay_days": 460.02769831297763,
+        "china_delay_days": 49.68484557146293,
+        "mc_standard_error_days": 1.0800905384757058
+      },
+      "convergence": {
+        "converged": true,
+        "max_last_change_days": 0.0005837133649355105,
+        "iterations": 4
+      }
+    },
+    "pause-6": {
+      "0.5": {
+        "mean_days": 76.50747302976109,
+        "median_days": 75.47078594709399,
+        "p05_days": 53.27371569680867,
+        "p95_days": 102.54966514104856,
+        "probability_closes": 1.0,
+        "us_delay_days": 79.73837776475335,
+        "china_delay_days": 3.230904734992257,
+        "mc_standard_error_days": 0.16482176940918405
+      },
+      "1": {
+        "mean_days": 44.07444565859221,
+        "median_days": 42.25346322670519,
+        "p05_days": 20.380644811702076,
+        "p95_days": 74.0643710795571,
+        "probability_closes": 1.0,
+        "us_delay_days": 50.93201302403963,
+        "china_delay_days": 6.857567365447416,
+        "mc_standard_error_days": 0.18030311063778087,
+        "us_direct_days": 37.66615250051997,
+        "us_research_days": 13.04774164796847,
+        "china_direct_days": 0.0,
+        "china_research_days": 0.7621157921161581,
+        "china_spillover_days": 6.095451573331257,
+        "us_reverse_spillover_days": 0.21811887555118303
+      },
+      "3": {
+        "mean_days": 14.609984106563978,
+        "median_days": 9.315976034068642,
+        "p05_days": 2.12638095924241,
+        "p95_days": 45.158827591841565,
+        "probability_closes": 1.0,
+        "us_delay_days": 18.531111330829198,
+        "china_delay_days": 3.9211272242652204,
+        "mc_standard_error_days": 0.162445236889872
+      },
+      "convergence": {
+        "converged": true,
+        "max_last_change_days": 7.931607736465288e-05,
+        "iterations": 5
+      }
+    },
+    "data-licensing": {
+      "0.5": {
+        "mean_days": 28.527062713688125,
+        "median_days": 26.775162959347,
+        "p05_days": 13.667184274953211,
+        "p95_days": 49.27290072910445,
+        "probability_closes": 1.0,
+        "us_delay_days": 31.111700448139093,
+        "china_delay_days": 2.5846377344509657,
+        "mc_standard_error_days": 0.12388703796276836
+      },
+      "1": {
+        "mean_days": 26.439485383617434,
+        "median_days": 24.736924244231865,
+        "p05_days": 12.29839319996477,
+        "p95_days": 46.640946698018,
+        "probability_closes": 1.0,
+        "us_delay_days": 29.97447817933226,
+        "china_delay_days": 3.534992795714824,
+        "mc_standard_error_days": 0.11931795772592368,
+        "us_direct_days": 21.979527853775775,
+        "us_research_days": 7.8748182274660135,
+        "china_direct_days": 0.0,
+        "china_research_days": 0.45752715084262147,
+        "china_spillover_days": 3.077465644872203,
+        "us_reverse_spillover_days": 0.12013209809047047
+      },
+      "3": {
+        "mean_days": 32.70657609680727,
+        "median_days": 30.53102031651001,
+        "p05_days": 14.833653586626493,
+        "p95_days": 58.67135582134277,
+        "probability_closes": 1.0,
+        "us_delay_days": 38.18346136647169,
+        "china_delay_days": 5.476885269664424,
+        "mc_standard_error_days": 0.15264148876040817
+      },
+      "convergence": {
+        "converged": true,
+        "max_last_change_days": 5.778578945918649e-05,
+        "iterations": 5
+      }
+    },
+    "incident-reporting": {
+      "0.5": {
+        "mean_days": 0.0002427879789081213,
+        "median_days": 0.00018732429004346396,
+        "p05_days": 5.313840089444188e-05,
+        "p95_days": 0.0006158293493977039,
+        "probability_closes": 1.0,
+        "us_delay_days": 0.00025468781259645667,
+        "china_delay_days": 1.189983368833539e-05,
+        "mc_standard_error_days": 2.1669085850838496e-06
+      },
+      "1": {
+        "mean_days": 0.00041737939653322564,
+        "median_days": 0.00032305150816541316,
+        "p05_days": 9.1576014292065e-05,
+        "p95_days": 0.0010606966321069077,
+        "probability_closes": 1.0,
+        "us_delay_days": 0.00045544661990750464,
+        "china_delay_days": 3.806722337427897e-05,
+        "mc_standard_error_days": 3.7188839846751073e-06,
+        "us_direct_days": 0.0,
+        "us_research_days": 0.00045454491665540813,
+        "china_direct_days": 0.0,
+        "china_research_days": 3.5610629202847228e-06,
+        "china_spillover_days": 3.4506160453994246e-05,
+        "us_reverse_spillover_days": 9.017032520965022e-07
+      },
+      "3": {
+        "mean_days": 0.0008090660078613614,
+        "median_days": 0.0006187652497981362,
+        "p05_days": 0.00017012817919351478,
+        "p95_days": 0.0020904382340274233,
+        "probability_closes": 1.0,
+        "us_delay_days": 0.0009359490159363868,
+        "china_delay_days": 0.00012688300807502548,
+        "mc_standard_error_days": 7.448311592426847e-06
+      },
+      "convergence": {
+        "converged": true,
+        "max_last_change_days": 3.4936979721755714e-05,
+        "iterations": 2
+      }
+    },
+    "safety-framework": {
+      "0.5": {
+        "mean_days": -0.022962256442310786,
+        "median_days": -0.011927244775447756,
+        "p05_days": -0.09471109815783761,
+        "p95_days": 0.010932038306427713,
+        "probability_closes": 0.1771240234375,
+        "us_delay_days": 0.01658915735882524,
+        "china_delay_days": 0.039551413801136026,
+        "mc_standard_error_days": 0.0004186397812210776
+      },
+      "1": {
+        "mean_days": -0.02281754493536104,
+        "median_days": -0.01181106946701915,
+        "p05_days": -0.1103213827834024,
+        "p95_days": 0.028840319836325668,
+        "probability_closes": 0.256591796875,
+        "us_delay_days": 0.032479028880824365,
+        "china_delay_days": 0.0552965738161854,
+        "mc_standard_error_days": 0.0005464776734022944,
+        "us_direct_days": 0.0,
+        "us_research_days": 0.030622167350570325,
+        "china_direct_days": 0.0,
+        "china_research_days": 0.007089935997314601,
+        "china_spillover_days": 0.0482066378188708,
+        "us_reverse_spillover_days": 0.0018568615302540386
+      },
+      "3": {
+        "mean_days": -0.008011478697981148,
+        "median_days": -0.003551893786680673,
+        "p05_days": -0.11901517628614676,
+        "p95_days": 0.08873261449094161,
+        "probability_closes": 0.43896484375,
+        "us_delay_days": 0.06871269097468155,
+        "china_delay_days": 0.07672416967266268,
+        "mc_standard_error_days": 0.0008132945658931408
+      },
+      "convergence": {
+        "converged": true,
+        "max_last_change_days": 5.898667607341767e-05,
+        "iterations": 4
+      }
+    },
+    "transparency-report": {
+      "0.5": {
+        "mean_days": -0.018004705954668458,
+        "median_days": -0.011514188621857203,
+        "p05_days": -0.05823082363388067,
+        "p95_days": -0.000362251965434646,
+        "probability_closes": 0.0380859375,
+        "us_delay_days": 0.0018946666110273196,
+        "china_delay_days": 0.01989937256569578,
+        "mc_standard_error_days": 0.00022745908507305562
+      },
+      "1": {
+        "mean_days": -0.02325196296582062,
+        "median_days": -0.014946681377738726,
+        "p05_days": -0.07535743804550202,
+        "p95_days": 6.441793013550164e-05,
+        "probability_closes": 0.051513671875,
+        "us_delay_days": 0.003908489493720869,
+        "china_delay_days": 0.02716045245954149,
+        "mc_standard_error_days": 0.00029299709311430075,
+        "us_direct_days": 0.0,
+        "us_research_days": 0.0029787940538372566,
+        "china_direct_days": 0.0,
+        "china_research_days": 0.0035051228273698504,
+        "china_spillover_days": 0.023655329632171637,
+        "us_reverse_spillover_days": 0.0009296954398836123
+      },
+      "3": {
+        "mean_days": -0.027484229629729923,
+        "median_days": -0.016695080094154692,
+        "p05_days": -0.09482898714355346,
+        "p95_days": 0.0024164918647853846,
+        "probability_closes": 0.0968017578125,
+        "us_delay_days": 0.007913527817671065,
+        "china_delay_days": 0.035397757447400986,
+        "mc_standard_error_days": 0.0003845354446269554
+      },
+      "convergence": {
+        "converged": true,
+        "max_last_change_days": 0.0006449750459582436,
+        "iterations": 3
+      }
+    },
+    "whistleblower": {
+      "0.5": {
+        "mean_days": 0.06176794844464224,
+        "median_days": 0.04064459428535557,
+        "p05_days": 0.005431910628072444,
+        "p95_days": 0.18963033360887788,
+        "probability_closes": 1.0,
+        "us_delay_days": 0.06444156060208933,
+        "china_delay_days": 0.002673612157447081,
+        "mc_standard_error_days": 0.0007217392944337731
+      },
+      "1": {
+        "mean_days": 0.12560706723545573,
+        "median_days": 0.08231031410306017,
+        "p05_days": 0.01085323158412671,
+        "p95_days": 0.3860146644595197,
+        "probability_closes": 1.0,
+        "us_delay_days": 0.1354800439092228,
+        "china_delay_days": 0.009872976673767055,
+        "mc_standard_error_days": 0.001471282880947995,
+        "us_direct_days": 0.12111866575668481,
+        "us_research_days": 0.01414407363686113,
+        "china_direct_days": 0.0,
+        "china_research_days": 0.000812153341052968,
+        "china_spillover_days": 0.009060823332714088,
+        "us_reverse_spillover_days": 0.00021730451567686179
+      },
+      "3": {
+        "mean_days": 0.4116115949991785,
+        "median_days": 0.26821054775063247,
+        "p05_days": 0.034523069464092324,
+        "p95_days": 1.2782722430942233,
+        "probability_closes": 1.0,
+        "us_delay_days": 0.46479256752288295,
+        "china_delay_days": 0.05318097252370447,
+        "mc_standard_error_days": 0.004883532799145847
+      },
+      "convergence": {
+        "converged": true,
+        "max_last_change_days": 0.00024909896951392883,
+        "iterations": 3
+      }
+    },
+    "shutdown": {
+      "0.5": {
+        "mean_days": 0.177330694681238,
+        "median_days": 0.11577674137174972,
+        "p05_days": 0.015062516352185702,
+        "p95_days": 0.554947005071618,
+        "probability_closes": 0.9945068359375,
+        "us_delay_days": 0.19835758516614194,
+        "china_delay_days": 0.02102689048490395,
+        "mc_standard_error_days": 0.0020547443006873993
+      },
+      "1": {
+        "mean_days": 0.3688430523157466,
+        "median_days": 0.2421041762923067,
+        "p05_days": 0.03319023318103167,
+        "p95_days": 1.1429334367102084,
+        "probability_closes": 0.9979248046875,
+        "us_delay_days": 0.41650660458680844,
+        "china_delay_days": 0.04766355227106182,
+        "mc_standard_error_days": 0.004245394594526673,
+        "us_direct_days": 0.3681586874942673,
+        "us_research_days": 0.04708256982631447,
+        "china_direct_days": 0.0,
+        "china_research_days": 0.004770883937894021,
+        "china_spillover_days": 0.042892668333167794,
+        "us_reverse_spillover_days": 0.0012653472662266293
+      },
+      "3": {
+        "mean_days": 0.45617490717038855,
+        "median_days": 0.29967578297820896,
+        "p05_days": 0.045527778190005426,
+        "p95_days": 1.4111618717466088,
+        "probability_closes": 1.0,
+        "us_delay_days": 0.5324890795818483,
+        "china_delay_days": 0.07631417241145973,
+        "mc_standard_error_days": 0.0052567106169865985
+      },
+      "convergence": {
+        "converged": true,
+        "max_last_change_days": 8.076538181379776e-05,
+        "iterations": 4
+      }
+    },
+    "third-party-audit": {
+      "0.5": {
+        "mean_days": -0.00719429726126807,
+        "median_days": -0.002779967232711036,
+        "p05_days": -0.037930482732533286,
+        "p95_days": 0.009234628109042643,
+        "probability_closes": 0.3380126953125,
+        "us_delay_days": 0.009713801274601183,
+        "china_delay_days": 0.016908098535869255,
+        "mc_standard_error_days": 0.0001923963443360223
+      },
+      "1": {
+        "mean_days": -0.005092300130067026,
+        "median_days": -0.0011240694178003617,
+        "p05_days": -0.043775997483603085,
+        "p95_days": 0.02134154008078627,
+        "probability_closes": 0.451171875,
+        "us_delay_days": 0.018701484557825797,
+        "china_delay_days": 0.023793784687892824,
+        "mc_standard_error_days": 0.00025338603755840715,
+        "us_direct_days": 0.0,
+        "us_research_days": 0.017906173047966115,
+        "china_direct_days": 0.0,
+        "china_research_days": 0.0030344699608298087,
+        "china_spillover_days": 0.020759314727063015,
+        "us_reverse_spillover_days": 0.0007953115098596819
+      },
+      "3": {
+        "mean_days": 0.005710489088375502,
+        "median_days": 0.004800099262797609,
+        "p05_days": -0.044274677331706355,
+        "p95_days": 0.05595078804823528,
+        "probability_closes": 0.6400146484375,
+        "us_delay_days": 0.039515571204113545,
+        "china_delay_days": 0.03380508211573804,
+        "mc_standard_error_days": 0.00039125508079652905
+      },
+      "convergence": {
+        "converged": true,
+        "max_last_change_days": 0.0008866076014414498,
+        "iterations": 3
+      }
+    },
+    "internal-evals": {
+      "0.5": {
+        "mean_days": -0.028605011565186318,
+        "median_days": -0.01377307711639467,
+        "p05_days": -0.12306475286734707,
+        "p95_days": 0.013344165074298434,
+        "probability_closes": 0.2728271484375,
+        "us_delay_days": 0.01481177800388086,
+        "china_delay_days": 0.04341678956906718,
+        "mc_standard_error_days": 0.0005484002088913736
+      },
+      "1": {
+        "mean_days": -0.03186450504075555,
+        "median_days": -0.013989137014121727,
+        "p05_days": -0.15013304414000664,
+        "p95_days": 0.02561540332803825,
+        "probability_closes": 0.3272705078125,
+        "us_delay_days": 0.028170798863031872,
+        "china_delay_days": 0.060035303903787425,
+        "mc_standard_error_days": 0.0006953190983517937,
+        "us_direct_days": 0.0,
+        "us_research_days": 0.02612246816560669,
+        "china_direct_days": 0.0,
+        "china_research_days": 0.007752989125557557,
+        "china_spillover_days": 0.05228231477822987,
+        "us_reverse_spillover_days": 0.002048330697425174
+      },
+      "3": {
+        "mean_days": -0.023360381623549496,
+        "median_days": -0.004363099642405385,
+        "p05_days": -0.1689874523837149,
+        "p95_days": 0.061425113527697445,
+        "probability_closes": 0.459228515625,
+        "us_delay_days": 0.05846484110407051,
+        "china_delay_days": 0.08182522272762002,
+        "mc_standard_error_days": 0.0009148954226230744
+      },
+      "convergence": {
+        "converged": true,
+        "max_last_change_days": 3.593110134936139e-05,
+        "iterations": 4
+      }
+    },
+    "third-party-eval": {
+      "0.5": {
+        "mean_days": -0.03449268060896789,
+        "median_days": -0.02105621343692052,
+        "p05_days": -0.1189672972819874,
+        "p95_days": 0.0038893965500104285,
+        "probability_closes": 0.107177734375,
+        "us_delay_days": 0.012167686423217371,
+        "china_delay_days": 0.04666036703218525,
+        "mc_standard_error_days": 0.0004886742267771185
+      },
+      "1": {
+        "mean_days": -0.04063181053345813,
+        "median_days": -0.02442462014928079,
+        "p05_days": -0.1477358143521984,
+        "p95_days": 0.010414349257507007,
+        "probability_closes": 0.1549072265625,
+        "us_delay_days": 0.023795068545022714,
+        "china_delay_days": 0.06442687907848085,
+        "mc_standard_error_days": 0.0006252862176247247,
+        "us_direct_days": 0.0,
+        "us_research_days": 0.021604688150593708,
+        "china_direct_days": 0.0,
+        "china_research_days": 0.008361463443875823,
+        "china_spillover_days": 0.056065415634605015,
+        "us_reverse_spillover_days": 0.0021903803944290064
+      },
+      "3": {
+        "mean_days": -0.03717016782008095,
+        "median_days": -0.01841684155045589,
+        "p05_days": -0.1709717008497859,
+        "p95_days": 0.034367161544725265,
+        "probability_closes": 0.286865234375,
+        "us_delay_days": 0.04969747905081853,
+        "china_delay_days": 0.08686764687089948,
+        "mc_standard_error_days": 0.0008278925738195869
+      },
+      "convergence": {
+        "converged": true,
+        "max_last_change_days": 4.9767533826184754e-05,
+        "iterations": 4
+      }
+    },
+    "evaluator-window": {
+      "0.5": {
+        "mean_days": -0.14921603041699577,
+        "median_days": -0.04550031346805475,
+        "p05_days": -0.6414222104125085,
+        "p95_days": 0.001530380862755187,
+        "probability_closes": 0.06884765625,
+        "us_delay_days": 0.0253896102979758,
+        "china_delay_days": 0.17460564071497156,
+        "mc_standard_error_days": 0.0026688673541304113
+      },
+      "1": {
+        "mean_days": -0.18667780203447004,
+        "median_days": -0.055072442337832095,
+        "p05_days": -0.8085176508781683,
+        "p95_days": 0.005445065044407416,
+        "probability_closes": 0.095947265625,
+        "us_delay_days": 0.052220821212258975,
+        "china_delay_days": 0.23889862324672903,
+        "mc_standard_error_days": 0.003385141492867052,
+        "us_direct_days": 0.0,
+        "us_research_days": 0.04399103476829869,
+        "china_direct_days": 0.0,
+        "china_research_days": 0.030930103366334172,
+        "china_spillover_days": 0.20796851988039483,
+        "us_reverse_spillover_days": 0.008229786443960286
+      },
+      "3": {
+        "mean_days": -0.20599809645828693,
+        "median_days": -0.052357558869094566,
+        "p05_days": -0.9647783328404231,
+        "p95_days": 0.02582243089505848,
+        "probability_closes": 0.1895751953125,
+        "us_delay_days": 0.10922536240503156,
+        "china_delay_days": 0.3152234588633185,
+        "mc_standard_error_days": 0.004300928000814012
+      },
+      "convergence": {
+        "converged": true,
+        "max_last_change_days": 9.49651961167613e-05,
+        "iterations": 4
+      }
+    },
+    "triggered-redteam": {
+      "0.5": {
+        "mean_days": -0.010267998001531392,
+        "median_days": -0.0022466140872977203,
+        "p05_days": -0.14881562532388953,
+        "p95_days": 0.09599161079073153,
+        "probability_closes": 0.47509765625,
+        "us_delay_days": 0.0768327324229671,
+        "china_delay_days": 0.08710073042449851,
+        "mc_standard_error_days": 0.0009180127620621176
+      },
+      "1": {
+        "mean_days": 0.021486007043481054,
+        "median_days": 0.016420273940248663,
+        "p05_days": -0.15298447807552518,
+        "p95_days": 0.20464319423047952,
+        "probability_closes": 0.6138916015625,
+        "us_delay_days": 0.1471264247034631,
+        "china_delay_days": 0.12564041765998205,
+        "mc_standard_error_days": 0.0013697502481277983,
+        "us_direct_days": 0.0,
+        "us_research_days": 0.14295599539987475,
+        "china_direct_days": 0.0,
+        "china_research_days": 0.015848055279957855,
+        "china_spillover_days": 0.10979236238002418,
+        "us_reverse_spillover_days": 0.004170429303588361
+      },
+      "3": {
+        "mean_days": 0.12379997890842026,
+        "median_days": 0.07642530303418973,
+        "p05_days": -0.1148384106825984,
+        "p95_days": 0.5101403984207293,
+        "probability_closes": 0.802978515625,
+        "us_delay_days": 0.31139647999964704,
+        "china_delay_days": 0.18759650109122677,
+        "mc_standard_error_days": 0.0025511397315285842
+      },
+      "convergence": {
+        "converged": true,
+        "max_last_change_days": 0.0001493810526844116,
+        "iterations": 4
+      }
+    },
+    "safety-case-deploy": {
+      "0.5": {
+        "mean_days": -1.0514008747457555,
+        "median_days": -0.824170485367868,
+        "p05_days": -2.8682769623116005,
+        "p95_days": -0.007375622538649987,
+        "probability_closes": 0.0482177734375,
+        "us_delay_days": 0.2763240301683805,
+        "china_delay_days": 1.327724904914136,
+        "mc_standard_error_days": 0.010451436531872313
+      },
+      "1": {
+        "mean_days": -1.2711051197279561,
+        "median_days": -1.0096199094133045,
+        "p05_days": -3.5613836849515916,
+        "p95_days": 0.14365257567039227,
+        "probability_closes": 0.078125,
+        "us_delay_days": 0.5569158710952102,
+        "china_delay_days": 1.8280209908231666,
+        "mc_standard_error_days": 0.013398341586492283,
+        "us_direct_days": 0.0,
+        "us_research_days": 0.49494952487909466,
+        "china_direct_days": 0.0,
+        "china_research_days": 0.23712114177567173,
+        "china_spillover_days": 1.5908998490474948,
+        "us_reverse_spillover_days": 0.06196634621611561
+      },
+      "3": {
+        "mean_days": -1.2708177504682587,
+        "median_days": -0.9588056474688331,
+        "p05_days": -4.301575790324516,
+        "p95_days": 0.8157226305874017,
+        "probability_closes": 0.1622314453125,
+        "us_delay_days": 1.174665772482625,
+        "china_delay_days": 2.445483522950884,
+        "mc_standard_error_days": 0.018673708131533753
+      },
+      "convergence": {
+        "converged": true,
+        "max_last_change_days": 3.824945773715452e-05,
+        "iterations": 5
+      }
+    },
+    "safety-case-train": {
+      "0.5": {
+        "mean_days": 7.789424757216347,
+        "median_days": 5.933232102189693,
+        "p05_days": 1.1088033813151172,
+        "p95_days": 20.487000616619827,
+        "probability_closes": 1.0,
+        "us_delay_days": 7.90181948550237,
+        "china_delay_days": 0.11239472828602358,
+        "mc_standard_error_days": 0.07082201486987509
+      },
+      "1": {
+        "mean_days": 25.108567818705726,
+        "median_days": 21.153639892729554,
+        "p05_days": 4.879146818484677,
+        "p95_days": 58.58071644370993,
+        "probability_closes": 1.0,
+        "us_delay_days": 26.682568341529162,
+        "china_delay_days": 1.5740005228234342,
+        "mc_standard_error_days": 0.19294196902094427,
+        "us_direct_days": 24.55553134265264,
+        "us_research_days": 2.1018246565407916,
+        "china_direct_days": 0.0,
+        "china_research_days": 0.09217650069460989,
+        "china_spillover_days": 1.4818240221288241,
+        "us_reverse_spillover_days": 0.02521234233572937
+      },
+      "3": {
+        "mean_days": 102.2521898662987,
+        "median_days": 86.87228091885363,
+        "p05_days": 20.056744589623268,
+        "p95_days": 235.8674862687254,
+        "probability_closes": 1.0,
+        "us_delay_days": 114.92295576522363,
+        "china_delay_days": 12.670765898924923,
+        "mc_standard_error_days": 0.7742088289421771
+      },
+      "convergence": {
+        "converged": true,
+        "max_last_change_days": 0.0004845825607842617,
+        "iterations": 4
+      }
+    },
+    "training-notice-30": {
+      "0.5": {
+        "mean_days": 0.833508532512115,
+        "median_days": 0.6568757316318827,
+        "p05_days": 0.12768157557228021,
+        "p95_days": 2.1714044184354515,
+        "probability_closes": 1.0,
+        "us_delay_days": 0.8454422176601365,
+        "china_delay_days": 0.011933685148021546,
+        "mc_standard_error_days": 0.007515808715814429
+      },
+      "1": {
+        "mean_days": 2.6999173895724025,
+        "median_days": 2.2528617524525574,
+        "p05_days": 0.5839939092844844,
+        "p95_days": 6.192016377469058,
+        "probability_closes": 1.0,
+        "us_delay_days": 2.868749568944988,
+        "china_delay_days": 0.16883217937258532,
+        "mc_standard_error_days": 0.02085911588112634,
+        "us_direct_days": 2.6373791964130504,
+        "us_research_days": 0.2286404435849721,
+        "china_direct_days": 0.0,
+        "china_research_days": 0.00987291242478057,
+        "china_spillover_days": 0.15895926694780477,
+        "us_reverse_spillover_days": 0.0027299289469651664
+      },
+      "3": {
+        "mean_days": 11.083293609462725,
+        "median_days": 9.29397637496361,
+        "p05_days": 2.4207230712859893,
+        "p95_days": 25.614051741699985,
+        "probability_closes": 1.0,
+        "us_delay_days": 12.454934463196611,
+        "china_delay_days": 1.3716408537338858,
+        "mc_standard_error_days": 0.0854404113214799
+      },
+      "convergence": {
+        "converged": true,
+        "max_last_change_days": 8.625465718347991e-05,
+        "iterations": 4
+      }
+    },
+    "strict-liability": {
+      "0.5": {
+        "mean_days": -0.07105305933831076,
+        "median_days": -0.048716809153092996,
+        "p05_days": -0.45156174067657,
+        "p95_days": 0.24166727167796406,
+        "probability_closes": 0.33984375,
+        "us_delay_days": 0.1359532770151682,
+        "china_delay_days": 0.20700633635347898,
+        "mc_standard_error_days": 0.002514941120770023
+      },
+      "1": {
+        "mean_days": -0.0400853395643547,
+        "median_days": -0.03741156247443531,
+        "p05_days": -0.5433553373081763,
+        "p95_days": 0.4619894837139293,
+        "probability_closes": 0.4158935546875,
+        "us_delay_days": 0.25301578847393824,
+        "china_delay_days": 0.2931011280382929,
+        "mc_standard_error_days": 0.0036214158225984366,
+        "us_direct_days": 0.0,
+        "us_research_days": 0.24329598434874722,
+        "china_direct_days": 0.0,
+        "china_research_days": 0.03746888719849056,
+        "china_spillover_days": 0.25563224083980235,
+        "us_reverse_spillover_days": 0.00971980412519096
+      },
+      "3": {
+        "mean_days": 0.1057797159213334,
+        "median_days": 0.03636611842110413,
+        "p05_days": -0.5883231299366647,
+        "p95_days": 1.0335217547310052,
+        "probability_closes": 0.5526123046875,
+        "us_delay_days": 0.5261996568463566,
+        "china_delay_days": 0.4204199409250232,
+        "mc_standard_error_days": 0.0060908895439882186
+      },
+      "convergence": {
+        "converged": true,
+        "max_last_change_days": 0.0001546199209459122,
+        "iterations": 4
+      }
+    },
+    "export-controls": {
+      "0.5": {
+        "mean_days": -9.742695741830142,
+        "median_days": -8.149138903865712,
+        "p05_days": -23.135027802454854,
+        "p95_days": -1.9460095081953663,
+        "probability_closes": 0.0001220703125,
+        "us_delay_days": -0.37556396815710325,
+        "china_delay_days": 9.367131773673039,
+        "mc_standard_error_days": 0.07666766570411446
+      },
+      "1": {
+        "mean_days": -26.773148851144963,
+        "median_days": -23.743020529079153,
+        "p05_days": -54.32071093112524,
+        "p95_days": -8.98835281957688,
+        "probability_closes": 0.0,
+        "us_delay_days": -0.7751550053012498,
+        "china_delay_days": 25.997993845843713,
+        "mc_standard_error_days": 0.16170506807227641,
+        "us_direct_days": -1.4021849704195801,
+        "us_research_days": -0.02427953779429044,
+        "china_direct_days": 21.715160867968244,
+        "china_research_days": 4.33579809885336,
+        "china_spillover_days": -0.05296512097789187,
+        "us_reverse_spillover_days": 0.6513095029126208
+      },
+      "3": {
+        "mean_days": -68.73009879644721,
+        "median_days": -61.581681547522166,
+        "p05_days": -139.49319158467947,
+        "p95_days": -23.368483054181933,
+        "probability_closes": 0.0,
+        "us_delay_days": -1.2732144996114334,
+        "china_delay_days": 67.45688429683577,
+        "mc_standard_error_days": 0.4093847839970585
+      },
+      "convergence": {
+        "converged": true,
+        "max_last_change_days": 0.0007398203355668599,
+        "iterations": 4
+      }
+    },
+    "kyc-compute": {
+      "0.5": {
+        "mean_days": -1.1463184674410787,
+        "median_days": -0.7540080732767381,
+        "p05_days": -3.69443576716315,
+        "p95_days": 0.0,
+        "probability_closes": 0.009521484375,
+        "us_delay_days": 0.06458586610975976,
+        "china_delay_days": 1.2109043335508387,
+        "mc_standard_error_days": 0.01436809941608131
+      },
+      "1": {
+        "mean_days": -1.584479023002225,
+        "median_days": -1.1478508504247817,
+        "p05_days": -4.534678717623345,
+        "p95_days": -0.11875096259591628,
+        "probability_closes": 0.0107421875,
+        "us_delay_days": 0.13214294990042796,
+        "china_delay_days": 1.716621972902653,
+        "mc_standard_error_days": 0.016640218236467965,
+        "us_direct_days": 0.05172549740263979,
+        "us_research_days": 0.021271067667715325,
+        "china_direct_days": 1.2998746526200016,
+        "china_research_days": 0.4073143772149954,
+        "china_spillover_days": 0.009432943067656283,
+        "us_reverse_spillover_days": 0.059146384830072854
+      },
+      "3": {
+        "mean_days": -2.2103468023133486,
+        "median_days": -1.5850539865348767,
+        "p05_days": -6.411461246987653,
+        "p95_days": -0.16752199754586036,
+        "probability_closes": 0.0107421875,
+        "us_delay_days": 0.22884556285531804,
+        "china_delay_days": 2.4391923651686667,
+        "mc_standard_error_days": 0.023674452896221086
+      },
+      "convergence": {
+        "converged": true,
+        "max_last_change_days": 0.00028540479267799806,
+        "iterations": 4
+      }
+    },
+    "anti-distillation": {
+      "0.5": {
+        "mean_days": -0.9330026877882743,
+        "median_days": -0.5774859115157889,
+        "p05_days": -3.306674018433045,
+        "p95_days": 0.10016433456178159,
+        "probability_closes": 0.205078125,
+        "us_delay_days": 0.08842021321472185,
+        "china_delay_days": 1.0214229010029963,
+        "mc_standard_error_days": 0.013041320567526802
+      },
+      "1": {
+        "mean_days": -3.7294039088886954,
+        "median_days": -2.885101168785744,
+        "p05_days": -9.773109492760668,
+        "p95_days": -0.5377566880440026,
+        "probability_closes": 0.0013427734375,
+        "us_delay_days": 0.23662402033709182,
+        "china_delay_days": 3.9660279292257874,
+        "mc_standard_error_days": 0.03402581054018045,
+        "us_direct_days": 0.0,
+        "us_research_days": 0.15020428427323404,
+        "china_direct_days": 3.6344720327537017,
+        "china_research_days": 0.31643258721206047,
+        "china_spillover_days": 0.015123309260025185,
+        "us_reverse_spillover_days": 0.08641973606385778
+      },
+      "3": {
+        "mean_days": -17.351286157558036,
+        "median_days": -13.692046898119326,
+        "p05_days": -44.30299217541697,
+        "p95_days": -3.010971581900883,
+        "probability_closes": 0.0,
+        "us_delay_days": 1.1201636319398547,
+        "china_delay_days": 18.471449789497893,
+        "mc_standard_error_days": 0.15126713574166192
+      },
+      "convergence": {
+        "converged": true,
+        "max_last_change_days": 0.00022382421949482454,
+        "iterations": 4
+      }
+    },
+    "weight-security": {
+      "0.5": {
+        "mean_days": -0.05558475065835271,
+        "median_days": 0.020793114514905356,
+        "p05_days": -0.5018043983342608,
+        "p95_days": 0.15731149065846636,
+        "probability_closes": 0.55419921875,
+        "us_delay_days": 0.09655424730413828,
+        "china_delay_days": 0.152138997962491,
+        "mc_standard_error_days": 0.0025835409237240487
+      },
+      "1": {
+        "mean_days": -0.4287575102615855,
+        "median_days": -0.28182584301664015,
+        "p05_days": -1.4577507215361676,
+        "p95_days": 0.1038963760137497,
+        "probability_closes": 0.1435546875,
+        "us_delay_days": 0.1857327304008249,
+        "china_delay_days": 0.6144902406624104,
+        "mc_standard_error_days": 0.005872384835737293,
+        "us_direct_days": 0.0,
+        "us_research_days": 0.17188352949369873,
+        "china_direct_days": 0.5536533806864783,
+        "china_research_days": 0.04733768899624774,
+        "china_spillover_days": 0.013499170979684368,
+        "us_reverse_spillover_days": 0.013849200907126161
+      },
+      "3": {
+        "mean_days": -0.8608341866624126,
+        "median_days": -0.5655563720963073,
+        "p05_days": -2.9530567426938306,
+        "p95_days": 0.1967662991463936,
+        "probability_closes": 0.1414794921875,
+        "us_delay_days": 0.4171588314758344,
+        "china_delay_days": 1.2779930181382468,
+        "mc_standard_error_days": 0.011822091675093876
+      },
+      "convergence": {
+        "converged": true,
+        "max_last_change_days": 6.733918791952307e-05,
+        "iterations": 4
+      }
+    },
+    "light-vetting": {
+      "0.5": {
+        "mean_days": 0.00774059770505051,
+        "median_days": 0.01225563892538177,
+        "p05_days": -0.05981459444229194,
+        "p95_days": 0.058352037766485045,
+        "probability_closes": 0.716796875,
+        "us_delay_days": 0.028815619513407102,
+        "china_delay_days": 0.021075021808356593,
+        "mc_standard_error_days": 0.0004477845048003347
+      },
+      "1": {
+        "mean_days": -0.029902231133292562,
+        "median_days": -0.010850881338318772,
+        "p05_days": -0.19656441189858387,
+        "p95_days": 0.07609614002225099,
+        "probability_closes": 0.4130859375,
+        "us_delay_days": 0.053344435533777726,
+        "china_delay_days": 0.08324666666707028,
+        "mc_standard_error_days": 0.0010218855767436448,
+        "us_direct_days": 0.0,
+        "us_research_days": 0.05143607670424208,
+        "china_direct_days": 0.07279610724432967,
+        "china_research_days": 0.006507076519951456,
+        "china_spillover_days": 0.003943482902789171,
+        "us_reverse_spillover_days": 0.0019083588295356426
+      },
+      "3": {
+        "mean_days": -0.05891225609030959,
+        "median_days": -0.02175241939219636,
+        "p05_days": -0.38945209029291483,
+        "p95_days": 0.14402269327477232,
+        "probability_closes": 0.4085693359375,
+        "us_delay_days": 0.11464582287564466,
+        "china_delay_days": 0.1735580789659542,
+        "mc_standard_error_days": 0.0019802303168717527
+      },
+      "convergence": {
+        "converged": true,
+        "max_last_change_days": 0.000426155112816515,
+        "iterations": 3
+      }
+    },
+    "personnel-security": {
+      "0.5": {
+        "mean_days": 1.0899089090702283,
+        "median_days": 0.9338427564132663,
+        "p05_days": 0.0445883059421996,
+        "p95_days": 2.7135024844600117,
+        "probability_closes": 0.95654296875,
+        "us_delay_days": 1.2334918888470305,
+        "china_delay_days": 0.1435829797768023,
+        "mc_standard_error_days": 0.009417958544611037
+      },
+      "1": {
+        "mean_days": 1.4436953156171408,
+        "median_days": 1.2022533282476389,
+        "p05_days": -0.5521713353582421,
+        "p95_days": 4.262578700112228,
+        "probability_closes": 0.879638671875,
+        "us_delay_days": 2.22454760014117,
+        "china_delay_days": 0.7808522845240294,
+        "mc_standard_error_days": 0.01688091273637489,
+        "us_direct_days": 0.0,
+        "us_research_days": 2.2079724560139975,
+        "china_direct_days": 0.7317075518373861,
+        "china_research_days": -0.11804215214476227,
+        "china_spillover_days": 0.16718688483140554,
+        "us_reverse_spillover_days": 0.01657514412717281
+      },
+      "3": {
+        "mean_days": 2.795810956324078,
+        "median_days": 2.2972428587816736,
+        "p05_days": -1.0465934050418877,
+        "p95_days": 8.350809898024293,
+        "probability_closes": 0.875,
+        "us_delay_days": 4.6274374567877405,
+        "china_delay_days": 1.8316265004636625,
+        "mc_standard_error_days": 0.03383759861639765
+      },
+      "convergence": {
+        "converged": true,
+        "max_last_change_days": 0.00018916045134746817,
+        "iterations": 4
+      }
+    },
+    "secure-dev-env": {
+      "0.5": {
+        "mean_days": 2.514255144120967,
+        "median_days": 2.249813216096344,
+        "p05_days": 0.031194362607277915,
+        "p95_days": 5.950023848622837,
+        "probability_closes": 0.95166015625,
+        "us_delay_days": 3.371546855932647,
+        "china_delay_days": 0.8572917118116798,
+        "mc_standard_error_days": 0.02030224570049299
+      },
+      "1": {
+        "mean_days": 2.7380582066738874,
+        "median_days": 2.3960196857584894,
+        "p05_days": -2.4154389129351768,
+        "p95_days": 9.269319046774573,
+        "probability_closes": 0.8131103515625,
+        "us_delay_days": 6.120705001091727,
+        "china_delay_days": 3.38264679441784,
+        "mc_standard_error_days": 0.03929036021050981,
+        "us_direct_days": 0.0,
+        "us_research_days": 6.043854310096167,
+        "china_direct_days": 2.6594978088556096,
+        "china_research_days": 0.26629776559715834,
+        "china_spillover_days": 0.4568512199650723,
+        "us_reverse_spillover_days": 0.07685069099556012
+      },
+      "3": {
+        "mean_days": 5.162300732937911,
+        "median_days": 4.352533118429976,
+        "p05_days": -5.438273964031317,
+        "p95_days": 18.666731810195035,
+        "probability_closes": 0.78466796875,
+        "us_delay_days": 12.87583945819117,
+        "china_delay_days": 7.713538725253258,
+        "mc_standard_error_days": 0.0829667306936791
+      },
+      "convergence": {
+        "converged": true,
+        "max_last_change_days": 0.00035213198814547885,
+        "iterations": 4
+      }
+    },
+    "sb-53": {
+      "0.5": {
+        "mean_days": 0.021900974296351985,
+        "median_days": 0.01345934975007604,
+        "p05_days": -0.0929170407265378,
+        "p95_days": 0.16424719821581782,
+        "probability_closes": 0.61279296875,
+        "us_delay_days": 0.08238646091676238,
+        "china_delay_days": 0.0604854866204104,
+        "mc_standard_error_days": 0.000894292341666196
+      },
+      "1": {
+        "mean_days": 0.08080014393289305,
+        "median_days": 0.04968564077073906,
+        "p05_days": -0.09139020947218024,
+        "p95_days": 0.3535470806880318,
+        "probability_closes": 0.73779296875,
+        "us_delay_days": 0.1708611770222454,
+        "china_delay_days": 0.09006103308935239,
+        "mc_standard_error_days": 0.0016214645133209437,
+        "us_direct_days": 0.12111866575667964,
+        "us_research_days": 0.04681586811759059,
+        "china_direct_days": 0.0,
+        "china_research_days": 0.011115977646808285,
+        "china_spillover_days": 0.0789450554425441,
+        "us_reverse_spillover_days": 0.002926643147975202
+      },
+      "3": {
+        "mean_days": 0.3771285497895034,
+        "median_days": 0.24333898500892015,
+        "p05_days": -0.035010777678003854,
+        "p95_days": 1.245398725576831,
+        "probability_closes": 0.9134521484375,
+        "us_delay_days": 0.5393567935664327,
+        "china_delay_days": 0.16222824377692932,
+        "mc_standard_error_days": 0.004974761442893587
+      },
+      "convergence": {
+        "converged": true,
+        "max_last_change_days": 6.627560755081456e-05,
+        "iterations": 4
+      }
+    },
+    "raise-act": {
+      "0.5": {
+        "mean_days": -0.03970390029530853,
+        "median_days": -0.02709474121738169,
+        "p05_days": -0.132243096298676,
+        "p95_days": 0.00687530226762378,
+        "probability_closes": 0.0963134765625,
+        "us_delay_days": 0.01811600100647721,
+        "china_delay_days": 0.05781990130178573,
+        "mc_standard_error_days": 0.0005271198259787642
+      },
+      "1": {
+        "mean_days": -0.04452622987197809,
+        "median_days": -0.030658629681932295,
+        "p05_days": -0.1592501586770309,
+        "p95_days": 0.021373417031150362,
+        "probability_closes": 0.151611328125,
+        "us_delay_days": 0.03568762327104935,
+        "china_delay_days": 0.08021385314302745,
+        "mc_standard_error_days": 0.0006809511810422935,
+        "us_direct_days": 0.0,
+        "us_research_days": 0.032977666464542456,
+        "china_direct_days": 0.0,
+        "china_research_days": 0.010306321114202236,
+        "china_spillover_days": 0.06990753202882521,
+        "us_reverse_spillover_days": 0.0027099568065068894
+      },
+      "3": {
+        "mean_days": -0.03393922788137961,
+        "median_days": -0.022921643232070077,
+        "p05_days": -0.18058233916305855,
+        "p95_days": 0.07576471110414564,
+        "probability_closes": 0.2884521484375,
+        "us_delay_days": 0.07519502392082165,
+        "china_delay_days": 0.10913425180220127,
+        "mc_standard_error_days": 0.0009766087389840512
+      },
+      "convergence": {
+        "converged": true,
+        "max_last_change_days": 6.62346178527364e-05,
+        "iterations": 4
+      }
+    },
+    "sb-1047": {
+      "0.5": {
+        "mean_days": -0.856721615232998,
+        "median_days": -0.5026643464681847,
+        "p05_days": -3.414809632255204,
+        "p95_days": 0.4762447381520171,
+        "probability_closes": 0.2816162109375,
+        "us_delay_days": 0.517321857767585,
+        "china_delay_days": 1.374043473000583,
+        "mc_standard_error_days": 0.014563008355386611
+      },
+      "1": {
+        "mean_days": -0.8036112316666447,
+        "median_days": -0.43930296644145106,
+        "p05_days": -3.8020253202700127,
+        "p95_days": 1.0054132492462255,
+        "probability_closes": 0.3319091796875,
+        "us_delay_days": 1.1857654775007538,
+        "china_delay_days": 1.9893767091673986,
+        "mc_standard_error_days": 0.017372230550115973,
+        "us_direct_days": 0.8291925930521673,
+        "us_research_days": 0.2890872180917834,
+        "china_direct_days": 1.2998746526200016,
+        "china_research_days": 0.43886495325502706,
+        "china_spillover_days": 0.25063710329237,
+        "us_reverse_spillover_days": 0.06748566635680305
+      },
+      "3": {
+        "mean_days": -0.01668249241859205,
+        "median_days": 0.3222566140148517,
+        "p05_days": -4.290683218441212,
+        "p95_days": 3.152392906200222,
+        "probability_closes": 0.574462890625,
+        "us_delay_days": 2.9879478999921654,
+        "china_delay_days": 3.0046303924107574,
+        "mc_standard_error_days": 0.026332601576228378
+      },
+      "convergence": {
+        "converged": true,
+        "max_last_change_days": 0.00033742959412298804,
+        "iterations": 4
+      }
+    },
+    "eu-ai-act": {
+      "0.5": {
+        "mean_days": -0.11729174488775126,
+        "median_days": -0.04893758777535503,
+        "p05_days": -0.5980245661510731,
+        "p95_days": 0.13748079220709702,
+        "probability_closes": 0.379150390625,
+        "us_delay_days": 0.1277067732812345,
+        "china_delay_days": 0.24499851816898577,
+        "mc_standard_error_days": 0.002798461018113272
+      },
+      "1": {
+        "mean_days": -0.4973452372488578,
+        "median_days": -0.3559604861420811,
+        "p05_days": -1.5595273563150098,
+        "p95_days": 0.0778531439368969,
+        "probability_closes": 0.1029052734375,
+        "us_delay_days": 0.24595416037052076,
+        "china_delay_days": 0.7432993976193786,
+        "mc_standard_error_days": 0.006037695948599766,
+        "us_direct_days": 0.0,
+        "us_research_days": 0.22773788027974856,
+        "china_direct_days": 0.5536533806864783,
+        "china_research_days": 0.06399769866899158,
+        "china_spillover_days": 0.1256483182639087,
+        "us_reverse_spillover_days": 0.018216280090772217
+      },
+      "3": {
+        "mean_days": -0.9106955562399606,
+        "median_days": -0.6163625944662874,
+        "p05_days": -3.0191077270846294,
+        "p95_days": 0.18865770605335244,
+        "probability_closes": 0.1278076171875,
+        "us_delay_days": 0.5432776271601061,
+        "china_delay_days": 1.4539731834000666,
+        "mc_standard_error_days": 0.011992748165624076
+      },
+      "convergence": {
+        "converged": true,
+        "max_last_change_days": 7.592826788513777e-05,
+        "iterations": 4
+      }
+    },
+    "ai-risk-evaluation-act": {
+      "0.5": {
+        "mean_days": -0.32960744153669747,
+        "median_days": -0.18011171365669393,
+        "p05_days": -1.1887000906858176,
+        "p95_days": 0.007198227368112467,
+        "probability_closes": 0.0849609375,
+        "us_delay_days": 0.07638315079082034,
+        "china_delay_days": 0.40599059232751783,
+        "mc_standard_error_days": 0.004832938919573389
+      },
+      "1": {
+        "mean_days": -0.40353654689326907,
+        "median_days": -0.21312761114654938,
+        "p05_days": -1.5043563285154702,
+        "p95_days": 0.021573011234825083,
+        "probability_closes": 0.1126708984375,
+        "us_delay_days": 0.15445706683536442,
+        "china_delay_days": 0.5579936137286334,
+        "mc_standard_error_days": 0.006130575021874704,
+        "us_direct_days": 0.0,
+        "us_research_days": 0.1355908876220132,
+        "china_direct_days": 0.0,
+        "china_research_days": 0.0721930326743413,
+        "china_spillover_days": 0.4858005810542922,
+        "us_reverse_spillover_days": 0.01886617921335122
+      },
+      "3": {
+        "mean_days": -0.41801016824687004,
+        "median_days": -0.18416691199573829,
+        "p05_days": -1.7661872226798436,
+        "p95_days": 0.12226334597652679,
+        "probability_closes": 0.2125244140625,
+        "us_delay_days": 0.3246264819966313,
+        "china_delay_days": 0.7426366502435013,
+        "mc_standard_error_days": 0.007896362384060586
+      },
+      "convergence": {
+        "converged": true,
+        "max_last_change_days": 0.0004171702501955509,
+        "iterations": 4
+      }
+    },
+    "secure-ai-development-act": {
+      "0.5": {
+        "mean_days": -0.10580012954168408,
+        "median_days": -0.02908479274489849,
+        "p05_days": -0.48887691157922514,
+        "p95_days": 0.0044262445485330395,
+        "probability_closes": 0.1121826171875,
+        "us_delay_days": 0.021871122258734436,
+        "china_delay_days": 0.12767125180041852,
+        "mc_standard_error_days": 0.002118719693602124
+      },
+      "1": {
+        "mean_days": -0.13085164035335087,
+        "median_days": -0.0345935237208028,
+        "p05_days": -0.6141770838329842,
+        "p95_days": 0.011175863864403715,
+        "probability_closes": 0.1533203125,
+        "us_delay_days": 0.04414688237501729,
+        "china_delay_days": 0.17499852272836813,
+        "mc_standard_error_days": 0.0026881038895079728,
+        "us_direct_days": 0.0,
+        "us_research_days": 0.03812629341358696,
+        "china_direct_days": 0.0,
+        "china_research_days": 0.022648459242392144,
+        "china_spillover_days": 0.15235006348597602,
+        "us_reverse_spillover_days": 0.006020588961430332
+      },
+      "3": {
+        "mean_days": -0.13974155601295674,
+        "median_days": -0.029127740340063345,
+        "p05_days": -0.7044956990636438,
+        "p95_days": 0.036612430652822714,
+        "probability_closes": 0.27685546875,
+        "us_delay_days": 0.09225261420593688,
+        "china_delay_days": 0.2319941702188936,
+        "mc_standard_error_days": 0.0033968584004363846
+      },
+      "convergence": {
+        "converged": true,
+        "max_last_change_days": 7.393662107431468e-05,
+        "iterations": 4
+      }
+    },
+    "frontier-act": {
+      "0.5": {
+        "mean_days": 0.3744914666175616,
+        "median_days": 0.2987152830539739,
+        "p05_days": 0.0098638482180671,
+        "p95_days": 1.0096879380226098,
+        "probability_closes": 0.95703125,
+        "us_delay_days": 0.4781798731054903,
+        "china_delay_days": 0.10368840648792876,
+        "mc_standard_error_days": 0.003477717916198359
+      },
+      "1": {
+        "mean_days": 0.8141265409353822,
+        "median_days": 0.6572687213379438,
+        "p05_days": 0.08883052504310247,
+        "p95_days": 2.110392365140041,
+        "probability_closes": 0.98291015625,
+        "us_delay_days": 1.0010181474396724,
+        "china_delay_days": 0.18689160650429038,
+        "mc_standard_error_days": 0.007025413308634949,
+        "us_direct_days": 0.8451553034631433,
+        "us_research_days": 0.150344157076675,
+        "china_direct_days": 0.0,
+        "china_research_days": 0.02078476997981112,
+        "china_spillover_days": 0.16610683652447925,
+        "us_reverse_spillover_days": 0.0055186868998542155
+      },
+      "3": {
+        "mean_days": 2.8237236392371288,
+        "median_days": 2.2703836073404124,
+        "p05_days": 0.47325177356259834,
+        "p95_days": 7.072418778042249,
+        "probability_closes": 0.9976806640625,
+        "us_delay_days": 3.3548601769070228,
+        "china_delay_days": 0.531136537669894,
+        "mc_standard_error_days": 0.023300312503954212
+      },
+      "convergence": {
+        "converged": true,
+        "max_last_change_days": 0.0001425964619986393,
+        "iterations": 4
+      }
+    },
+    "pause-letter": {
+      "0.5": {
+        "mean_days": 76.50747302976109,
+        "median_days": 75.47078594709399,
+        "p05_days": 53.27371569680867,
+        "p95_days": 102.54966514104856,
+        "probability_closes": 1.0,
+        "us_delay_days": 79.73837776475335,
+        "china_delay_days": 3.230904734992257,
+        "mc_standard_error_days": 0.16482176940918405
+      },
+      "1": {
+        "mean_days": 44.07444565859221,
+        "median_days": 42.25346322670519,
+        "p05_days": 20.380644811702076,
+        "p95_days": 74.0643710795571,
+        "probability_closes": 1.0,
+        "us_delay_days": 50.93201302403963,
+        "china_delay_days": 6.857567365447416,
+        "mc_standard_error_days": 0.18030311063778087,
+        "us_direct_days": 37.66615250051997,
+        "us_research_days": 13.04774164796847,
+        "china_direct_days": 0.0,
+        "china_research_days": 0.7621157921161581,
+        "china_spillover_days": 6.095451573331257,
+        "us_reverse_spillover_days": 0.21811887555118303
+      },
+      "3": {
+        "mean_days": 14.609984106563978,
+        "median_days": 9.315976034068642,
+        "p05_days": 2.12638095924241,
+        "p95_days": 45.158827591841565,
+        "probability_closes": 1.0,
+        "us_delay_days": 18.531111330829198,
+        "china_delay_days": 3.9211272242652204,
+        "mc_standard_error_days": 0.162445236889872
+      },
+      "convergence": {
+        "converged": true,
+        "max_last_change_days": 7.931607736465288e-05,
+        "iterations": 5
+      }
+    }
+  },
+  "drivers": {
+    "safety-compute-share": [
+      {
+        "parameter": "effective_input_ratio",
+        "pearson_correlation": -0.9349531367057384,
+        "mean": 0.8659161992764428
+      },
+      {
+        "parameter": "budget_expansion",
+        "pearson_correlation": -0.7290163574905254,
+        "mean": 0.1112871721841226
+      },
+      {
+        "parameter": "safety_capability_cobenefit",
+        "pearson_correlation": -0.4680774059096264,
+        "mean": 0.1835618389172507
+      },
+      {
+        "parameter": "baseline_safety_share",
+        "pearson_correlation": -0.3567142169121568,
+        "mean": 0.08035960215757901
+      },
+      {
+        "parameter": "compute_growth",
+        "pearson_correlation": -0.23528139563079611,
+        "mean": 1.426262737236412
+      },
+      {
+        "parameter": "research_flow_elasticity",
+        "pearson_correlation": 0.17258100673935786,
+        "mean": 0.6672309473451361
+      }
+    ],
+    "internal-deploy": [
+      {
+        "parameter": "cognitive_labor_loss_fraction",
+        "pearson_correlation": 0.8675098310822661,
+        "mean": 0.021457629255589868
+      },
+      {
+        "parameter": "incremental_gate_days",
+        "pearson_correlation": 0.5820947136307821,
+        "mean": 9.338856711445544
+      },
+      {
+        "parameter": "new_model_incremental_uplift",
+        "pearson_correlation": 0.39057128682197556,
+        "mean": 0.28263518408500027
+      },
+      {
+        "parameter": "model_generation_days",
+        "pearson_correlation": -0.32039232648565463,
+        "mean": 69.96798001059521
+      },
+      {
+        "parameter": "research_work_exposure",
+        "pearson_correlation": 0.22255182604432122,
+        "mean": 0.6970910336197458
+      },
+      {
+        "parameter": "algorithmic_growth",
+        "pearson_correlation": 0.20259456179844088,
+        "mean": 1.3214080496702454
+      }
+    ],
+    "ai-rnd-limits": [
+      {
+        "parameter": "endyear_cognitive_labor_loss_fraction",
+        "pearson_correlation": 0.7737153040664997,
+        "mean": 0.11102737109770108
+      },
+      {
+        "parameter": "endyear_fully_autonomous_share",
+        "pearson_correlation": 0.5365945254574411,
+        "mean": 0.16510633657985468
+      },
+      {
+        "parameter": "affected_chain_throughput_loss",
+        "pearson_correlation": 0.38896437669703565,
+        "mean": 0.15492637635046055
+      },
+      {
+        "parameter": "research_flow_elasticity",
+        "pearson_correlation": 0.3014158903060912,
+        "mean": 0.6672309473451361
+      },
+      {
+        "parameter": "algorithmic_growth",
+        "pearson_correlation": 0.2834512288061871,
+        "mean": 1.3214080496702454
+      },
+      {
+        "parameter": "incremental_checkpoint_share",
+        "pearson_correlation": 0.2603879675295439,
+        "mean": 0.4289095607876599
+      }
+    ],
+    "compute-cap": [
+      {
+        "parameter": "scale_gap_recovered_other_channels",
+        "pearson_correlation": -0.6252151664849959,
+        "mean": 0.3004285744370185
+      },
+      {
+        "parameter": "compute_growth",
+        "pearson_correlation": 0.48063384781583596,
+        "mean": 1.426262737236412
+      },
+      {
+        "parameter": "algorithmic_growth",
+        "pearson_correlation": -0.46524527628319917,
+        "mean": 1.3214080496702454
+      },
+      {
+        "parameter": "research_reliance",
+        "pearson_correlation": -0.3137969635224443,
+        "mean": 0.05669947799058081
+      },
+      {
+        "parameter": "cap_headroom_log",
+        "pearson_correlation": -0.3027422913990449,
+        "mean": 0.13341407985013923
+      },
+      {
+        "parameter": "teacher_reliance",
+        "pearson_correlation": -0.2775905434449316,
+        "mean": 0.04501284731797094
+      }
+    ],
+    "pause-6": [
+      {
+        "parameter": "scale_gap_recovered_by_yearend",
+        "pearson_correlation": -0.8098373590675749,
+        "mean": 0.46465356216377346
+      },
+      {
+        "parameter": "permitted_progress_offset",
+        "pearson_correlation": -0.32073949757721276,
+        "mean": 0.26591887838169437
+      },
+      {
+        "parameter": "compute_growth",
+        "pearson_correlation": 0.2501604112103921,
+        "mean": 1.426262737236412
+      },
+      {
+        "parameter": "algorithmic_growth",
+        "pearson_correlation": -0.22745175260189934,
+        "mean": 1.3214080496702454
+      },
+      {
+        "parameter": "research_reliance",
+        "pearson_correlation": -0.22200802154001845,
+        "mean": 0.05669947799058081
+      },
+      {
+        "parameter": "teacher_reliance",
+        "pearson_correlation": -0.20610571403941036,
+        "mean": 0.04501284731797094
+      }
+    ],
+    "data-licensing": [
+      {
+        "parameter": "data_log_effective_compute_effect",
+        "pearson_correlation": -0.6105352862449062,
+        "mean": -0.057427026864594125
+      },
+      {
+        "parameter": "quality_adjusted_unique_data_ratio",
+        "pearson_correlation": -0.4547793497476951,
+        "mean": 0.7364674234144626
+      },
+      {
+        "parameter": "transition_days",
+        "pearson_correlation": 0.3859440021219702,
+        "mean": 42.310104611066194
+      },
+      {
+        "parameter": "licensing_budget_share",
+        "pearson_correlation": 0.35661309612245873,
+        "mean": 0.03331634004383953
+      },
+      {
+        "parameter": "affected_data_recovered",
+        "pearson_correlation": -0.3536682184336287,
+        "mean": 0.5991909609888646
+      },
+      {
+        "parameter": "transition_critical_share",
+        "pearson_correlation": 0.3202833065717779,
+        "mean": 0.4174058289895788
+      }
+    ],
+    "incident-reporting": [
+      {
+        "parameter": "annual_rd_input_loss_fraction",
+        "pearson_correlation": 0.8668047312476597,
+        "mean": 7.747689926835847e-06
+      },
+      {
+        "parameter": "research_counterfactual_fraction",
+        "pearson_correlation": 0.4666096482515873,
+        "mean": 0.2010650995572259
+      },
+      {
+        "parameter": "setup_and_annual_staff_days",
+        "pearson_correlation": 0.281367224895728,
+        "mean": 7.315196154879494
+      },
+      {
+        "parameter": "incidents_per_year",
+        "pearson_correlation": 0.2552448871928473,
+        "mean": 1.672161879335448
+      },
+      {
+        "parameter": "report_staff_days",
+        "pearson_correlation": 0.23915778497174967,
+        "mean": 3.1354424193368255
+      },
+      {
+        "parameter": "research_flow_elasticity",
+        "pearson_correlation": 0.21387187954027312,
+        "mean": 0.6672309473451361
+      }
+    ],
+    "safety-framework": [
+      {
+        "parameter": "teacher_reliance",
+        "pearson_correlation": -0.5934658135525798,
+        "mean": 0.04501284731797094
+      },
+      {
+        "parameter": "public_release_gate_days",
+        "pearson_correlation": -0.3640433490000928,
+        "mean": 1.0424570355091982
+      },
+      {
+        "parameter": "internal_gate_fraction",
+        "pearson_correlation": 0.25490041985822187,
+        "mean": 0.21570129208854222
+      },
+      {
+        "parameter": "binding_event_probability",
+        "pearson_correlation": -0.24536441534379977,
+        "mean": 0.08323399271902344
+      },
+      {
+        "parameter": "binding_event_delay",
+        "pearson_correlation": -0.23946754487659874,
+        "mean": 12.527310215263578
+      },
+      {
+        "parameter": "algorithmic_growth",
+        "pearson_correlation": -0.11598224318721519,
+        "mean": 1.3214080496702454
+      }
+    ],
+    "transparency-report": [
+      {
+        "parameter": "public_release_gate_days",
+        "pearson_correlation": -0.6777206339759702,
+        "mean": 0.5303794400600105
+      },
+      {
+        "parameter": "teacher_reliance",
+        "pearson_correlation": -0.5918710778517374,
+        "mean": 0.04501284731797094
+      },
+      {
+        "parameter": "late_report_probability",
+        "pearson_correlation": -0.4877841906866917,
+        "mean": 0.1666202011150431
+      },
+      {
+        "parameter": "report_tail_days",
+        "pearson_correlation": -0.4228635146082305,
+        "mean": 3.1839720703613947
+      },
+      {
+        "parameter": "algorithmic_growth",
+        "pearson_correlation": -0.1877827020884637,
+        "mean": 1.3214080496702454
+      },
+      {
+        "parameter": "compute_growth",
+        "pearson_correlation": 0.09196837839014445,
+        "mean": 1.426262737236412
+      }
+    ],
+    "whistleblower": [
+      {
+        "parameter": "internal_gate_days",
+        "pearson_correlation": 0.996661378047756,
+        "mean": 0.12111866575668481
+      },
+      {
+        "parameter": "extra_investigation_probability",
+        "pearson_correlation": 0.5147725998309501,
+        "mean": 0.060115647948854614
+      },
+      {
+        "parameter": "affected_research_fraction",
+        "pearson_correlation": 0.5021726649445023,
+        "mean": 0.16542989952528453
+      },
+      {
+        "parameter": "investigation_hold_days",
+        "pearson_correlation": 0.4938460038157864,
+        "mean": 12.146778239157982
+      },
+      {
+        "parameter": "feedback_elasticity",
+        "pearson_correlation": 0.052690660409538265,
+        "mean": 0.29783587145309787
+      },
+      {
+        "parameter": "gate_ramp_days",
+        "pearson_correlation": -0.025413880174642033,
+        "mean": 42.72447646418185
+      }
+    ],
+    "shutdown": [
+      {
+        "parameter": "internal_gate_days",
+        "pearson_correlation": 0.9949039127954985,
+        "mean": 0.3681586874942673
+      },
+      {
+        "parameter": "public_release_gate_days",
+        "pearson_correlation": 0.7566101789581577,
+        "mean": 2.2255967543938717
+      },
+      {
+        "parameter": "architecture_change_probability",
+        "pearson_correlation": 0.5415394569639311,
+        "mean": 0.1172963261158556
+      },
+      {
+        "parameter": "affected_research_fraction",
+        "pearson_correlation": 0.5090289974692032,
+        "mean": 0.16541707260490554
+      },
+      {
+        "parameter": "architecture_change_days",
+        "pearson_correlation": 0.4663424954907643,
+        "mean": 18.906675039841264
+      },
+      {
+        "parameter": "feedback_elasticity",
+        "pearson_correlation": 0.05417940390375167,
+        "mean": 0.29783587145309787
+      }
+    ],
+    "third-party-audit": [
+      {
+        "parameter": "teacher_reliance",
+        "pearson_correlation": -0.5430979799975932,
+        "mean": 0.04501284731797094
+      },
+      {
+        "parameter": "internal_gate_fraction",
+        "pearson_correlation": 0.2942619763858004,
+        "mean": 0.21890495454779274
+      },
+      {
+        "parameter": "public_release_gate_days",
+        "pearson_correlation": -0.2395037479736347,
+        "mean": 2.8895248578673103
+      },
+      {
+        "parameter": "blocking_finding_probability",
+        "pearson_correlation": -0.1773373560483516,
+        "mean": 0.15087303890395376
+      },
+      {
+        "parameter": "finding_remediation_days",
+        "pearson_correlation": -0.14795668966935627,
+        "mean": 19.16542368026702
+      },
+      {
+        "parameter": "annual_rd_input_loss_fraction",
+        "pearson_correlation": 0.10720307328375085,
+        "mean": 5.829888071508863e-05
+      }
+    ],
+    "internal-evals": [
+      {
+        "parameter": "public_release_gate_days",
+        "pearson_correlation": -0.6390281757876828,
+        "mean": 1.1515710504098813
+      },
+      {
+        "parameter": "teacher_reliance",
+        "pearson_correlation": -0.5223967124191494,
+        "mean": 0.04501284731797094
+      },
+      {
+        "parameter": "incremental_service_days",
+        "pearson_correlation": -0.4464791951209831,
+        "mean": 7.000034072085975
+      },
+      {
+        "parameter": "internal_gate_days",
+        "pearson_correlation": -0.44438450097522136,
+        "mean": 0.06858325747836796
+      },
+      {
+        "parameter": "incremental_test_probability",
+        "pearson_correlation": -0.30743163703242643,
+        "mean": 0.2823607915520032
+      },
+      {
+        "parameter": "remaining_non_eval_buffer",
+        "pearson_correlation": 0.2655194125712059,
+        "mean": 3.0121200729422126
+      }
+    ],
+    "third-party-eval": [
+      {
+        "parameter": "teacher_reliance",
+        "pearson_correlation": -0.6504526317531741,
+        "mean": 0.04501284731797094
+      },
+      {
+        "parameter": "public_release_gate_days",
+        "pearson_correlation": -0.5725951151295283,
+        "mean": 1.2247460444064844
+      },
+      {
+        "parameter": "internal_gate_days",
+        "pearson_correlation": -0.3272995706574402,
+        "mean": 0.10142117680937877
+      },
+      {
+        "parameter": "late_report_probability",
+        "pearson_correlation": -0.32604123004971575,
+        "mean": 0.28259502302985867
+      },
+      {
+        "parameter": "report_tail_days",
+        "pearson_correlation": -0.32299161543067506,
+        "mean": 4.643209528374738
+      },
+      {
+        "parameter": "algorithmic_growth",
+        "pearson_correlation": -0.16779857750299834,
+        "mean": 1.3214080496702454
+      }
+    ],
+    "evaluator-window": [
+      {
+        "parameter": "public_release_gate_days",
+        "pearson_correlation": -0.712156563767026,
+        "mean": 4.6544196459318385
+      },
+      {
+        "parameter": "internal_gate_days",
+        "pearson_correlation": -0.5236014461896651,
+        "mean": 0.2782480438480369
+      },
+      {
+        "parameter": "teacher_reliance",
+        "pearson_correlation": -0.44251177665846253,
+        "mean": 0.04501284731797094
+      },
+      {
+        "parameter": "algorithmic_growth",
+        "pearson_correlation": -0.12648493702949926,
+        "mean": 1.3214080496702454
+      },
+      {
+        "parameter": "compute_growth",
+        "pearson_correlation": 0.07137148509851146,
+        "mean": 1.426262737236412
+      },
+      {
+        "parameter": "internal_gate_fraction",
+        "pearson_correlation": 0.06423477669573148,
+        "mean": 0.059914009529689435
+      }
+    ],
+    "triggered-redteam": [
+      {
+        "parameter": "teacher_reliance",
+        "pearson_correlation": -0.4872538012450064,
+        "mean": 0.04501284731797094
+      },
+      {
+        "parameter": "internal_gate_fraction",
+        "pearson_correlation": 0.31136118691810877,
+        "mean": 0.41931726894154664
+      },
+      {
+        "parameter": "internal_gate_days",
+        "pearson_correlation": 0.21332677348097462,
+        "mean": 0.940638054719364
+      },
+      {
+        "parameter": "research_flow_elasticity",
+        "pearson_correlation": 0.15388266349953764,
+        "mean": 0.6672309473451361
+      },
+      {
+        "parameter": "annual_rd_input_loss_fraction",
+        "pearson_correlation": 0.11374242941455383,
+        "mean": 0.000374908047146577
+      },
+      {
+        "parameter": "per_release_staff_days",
+        "pearson_correlation": 0.057160694747241975,
+        "mean": 34.89350280898499
+      }
+    ],
+    "safety-case-deploy": [
+      {
+        "parameter": "teacher_reliance",
+        "pearson_correlation": -0.8605818338747172,
+        "mean": 0.04501284731797094
+      },
+      {
+        "parameter": "public_release_gate_days",
+        "pearson_correlation": -0.3180889647085341,
+        "mean": 35.083991325080135
+      },
+      {
+        "parameter": "algorithmic_growth",
+        "pearson_correlation": -0.23305726139071592,
+        "mean": 1.3214080496702454
+      },
+      {
+        "parameter": "review_queue_days",
+        "pearson_correlation": -0.21916339263970572,
+        "mean": 11.71258575443926
+      },
+      {
+        "parameter": "internal_gate_fraction",
+        "pearson_correlation": 0.1805021435292088,
+        "mean": 0.09886837132549547
+      },
+      {
+        "parameter": "review_service_days",
+        "pearson_correlation": -0.1543884612864029,
+        "mean": 29.239116161128116
+      }
+    ],
+    "safety-case-train": [
+      {
+        "parameter": "effective_training_wait_per_run_days",
+        "pearson_correlation": 0.9438354494807424,
+        "mean": 22.576148573843476
+      },
+      {
+        "parameter": "approval_service_days",
+        "pearson_correlation": 0.5556261144392912,
+        "mean": 44.69383396590981
+      },
+      {
+        "parameter": "filing_advance_days",
+        "pearson_correlation": -0.5425394819698784,
+        "mean": 41.99065700037346
+      },
+      {
+        "parameter": "approval_queue_days",
+        "pearson_correlation": 0.3128533615278088,
+        "mean": 18.422147858891368
+      },
+      {
+        "parameter": "parallel_work_fraction",
+        "pearson_correlation": -0.31261233620598416,
+        "mean": 0.3850207724518107
+      },
+      {
+        "parameter": "critical_serial_runs_per_year",
+        "pearson_correlation": 0.20656463910112005,
+        "mean": 1.497512890795476
+      }
+    ],
+    "training-notice-30": [
+      {
+        "parameter": "effective_training_wait_per_run_days",
+        "pearson_correlation": 0.9456750877657548,
+        "mean": 2.4299684099866004
+      },
+      {
+        "parameter": "reset_probability",
+        "pearson_correlation": 0.5586056201088044,
+        "mean": 0.1833741054173034
+      },
+      {
+        "parameter": "parallel_work_fraction",
+        "pearson_correlation": -0.3525637260729758,
+        "mean": 0.43136221688233883
+      },
+      {
+        "parameter": "ordinary_notice_advance_days",
+        "pearson_correlation": -0.29320762689871605,
+        "mean": 49.81338464187904
+      },
+      {
+        "parameter": "reset_notice_advance_days",
+        "pearson_correlation": -0.2892528691322853,
+        "mean": 9.295863687097912
+      },
+      {
+        "parameter": "critical_serial_runs_per_year",
+        "pearson_correlation": 0.19638396790655469,
+        "mean": 1.497512890795476
+      }
+    ],
+    "strict-liability": [
+      {
+        "parameter": "annual_investment_input_loss_fraction",
+        "pearson_correlation": 0.6225352716970644,
+        "mean": 0.00499082882924846
+      },
+      {
+        "parameter": "teacher_reliance",
+        "pearson_correlation": -0.4630387691658155,
+        "mean": 0.04501284731797094
+      },
+      {
+        "parameter": "public_release_gate_days",
+        "pearson_correlation": -0.3797455497308087,
+        "mean": 5.3600413711659005
+      },
+      {
+        "parameter": "investment_semielasticity",
+        "pearson_correlation": 0.35500320723623097,
+        "mean": 1.9941428471343277
+      },
+      {
+        "parameter": "extra_risk_premium",
+        "pearson_correlation": 0.3209008102399042,
+        "mean": 0.0167199463276931
+      },
+      {
+        "parameter": "extra_review_days",
+        "pearson_correlation": -0.2917398726071198,
+        "mean": 12.81409310928537
+      }
+    ],
+    "export-controls": [
+      {
+        "parameter": "incremental_china_purchase_share",
+        "pearson_correlation": -0.4898062573041814,
+        "mean": 0.10621625188309627
+      },
+      {
+        "parameter": "share_relevant_to_frontier_progress",
+        "pearson_correlation": -0.43195907480623486,
+        "mean": 0.613482564487769
+      },
+      {
+        "parameter": "baseline_china_average_usable_compute",
+        "pearson_correlation": 0.3813337056226684,
+        "mean": 3.330798290324605
+      },
+      {
+        "parameter": "usable_fraction_of_added_rated_compute",
+        "pearson_correlation": -0.27613045618528775,
+        "mean": 0.6827551382364732
+      },
+      {
+        "parameter": "deployment_lag_days",
+        "pearson_correlation": 0.2708215474147175,
+        "mean": 100.39405063463006
+      },
+      {
+        "parameter": "endpoint_to_average_compute_ratio",
+        "pearson_correlation": 0.24745120174174623,
+        "mean": 1.415180628659395
+      }
+    ],
+    "kyc-compute": [
+      {
+        "parameter": "cn_covered_cloud_compute_share",
+        "pearson_correlation": -0.49947558762923683,
+        "mean": 0.1371398118536507
+      },
+      {
+        "parameter": "denial_after_detection",
+        "pearson_correlation": -0.4450648944152032,
+        "mean": 0.4656809594488714
+      },
+      {
+        "parameter": "incremental_detection",
+        "pearson_correlation": -0.3979296518392135,
+        "mean": 0.3648982902265071
+      },
+      {
+        "parameter": "replacement_share",
+        "pearson_correlation": 0.38698773105899137,
+        "mean": 0.6003645568451139
+      },
+      {
+        "parameter": "compute_growth",
+        "pearson_correlation": 0.13242873168451097,
+        "mean": 1.426262737236412
+      },
+      {
+        "parameter": "algorithmic_growth",
+        "pearson_correlation": 0.0842450259526906,
+        "mean": 1.3214080496702454
+      }
+    ],
+    "anti-distillation": [
+      {
+        "parameter": "teacher_reliance",
+        "pearson_correlation": -0.7512699009908611,
+        "mean": 0.04501284731797094
+      },
+      {
+        "parameter": "additional_blocked_teacher_access",
+        "pearson_correlation": -0.4583018823600071,
+        "mean": 0.33209158018634466
+      },
+      {
+        "parameter": "rollout_fraction_year",
+        "pearson_correlation": -0.29972709976703443,
+        "mean": 0.6670334738305587
+      },
+      {
+        "parameter": "algorithmic_growth",
+        "pearson_correlation": -0.22101281766545236,
+        "mean": 1.3214080496702454
+      },
+      {
+        "parameter": "compute_growth",
+        "pearson_correlation": 0.13374167324366654,
+        "mean": 1.426262737236412
+      },
+      {
+        "parameter": "research_reliance",
+        "pearson_correlation": -0.1036335528007997,
+        "mean": 0.05669947799058081
+      }
+    ],
+    "weight-security": [
+      {
+        "parameter": "newly_changed_risk_weighted_share",
+        "pearson_correlation": -0.42529376669201513,
+        "mean": 0.2990527020817364
+      },
+      {
+        "parameter": "remote_risk_cut_in_changed_exposures",
+        "pearson_correlation": -0.21244266139461743,
+        "mean": 0.4667682456119115
+      },
+      {
+        "parameter": "insider_risk_cut_in_changed_exposures",
+        "pearson_correlation": -0.13226837082052245,
+        "mean": 0.30143592126429886
+      },
+      {
+        "parameter": "ongoing_research_friction",
+        "pearson_correlation": 0.08069297549510085,
+        "mean": 0.0015028173998024386
+      },
+      {
+        "parameter": "us_research_staff_reassigned_share",
+        "pearson_correlation": 0.06591038526291698,
+        "mean": 0.006075848040852583
+      },
+      {
+        "parameter": "implementation_work_days",
+        "pearson_correlation": 0.06346649449494299,
+        "mean": 84.98448878059646
+      }
+    ],
+    "light-vetting": [
+      {
+        "parameter": "insider_risk_cut_in_newly_screened_exposures",
+        "pearson_correlation": -0.4028579570059954,
+        "mean": 0.1328904631300492
+      },
+      {
+        "parameter": "newly_screened_risk_weighted_share",
+        "pearson_correlation": -0.32090856347277086,
+        "mean": 0.29927370443325674
+      },
+      {
+        "parameter": "screening_blocks_start_fraction",
+        "pearson_correlation": 0.17945988955743783,
+        "mean": 0.24821879581118503
+      },
+      {
+        "parameter": "screening_calendar_days",
+        "pearson_correlation": 0.14322348163351797,
+        "mean": 9.715524952511455
+      },
+      {
+        "parameter": "newly_screened_share",
+        "pearson_correlation": 0.11599498054660433,
+        "mean": 0.24903355164981944
+      },
+      {
+        "parameter": "incumbent_productive_days_lost",
+        "pearson_correlation": 0.10343120179949308,
+        "mean": 0.7296352078478976
+      }
+    ],
+    "personnel-security": [
+      {
+        "parameter": "sensitive_research_role_share",
+        "pearson_correlation": 0.43456646705980345,
+        "mean": 0.3344492070037953
+      },
+      {
+        "parameter": "clearance_process_days",
+        "pearson_correlation": 0.26048136937846045,
+        "mean": 172.43814428246299
+      },
+      {
+        "parameter": "algorithmic_growth",
+        "pearson_correlation": 0.24032887116203386,
+        "mean": 1.3214080496702454
+      },
+      {
+        "parameter": "research_flow_elasticity",
+        "pearson_correlation": 0.23370958882952028,
+        "mean": 0.6672309473451361
+      },
+      {
+        "parameter": "incumbent_blocked_share",
+        "pearson_correlation": 0.22700271763237012,
+        "mean": 0.2164622665444138
+      },
+      {
+        "parameter": "new_hire_productivity_blocked_fraction",
+        "pearson_correlation": 0.22421182270971085,
+        "mean": 0.4678147482628049
+      }
+    ],
+    "secure-dev-env": [
+      {
+        "parameter": "within_environment_productivity_loss",
+        "pearson_correlation": 0.47853666826040986,
+        "mean": 0.1763004583764769
+      },
+      {
+        "parameter": "newly_affected_research_share",
+        "pearson_correlation": 0.27486381486127764,
+        "mean": 0.6671928157292426
+      },
+      {
+        "parameter": "algorithmic_growth",
+        "pearson_correlation": 0.2688523687963346,
+        "mean": 1.3214080496702454
+      },
+      {
+        "parameter": "research_flow_elasticity",
+        "pearson_correlation": 0.22824335132887028,
+        "mean": 0.6672309473451361
+      },
+      {
+        "parameter": "migration_research_input_loss",
+        "pearson_correlation": 0.17666595410160918,
+        "mean": 0.02037003326850126
+      },
+      {
+        "parameter": "compute_growth",
+        "pearson_correlation": -0.11959404293482517,
+        "mean": 1.426262737236412
+      }
+    ],
+    "sb-53": [
+      {
+        "parameter": "internal_gate_days",
+        "pearson_correlation": 0.4209842906903474,
+        "mean": 0.3434382675697183
+      },
+      {
+        "parameter": "teacher_reliance",
+        "pearson_correlation": -0.3038056653756564,
+        "mean": 0.04501284731797094
+      },
+      {
+        "parameter": "public_release_gate_days",
+        "pearson_correlation": -0.16403010876695565,
+        "mean": 1.529554063369261
+      },
+      {
+        "parameter": "algorithmic_growth",
+        "pearson_correlation": -0.04889115049028769,
+        "mean": 1.3214080496702454
+      },
+      {
+        "parameter": "research_reliance",
+        "pearson_correlation": -0.04744435296938629,
+        "mean": 0.05669947799058081
+      },
+      {
+        "parameter": "research_flow_elasticity",
+        "pearson_correlation": 0.04289093456433489,
+        "mean": 0.6672309473451361
+      }
+    ],
+    "raise-act": [
+      {
+        "parameter": "teacher_reliance",
+        "pearson_correlation": -0.7103542861590261,
+        "mean": 0.04501284731797094
+      },
+      {
+        "parameter": "public_release_gate_days",
+        "pearson_correlation": -0.3523440019275498,
+        "mean": 1.529554063369261
+      },
+      {
+        "parameter": "algorithmic_growth",
+        "pearson_correlation": -0.1681205441939456,
+        "mean": 1.3214080496702454
+      },
+      {
+        "parameter": "research_reliance",
+        "pearson_correlation": -0.09184129806211672,
+        "mean": 0.05669947799058081
+      },
+      {
+        "parameter": "compute_growth",
+        "pearson_correlation": 0.0776230583245578,
+        "mean": 1.426262737236412
+      },
+      {
+        "parameter": "research_flow_elasticity",
+        "pearson_correlation": 0.056575847753483975,
+        "mean": 0.6672309473451361
+      }
+    ],
+    "sb-1047": [
+      {
+        "parameter": "kyc-compute.cn_covered_cloud_compute_share",
+        "pearson_correlation": -0.47253607973207357,
+        "mean": 0.1371398118536507
+      },
+      {
+        "parameter": "kyc-compute.denial_after_detection",
+        "pearson_correlation": -0.42704603512822015,
+        "mean": 0.4656809594488714
+      },
+      {
+        "parameter": "kyc-compute.incremental_detection",
+        "pearson_correlation": -0.3761750910718346,
+        "mean": 0.3648982902265071
+      },
+      {
+        "parameter": "kyc-compute.replacement_share",
+        "pearson_correlation": 0.3695456977508578,
+        "mean": 0.6003645568451139
+      },
+      {
+        "parameter": "compute_growth",
+        "pearson_correlation": 0.13295956663696215,
+        "mean": 1.426262737236412
+      },
+      {
+        "parameter": "effective_training_wait_per_run_days",
+        "pearson_correlation": 0.11092288812254246,
+        "mean": 0.26537651538279194
+      }
+    ],
+    "eu-ai-act": [
+      {
+        "parameter": "weight-security.newly_changed_risk_weighted_share",
+        "pearson_correlation": -0.41049392040325916,
+        "mean": 0.2990527020817364
+      },
+      {
+        "parameter": "weight-security.remote_risk_cut_in_changed_exposures",
+        "pearson_correlation": -0.21060931508087713,
+        "mean": 0.4667682456119115
+      },
+      {
+        "parameter": "teacher_reliance",
+        "pearson_correlation": -0.12969109943844243,
+        "mean": 0.04501284731797094
+      },
+      {
+        "parameter": "weight-security.insider_risk_cut_in_changed_exposures",
+        "pearson_correlation": -0.12815426795818913,
+        "mean": 0.30143592126429886
+      },
+      {
+        "parameter": "public_release_gate_days",
+        "pearson_correlation": -0.12700023138914576,
+        "mean": 2.4624101599279586
+      },
+      {
+        "parameter": "internal_gate_days",
+        "pearson_correlation": -0.08728039103140403,
+        "mean": 0.2578505233594292
+      }
+    ],
+    "ai-risk-evaluation-act": [
+      {
+        "parameter": "public_release_gate_days",
+        "pearson_correlation": -0.6239486815762487,
+        "mean": 10.784505600277164
+      },
+      {
+        "parameter": "teacher_reliance",
+        "pearson_correlation": -0.5748779855026361,
+        "mean": 0.04501284731797094
+      },
+      {
+        "parameter": "internal_gate_days",
+        "pearson_correlation": -0.4202413950704374,
+        "mean": 0.9082810200847382
+      },
+      {
+        "parameter": "government_queue_days",
+        "pearson_correlation": -0.39100490763965895,
+        "mean": 17.512745729171595
+      },
+      {
+        "parameter": "classified_extra_service_days",
+        "pearson_correlation": -0.23141875329117734,
+        "mean": 11.668309598314083
+      },
+      {
+        "parameter": "completion_required_probability",
+        "pearson_correlation": -0.15873526742526345,
+        "mean": 0.6643261423217508
+      }
+    ],
+    "secure-ai-development-act": [
+      {
+        "parameter": "public_release_gate_days",
+        "pearson_correlation": -0.7266517965495232,
+        "mean": 3.410924660853857
+      },
+      {
+        "parameter": "internal_gate_days",
+        "pearson_correlation": -0.5473753115235487,
+        "mean": 0.2044418991484197
+      },
+      {
+        "parameter": "teacher_reliance",
+        "pearson_correlation": -0.39997801529792026,
+        "mean": 0.04501284731797094
+      },
+      {
+        "parameter": "weights_handoff_extra_days",
+        "pearson_correlation": -0.1290930019546546,
+        "mean": 4.026824952323331
+      },
+      {
+        "parameter": "algorithmic_growth",
+        "pearson_correlation": -0.11371617253767759,
+        "mean": 1.3214080496702454
+      },
+      {
+        "parameter": "compute_growth",
+        "pearson_correlation": 0.06184944164727241,
+        "mean": 1.426262737236412
+      }
+    ],
+    "frontier-act": [
+      {
+        "parameter": "emergency_order_probability",
+        "pearson_correlation": 0.7448771693364176,
+        "mean": 0.019917647222614014
+      },
+      {
+        "parameter": "internal_gate_days",
+        "pearson_correlation": 0.59221030232136,
+        "mean": 1.879101449701399
+      },
+      {
+        "parameter": "emergency_order_days",
+        "pearson_correlation": 0.576490585364375,
+        "mean": 42.28067156182927
+      },
+      {
+        "parameter": "public_release_gate_days",
+        "pearson_correlation": 0.19265525705219574,
+        "mean": 5.6896196468321
+      },
+      {
+        "parameter": "teacher_reliance",
+        "pearson_correlation": -0.11468612865251836,
+        "mean": 0.04501284731797094
+      },
+      {
+        "parameter": "research_flow_elasticity",
+        "pearson_correlation": 0.03881796167655949,
+        "mean": 0.6672309473451361
+      }
+    ],
+    "pause-letter": [
+      {
+        "parameter": "scale_gap_recovered_by_yearend",
+        "pearson_correlation": -0.8098373590675749,
+        "mean": 0.46465356216377346
+      },
+      {
+        "parameter": "permitted_progress_offset",
+        "pearson_correlation": -0.32073949757721276,
+        "mean": 0.26591887838169437
+      },
+      {
+        "parameter": "compute_growth",
+        "pearson_correlation": 0.2501604112103921,
+        "mean": 1.426262737236412
+      },
+      {
+        "parameter": "algorithmic_growth",
+        "pearson_correlation": -0.22745175260189934,
+        "mean": 1.3214080496702454
+      },
+      {
+        "parameter": "research_reliance",
+        "pearson_correlation": -0.22200802154001845,
+        "mean": 0.05669947799058081
+      },
+      {
+        "parameter": "teacher_reliance",
+        "pearson_correlation": -0.20610571403941036,
+        "mean": 0.04501284731797094
+      }
+    ]
+  },
+  "run": {
+    "n": 8192,
+    "seed": 260925,
+    "steps_per_year": 52,
+    "year_days": 365.25
+  }
+}

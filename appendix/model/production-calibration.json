@@ -1,0 +1,946 @@
+{
+  "schema_version": "1.0",
+  "as_of": "2026-09-25",
+  "horizon": "First 12 months from implementation under 2026 conditions; 365.25 days per model year",
+  "status": "Calibrated model with explicit priors; not causal measurement",
+  "shared_inputs": [
+    {
+      "name": "raw_compute_log_growth",
+      "units": "log units/year",
+      "distribution": {
+        "type": "triangular",
+        "low": 0.6931471805599453,
+        "mode": 1.5040773967762742,
+        "high": 2.0794415416798357
+      },
+      "evidence_status": "calibrated",
+      "source_ids": [
+        "epoch_compute"
+      ],
+      "rationale": "Historical4-5x central; expanded structural forecast range, not a reported confidence interval."
+    },
+    {
+      "name": "algorithmic_log_growth",
+      "units": "log units/year",
+      "distribution": {
+        "type": "triangular",
+        "low": 0.4054651081081644,
+        "mode": 1.265,
+        "high": 2.302585092994046
+      },
+      "evidence_status": "calibrated",
+      "source_ids": [
+        "slowdown2025",
+        "epoch_software"
+      ],
+      "rationale": "Central modern estimate; bounds deliberately span historical and broader-stack estimates. Includes data/recipe improvements: do not add them again."
+    },
+    {
+      "name": "research_input_log_growth",
+      "units": "log units/year",
+      "distribution": {
+        "type": "triangular",
+        "low": 0.6931471805599453,
+        "mode": 1.0986122886681098,
+        "high": 1.6094379124341003
+      },
+      "evidence_status": "calibrated",
+      "source_ids": [
+        "rsi2026"
+      ],
+      "rationale": "Anchors balanced-growth normalization; input-price deflated effective effort, not dollar-spending growth."
+    },
+    {
+      "name": "research_flow_elasticity",
+      "units": "elasticity",
+      "distribution": {
+        "type": "triangular",
+        "low": 0.3,
+        "mode": 0.7,
+        "high": 1.0
+      },
+      "evidence_status": "analyst_prior",
+      "source_ids": [
+        "rsi2026"
+      ],
+      "rationale": "Diminishing parallelization returns; sources identify long-run lambda/beta more readily than lambda itself. Mode is a judgment, not measured."
+    },
+    {
+      "name": "research_labor_share",
+      "units": "elasticity",
+      "distribution": {
+        "type": "triangular",
+        "low": 0.35,
+        "mode": 0.67,
+        "high": 0.9
+      },
+      "evidence_status": "calibrated",
+      "source_ids": [
+        "slowdown2025"
+      ],
+      "rationale": "Uses cited .67 labor elasticity as weak anchor with broad transport range; compute gets complement1-share."
+    },
+    {
+      "name": "feedback_to_research",
+      "units": "log research/log effective compute",
+      "distribution": {
+        "type": "triangular",
+        "low": 0.05,
+        "mode": 0.25,
+        "high": 0.6
+      },
+      "evidence_status": "analyst_prior",
+      "source_ids": [
+        "rsi2026"
+      ],
+      "rationale": "Upper support near .09 productivity/ECI times6.5ECI/logcompute; mode discounts self-report and labor-to-whole-R&D transport. Model feedback dynamically, never multiply by1/(1-rho)."
+    },
+    {
+      "name": "horizon_days",
+      "units": "calendar days",
+      "distribution": {
+        "type": "point",
+        "low": 365.25,
+        "mode": 365.25,
+        "high": 365.25
+      },
+      "evidence_status": "observed",
+      "source_ids": [
+        "menu"
+      ],
+      "rationale": "User-selected first 12 months, normalized to 365.25 days."
+    }
+  ],
+  "shared_formula": {
+    "capability_coordinate": "x=log effective compute; baseline x0(t)=(gC+gA)*t, t in years",
+    "research_ode": "Let a=log(A_policy/A_base), c=direct input/data log-equivalent-compute effect. beta=lambda*gR/gA. da/dt=gA*(exp(lambda*(log(resource_R)+eta*(a+c))-beta*a)-1).",
+    "effect": "x_policy-x0=a+c; descriptive baseline-progress-equivalent days=-(a+c)/(gC+gA)*365.25. Exact milestone delays require solving policytrajectory(q*) and are not this number for slope-changingpolicies.",
+    "double_counting": "resource_R is the first-order input bundle ratio, eta applies model-productivity feedback once, and gA already incorporates data/algorithm efficiency. Do not add historical algorithm share again.",
+    "limits": "Local representative frontier, not fitted national portfolio maxima, China, relocation, security benefits, or welfare. Common shocks are shared across policies. Applying the representative-lab effect nationally assumes the marginal U.S. frontier remains exposed; laboratory switching is not estimated here."
+  },
+  "policies": [
+    {
+      "policy_id": "safety-compute-share",
+      "mechanism": "Persistent input-level diversion plus dynamic effect on algorithmic R&D",
+      "inputs": [
+        {
+          "name": "baseline_safety_share",
+          "units": "R&D budget share",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.03,
+            "mode": 0.06,
+            "high": 0.15
+          },
+          "evidence_status": "calibrated",
+          "source_ids": [
+            "anthropic_allocation"
+          ],
+          "rationale": "Observed6% compute anchors mode; wider range for other labs, salaries and less conservative definitions."
+        },
+        {
+          "name": "mandated_safety_share",
+          "units": "R&D budget share",
+          "distribution": {
+            "type": "point",
+            "low": 0.3333333333333333,
+            "mode": 0.3333333333333333,
+            "high": 0.3333333333333333
+          },
+          "evidence_status": "observed",
+          "source_ids": [
+            "menu"
+          ],
+          "rationale": "Specified policy."
+        },
+        {
+          "name": "safety_capability_cobenefit",
+          "units": "relative capability productivity of safety dollar",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.15,
+            "high": 0.4
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "anthropic_allocation"
+          ],
+          "rationale": "Safety can improve reliability, tools and safe usable capabilities; not all spending contributes to measured frontier."
+        },
+        {
+          "name": "budget_expansion",
+          "units": "extra total R&D budget/baseline",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.08,
+            "high": 0.25
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "Marginal capital response over one year; allows partial offset without assuming unlimited fundraising."
+        },
+        {
+          "name": "implementation_ramp_days",
+          "units": "days",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 90,
+            "high": 180
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "Organizational reallocation ramps linearly; not a legal grace-period assertion."
+        }
+      ],
+      "formula": "r=(1+b)*(1-s1+k*s1)/(1-s0+k*s0); c(t)=ramp(t)*ln(r); resource_R(t)=exp(c(t)).",
+      "narrative": "Apply equal proportional input ratio to direct production training and the separate research-input bundle. Budget and safety overlap apply once. The direct compute term is a lasting level shift; algorithmic feedback is integrated separately. A one-third total-budget rule is interpreted as covering compute and staff with proportional effective reallocation; alternate allocation optimization should be a sensitivity.",
+      "source_ids": [
+        "anthropic_allocation",
+        "menu"
+      ]
+    },
+    {
+      "policy_id": "internal-deploy",
+      "mechanism": "Older-model fallback during marginal evaluation gates",
+      "inputs": [
+        {
+          "name": "incremental_gate_days",
+          "units": "days/model-generation",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 7,
+            "high": 21
+          },
+          "evidence_status": "calibrated",
+          "source_ids": [
+            "aisi",
+            "openai_acceleration"
+          ],
+          "rationale": "Standard tests1-2weeks; zero for existing/overlapped gates, upper adds safeguards. Increment over voluntary practice."
+        },
+        {
+          "name": "model_generation_days",
+          "units": "days/generation",
+          "distribution": {
+            "type": "triangular",
+            "low": 30,
+            "mode": 60,
+            "high": 120
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "Effective internally useful upgrades; not count of every public API variant."
+        },
+        {
+          "name": "research_work_exposure",
+          "units": "share of cognitive research labor",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.4,
+            "mode": 0.7,
+            "high": 1.0
+          },
+          "evidence_status": "calibrated",
+          "source_ids": [
+            "anthropic_allocation"
+          ],
+          "rationale": ">90%AI collaboration at one lab suggests broad usage; newest model affects less than all work."
+        },
+        {
+          "name": "new_model_incremental_uplift",
+          "units": "productivity gain vs previous available model",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.05,
+            "mode": 0.2,
+            "high": 0.6
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "rsi2026",
+            "anthropic_uplift"
+          ],
+          "rationale": "Much less than4x versus noAI; no direct randomized newest-versus-previous effect."
+        },
+        {
+          "name": "implementation_ramp_days",
+          "units": "days",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 30,
+            "high": 90
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "Rule and evaluator capacity phase in over first quarter."
+        }
+      ],
+      "formula": "f=min(1,gate/cadence)*exposure*u/(1+u); rL(t)=1-ramp(t)*f; resource_R(t)=rL(t)^labor_share; c(t)=0.",
+      "narrative": "No direct training or public-release stop is imposed. Foregone incremental productivity feeds the shared R&D equation. Gate overlap is already in gate_days; do not discount overlap again. Generation-average exposure avoids mechanically adding the full gate once per model.",
+      "source_ids": [
+        "aisi",
+        "anthropic_allocation",
+        "anthropic_uplift",
+        "openai_acceleration",
+        "rsi2026"
+      ]
+    },
+    {
+      "policy_id": "ai-rnd-limits",
+      "mechanism": "Additional human checkpoints plus foregone fully autonomous task chains",
+      "inputs": [
+        {
+          "name": "current_ai_leads_share",
+          "units": "cognitive task share",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.15,
+            "mode": 0.26,
+            "high": 0.4
+          },
+          "evidence_status": "calibrated",
+          "source_ids": [
+            "anthropic_allocation"
+          ],
+          "rationale": "26% at Anthropic, wide industry/sample transport interval."
+        },
+        {
+          "name": "endyear_ai_leads_share",
+          "units": "cognitive task share",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.3,
+            "mode": 0.55,
+            "high": 0.8
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "anthropic_allocation"
+          ],
+          "rationale": "Forward adoption judgment; current0.26 is not frozen through the year."
+        },
+        {
+          "name": "endyear_fully_autonomous_share",
+          "units": "cognitive task share",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.1,
+            "high": 0.4
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "anthropic_allocation"
+          ],
+          "rationale": "Starts zero; prospective uptake grows linearly. This is an adoption forecast, not a claim of existing full automation."
+        },
+        {
+          "name": "incremental_checkpoint_share",
+          "units": "fraction eligible chains receiving an additional checkpoint",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.1,
+            "mode": 0.4,
+            "high": 0.8
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "openai_acceleration"
+          ],
+          "rationale": "Many successful tasks already include human steering; only extra gates relative to voluntary practice count."
+        },
+        {
+          "name": "review_service_hours",
+          "units": "hours/checkpoint",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.05,
+            "mode": 0.25,
+            "high": 1.0
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "chaining2026"
+          ],
+          "rationale": "Three to60minutes substantive service; measured lab service times unavailable."
+        },
+        {
+          "name": "reviewer_utilization",
+          "units": "fraction capacity",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.3,
+            "mode": 0.65,
+            "high": 0.9
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "Staffing and batching keep mean below overload; tail models congestion."
+        },
+        {
+          "name": "handoff_hours",
+          "units": "hours/checkpoint",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.05,
+            "mode": 0.2,
+            "high": 1.0
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "chaining2026"
+          ],
+          "rationale": "Context restoration and handoff in addition to queue service."
+        },
+        {
+          "name": "autonomous_cycle_hours",
+          "units": "hours/chain",
+          "distribution": {
+            "type": "triangular",
+            "low": 2,
+            "mode": 6,
+            "high": 24
+          },
+          "evidence_status": "calibrated",
+          "source_ids": [
+            "openai_acceleration"
+          ],
+          "rationale": "Observed reporting includes4-8hour tasks; broad range for experiments and agent chains."
+        },
+        {
+          "name": "autonomy_uplift_over_supervised",
+          "units": "productivity gain",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.2,
+            "mode": 0.5,
+            "high": 2.0
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "chaining2026"
+          ],
+          "rationale": "Gain specifically attributable to removing human dependencies, not overallAI uplift."
+        },
+        {
+          "name": "implementation_ramp_days",
+          "units": "days",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 30,
+            "high": 90
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "Incremental controls phase in."
+        }
+      ],
+      "formula": "review=service/(1-utilization)+handoff [M/M/1]; h=review/(cycle+review); s4(t)=linear(start,end), s5(t)=t*end5; Lloss=s4*additional*h+s5*u_aut/(1+u_aut); resource_R=(1-ramp*Lloss)^labor_share.",
+      "narrative": "AI-leads and fully autonomous shares are kept disjoint by capping s4 at1-s5. Review queue is an illustrative adapted operation, not an empirically fitted queue. Required human approval is per meaningful experiment/chain, not every token or tool call. Worst-case near-overload is a sensitivity, not baseline.",
+      "source_ids": [
+        "anthropic_allocation",
+        "chaining2026",
+        "openai_acceleration"
+      ]
+    },
+    {
+      "policy_id": "compute-cap",
+      "mechanism": "Fixed per-run scale ceiling with substitution and experiment bottlenecks",
+      "inputs": [
+        {
+          "name": "cap_headroom_log",
+          "units": "log compute above current frontier",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0,
+            "high": 0.4
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "menu"
+          ],
+          "rationale": "Ceiling about current largest run, with measurement/implementation headroom."
+        },
+        {
+          "name": "binding_compliance",
+          "units": "share targeted scaling actually prevented",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.85,
+            "mode": 0.97,
+            "high": 1.0
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "High-enforcement domestic policy; not global coverage."
+        },
+        {
+          "name": "scale_gap_recovered_other_channels",
+          "units": "fraction direct scaling gap",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.05,
+            "mode": 0.25,
+            "high": 0.6
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "openai_acceleration"
+          ],
+          "rationale": "Post-training/inference/ensembles offset some capability loss; compute redeployment85% is not reused as capability recovery."
+        },
+        {
+          "name": "frontier_scale_dependent_experiments",
+          "units": "research-compute share",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.1,
+            "mode": 0.35,
+            "high": 0.7
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "scale_dependence",
+            "epoch_compute_share"
+          ],
+          "rationale": "Most experiments are not final frontier training; a material share nevertheless needs frontier-relevant scale."
+        },
+        {
+          "name": "blocked_compute_redeployed",
+          "units": "fraction blocked experimental compute",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.5,
+            "mode": 0.85,
+            "high": 0.98
+          },
+          "evidence_status": "calibrated",
+          "source_ids": [
+            "openai_acceleration"
+          ],
+          "rationale": "85% measured short-run offset anchors mode; transport from one restriction is uncertain."
+        },
+        {
+          "name": "substitute_experiment_value",
+          "units": "productivity relative to blocked experiment",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.2,
+            "mode": 0.6,
+            "high": 0.95
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "scale_dependence"
+          ],
+          "rationale": "Quantity of reused compute is not value of the research it enables."
+        }
+      ],
+      "formula": "gap(t)=max(0,gC*t-headroom)*compliance; c(t)=-(1-recovery)*gap(t); resource_R=[1-share*(1-exp(-gap))*(1-redeploy*value)]^(1-labor_share).",
+      "narrative": "Ceiling applies to training-run compute, not all national compute, inference or every small experiment. Cap-driven direct scaling loss and remaining experimental-research losses are separate. The algorithmic baseline already includes historical scale-dependent progress: the resource penalty is only its marginal response to the cap, not another entire attribution share.",
+      "source_ids": [
+        "epoch_compute_share",
+        "menu",
+        "openai_acceleration",
+        "scale_dependence"
+      ]
+    },
+    {
+      "policy_id": "pause-6",
+      "mechanism": "Six-month interruption with continued permitted research and post-pause catch-up",
+      "inputs": [
+        {
+          "name": "pause_days",
+          "units": "days",
+          "distribution": {
+            "type": "point",
+            "low": 182.625,
+            "mode": 182.625,
+            "high": 182.625
+          },
+          "evidence_status": "observed",
+          "source_ids": [
+            "menu"
+          ],
+          "rationale": "Exactly half of a 365.25-day model year; no indefinite extension."
+        },
+        {
+          "name": "permitted_progress_offset",
+          "units": "fraction blocked direct scaling replaced",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.05,
+            "mode": 0.25,
+            "high": 0.5
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "openai_acceleration"
+          ],
+          "rationale": "Post-training/inference and below-threshold methods remain permitted as described on menu."
+        },
+        {
+          "name": "scale_gap_recovered_by_yearend",
+          "units": "fraction accumulated scaling shortfall recovered",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.5,
+            "high": 0.9
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "openai_acceleration"
+          ],
+          "rationale": "Hardware and recipes accumulate; restarting permits partial catch-up. Six-month recovery evidence is absent."
+        },
+        {
+          "name": "blocked_research_compute_share",
+          "units": "fraction experimental compute",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.2,
+            "mode": 0.5,
+            "high": 0.8
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "epoch_compute_share",
+            "scale_dependence"
+          ],
+          "rationale": "Training ban affects scale-validation more than all below-threshold experiments."
+        },
+        {
+          "name": "blocked_compute_redeployed",
+          "units": "fraction blocked experimental compute",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.5,
+            "mode": 0.85,
+            "high": 0.98
+          },
+          "evidence_status": "calibrated",
+          "source_ids": [
+            "openai_acceleration"
+          ],
+          "rationale": "Short-run observed85% offset anchors uncertain transfer."
+        },
+        {
+          "name": "substitute_experiment_value",
+          "units": "relative research productivity",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.2,
+            "mode": 0.6,
+            "high": 0.95
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "scale_dependence"
+          ],
+          "rationale": "Permitted work does not necessarily produce equivalent frontier-relevant discoveries."
+        }
+      ],
+      "formula": "P=pause_days/365.25; k=-ln(1-catchup)/(1-P). While paused: c(t)=-gC*t*(1-offset), R=[1-blocked_share*(1-redeploy*value)]^(1-labor_share). After pause: c(t)=-gC*P*(1-offset)*exp(-k*(t-P)), R=1. Recovery continues exponentially beyond year 1.",
+      "narrative": "No China pause assumed here; parent handles foreign response. Includes only incremental statutory interruption relative to same voluntary baseline. Endpoint 12-month displacement differs from maximum displacement during the pause. After year 1 the direct residual continues to recover exponentially at the same fitted recovery rate; it is not charged again yearly. That continuation is a sensitivity assumption, not evidence about three-year recovery.",
+      "source_ids": [
+        "epoch_compute_share",
+        "menu",
+        "openai_acceleration",
+        "scale_dependence"
+      ]
+    },
+    {
+      "policy_id": "data-licensing",
+      "mechanism": "Data-mixture substitution, licensing cost and critical-path transition",
+      "inputs": [
+        {
+          "name": "data_needing_new_permission",
+          "units": "share baseline unique corpus",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.3,
+            "mode": 0.6,
+            "high": 0.9
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "commonpile"
+          ],
+          "rationale": "Unknown proprietary mixtures; copyright and personal-data scope potentially broad."
+        },
+        {
+          "name": "affected_data_recovered",
+          "units": "fraction retained or licensed/replaced",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.2,
+            "mode": 0.65,
+            "high": 0.95
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "commonpile"
+          ],
+          "rationale": "Allowed corpora and contracts offer substitutes; frontier/domain coverage uncertain."
+        },
+        {
+          "name": "replacement_quality",
+          "units": "effective tokens/replaced token",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.75,
+            "mode": 0.95,
+            "high": 1.1
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "commonpile"
+          ],
+          "rationale": "Allows slightly better curated replacements; not equating token count to useful information."
+        },
+        {
+          "name": "baseline_epochs",
+          "units": "total passes through unique data",
+          "distribution": {
+            "type": "triangular",
+            "low": 1,
+            "mode": 2,
+            "high": 4
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "data_scaling"
+          ],
+          "rationale": "Public recipes vary; repeat-data response conditions on baseline usage."
+        },
+        {
+          "name": "repeat_data_saturation",
+          "units": "R_D constant",
+          "distribution": {
+            "type": "triangular",
+            "low": 5,
+            "mode": 15.3878,
+            "high": 30
+          },
+          "evidence_status": "calibrated",
+          "source_ids": [
+            "data_scaling"
+          ],
+          "rationale": "Published fitted mode, deliberately broadened for transport; not published confidence interval."
+        },
+        {
+          "name": "parameter_saturation",
+          "units": "R_N constant",
+          "distribution": {
+            "type": "triangular",
+            "low": 2,
+            "mode": 5.3097,
+            "high": 12
+          },
+          "evidence_status": "calibrated",
+          "source_ids": [
+            "data_scaling"
+          ],
+          "rationale": "Published fitted mode with structural transport uncertainty."
+        },
+        {
+          "name": "loss_exponent",
+          "units": "scaling exponent",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.28,
+            "mode": 0.353,
+            "high": 0.42
+          },
+          "evidence_status": "calibrated",
+          "source_ids": [
+            "data_scaling"
+          ],
+          "rationale": "Equalized parameter/data exponents around studyfit for normalized toy model; task transport uncertain."
+        },
+        {
+          "name": "pretraining_dependency",
+          "units": "share effective-compute penalty that carries to target frontier",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.4,
+            "mode": 0.7,
+            "high": 1.0
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "commonpile",
+            "data_scaling"
+          ],
+          "rationale": "Downstream/post-training substitution may absorb part of pretraining-loss penalty."
+        },
+        {
+          "name": "licensing_budget_share",
+          "units": "shareR&Dbudget unavailable for other inputs",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.02,
+            "high": 0.08
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "Incremental recurring licensing and provenance costs; genericbudgetprior, not a measured licensingprice."
+        },
+        {
+          "name": "transition_days",
+          "units": "calendar daysdata preparation",
+          "distribution": {
+            "type": "triangular",
+            "low": 7,
+            "mode": 30,
+            "high": 90
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "A bounded one-time licensing/filtering/pipeline transition; not automatic retraining of existing models."
+        },
+        {
+          "name": "transition_critical_share",
+          "units": "fraction transition duration on criticalpath",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.1,
+            "mode": 0.35,
+            "high": 0.8
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "Most bargaining and preparation can overlap; no one-for-one elapsed-days assumption."
+        },
+        {
+          "name": "transition_gap_remaining",
+          "units": "fractiondelayremainingatyear1",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.1,
+            "mode": 0.5,
+            "high": 1.0
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "Allows recovery of a one-time schedule disturbance."
+        }
+      ],
+      "formula": "uData=1-m+m*recovered*quality. Optimize N,D with N*D=1 at U=uData/baseline_epochs using effective-token/parameter saturation. logC_data=-(2/alpha)*log(L_policy/L_base)*dependency. Let h(t)=min(1,t*365.25/transition), z(t)=min(1,max(0,(t-transition/365.25)/(1-transition/365.25))). delay(t)=transition*critical*h(t)*(1-(1-remaining)*z(t)); c(t)=h(t)*(logC_data+ln(1-budget))-gTotal*delay(t)/365.25; R(t)=1-h(t)*budget.",
+      "narrative": "Data ratio changes quality-adjusted unique tokens; repeated tokens and excess parameters follow fitted saturation functions. Equal-budget minimization captures recipe adaptation. The data penalty is a level term and already includes existing repetition; do not impose an extra raw-token penalty. Recurring budget loss applies once to direct training and once to distinct research inputs. No retroactive destruction/retraining required.",
+      "source_ids": [
+        "commonpile",
+        "data_scaling"
+      ]
+    }
+  ],
+  "sources": {
+    "rsi2026": {
+      "title": "Cunningham et al., The Economics of Recursive Self-Improvement",
+      "date": "2026-09-14",
+      "url": "https://arxiv.org/abs/2609.15802",
+      "locator": "PDF pp17-24,28-29",
+      "evidence": "Calibration uses algorithmic and research-input growth near ln(3)/year; approximately 6.5 ECI per log effective compute. Reported labor-task uplift implies a rough upper-ish 0.09 log productivity/ECI, explicitly uncertain; this is not aggregate R&D productivity."
+    },
+    "slowdown2025": {
+      "title": "Whitfill, Snodin and Becker, Forecasting AI Time Horizon Under Compute Slowdowns",
+      "date": "2025-11-23",
+      "url": "https://arxiv.org/abs/2511.19492",
+      "locator": "Appendix C and G; Table1",
+      "evidence": "Algorithmic log growth estimate 1.265/year, 95% interval .667-3.614. Appendix C cites labor exponent .67 and long-run research return .95; time-horizon/effective-compute exponent .454. Compute-bottleneck mechanism is assumed, not established by two model families."
+    },
+    "anthropic_allocation": {
+      "title": "Anthropic, Measurements for understanding the pace of AI development inside frontier labs",
+      "date": "2026-09",
+      "url": "https://www.anthropic.com/institute/measuring-pace-of-ai-development",
+      "locator": "Sections1 and3; appendix",
+      "evidence": "July13-20: safety 6% of AI-R&D compute, 12% of AI-driven AI-R&D compute; conservative definition excludes equally dual-use work. August: AI leads26%, collaborates-or-higher>90%, measured fully autonomous0%. One-lab, one-week compute snapshot and model-assisted classification."
+    },
+    "openai_acceleration": {
+      "title": "OpenAI, Research acceleration: The view inside OpenAI",
+      "date": "2026-09-06",
+      "url": "https://openai.com/index/research-acceleration-view-inside-openai/",
+      "locator": "Sections1,3,4",
+      "evidence": "August7 model-specific restrictions: Astra-class GPU allocation fell59.2%; other classes rose17.2%, offsetting about85% of decline. July20 incident included two-week RL pause. Over half successful4-8h tasks already had human intervention. Redeployed compute does not measure recovered research value."
+    },
+    "anthropic_uplift": {
+      "title": "Anthropic, When AI builds itself",
+      "date": "2026-06; updated2026-09-18",
+      "url": "https://www.anthropic.com/institute/recursive-self-improvement",
+      "locator": "Evidence from within Anthropic; footnotes",
+      "evidence": "March survey of130 employees: median4x self-reported output with Mythos versus no AI; authors expect true uplift lower. Human review and research direction remain bottlenecks. This is not the incremental uplift of the newest versus previous model."
+    },
+    "epoch_compute": {
+      "title": "Sevilla and Roldan, Training compute of frontier AI models grows by4-5x per year",
+      "date": "2024-05-28",
+      "url": "https://epoch.ai/publications/training-compute-of-frontier-ai-models-grows-by-4-5x-per-year",
+      "locator": "Introduction; frontier and leading-lab regressions",
+      "evidence": "Historical recommendation4-5x/year; frontier post2018 estimate4.2x,90%CI3.6-4.9; frontier language-model trend5x,90%CI3.1-7.3. Future range must allow structural breaks."
+    },
+    "epoch_software": {
+      "title": "Anson Ho, The least understood driver of AI progress",
+      "date": "2026-02-25",
+      "url": "https://epoch.ai/gradient-updates/the-least-understood-driver-of-ai-progress",
+      "locator": "Appendix table and scale-dependence discussion",
+      "evidence": "Synthesizes mostly-pretraining estimates around3x,6x, and10x/year with very broad uncertainty; stresses data quality, distillation and scale dependence. Informal primary-author methodological discussion, not an additional independent sample."
+    },
+    "epoch_compute_share": {
+      "title": "Denain and Wu, Final training runs account for a minority of R&D compute spending",
+      "date": "2026-03-23",
+      "url": "https://epoch.ai/gradient-updates/r-and-d-vs-training-compute",
+      "locator": "Main text and methods",
+      "evidence": "OpenAI2024 estimate: about10% of R&D compute spend in final released-model training; remaining workloads include experiments and synthetic data. Final-run share is not the share of capability progress attributable to scale."
+    },
+    "scale_dependence": {
+      "title": "Gundlach et al., On the Origin of Algorithmic Progress in AI",
+      "date": "2025-11-26",
+      "url": "https://arxiv.org/abs/2511.21622",
+      "locator": "Abstract and scaling experiments",
+      "evidence": "Ablations and scaling experiments find substantial compute-scale dependence of algorithmic gains. Supports a nonzero cap/experiment bottleneck prior, not its numerical mode."
+    },
+    "chaining2026": {
+      "title": "Demirer et al., Chaining Tasks, Redefining Work",
+      "date": "2026-06-14",
+      "url": "https://arxiv.org/abs/2606.15960",
+      "locator": "Task-chain model",
+      "evidence": "Models nonlinear gains from contiguous AI task chains and handoff costs. Supplies mechanism, no frontier-lab service-time estimate."
+    },
+    "aisi": {
+      "title": "AISI, Early lessons from evaluating frontier AI systems",
+      "date": "2024",
+      "url": "https://www.aisi.gov.uk/blog/early-lessons-from-evaluating-frontier-ai-systems",
+      "locator": "Section4",
+      "evidence": "Standard evaluation tier can complete in1-2weeks; light tier QA/reporting1-2weeks. Elevated investigations may take longer; proxy models/preparation can overlap. These are durations, not incremental research delays."
+    },
+    "data_scaling": {
+      "title": "Muennighoff et al., Scaling Data-Constrained Language Models",
+      "date": "2025-02",
+      "url": "https://jmlr.org/papers/v26/24-1000.html",
+      "locator": "AppendixB Table1 Eq18; AppendixC",
+      "evidence": "182-run parametric fit: repeated-token saturation R_D=15.3878, excess-parameter R_N=5.3097, exponents\u2248.353, fittedR2=.781. Full project400runs up to9B parameters. Transport to2026 frontier is unvalidated."
+    },
+    "commonpile": {
+      "title": "Kandpal et al., The Common Pile v0.1",
+      "date": "2025-06-05",
+      "url": "https://arxiv.org/abs/2506.05209",
+      "locator": "Sections4.3-4.4",
+      "evidence": "Openly licensed8TB corpus;7B models trained on1T/2Ttokens competitive with similarly budgeted Llama1/2. Establishes credible substitutes, not frontier parity or the fraction of present data licensable."
+    },
+    "menu": {
+      "title": "AI Safety Menu policy definitions",
+      "date": "snapshot2026-09-24",
+      "url": "https://elehrer123-arch.github.io/ai-safety-menu/#/",
+      "locator": "Backing info pages and local work/policy-audit/data.js",
+      "evidence": "Defines the six hypothetical requirements; prior menu prices are not used as calibration targets."
+    }
+  }
+}

@@ -1,0 +1,1418 @@
+{
+  "schema_version": 3,
+  "as_of": "2026-09-25",
+  "horizon": "Endpoint at one year (365.25 days) after implementation at 2026 technology, with stated implementation ramps; 6/36-month sensitivity paths supplied; average-year research inputs explicitly identified",
+  "estimand": "Difference in endpoint U.S.\u2013China capability gap on a fixed U.S. progress ruler, policy vs otherwise without the covered requirement; voluntary baseline retained",
+  "distribution_note": "Triangular low/high are elicited scenario bounds, NOT confidence intervals. Calibrated ranges are analyst distributions around cited observations. Source_ids on analyst priors identify context only and do not empirically establish the number.",
+  "sources": [
+    {
+      "id": "nist_caisi_2026",
+      "title": "CAISI\u2019s Assessment of Z.ai\u2019s GLM-5.3 Cyber Capabilities",
+      "date": "2026-09-17",
+      "url": "https://www.nist.gov/news-events/news/2026/09/caisis-assessment-zais-glm-53-cyber-capabilities",
+      "kind": "primary government model evaluation",
+      "numerical_evidence": [
+        "About four months behind the U.S. frontier on a composite cyber evaluation."
+      ],
+      "limitation": "Public and trusted-access models only; explicitly excludes unreleased internal models. General/private gap prior is an extrapolation, not this observation."
+    },
+    {
+      "id": "epoch_huawei_2026",
+      "title": "Will Huawei catch up to Nvidia by 2030?",
+      "date": "2026-09-04; updated 2026-09-24",
+      "url": "https://epoch.ai/publications/huaweis-roadmap-to-2031",
+      "kind": "primary research model",
+      "numerical_evidence": [
+        "2026 forecast: Nvidia 23 million H100-equivalents; Huawei 0.88 million.",
+        "Huawei chip-count forecast 1.5 million; Nvidia 5.9 million."
+      ],
+      "limitation": "Forecast and hardware-rated throughput, not deployed frontier compute or causal effect of removing controls."
+    },
+    {
+      "id": "epoch_owners_2026",
+      "title": "Introducing the AI Chip Owners Explorer",
+      "date": "2026-04-06",
+      "url": "https://epoch.ai/latest/introducing-the-ai-chip-owners-explorer",
+      "kind": "primary research estimate",
+      "numerical_evidence": [
+        "End-2025 Chinese ownership just over 5% of global rated compute.",
+        "Google about 5 million H100e and 25% of world total, implying world about 20 million and China about 1 million H100e."
+      ],
+      "limitation": "Rounded derivation. Excludes smuggling and offshore rentals. Does not establish September 2026 stock."
+    },
+    {
+      "id": "epoch_malaysia_2026",
+      "title": "Trade data is consistent with more than $3 billion of chips smuggled into China via Malaysia",
+      "date": "2026-09-17",
+      "url": "https://epoch.ai/data-insights/malaysia-china-chip-smuggling",
+      "kind": "primary trade-data analysis",
+      "numerical_evidence": [
+        "April 2024\u2013June 2025: China records $3.8bn server imports against Malaysia $0.6bn exports.",
+        "Rough compute equivalent 150,000 H100e; alternative chip mix can reduce this to 50,000."
+      ],
+      "limitation": "Consistent with diversion, not proof or an exhaustive smuggling estimate."
+    },
+    {
+      "id": "deepseek_r1_2025",
+      "title": "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning",
+      "date": "2025-01-22, v1",
+      "url": "https://arxiv.org/html/2501.12948v1",
+      "kind": "primary model experiments",
+      "numerical_evidence": [
+        "Table 6: Qwen-32B distilled versus RL-only: AIME 72.6 vs 47.0; GPQA 62.1 vs 55.0; LiveCodeBench 57.2 vs 40.2.",
+        "Teacher-generated training set: 800,000 samples."
+      ],
+      "limitation": "Domestic DeepSeek teacher and small students, not foreign-model dependence. No equal-total-cost causal conversion to national progress."
+    },
+    {
+      "id": "busbridge_2025",
+      "title": "Distillation Scaling Laws",
+      "date": "2025-07-13 to 2025-07-19, ICML 2025",
+      "url": "https://proceedings.mlr.press/v267/busbridge25a.html",
+      "kind": "primary ML research",
+      "numerical_evidence": [],
+      "limitation": "Provides teacher/student scaling method, not a Chinese dependence fraction or intervention efficacy."
+    },
+    {
+      "id": "anthropic_distill_2026",
+      "title": "Detecting and preventing distillation attacks",
+      "date": "2026-02-23",
+      "url": "https://www.anthropic.com/news/detecting-and-preventing-distillation-attacks",
+      "kind": "first-party incident analysis",
+      "numerical_evidence": [
+        "Over 16 million exchanges through approximately 24,000 fraudulent accounts attributed to three labs."
+      ],
+      "limitation": "Detected use is not causal capability uplift; selective detection and interested provider."
+    },
+    {
+      "id": "rand_weights_2024",
+      "title": "Securing AI Model Weights: Preventing Theft and Misuse of Frontier Models",
+      "date": "2024-05-30",
+      "url": "https://www.rand.org/pubs/research_reports/RRA2849-1.html",
+      "kind": "primary expert threat assessment",
+      "numerical_evidence": [
+        "38 attack vectors and five security levels."
+      ],
+      "limitation": "No empirically identified annual frontier theft hazard or risk-reduction fraction."
+    },
+    {
+      "id": "anthropic_security_2026",
+      "title": "Improving our alignment and security practices",
+      "date": "2026-09 (date as retrieved)",
+      "url": "https://www.anthropic.com/news/improving-alignment-security-efforts",
+      "kind": "first-party operational account",
+      "numerical_evidence": [
+        "About 150 product engineers temporarily reassigned; researchers also rotated; most teams finished by early summer.",
+        "A separate production RL-environment freeze lasted roughly one month."
+      ],
+      "limitation": "Voluntary baseline; whole-company security/reliability/privacy campaign, not the marginal mandate cost or whole-frontier slowdown."
+    },
+    {
+      "id": "gao_vetting_2026",
+      "title": "Personnel Vetting: Leadership Attention Needed to Prioritize System Development and Achieve Reforms, GAO-26-108838",
+      "date": "2026-02",
+      "url": "https://files.gao.gov/reports/GAO-26-108838/index.html",
+      "kind": "primary government audit",
+      "numerical_evidence": [
+        "FY2025 Q2 fastest 90% of initial Top Secret cases averaged 206 days; goal 114 days."
+      ],
+      "limitation": "Government processing is an analogue for near-clearance vetting, not lab-specific delay. GAO also reports significant underlying timeliness-data reliability issues."
+    },
+    {
+      "id": "flynn_2024",
+      "title": "Building a Wall Around Science: The Effect of U.S.-China Tensions on International Scientific Research",
+      "date": "2024 conference version; NBER June 2024 revised October 2024",
+      "url": "https://appam.confex.com/appam/2024/mediafile/ExtendedAbstract/Paper51756/Building_a_Wall.pdf",
+      "kind": "primary economics working paper",
+      "numerical_evidence": [
+        "Version inspected: ethnic-Chinese entrants 15% less likely to attend U.S. PhD; graduates 4% less likely to remain; U.S.-based researcher productivity 2\u20136% lower."
+      ],
+      "limitation": "Different population, treatment and horizon; later revisions differ. Context for priors, not a clearance-policy causal coefficient."
+    },
+    {
+      "id": "checkr_turnaround",
+      "title": "Checkr's background check process",
+      "date": "retrieved 2026-09-25",
+      "url": "https://help.checkr.com/helpcenter/s/article/216102167-Checkr-s-background-check-process",
+      "kind": "primary vendor process documentation",
+      "numerical_evidence": [
+        "Typical check turnaround 3\u20135 business days."
+      ],
+      "limitation": "Commercial service claim; actual start-date delay can be zero due to overlap and existing checks."
+    },
+    {
+      "id": "sl5_2026",
+      "title": "SL5 Standard for AI Security",
+      "date": "2026-05-08, v0.1",
+      "url": "https://arxiv.org/abs/2605.08449",
+      "kind": "primary technical standard proposal",
+      "numerical_evidence": [
+        "45 pages, ten control families."
+      ],
+      "limitation": "Long-lead security design, no measured productivity penalty or proven theft elimination."
+    },
+    {
+      "id": "egan_heim_2023",
+      "title": "Oversight for Frontier AI through a Know-Your-Customer Scheme for Compute Providers",
+      "date": "2023-10-20",
+      "url": "https://arxiv.org/abs/2310.13625",
+      "kind": "primary policy research",
+      "numerical_evidence": [],
+      "limitation": "KYC enables oversight and enforcement; does not estimate denial rate or offshore Chinese frontier share."
+    },
+    {
+      "id": "crosignani_2025",
+      "title": "Securing Technological Leadership? The Cost of Export Controls on Firms",
+      "date": "2024-04; revised 2025-02",
+      "url": "https://www.newyorkfed.org/research/staff_reports/sr1096",
+      "kind": "primary economics research",
+      "numerical_evidence": [
+        "Reports $130bn decline in affected U.S. suppliers\u2019 market capitalization and weaker firm outcomes."
+      ],
+      "limitation": "Not a current AI-accelerator R&D or frontier-speed elasticity."
+    }
+  ],
+  "shared_security_inputs": [
+    {
+      "name": "relevant_asset_gap_days",
+      "units": "days on root fixed U.S. capability ruler",
+      "distribution": {
+        "type": "triangular",
+        "low": 120,
+        "mode": 180,
+        "high": 300
+      },
+      "evidence_status": "analyst_prior",
+      "source_ids": [
+        "nist_caisi_2026"
+      ],
+      "rationale": "Root-compatible current gap prior: 120-day low anchored in CAISI public/trusted-access cyber comparison; 180-day mode and 300-day high allow general-capability and private-asset differences. Not an observed national or internal lead."
+    },
+    {
+      "name": "annual_useful_frontier_compromise_probability",
+      "units": "probability across covered U.S. frontier assets in one year",
+      "distribution": {
+        "type": "triangular",
+        "low": 0.01,
+        "mode": 0.08,
+        "high": 0.3
+      },
+      "evidence_status": "analyst_prior",
+      "source_ids": [
+        "rand_weights_2024",
+        "anthropic_security_2026"
+      ],
+      "rationale": "Probability under current voluntary safeguards that at least one stolen frontier artifact becomes available to a Chinese frontier actor. Selected as a low-frequency but material strategic risk; not inferred from counts of published incidents."
+    },
+    {
+      "name": "insider_hazard_share",
+      "units": "fraction of baseline successful-compromise hazard",
+      "distribution": {
+        "type": "triangular",
+        "low": 0.15,
+        "mode": 0.35,
+        "high": 0.6
+      },
+      "evidence_status": "analyst_prior",
+      "source_ids": [
+        "rand_weights_2024"
+      ],
+      "rationale": "Insiders remain one path among remote compromise and supply-chain/physical compromise. Draw once for all security policies."
+    },
+    {
+      "name": "other_nonremote_hazard_share",
+      "units": "fraction of hazard remaining after insiders",
+      "distribution": {
+        "type": "triangular",
+        "low": 0.05,
+        "mode": 0.15,
+        "high": 0.35
+      },
+      "evidence_status": "analyst_prior",
+      "source_ids": [
+        "rand_weights_2024"
+      ],
+      "rationale": "Physical and supply-chain routes are retained after classifying insider routes. Remote share=(1-insider)*(1-other_nonremote)."
+    },
+    {
+      "name": "compromise_gap_fraction_recovered",
+      "units": "fraction of current relevant U.S.\u2013China capability gap recovered conditional on usable theft",
+      "distribution": {
+        "type": "triangular",
+        "low": 0.1,
+        "mode": 0.6,
+        "high": 0.95
+      },
+      "evidence_status": "analyst_prior",
+      "source_ids": [
+        "rand_weights_2024"
+      ],
+      "rationale": "A usable frontier artifact may convey much but not all deployable capability. Does not assume entire national innovation capability is transferred. Multiply by root benchmark-specific gap, not a hardcoded number of days."
+    },
+    {
+      "name": "compromise_absorption_days",
+      "units": "calendar days from compromise to useful deployment",
+      "distribution": {
+        "type": "triangular",
+        "low": 3,
+        "mode": 21,
+        "high": 90
+      },
+      "evidence_status": "analyst_prior",
+      "source_ids": [],
+      "rationale": "Architecture, infrastructure, inference budget and validation prevent assuming instantaneous full use. This is operational absorption time, not a desired final policy effect."
+    },
+    {
+      "name": "compromise_advantage_half_life_days",
+      "units": "calendar days",
+      "distribution": {
+        "type": "triangular",
+        "low": 30,
+        "mode": 120,
+        "high": 365
+      },
+      "evidence_status": "analyst_prior",
+      "source_ids": [],
+      "rationale": "Conditional theft advantage decays as counterfactual independent progress, model obsolescence and diffusion catch up. No direct estimate. Keeps a first-year endpoint benefit distinct from a one-time value at theft."
+    },
+    {
+      "name": "security_rollout_fraction_year",
+      "units": "share of first year during which mature controls operate",
+      "distribution": {
+        "type": "triangular",
+        "low": 0.25,
+        "mode": 0.75,
+        "high": 1
+      },
+      "evidence_status": "analyst_prior",
+      "source_ids": [],
+      "rationale": "One-time implementation ramp. If root explicitly chooses mature steady state use 1 instead. Common draw across related controls."
+    }
+  ],
+  "diffusion_inputs": [
+    {
+      "name": "public_research_substitution_recovery",
+      "units": "fraction of unavailable U.S. research value recovered independently or elsewhere",
+      "distribution": {
+        "type": "triangular",
+        "low": 0.1,
+        "mode": 0.4,
+        "high": 0.85
+      },
+      "evidence_status": "analyst_prior",
+      "source_ids": [],
+      "rationale": "Separate gross research exposure from irreducible reliance. Conditional on scope of the public research channel."
+    },
+    {
+      "name": "teacher_substitution_recovery",
+      "units": "fraction of unavailable frontier-teacher value recovered from other teachers/data/self-training",
+      "distribution": {
+        "type": "triangular",
+        "low": 0.2,
+        "mode": 0.6,
+        "high": 0.95
+      },
+      "evidence_status": "analyst_prior",
+      "source_ids": [
+        "deepseek_r1_2025",
+        "busbridge_2025"
+      ],
+      "rationale": "Shared between anti-distillation and public-release withholding; do not draw or apply a second independent substitution discount."
+    },
+    {
+      "name": "public_research_channel_share",
+      "units": "fraction of annual Chinese algorithmic knowledge additions before substitution",
+      "distribution": {
+        "type": "triangular",
+        "low": 0.05,
+        "mode": 0.2,
+        "high": 0.4
+      },
+      "evidence_status": "analyst_prior",
+      "source_ids": [],
+      "rationale": "Tentative decomposition of algorithmic knowledge additions, not fraction of all national capability progress. Public methods can transfer relatively quickly; independent discoveries remain substantial."
+    },
+    {
+      "name": "frontier_teacher_channel_share",
+      "units": "fraction of annual Chinese algorithmic knowledge additions before substitution",
+      "distribution": {
+        "type": "triangular",
+        "low": 0.03,
+        "mode": 0.2,
+        "high": 0.45
+      },
+      "evidence_status": "analyst_prior",
+      "source_ids": [
+        "deepseek_r1_2025",
+        "anthropic_distill_2026",
+        "busbridge_2025"
+      ],
+      "rationale": "Positive mode reflects demonstrated distillation usefulness and observed foreign-output collection. Wide range reflects absent causal attribution."
+    },
+    {
+      "name": "released_weights_channel_share",
+      "units": "fraction of annual Chinese algorithmic knowledge additions before substitution",
+      "distribution": {
+        "type": "triangular",
+        "low": 0.01,
+        "mode": 0.08,
+        "high": 0.2
+      },
+      "evidence_status": "analyst_prior",
+      "source_ids": [],
+      "rationale": "Released weights support inference, fine-tuning and research; 2026 Chinese teachers provide important substitutes."
+    },
+    {
+      "name": "researcher_transfer_channel_share",
+      "units": "fraction of annual Chinese algorithmic knowledge additions before substitution",
+      "distribution": {
+        "type": "triangular",
+        "low": 0.0,
+        "mode": 0.05,
+        "high": 0.15
+      },
+      "evidence_status": "analyst_prior",
+      "source_ids": [],
+      "rationale": "Tacit research knowledge transfer; excludes labor added by separately modeled migration."
+    },
+    {
+      "name": "public_research_absorption_days",
+      "units": "calendar days",
+      "distribution": {
+        "type": "triangular",
+        "low": 7,
+        "mode": 45,
+        "high": 180
+      },
+      "evidence_status": "analyst_prior",
+      "source_ids": [],
+      "rationale": "Public algorithm findings require implementation and replication."
+    },
+    {
+      "name": "teacher_data_absorption_days",
+      "units": "calendar days",
+      "distribution": {
+        "type": "triangular",
+        "low": 7,
+        "mode": 30,
+        "high": 120
+      },
+      "evidence_status": "analyst_prior",
+      "source_ids": [],
+      "rationale": "Collecting, filtering and retraining on teacher data imposes operational lag."
+    },
+    {
+      "name": "released_weights_absorption_days",
+      "units": "calendar days",
+      "distribution": {
+        "type": "triangular",
+        "low": 1,
+        "mode": 7,
+        "high": 45
+      },
+      "evidence_status": "analyst_prior",
+      "source_ids": [],
+      "rationale": "Deployable weights normally need less replication than research findings."
+    }
+  ],
+  "policies": [
+    {
+      "id": "export-controls",
+      "name": "Advanced chip export controls",
+      "counterfactual": "Maintain the frozen site\u2019s advanced-accelerator and manufacturing-input restrictions for 12 months versus relaxing those covered restrictions at the start; current stock, voluntary practices, unrelated sanctions, and non-U.S. export decisions remain. China purchases and deployments ramp, not instant parity.",
+      "inputs": [
+        {
+          "name": "nvidia_annual_output_h100e",
+          "units": "million rated H100e/year",
+          "distribution": {
+            "type": "triangular",
+            "low": 18,
+            "mode": 23,
+            "high": 30
+          },
+          "evidence_status": "calibrated",
+          "source_ids": [
+            "epoch_huawei_2026"
+          ],
+          "rationale": "Mode equals published 2026 forecast; interval is our predictive uncertainty, not the paper\u2019s confidence interval. Hold 2026 output pace for this exercise."
+        },
+        {
+          "name": "incremental_china_purchase_share",
+          "units": "fraction of Nvidia annual output additional to purchases allowed in baseline",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.02,
+            "mode": 0.1,
+            "high": 0.2
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "Net incremental access after relaxing covered controls. One-tenth mode reflects strong demand but U.S. contracted allocation and Chinese budgets; deliberately below unconstrained parity. Existing permitted purchases are not recounted."
+        },
+        {
+          "name": "deployment_lag_days",
+          "units": "calendar days",
+          "distribution": {
+            "type": "triangular",
+            "low": 30,
+            "mode": 90,
+            "high": 180
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "Ordering, delivery, power and commissioning prevent immediate use. Includes supplying HBM/equipment pathway lag."
+        },
+        {
+          "name": "usable_fraction_of_added_rated_compute",
+          "units": "fraction",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.4,
+            "mode": 0.7,
+            "high": 0.95
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "Allows for provisioning, interconnect, utilization and imperfect substitution into relevant training/inference workloads."
+        },
+        {
+          "name": "extra_domestic_output_after_relaxation",
+          "units": "million rated H100e delivered in first year",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.3,
+            "high": 1.0
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "epoch_huawei_2026"
+          ],
+          "rationale": "Additional domestic chip output from newly available manufacturing inputs. Small first-year mode because fabs cannot be rebuilt instantly; final-chip imports are faster."
+        },
+        {
+          "name": "baseline_china_average_usable_compute",
+          "units": "million H100e during next 12 months",
+          "distribution": {
+            "type": "triangular",
+            "low": 1.5,
+            "mode": 3.0,
+            "high": 5.5
+          },
+          "evidence_status": "calibrated",
+          "source_ids": [
+            "epoch_owners_2026",
+            "epoch_huawei_2026",
+            "epoch_malaysia_2026"
+          ],
+          "rationale": "End-2025 owned stock near 1m plus 2026 output, illicit imports, rentals and further build-out; 3m is an analyst extrapolation, not a reported current stock. Broad upper accommodates substantial unobserved access."
+        },
+        {
+          "name": "endpoint_to_average_compute_ratio",
+          "units": "ratio of end-year stock to average stock over first year",
+          "distribution": {
+            "type": "triangular",
+            "low": 1.05,
+            "mode": 1.4,
+            "high": 1.8
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "Growing baseline stock; use baseline_average times this factor for endpoint compute changes. Share draw across U.S. and China as a simple trend scenario."
+        },
+        {
+          "name": "share_relevant_to_frontier_progress",
+          "units": "fraction of country-level marginal compute increase available to frontier production",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.25,
+            "mode": 0.6,
+            "high": 1
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "Not all additional chips serve frontier research or change a binding constraint. Avoids treating all national compute as a frontier cluster."
+        },
+        {
+          "name": "redirected_share_to_us_under_controls",
+          "units": "fraction of prevented China sales deployed by U.S. users instead",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.5,
+            "high": 0.9
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "Current supply allocation could redirect rather than destroy sales. This is a small positive U.S. resource effect of maintaining controls."
+        },
+        {
+          "name": "baseline_us_average_usable_compute",
+          "units": "million H100e during next 12 months",
+          "distribution": {
+            "type": "triangular",
+            "low": 20,
+            "mode": 35,
+            "high": 60
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "epoch_owners_2026",
+            "epoch_huawei_2026"
+          ],
+          "rationale": "Rough 2026 installed/allocated stock extrapolation. Wider than ownership evidence; only scales redirection term."
+        },
+        {
+          "name": "supplier_innovation_loss_us",
+          "units": "fraction of U.S. research-equivalent input over first year",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.001,
+            "high": 0.01
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "crosignani_2025"
+          ],
+          "rationale": "Revenue constraints may reduce upstream innovation, but near-term supply-constrained sales and long R&D lags make a small first-year mode appropriate. Not imported from market capitalization loss."
+        }
+      ],
+      "formulas": [
+        "AUTHORITATIVE PATH: solve k/(1-exp(-k))=endpoint_to_average_compute_ratio; C0=baseline_china_average_usable_compute*k/expm1(k)>0; Cbase(t)=C0*exp(k*t), with t in years",
+        "delivery_factor(t)=expm1(k*max(t-deployment_lag_days/365.25,0))/expm1(k); extra_china_compute=(nvidia_annual_output_h100e*incremental_china_purchase_share+extra_domestic_output_after_relaxation)*usable_fraction_of_added_rated_compute*delivery_factor",
+        "direct_cn_logcompute(t)=-share_relevant_to_frontier_progress*log1p(extra_china_compute/Cbase(t)); cn_compute_ratio=exp(direct_cn_logcompute)",
+        "direct_us_logcompute(t)=log1p(redirected_share_to_us_under_controls*nvidia_annual_output_h100e*incremental_china_purchase_share*usable_fraction_of_added_rated_compute*delivery_factor/Ubase(t)); us_compute_ratio=exp(direct_us_logcompute)",
+        "Compute ratios enter both the direct frontier training channel and the root research-compute production function, where the latter contributes only additional algorithmic progress.",
+        "us_research_input_loss_fraction = supplier_innovation_loss_us"
+      ],
+      "narrative": "Price present restrictions relative to specified relaxation, not versus a historically never-restricted China. Nominal H100e is an imperfect common unit. The largest uncertainty is incremental purchases and frontier relevance, not the measured chip-generation gap.",
+      "mode_input_outputs": {
+        "extra_china_average_compute_without_controls_million_h100e": 0.516560330268343,
+        "cn_compute_loss_fraction": 0.08813618111234141,
+        "us_compute_gain_fraction": 0.006527960217676863,
+        "us_research_input_loss_fraction": 0.001
+      },
+      "point_estimate_instruction": "Use root engine expected net lead effect, integrating joint draws. Mode-input outputs are an auditable illustration and need not equal the expectation or median. No desired final number of days is an input."
+    },
+    {
+      "id": "kyc-compute",
+      "name": "Know-your-customer rules for compute providers",
+      "counterfactual": "Additional identity, recordkeeping and intent checks above the covered scale versus existing cloud screening. Primary case includes enforcement of already-applicable restrictions when new identification reveals ineligible access; identity-only sensitivity sets denial_after_detection=0.",
+      "inputs": [
+        {
+          "name": "cn_covered_cloud_compute_share",
+          "units": "fraction of China-relevant frontier compute rented through newly affected providers/resellers",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.01,
+            "mode": 0.1,
+            "high": 0.3
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "egan_heim_2023",
+            "epoch_owners_2026"
+          ],
+          "rationale": "Unobserved; modest mode because domestic compute is substantial, upper allows material offshore frontier use."
+        },
+        {
+          "name": "incremental_detection",
+          "units": "fraction of otherwise hidden ineligible compute access newly identified",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.05,
+            "mode": 0.35,
+            "high": 0.7
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "egan_heim_2023"
+          ],
+          "rationale": "Mandate improves on current screening; high-volume use is observable but identity evasion persists."
+        },
+        {
+          "name": "denial_after_detection",
+          "units": "probability that newly identified covered use is actually restricted",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.5,
+            "high": 0.9
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "egan_heim_2023"
+          ],
+          "rationale": "Explicit action assumption. KYC itself creates no prohibition. Half-mode includes already-ineligible customers; not all identified foreign users are forbidden."
+        },
+        {
+          "name": "replacement_share",
+          "units": "fraction of denied relevant compute replaced elsewhere within horizon",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.25,
+            "mode": 0.6,
+            "high": 0.95
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "Alternative providers, domestic capacity and evasion offset denials; complete substitution retained near upper bound."
+        },
+        {
+          "name": "rollout_fraction_year",
+          "units": "fraction of first-year exposure after implementation",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.25,
+            "mode": 0.75,
+            "high": 1
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "Coverage phases in rather than full-year instantaneous denial."
+        },
+        {
+          "name": "us_new_contract_exposure",
+          "units": "fraction of U.S. compute provisioning newly checked",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.05,
+            "mode": 0.2,
+            "high": 0.5
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "Large labs are already identified; burden mainly extensions/new contracts."
+        },
+        {
+          "name": "check_elapsed_days",
+          "units": "calendar days per exposed provisioning",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.1,
+            "mode": 1,
+            "high": 7
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "Incremental documentation can complete quickly for known major customers, but tail accommodates exceptions."
+        },
+        {
+          "name": "blocking_fraction",
+          "units": "fraction of elapsed check that blocks usable compute",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.1,
+            "high": 0.5
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "Most work asynchronous with provisioning."
+        }
+      ],
+      "formulas": [
+        "cn_compute_loss_fraction=cn_covered_cloud_compute_share*incremental_detection*denial_after_detection*(1-replacement_share)*rollout_fraction_year",
+        "us_compute_loss_fraction=us_new_contract_exposure*check_elapsed_days*blocking_fraction/365"
+      ],
+      "narrative": "Reporting-only produces zero China resource loss. Export controls and KYC use a common covered-compute stock; combine denials as surviving access, never add the same blocked GPU-hours twice.",
+      "mode_input_outputs": {
+        "cn_compute_loss_fraction": 0.0052499999999999995,
+        "us_compute_loss_fraction": 5.4794520547945214e-05
+      },
+      "point_estimate_instruction": "Use root engine expected net lead effect, integrating joint draws. Mode-input outputs are an auditable illustration and need not equal the expectation or median. No desired final number of days is an input."
+    },
+    {
+      "id": "anti-distillation",
+      "name": "Anti-distillation controls",
+      "counterfactual": "Mandated coordinated API vetting, restrictions on full traces and detection versus current voluntary enforcement and existing product choices; does not ban all open models or independent Chinese/self-distillation.",
+      "inputs": [
+        {
+          "name": "additional_blocked_teacher_access",
+          "units": "fraction of remaining valuable U.S. teacher access prevented by mandate",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.05,
+            "mode": 0.3,
+            "high": 0.65
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "anthropic_distill_2026"
+          ],
+          "rationale": "Incremental to existing restrictions; prior deliberately below total attack detection or account closure rate."
+        },
+        {
+          "name": "rollout_fraction_year",
+          "units": "fraction of first year mature coordination operates",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.25,
+            "mode": 0.75,
+            "high": 1
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "Engineering, shared telemetry and enforcement require time."
+        },
+        {
+          "name": "us_research_staff_reassigned_share",
+          "units": "fraction of U.S. frontier research-equivalent staff at full rollout",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.002,
+            "high": 0.01
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "Most costs fall on trust/safety/product staff; count only research-equivalent diversion."
+        },
+        {
+          "name": "implementation_work_days",
+          "units": "calendar work duration during first year",
+          "distribution": {
+            "type": "triangular",
+            "low": 7,
+            "mode": 45,
+            "high": 120
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "Temporary build-out; not the eventual national delay."
+        },
+        {
+          "name": "us_research_product_friction",
+          "units": "fraction of research-equivalent output lost across year from legitimate access limits",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.0005,
+            "high": 0.005
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "Small central effect because laboratories retain access to their own internal models. Public developer welfare loss is outside frontier lead estimand."
+        }
+      ],
+      "formulas": [
+        "cn_algorithmic_knowledge_flow_loss_fraction = shared.frontier_teacher_channel_share*additional_blocked_teacher_access*(1-shared.teacher_substitution_recovery)*rollout_fraction_year",
+        "us_research_input_loss_fraction=us_research_staff_reassigned_share*implementation_work_days/365+us_research_product_friction"
+      ],
+      "narrative": "Multiply the China effect by the shared algorithmic-knowledge contribution to progress in the root engine, not full national progress. If foreign teacher dependence is zero, benefit is zero. Experimental score uplifts establish potential value but do not set the dependence prior mechanically.",
+      "mode_input_outputs": {
+        "cn_algorithmic_knowledge_flow_loss_fraction": 0.018000000000000002,
+        "us_research_input_loss_fraction": 0.0007465753424657534
+      },
+      "point_estimate_instruction": "Use root engine expected net lead effect, integrating joint draws. Mode-input outputs are an auditable illustration and need not equal the expectation or median. No desired final number of days is an input."
+    },
+    {
+      "id": "weight-security",
+      "name": "Model-weight security standard",
+      "counterfactual": "An SL3-like floor for unreleased frontier weights versus current voluntary security practices, with already compliant labs credited zero incremental burden/risk change.",
+      "inputs": [
+        {
+          "name": "newly_changed_risk_weighted_share",
+          "units": "share of baseline compromise hazard located in exposures materially changed by mandate",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.05,
+            "mode": 0.25,
+            "high": 0.6
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "rand_weights_2024",
+            "anthropic_security_2026"
+          ],
+          "rationale": "Leading labs already strengthen defenses voluntarily; uncovered exposures may be riskier than their headcount share."
+        },
+        {
+          "name": "remote_risk_cut_in_changed_exposures",
+          "units": "fraction of remote compromise hazard prevented",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.1,
+            "mode": 0.5,
+            "high": 0.8
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "rand_weights_2024"
+          ],
+          "rationale": "Access hardening, monitoring and outbound restrictions address remote exfiltration but are not foolproof."
+        },
+        {
+          "name": "insider_risk_cut_in_changed_exposures",
+          "units": "fraction of insider compromise hazard prevented",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.05,
+            "mode": 0.25,
+            "high": 0.6
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "rand_weights_2024"
+          ],
+          "rationale": "Access minimization and exfiltration controls reduce insider success; excludes clearance vetting."
+        },
+        {
+          "name": "other_risk_cut_in_changed_exposures",
+          "units": "fraction of other compromise hazard prevented",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.1,
+            "high": 0.4
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "Limited effect on sophisticated supply-chain/physical paths."
+        },
+        {
+          "name": "us_research_staff_reassigned_share",
+          "units": "fraction of research-equivalent U.S. staff",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.0002,
+            "mode": 0.003,
+            "high": 0.015
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "anthropic_security_2026"
+          ],
+          "rationale": "Marginal research burden only, below whole-company voluntary hardening campaign."
+        },
+        {
+          "name": "implementation_work_days",
+          "units": "calendar duration",
+          "distribution": {
+            "type": "triangular",
+            "low": 14,
+            "mode": 60,
+            "high": 180
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "One-time implementation counted only in first-year workload."
+        },
+        {
+          "name": "ongoing_research_friction",
+          "units": "fraction of U.S. effective research input across year",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.0005,
+            "high": 0.004
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "SL3 floor should preserve ordinary tooling; friction remains nonzero where access changes."
+        }
+      ],
+      "formulas": [
+        "risk_cut[remote,insider,other]=newly_changed_risk_weighted_share*[remote_risk_cut_in_changed_exposures,insider_risk_cut_in_changed_exposures,other_risk_cut_in_changed_exposures]*shared.security_rollout_fraction_year",
+        "us_research_input_loss_fraction=us_research_staff_reassigned_share*implementation_work_days/365+ongoing_research_friction",
+        "security_benefit = shared competing-hazard module; output probability reduction and conditional gap-fraction recovery, with root time conversion"
+      ],
+      "narrative": "Counts incremental technical hardening, not every voluntary security dollar. Staff days are divided by relevant total research capacity and year before root production-function conversion.",
+      "mode_input_outputs": {
+        "us_research_input_loss_fraction": 0.0009931506849315068,
+        "annual_useful_compromise_probability_reduction": 0.005387888324867959,
+        "conditional_capability_gap_recovered_fraction": 0.6,
+        "compromise_absorption_days": 21
+      },
+      "point_estimate_instruction": "Use root engine expected net lead effect, integrating joint draws. Mode-input outputs are an auditable illustration and need not equal the expectation or median. No desired final number of days is an input."
+    },
+    {
+      "id": "light-vetting",
+      "name": "Background checks for lab staff",
+      "counterfactual": "Standard checks for all new staff and catch-up checks for previously unscreened incumbents, without citizenship exclusion, versus existing private screening.",
+      "inputs": [
+        {
+          "name": "annual_hires_relative_to_staff",
+          "units": "hires per current researcher-equivalent staff per year",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.15,
+            "mode": 0.3,
+            "high": 0.6
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "Fast-growing labs with turnover; not an observed industry aggregate."
+        },
+        {
+          "name": "newly_screened_share",
+          "units": "fraction of incoming staff not already equivalently screened",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.05,
+            "mode": 0.2,
+            "high": 0.5
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "rand_weights_2024"
+          ],
+          "rationale": "Most established labs likely already screen; precise baseline unreported."
+        },
+        {
+          "name": "screening_calendar_days",
+          "units": "calendar days",
+          "distribution": {
+            "type": "triangular",
+            "low": 2,
+            "mode": 6,
+            "high": 21
+          },
+          "evidence_status": "calibrated",
+          "source_ids": [
+            "checkr_turnaround"
+          ],
+          "rationale": "Mode converts 3\u20135 business days to about 6 calendar days; broad upper for overseas/manual checks. Distribution is ours."
+        },
+        {
+          "name": "screening_blocks_start_fraction",
+          "units": "fraction of turnaround that delays otherwise productive work",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.15,
+            "high": 0.6
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "Notice periods and provisioning absorb most checks."
+        },
+        {
+          "name": "newly_screened_incumbent_share",
+          "units": "fraction of current staff receiving new check",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.1,
+            "high": 0.35
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "Existing employees often screened; unknown coverage."
+        },
+        {
+          "name": "incumbent_productive_days_lost",
+          "units": "staff-days per newly checked incumbent",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.2,
+            "high": 2
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "Form filling and exceptional access interruption rather than whole check duration."
+        },
+        {
+          "name": "insider_risk_cut_in_newly_screened_exposures",
+          "units": "fraction of insider hazard prevented",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.1,
+            "high": 0.3
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "rand_weights_2024"
+          ],
+          "rationale": "Ordinary checks can detect some histories, not sophisticated clean-record infiltrators."
+        },
+        {
+          "name": "newly_screened_risk_weighted_share",
+          "units": "fraction of insider hazard exposed to genuinely new screening",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.05,
+            "mode": 0.25,
+            "high": 0.6
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "May exceed staff share if unscreened roles disproportionately risky; prior not a measured relationship."
+        }
+      ],
+      "formulas": [
+        "us_research_input_loss_fraction=annual_hires_relative_to_staff*newly_screened_share*screening_calendar_days*screening_blocks_start_fraction/365+newly_screened_incumbent_share*incumbent_productive_days_lost/365",
+        "risk_cut[insider]=insider_risk_cut_in_newly_screened_exposures*newly_screened_risk_weighted_share*shared.security_rollout_fraction_year; other cuts=0"
+      ],
+      "narrative": "No estimate of ordinary-screening exclusion is imported from ethnic composition. Catch-up checks can run during ongoing employment. Mode produces a very small U.S. labor-input effect; security effect remains prior-driven.",
+      "mode_input_outputs": {
+        "us_research_input_loss_fraction": 0.00020273972602739728,
+        "annual_useful_compromise_probability_reduction": 0.0005035542217777661,
+        "conditional_capability_gap_recovered_fraction": 0.6,
+        "compromise_absorption_days": 21
+      },
+      "point_estimate_instruction": "Use root engine expected net lead effect, integrating joint draws. Mode-input outputs are an auditable illustration and need not equal the expectation or median. No desired final number of days is an input."
+    },
+    {
+      "id": "personnel-security",
+      "name": "Clearance-level vetting for lab staff",
+      "counterfactual": "Near-clearance checks for sensitive weight/research-access roles, without automatic citizenship exclusion; transition allows most incumbents restricted/interim access. Versus voluntary baseline. Blanket citizenship rules are a separate stress case.",
+      "inputs": [
+        {
+          "name": "sensitive_research_role_share",
+          "units": "fraction of researcher-equivalent staff subject to high vetting",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.1,
+            "mode": 0.3,
+            "high": 0.6
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "Not everyone requires direct sensitive access; broad site includes key research as well as weights."
+        },
+        {
+          "name": "already_equivalently_vetted_share",
+          "units": "fraction of covered staff",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.05,
+            "high": 0.2
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "Private background checks rarely equal clearance-style investigation."
+        },
+        {
+          "name": "clearance_process_days",
+          "units": "calendar days",
+          "distribution": {
+            "type": "triangular",
+            "low": 60,
+            "mode": 160,
+            "high": 300
+          },
+          "evidence_status": "calibrated",
+          "source_ids": [
+            "gao_vetting_2026"
+          ],
+          "rationale": "Mode lower than official 206-day analogue because near-clearance private scheme can omit government adjudication; wide high reflects complex cases. Not lab data."
+        },
+        {
+          "name": "annual_hires_relative_to_staff",
+          "units": "hires per current researcher-equivalent staff per year",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.15,
+            "mode": 0.3,
+            "high": 0.6
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "Common hiring flow; correlate with light-vetting draw."
+        },
+        {
+          "name": "new_hire_productivity_blocked_fraction",
+          "units": "fraction of new hire contribution unavailable while awaiting clearance",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.1,
+            "mode": 0.4,
+            "high": 0.9
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "Interim access and nonsensitive tasks preserve output; some sensitive roles cannot contribute fully."
+        },
+        {
+          "name": "incumbent_blocked_share",
+          "units": "fraction of sensitive incumbents losing some productivity during review",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.15,
+            "high": 0.5
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "Most retain provisional access; no transition text specified, so explicit policy-design prior."
+        },
+        {
+          "name": "incumbent_productivity_blocked_fraction",
+          "units": "fraction of affected incumbents\u2019 output lost during review",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.1,
+            "mode": 0.35,
+            "high": 0.8
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "Measures unavailable tasks, not full headcount."
+        },
+        {
+          "name": "covered_staff_departure_or_foregone_hire_fraction",
+          "units": "fraction of covered staff equivalents lost over year",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.04,
+            "high": 0.15
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "flynn_2024"
+          ],
+          "rationale": "Central behavioral response is smaller than severe geopolitical-isolation analogues; could be much higher with blanket eligibility exclusions."
+        },
+        {
+          "name": "lost_capacity_unreplaced_fraction",
+          "units": "fraction of departure-related capacity loss not replaced by another worker",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.2,
+            "mode": 0.6,
+            "high": 1
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "Compensation/recruiting and internal substitutes offset some loss."
+        },
+        {
+          "name": "departure_year_exposure_fraction",
+          "units": "average fraction of first year departure loss operates",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.25,
+            "mode": 0.5,
+            "high": 0.9
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "Departures distributed over year rather than all at inception."
+        },
+        {
+          "name": "china_destination_share",
+          "units": "share of lost personnel capacity joining Chinese frontier research",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.05,
+            "mode": 0.25,
+            "high": 0.6
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "flynn_2024"
+          ],
+          "rationale": "Many move to third countries/other sectors; avoid treating all U.S. losses as China gains."
+        },
+        {
+          "name": "us_to_cn_research_capacity_ratio",
+          "units": "ratio of effective U.S. to Chinese frontier research capacity",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.7,
+            "mode": 1.5,
+            "high": 3
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "Converts transferred worker equivalents into Chinese share; not an observed talent-headcount ratio."
+        },
+        {
+          "name": "china_first_year_transfer_productivity",
+          "units": "fraction of departing workers\u2019 former output realized in Chinese teams",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.2,
+            "mode": 0.6,
+            "high": 1
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "Onboarding, noncompetes and changed compute/tools limit immediate contribution."
+        },
+        {
+          "name": "insider_risk_cut",
+          "units": "fraction of baseline insider compromise hazard prevented at mature implementation",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.1,
+            "mode": 0.4,
+            "high": 0.7
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "rand_weights_2024"
+          ],
+          "rationale": "Deep vetting addresses additional insider threats beyond ordinary checks but cannot eliminate coercion or clean-record infiltrators."
+        }
+      ],
+      "formulas": [
+        "affected=sensitive_research_role_share*(1-already_equivalently_vetted_share); w=min(clearance_process_days,365)/365",
+        "new_hire_wait_loss=affected*annual_hires_relative_to_staff*new_hire_productivity_blocked_fraction*(w-w*w/2); integrates uniform arrival over first year",
+        "incumbent_wait_loss=affected*incumbent_blocked_share*incumbent_productivity_blocked_fraction*w",
+        "departing_capacity=affected*covered_staff_departure_or_foregone_hire_fraction*departure_year_exposure_fraction",
+        "us_research_input_loss_fraction=min(0.95,new_hire_wait_loss+incumbent_wait_loss+departing_capacity*lost_capacity_unreplaced_fraction)",
+        "cn_research_input_gain_fraction=departing_capacity*china_destination_share*us_to_cn_research_capacity_ratio*china_first_year_transfer_productivity",
+        "risk_cut[insider]=insider_risk_cut*shared.security_rollout_fraction_year; other cuts=0"
+      ],
+      "narrative": "Use role-specific exposure and retained productivity, not China-origin researcher fraction. Use clearance turnover, waiting and departure terms jointly; alternative extreme citizenship-exclusion policy should not silently change the base definition.",
+      "mode_input_outputs": {
+        "us_research_input_loss_fraction": 0.021684815162319383,
+        "cn_research_input_gain_fraction": 0.0012824999999999998,
+        "annual_useful_compromise_probability_reduction": 0.00809002611588576,
+        "conditional_capability_gap_recovered_fraction": 0.6,
+        "compromise_absorption_days": 21
+      },
+      "point_estimate_instruction": "Use root engine expected net lead effect, integrating joint draws. Mode-input outputs are an auditable illustration and need not equal the expectation or median. No desired final number of days is an input."
+    },
+    {
+      "id": "secure-dev-env",
+      "name": "Isolated secure development environment",
+      "counterfactual": "Frontier research moved into isolated networks and physical access controls; existing voluntary cluster isolation remains baseline. First-year rollout includes modular migration, not assumed immediate construction of entirely new facilities.",
+      "inputs": [
+        {
+          "name": "newly_affected_research_share",
+          "units": "fraction of U.S. research-equivalent activity facing tighter environment",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.3,
+            "mode": 0.7,
+            "high": 1
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "anthropic_security_2026",
+            "sl5_2026"
+          ],
+          "rationale": "Some workloads already isolated; broad proposed requirement changes collaboration and access across many research activities."
+        },
+        {
+          "name": "within_environment_productivity_loss",
+          "units": "fraction of affected research output at mature deployment",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.03,
+            "mode": 0.15,
+            "high": 0.35
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [],
+          "rationale": "No direct published measurement identified. Mode reflects material network/tool/collaboration friction, offset by local tooling and adaptation; high accommodates severe isolation."
+        },
+        {
+          "name": "migration_research_input_loss",
+          "units": "fraction of total U.S. annual research-equivalent input consumed by one-time migration",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.001,
+            "mode": 0.01,
+            "high": 0.05
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "sl5_2026"
+          ],
+          "rationale": "Separate transition burden; engineering build-out may overlap research. Not equal to facility construction duration."
+        },
+        {
+          "name": "remote_risk_cut",
+          "units": "fraction of baseline remote compromise hazard prevented at mature implementation",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.3,
+            "mode": 0.8,
+            "high": 0.97
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "rand_weights_2024",
+            "sl5_2026"
+          ],
+          "rationale": "Isolation sharply reduces many remote paths but does not guarantee complete prevention."
+        },
+        {
+          "name": "insider_risk_cut",
+          "units": "fraction of baseline insider compromise hazard prevented at mature implementation",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.05,
+            "mode": 0.3,
+            "high": 0.7
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "rand_weights_2024"
+          ],
+          "rationale": "Physical/exfiltration controls help, but network isolation is not personnel clearance."
+        },
+        {
+          "name": "other_risk_cut",
+          "units": "fraction of other compromise hazard prevented at mature implementation",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.05,
+            "mode": 0.3,
+            "high": 0.7
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "rand_weights_2024"
+          ],
+          "rationale": "Physical security helps some paths while hardware/supply-chain vulnerabilities remain."
+        }
+      ],
+      "formulas": [
+        "us_research_input_loss_fraction=newly_affected_research_share*within_environment_productivity_loss*shared.security_rollout_fraction_year+migration_research_input_loss",
+        "risk_cut[remote,insider,other]=[remote_risk_cut,insider_risk_cut,other_risk_cut]*shared.security_rollout_fraction_year"
+      ],
+      "narrative": "Treat as reduced effective research inputs, not uniform national progress delay. The secure environment remains compatible with internal AI tools. If policy instead forbids those tools, that is an additional policy channel.",
+      "mode_input_outputs": {
+        "us_research_input_loss_fraction": 0.08875,
+        "annual_useful_compromise_probability_reduction": 0.03375817992704648,
+        "conditional_capability_gap_recovered_fraction": 0.6,
+        "compromise_absorption_days": 21
+      },
+      "point_estimate_instruction": "Use root engine expected net lead effect, integrating joint draws. Mode-input outputs are an auditable illustration and need not equal the expectation or median. No desired final number of days is an input."
+    }
+  ],
+  "security_aggregation": {
+    "formula": "lambda0=-ln(1-p0)/365.25. For each route r, lambda_r=lambda0*share_r; multiply route hazard by surviving mature-control factors after rollout onset. Integrate most-recent useful theft density lambda(u)*exp(-integral_u^cutoff lambda(v)dv), times retained conditional value exp(-decay*(cutoff-u)); cutoff=endpoint-absorption. Compare expected retained uplift once, policy vs baseline. Conditional value=gap_fraction*(asset_gap_days/365.25)*g_total. First-event calculation is diagnostic only.",
+    "overlap_rules": [
+      "Light vetting is nested inside personnel security: when both selected, use the larger insider effect, not their sum or product.",
+      "For same technical remote/physical controls, weight security is nested inside secure-dev-env: use maximum route reduction for overlapping exposures; any demonstrably separate control may multiply residual hazard only.",
+      "Personnel security and technical controls may multiply residual insider hazard because detection and exfiltration are distinct stages, but sensitivity should use maximum to reflect correlation.",
+      "The baseline useful-compromise probability already conditions on voluntary safeguards and useful attacker access; do not multiply by an extra arbitrary probability of China using it.",
+      "Apply current relevant gap fraction once, not once per policy. Bound benefit by joint stolen-asset counterfactual."
+    ]
+  },
+  "diffusion_aggregation": {
+    "normalization": "If sampled knowledge-channel shares sum above 0.9, proportionally rescale them to 0.9; independent contribution is remaining share. Do not use as shares of all capability growth without an algorithmic contribution factor.",
+    "marginal_reliance_formulas": [
+      "phi_T=(g_algo/g_total)*frontier_teacher_channel_share*(1-teacher_substitution_recovery)",
+      "phi_A=(g_algo/g_total)*public_research_channel_share*(1-public_research_substitution_recovery)",
+      "anti_distillation_CN_log_effect=-g_total*phi_T*additional_blocked_teacher_access*rollout_fraction_year",
+      "release_withholding_CN_target_log_effect=phi_T*(-g_total*release_delay_days/365.25); apply root diffusion lag, and do not discount substitution again"
+    ],
+    "notes": [
+      "Model teacher controls conditional on teacher availability; combine delays/access probabilities rather than summing whole teacher benefits.",
+      "Keep public papers, API teachers, released weights and theft distinct. The global slider should scale appropriate channel shares, not add a second spillover credit.",
+      "Weights or offshore chips may substitute for API knowledge; report sensitivity rather than assume independent policy effects."
+    ]
+  },
+  "vector_path_api": {
+    "module": "china_model.py",
+    "function": "china_paths(n, seed, times, g_total, g_algo)",
+    "times_units": "years, 365.25 days/year",
+    "security_default": "Most-recent useful theft, capped at one retained relevant-gap transfer; first-event diagnostic is not used for pricing",
+    "compute_ratios": "Physical resource channels only (export/KYC), including same frontier-relevance adjustment as direct effect; suitable for research capital input",
+    "labor_ratios": "Effective research labor input, not aggregated research output; constant first-year-average proxy for longer horizons",
+    "authoritative": true
+  },
+  "time_conversion_boundary": "Root converts research inputs through country research-production elasticities, compute changes through capability production, and conditional theft gain through benchmark-specific gap and absorption. Do not multiply every percentage by 365 independently or apply two time conversions."
+}
