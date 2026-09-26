@@ -1,0 +1,14 @@
+model,organization,release_date,eci,eci_ci_low,eci_ci_high,source,snapshot_publication
+o1-mini,OpenAI,2024-09-12,136.64,132.97,138.02,https://epoch.ai/data-insights/eci-frontier-trend,2026-09-01
+o1,OpenAI,2024-12-17,142.67,140.92,143.72,https://epoch.ai/data-insights/eci-frontier-trend,2026-09-01
+Gemini 2.5 Pro (Mar 2025),Google DeepMind,2025-03-31,144.63,142.62,147.29,https://epoch.ai/data-insights/eci-frontier-trend,2026-09-01
+o3,OpenAI,2025-04-16,147.06,145.34,148.51,https://epoch.ai/data-insights/eci-frontier-trend,2026-09-01
+o3-pro,OpenAI,2025-06-10,147.51,145.97,151.3,https://epoch.ai/data-insights/eci-frontier-trend,2026-09-01
+GPT-5,OpenAI,2025-08-07,150.0,,,https://epoch.ai/data-insights/eci-frontier-trend,2026-09-01
+GPT-5 Pro,OpenAI,2025-10-07,150.29,148.88,152.47,https://epoch.ai/data-insights/eci-frontier-trend,2026-09-01
+Gemini 3 Pro,Google DeepMind,2025-11-18,153.06,151.28,155.05,https://epoch.ai/data-insights/eci-frontier-trend,2026-09-01
+GPT-5.2 Pro,OpenAI,2025-12-11,155.07,153.04,157.24,https://epoch.ai/data-insights/eci-frontier-trend,2026-09-01
+GPT-5.3 Codex,OpenAI,2026-02-05,156.22,153.7,159.65,https://epoch.ai/data-insights/eci-frontier-trend,2026-09-01
+GPT-5.4 Pro,OpenAI,2026-03-05,158.55,156.1,161.24,https://epoch.ai/data-insights/eci-frontier-trend,2026-09-01
+GPT-5.5 Pro,OpenAI,2026-04-23,161.71,158.95,164.88,https://epoch.ai/data-insights/eci-frontier-trend,2026-09-01
+Claude Fable 5,Anthropic,2026-06-09,162.48,159.33,165.76,https://epoch.ai/data-insights/eci-frontier-trend,2026-09-01

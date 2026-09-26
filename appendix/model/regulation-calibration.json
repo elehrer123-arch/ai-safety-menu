@@ -1,0 +1,3408 @@
+{
+  "schema_version": "1.1",
+  "as_of": "2026-09-25",
+  "horizon": "first12months after implementation at current2026 technology",
+  "scope": "14 regulatory policies and8 bundles; national lead closure computed by shared country estimator, not this file",
+  "counterfactual": "otherwise-same voluntary practices with the specific modeled obligation removed, including existing law bundles",
+  "interpretation": "Best estimate = prior predictive mean from explicitly labeled inputs. Triangular bounds are scenario supports, not confidence bounds. p10/p90 here summarize parameter priors; full event uncertainty not sampled. Observed policy constants represented as degenerate triangular distributions.",
+  "shared_inputs": [
+    {
+      "name": "releases_per_year",
+      "units": "frontier_models_per_lab_year",
+      "distribution": {
+        "type": "triangular",
+        "low": 3,
+        "mode": 6,
+        "high": 12
+      },
+      "evidence_status": "analyst_prior",
+      "source_ids": [
+        "rel_gpt55",
+        "rel_astra",
+        "rel_opus55"
+      ],
+      "rationale": "Working current-technology range for material frontier releases, excluding mere effort/price variants; not fitted to these selected eight cases."
+    },
+    {
+      "name": "rd_staff",
+      "units": "effective_capability_research_FTE_per_lab",
+      "distribution": {
+        "type": "triangular",
+        "low": 500,
+        "mode": 1000,
+        "high": 3000
+      },
+      "evidence_status": "analyst_prior",
+      "source_ids": [
+        "compliance26"
+      ],
+      "rationale": "Explicit denominator prior; no public primary source identifies effective frontier research staffing. Sensitivity must include this denominator."
+    },
+    {
+      "name": "workdays_per_FTE_year",
+      "units": "workdays_per_FTE_year",
+      "distribution": {
+        "type": "triangular",
+        "low": 250,
+        "mode": 250,
+        "high": 250
+      },
+      "evidence_status": "analyst_prior",
+      "source_ids": [
+        "site"
+      ],
+      "rationale": "Accounting convention; labor days remain distinct from calendar days."
+    },
+    {
+      "name": "baseline_access_runway",
+      "units": "calendar_days_before_planned_release",
+      "distribution": {
+        "type": "triangular",
+        "low": 9,
+        "mode": 21,
+        "high": 35
+      },
+      "evidence_status": "calibrated",
+      "source_ids": [
+        "met_o1",
+        "met_o3",
+        "met_gpt5",
+        "card_gpt55"
+      ],
+      "rationale": "Fallback triangle only. Preferred sampling_override uses equally weighted release-cluster runways12/21/28/21days plus transport jitter and a separately labeled short-unobserved-runway mixture. GPT5.5 test-start runway is a lower bound on first access. Astra3testdays is not a measured runway.",
+      "sampling_override": {
+        "type": "cluster_empirical_transport_mixture",
+        "historical_cluster_calendar_days": [
+          12,
+          21,
+          28,
+          21
+        ],
+        "cluster_labels": [
+          "o1_20240912_mean_of_two_models",
+          "o3_o4_20250416_rounded",
+          "gpt5_20250807",
+          "gpt55_20260423_test_start_lower_bound"
+        ],
+        "historical_component": "uniform_cluster_draw+runway_transport_shift",
+        "short_component": "short_unobserved_runway",
+        "short_mixing_probability": "short_unobserved_runway_probability",
+        "minimum_calendar_days": 0
+      }
+    },
+    {
+      "name": "runway_transport_shift",
+      "units": "calendar_days",
+      "distribution": {
+        "type": "triangular",
+        "low": -7,
+        "mode": 0,
+        "high": 7
+      },
+      "evidence_status": "analyst_prior",
+      "source_ids": [
+        "site"
+      ],
+      "rationale": "Unidentified current2026 transport adjustment around historical observed release-cluster runways; analyst prior."
+    },
+    {
+      "name": "short_unobserved_runway_probability",
+      "units": "probability",
+      "distribution": {
+        "type": "triangular",
+        "low": 0,
+        "mode": 0.15,
+        "high": 0.4
+      },
+      "evidence_status": "analyst_prior",
+      "source_ids": [
+        "site"
+      ],
+      "rationale": "Mixing probability for current short access runway absent observed endpoints; not fit from Astra testing duration."
+    },
+    {
+      "name": "short_unobserved_runway",
+      "units": "calendar_days",
+      "distribution": {
+        "type": "triangular",
+        "low": 3,
+        "mode": 7,
+        "high": 14
+      },
+      "evidence_status": "analyst_prior",
+      "source_ids": [
+        "site"
+      ],
+      "rationale": "Explicit short-runway sensitivity component; no case coded as observing these endpoints."
+    },
+    {
+      "name": "earlier_sharing_gain",
+      "units": "calendar_days",
+      "distribution": {
+        "type": "triangular",
+        "low": 0,
+        "mode": 7,
+        "high": 21
+      },
+      "evidence_status": "analyst_prior",
+      "source_ids": [
+        "met_gpt5",
+        "met_o3"
+      ],
+      "rationale": "Feasible early sharing induced by mandate; earlier checkpoints demonstrably possible, amount policy can advance access unknown."
+    },
+    {
+      "name": "standard_eval_service",
+      "units": "calendar_days",
+      "distribution": {
+        "type": "triangular",
+        "low": 7,
+        "mode": 10,
+        "high": 21
+      },
+      "evidence_status": "calibrated",
+      "source_ids": [
+        "aisi_tiers",
+        "metr_process26",
+        "met_opus55"
+      ],
+      "rationale": "AISI standard1-2weeks with upper allowance for2026 broader coverage; not a measured mandate effect."
+    },
+    {
+      "name": "external_queue",
+      "units": "calendar_days",
+      "distribution": {
+        "type": "triangular",
+        "low": 0,
+        "mode": 2,
+        "high": 14
+      },
+      "evidence_status": "analyst_prior",
+      "source_ids": [
+        "access26"
+      ],
+      "rationale": "Funded current-scale evaluator program queue prior; no queue measurements public. High-capacity stress should change upper bound to60."
+    },
+    {
+      "name": "late_checkpoint_reset_probability",
+      "units": "probability_per_model",
+      "distribution": {
+        "type": "triangular",
+        "low": 0,
+        "mode": 0.15,
+        "high": 0.4
+      },
+      "evidence_status": "analyst_prior",
+      "source_ids": [
+        "met_gpt5",
+        "card_gpt55"
+      ],
+      "rationale": "Final checkpoint may change after early access. GPT5 final checkpoint came15days after first. Frequency requiring legally fresh evaluation unknown."
+    },
+    {
+      "name": "late_checkpoint_reset_days",
+      "units": "calendar_days",
+      "distribution": {
+        "type": "triangular",
+        "low": 1,
+        "mode": 3,
+        "high": 10
+      },
+      "evidence_status": "analyst_prior",
+      "source_ids": [
+        "met_gpt5",
+        "card_gpt55"
+      ],
+      "rationale": "Incremental re-test tail after a material final-checkpoint change; analyst prior, not observed GPT5 delay."
+    },
+    {
+      "name": "critical_training_stages_per_year",
+      "units": "sequential_stages_per_critical_chain_year",
+      "distribution": {
+        "type": "triangular",
+        "low": 1,
+        "mode": 1.5,
+        "high": 2
+      },
+      "evidence_status": "analyst_prior",
+      "source_ids": [
+        "site"
+      ],
+      "rationale": "Separate schedule prior: only1-2 genuinely dependent qualifying stages on the frontier critical path, not every parallel experiment. Scenario support must be widened if continuous RL updates legally require fresh approvals."
+    },
+    {
+      "name": "qualifying_training_runs",
+      "units": "runs_per_lab_year",
+      "distribution": {
+        "type": "triangular",
+        "low": 1,
+        "mode": 2,
+        "high": 6
+      },
+      "evidence_status": "analyst_prior",
+      "source_ids": [
+        "site"
+      ],
+      "rationale": "Qualifying new above-threshold training runs; material release count does not identify this. Explicit prior."
+    }
+  ],
+  "policies": [
+    {
+      "policy_id": "incident-reporting",
+      "mechanism": "Setup and incident-contingent reporting; no pre-release statutory gate",
+      "inputs": [
+        {
+          "name": "setup_and_annual_staff_days",
+          "units": "person_workdays_per_lab_year",
+          "distribution": {
+            "type": "triangular",
+            "low": 2,
+            "mode": 5,
+            "high": 15
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Incremental setup/maintenance work beyond voluntary practice; explicit workload prior."
+        },
+        {
+          "name": "per_release_staff_days",
+          "units": "person_workdays_per_model",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0,
+            "high": 0
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Incremental preparation/support/signoff workload beyond voluntary practice; not total existing safety program."
+        },
+        {
+          "name": "research_counterfactual_fraction",
+          "units": "fraction_of_compliance_labor",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.05,
+            "mode": 0.15,
+            "high": 0.4
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "compliance26"
+          ],
+          "rationale": "Share of incremental task hours that actually displaces capability R&D after specialist staffing and substitution; not all safety/legal work competes1for1 with researchers."
+        },
+        {
+          "name": "incidents_per_year",
+          "units": "incidents_per_lab_year",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 1,
+            "high": 4
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Reportable incidents requiring incremental reports; frequency prior, not empirical incident rate."
+        },
+        {
+          "name": "report_staff_days",
+          "units": "person_workdays_per_incident",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.5,
+            "mode": 2,
+            "high": 7
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Fact-gathering/legal write-up beyond existing incident response."
+        }
+      ],
+      "shared_input_refs": [],
+      "formula_suggestion": {
+        "annual_displaced_rd_workdays": "(setup_and_annual_staff_days+incidents_per_year*report_staff_days)*research_counterfactual_fraction",
+        "annual_rd_input_loss_fraction": "annual_displaced_rd_workdays/(rd_staff*workdays_per_FTE_year)",
+        "release_lag_excluding_training_days": "0",
+        "internal_use_lag_excluding_training_days": "0",
+        "training_lag_per_affected_run_days": "0",
+        "annual_investment_input_loss_fraction": "0"
+      },
+      "narrative": "No invented filing delay charged to capability. Harm response itself belongs to the baseline unless induced by reporting. Direct report-labor estimate excludes uncertain beneficial learning.",
+      "source_ids": [
+        "sb53_incident",
+        "compliance26"
+      ],
+      "recurrence_note": "Release/internal lags are expected shift per affected model, not summed across releases. Labor is first12months total. Country dynamics and serial dependencies handled separately.",
+      "intermediate_estimates": {
+        "annual_displaced_rd_workdays": {
+          "mean": 2.52200103,
+          "p10": 1.0621764,
+          "p50": 2.2370998,
+          "p90": 4.35232277
+        },
+        "annual_rd_input_loss_fraction": {
+          "mean": 7.7e-06,
+          "p10": 2.64e-06,
+          "p50": 6.33e-06,
+          "p90": 1.448e-05
+        },
+        "release_lag_excluding_training_days": {
+          "mean": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0
+        },
+        "internal_use_lag_excluding_training_days": {
+          "mean": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0
+        },
+        "training_lag_per_affected_run_days": {
+          "mean": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0
+        },
+        "annual_investment_input_loss_fraction": {
+          "mean": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0
+        }
+      }
+    },
+    {
+      "policy_id": "safety-framework",
+      "mechanism": "Annual document and enforceability of previously discretionary commitment",
+      "inputs": [
+        {
+          "name": "setup_and_annual_staff_days",
+          "units": "person_workdays_per_lab_year",
+          "distribution": {
+            "type": "triangular",
+            "low": 10,
+            "mode": 30,
+            "high": 100
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Incremental setup/maintenance work beyond voluntary practice; explicit workload prior."
+        },
+        {
+          "name": "per_release_staff_days",
+          "units": "person_workdays_per_model",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0,
+            "high": 0
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Incremental preparation/support/signoff workload beyond voluntary practice; not total existing safety program."
+        },
+        {
+          "name": "research_counterfactual_fraction",
+          "units": "fraction_of_compliance_labor",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.05,
+            "mode": 0.15,
+            "high": 0.35
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "compliance26"
+          ],
+          "rationale": "Share of incremental task hours that actually displaces capability R&D after specialist staffing and substitution; not all safety/legal work competes1for1 with researchers."
+        },
+        {
+          "name": "binding_event_probability",
+          "units": "probability_per_model",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.05,
+            "high": 0.2
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Probability legal adherence adds a hold beyond the same voluntary framework."
+        },
+        {
+          "name": "binding_event_delay",
+          "units": "calendar_days",
+          "distribution": {
+            "type": "triangular",
+            "low": 1,
+            "mode": 7,
+            "high": 30
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Incremental unresolved compliance/safeguard tail conditional on binding event."
+        },
+        {
+          "name": "internal_gate_fraction",
+          "units": "fraction_of_binding_holds",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.15,
+            "high": 0.5
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Share of legally induced holds affecting internal use, not only release."
+        }
+      ],
+      "shared_input_refs": [],
+      "formula_suggestion": {
+        "annual_displaced_rd_workdays": "(setup_and_annual_staff_days+per_release_staff_days*releases_per_year)*research_counterfactual_fraction",
+        "annual_rd_input_loss_fraction": "annual_displaced_rd_workdays/(rd_staff*workdays_per_FTE_year)",
+        "release_lag_excluding_training_days": "binding_event_probability*binding_event_delay",
+        "internal_use_lag_excluding_training_days": "binding_event_probability*binding_event_delay*internal_gate_fraction",
+        "training_lag_per_affected_run_days": "0",
+        "annual_investment_input_loss_fraction": "0"
+      },
+      "narrative": "Do not charge evaluation/remediation event again when bought with those policies. Framework obligations may weaken endogenously; prior reflects small but nonzero enforceability effect.",
+      "source_ids": [
+        "sb53",
+        "card_astra",
+        "breuer25"
+      ],
+      "recurrence_note": "Release/internal lags are expected shift per affected model, not summed across releases. Labor is first12months total. Country dynamics and serial dependencies handled separately.",
+      "intermediate_estimates": {
+        "annual_displaced_rd_workdays": {
+          "mean": 8.55268527,
+          "p10": 3.41713079,
+          "p50": 7.53521774,
+          "p90": 15.20215947
+        },
+        "annual_rd_input_loss_fraction": {
+          "mean": 2.614e-05,
+          "p10": 8.54e-06,
+          "p50": 2.121e-05,
+          "p90": 5.012e-05
+        },
+        "release_lag_excluding_training_days": {
+          "mean": 1.05299037,
+          "p10": 0.25344027,
+          "p50": 0.84114812,
+          "p90": 2.15896029
+        },
+        "internal_use_lag_excluding_training_days": {
+          "mean": 0.22790767,
+          "p10": 0.03699767,
+          "p50": 0.15926115,
+          "p90": 0.5115645
+        },
+        "training_lag_per_affected_run_days": {
+          "mean": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0
+        },
+        "annual_investment_input_loss_fraction": {
+          "mean": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0
+        }
+      }
+    },
+    {
+      "policy_id": "transparency-report",
+      "mechanism": "Incremental document completion and occasional launch-critical signoff",
+      "inputs": [
+        {
+          "name": "setup_and_annual_staff_days",
+          "units": "person_workdays_per_lab_year",
+          "distribution": {
+            "type": "triangular",
+            "low": 4,
+            "mode": 10,
+            "high": 30
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Incremental setup/maintenance work beyond voluntary practice; explicit workload prior."
+        },
+        {
+          "name": "per_release_staff_days",
+          "units": "person_workdays_per_model",
+          "distribution": {
+            "type": "triangular",
+            "low": 2,
+            "mode": 6,
+            "high": 20
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Incremental preparation/support/signoff workload beyond voluntary practice; not total existing safety program."
+        },
+        {
+          "name": "research_counterfactual_fraction",
+          "units": "fraction_of_compliance_labor",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.05,
+            "mode": 0.15,
+            "high": 0.4
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "compliance26"
+          ],
+          "rationale": "Share of incremental task hours that actually displaces capability R&D after specialist staffing and substitution; not all safety/legal work competes1for1 with researchers."
+        },
+        {
+          "name": "late_report_probability",
+          "units": "probability_per_model",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.1,
+            "high": 0.4
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Report not ready at otherwise planned external deployment despite existing system-card process."
+        },
+        {
+          "name": "report_tail_days",
+          "units": "calendar_days",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.5,
+            "mode": 2,
+            "high": 7
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Residual document/legal signoff tail after final evaluation, not total writing time."
+        }
+      ],
+      "shared_input_refs": [],
+      "formula_suggestion": {
+        "annual_displaced_rd_workdays": "(setup_and_annual_staff_days+per_release_staff_days*releases_per_year)*research_counterfactual_fraction",
+        "annual_rd_input_loss_fraction": "annual_displaced_rd_workdays/(rd_staff*workdays_per_FTE_year)",
+        "release_lag_excluding_training_days": "late_report_probability*report_tail_days",
+        "internal_use_lag_excluding_training_days": "0",
+        "training_lag_per_affected_run_days": "0",
+        "annual_investment_input_loss_fraction": "0"
+      },
+      "narrative": "Quarterly internal summaries folded into annual staff work. First trusted external access can trigger report; a launch-day document date is not measured causal delay.",
+      "source_ids": [
+        "sb53",
+        "met_gpt5",
+        "govai26"
+      ],
+      "recurrence_note": "Release/internal lags are expected shift per affected model, not summed across releases. Labor is first12months total. Country dynamics and serial dependencies handled separately.",
+      "intermediate_estimates": {
+        "annual_displaced_rd_workdays": {
+          "mean": 16.01898398,
+          "p10": 6.43567435,
+          "p50": 13.91593032,
+          "p90": 28.40538818
+        },
+        "annual_rd_input_loss_fraction": {
+          "mean": 4.889e-05,
+          "p10": 1.602e-05,
+          "p50": 3.934e-05,
+          "p90": 9.315e-05
+        },
+        "release_lag_excluding_training_days": {
+          "mean": 0.52910784,
+          "p10": 0.14399546,
+          "p50": 0.43658354,
+          "p90": 1.05162935
+        },
+        "internal_use_lag_excluding_training_days": {
+          "mean": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0
+        },
+        "training_lag_per_affected_run_days": {
+          "mean": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0
+        },
+        "annual_investment_input_loss_fraction": {
+          "mean": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0
+        }
+      }
+    },
+    {
+      "policy_id": "whistleblower",
+      "mechanism": "Reporting-channel operation and occasional incremental internal investigation",
+      "inputs": [
+        {
+          "name": "setup_and_annual_staff_days",
+          "units": "person_workdays_per_lab_year",
+          "distribution": {
+            "type": "triangular",
+            "low": 3,
+            "mode": 10,
+            "high": 40
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Incremental setup/maintenance work beyond voluntary practice; explicit workload prior."
+        },
+        {
+          "name": "per_release_staff_days",
+          "units": "person_workdays_per_model",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0,
+            "high": 0
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Incremental preparation/support/signoff workload beyond voluntary practice; not total existing safety program."
+        },
+        {
+          "name": "research_counterfactual_fraction",
+          "units": "fraction_of_compliance_labor",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.05,
+            "high": 0.2
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "compliance26"
+          ],
+          "rationale": "Share of incremental task hours that actually displaces capability R&D after specialist staffing and substitution; not all safety/legal work competes1for1 with researchers."
+        },
+        {
+          "name": "extra_investigation_probability",
+          "units": "probability_per_lab_year",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.03,
+            "high": 0.15
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Incremental substantive concern producing a temporary hold due to legal protection, beyond voluntary channels."
+        },
+        {
+          "name": "investigation_hold_days",
+          "units": "calendar_days",
+          "distribution": {
+            "type": "triangular",
+            "low": 1,
+            "mode": 5,
+            "high": 30
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Conditional annual hold; excludes ordinary responses that would happen anyway."
+        },
+        {
+          "name": "affected_research_fraction",
+          "units": "fraction_of_lab_frontier_activity",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.1,
+            "high": 0.4
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Share of frontier activity stopped during incremental investigation."
+        }
+      ],
+      "shared_input_refs": [],
+      "formula_suggestion": {
+        "annual_displaced_rd_workdays": "(setup_and_annual_staff_days+per_release_staff_days*releases_per_year)*research_counterfactual_fraction",
+        "annual_rd_input_loss_fraction": "annual_displaced_rd_workdays/(rd_staff*workdays_per_FTE_year)",
+        "release_lag_excluding_training_days": "0",
+        "internal_use_lag_excluding_training_days": "extra_investigation_probability*investigation_hold_days*affected_research_fraction",
+        "training_lag_per_affected_run_days": "0",
+        "annual_investment_input_loss_fraction": "0"
+      },
+      "narrative": "Internal delay is an annual localized hold expressed as equivalent complete-lab days; tag annual_event rather than multiply per release. Possible information/retention benefits set to zero in cost calibration, not established absent.",
+      "source_ids": [
+        "site",
+        "gans25"
+      ],
+      "recurrence_note": "Release/internal lags are expected shift per affected model, not summed across releases. Labor is first12months total. Country dynamics and serial dependencies handled separately.",
+      "annual_event_internal_delay": true,
+      "intermediate_estimates": {
+        "annual_displaced_rd_workdays": {
+          "mean": 1.4707531,
+          "p10": 0.39590933,
+          "p50": 1.19785394,
+          "p90": 2.94608003
+        },
+        "annual_rd_input_loss_fraction": {
+          "mean": 4.49e-06,
+          "p10": 1.02e-06,
+          "p50": 3.36e-06,
+          "p90": 9.39e-06
+        },
+        "release_lag_excluding_training_days": {
+          "mean": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0
+        },
+        "internal_use_lag_excluding_training_days": {
+          "mean": 0.12021807,
+          "p10": 0.01685535,
+          "p50": 0.0790831,
+          "p90": 0.27778149
+        },
+        "training_lag_per_affected_run_days": {
+          "mean": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0
+        },
+        "annual_investment_input_loss_fraction": {
+          "mean": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0
+        }
+      }
+    },
+    {
+      "policy_id": "shutdown",
+      "mechanism": "Documentation, testing and occasional incremental control-plane engineering",
+      "inputs": [
+        {
+          "name": "setup_and_annual_staff_days",
+          "units": "person_workdays_per_lab_year",
+          "distribution": {
+            "type": "triangular",
+            "low": 5,
+            "mode": 20,
+            "high": 100
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Incremental setup/maintenance work beyond voluntary practice; explicit workload prior."
+        },
+        {
+          "name": "per_release_staff_days",
+          "units": "person_workdays_per_model",
+          "distribution": {
+            "type": "triangular",
+            "low": 1,
+            "mode": 3,
+            "high": 10
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Incremental preparation/support/signoff workload beyond voluntary practice; not total existing safety program."
+        },
+        {
+          "name": "research_counterfactual_fraction",
+          "units": "fraction_of_compliance_labor",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.1,
+            "mode": 0.3,
+            "high": 0.7
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "compliance26"
+          ],
+          "rationale": "Share of incremental task hours that actually displaces capability R&D after specialist staffing and substitution; not all safety/legal work competes1for1 with researchers."
+        },
+        {
+          "name": "architecture_change_probability",
+          "units": "probability_per_lab_first_year",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.05,
+            "high": 0.3
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Frozen scope is developer-controlled models; expansive uncontrollable derivatives excluded."
+        },
+        {
+          "name": "architecture_change_days",
+          "units": "calendar_days",
+          "distribution": {
+            "type": "triangular",
+            "low": 2,
+            "mode": 10,
+            "high": 45
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Engineering critical-path tail if current shutdown capability inadequate."
+        },
+        {
+          "name": "affected_research_fraction",
+          "units": "fraction_of_frontier_activity",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.1,
+            "high": 0.4
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Portion of ongoing frontier activity blocked by required engineering."
+        }
+      ],
+      "shared_input_refs": [],
+      "formula_suggestion": {
+        "annual_displaced_rd_workdays": "(setup_and_annual_staff_days+per_release_staff_days*releases_per_year)*research_counterfactual_fraction",
+        "annual_rd_input_loss_fraction": "annual_displaced_rd_workdays/(rd_staff*workdays_per_FTE_year)",
+        "release_lag_excluding_training_days": "architecture_change_probability*architecture_change_days",
+        "internal_use_lag_excluding_training_days": "architecture_change_probability*architecture_change_days*affected_research_fraction",
+        "training_lag_per_affected_run_days": "0",
+        "annual_investment_input_loss_fraction": "0"
+      },
+      "narrative": "One-time engineering tail, not annual launch-rate multiplication. Avoided outage/theft not credited here.",
+      "source_ids": [
+        "site",
+        "card_astra"
+      ],
+      "recurrence_note": "Release/internal lags are expected shift per affected model, not summed across releases. Labor is first12months total. Country dynamics and serial dependencies handled separately.",
+      "first_year_setup_internal_delay": true,
+      "one_time_release_gate": true,
+      "intermediate_estimates": {
+        "annual_displaced_rd_workdays": {
+          "mean": 27.21841577,
+          "p10": 11.88220378,
+          "p50": 24.58619638,
+          "p90": 46.17022261
+        },
+        "annual_rd_input_loss_fraction": {
+          "mean": 8.307e-05,
+          "p10": 2.939e-05,
+          "p50": 6.879e-05,
+          "p90": 0.00015454
+        },
+        "release_lag_excluding_training_days": {
+          "mean": 2.21586775,
+          "p10": 0.49072594,
+          "p50": 1.71430399,
+          "p90": 4.67984032
+        },
+        "internal_use_lag_excluding_training_days": {
+          "mean": 0.36976493,
+          "p10": 0.05396933,
+          "p50": 0.24533364,
+          "p90": 0.85032368
+        },
+        "training_lag_per_affected_run_days": {
+          "mean": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0
+        },
+        "annual_investment_input_loss_fraction": {
+          "mean": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0
+        }
+      }
+    },
+    {
+      "policy_id": "third-party-audit",
+      "mechanism": "Independent annual audit plus residual findings",
+      "inputs": [
+        {
+          "name": "setup_and_annual_staff_days",
+          "units": "person_workdays_per_lab_year",
+          "distribution": {
+            "type": "triangular",
+            "low": 25,
+            "mode": 60,
+            "high": 200
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Incremental setup/maintenance work beyond voluntary practice; explicit workload prior."
+        },
+        {
+          "name": "per_release_staff_days",
+          "units": "person_workdays_per_model",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0,
+            "high": 0
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Incremental preparation/support/signoff workload beyond voluntary practice; not total existing safety program."
+        },
+        {
+          "name": "research_counterfactual_fraction",
+          "units": "fraction_of_compliance_labor",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.05,
+            "mode": 0.15,
+            "high": 0.4
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "compliance26"
+          ],
+          "rationale": "Share of incremental task hours that actually displaces capability R&D after specialist staffing and substitution; not all safety/legal work competes1for1 with researchers."
+        },
+        {
+          "name": "blocking_finding_probability",
+          "units": "probability_per_annual_audit",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.1,
+            "high": 0.35
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Finding creates incremental hold relative to voluntary audit baseline."
+        },
+        {
+          "name": "finding_remediation_days",
+          "units": "calendar_days",
+          "distribution": {
+            "type": "triangular",
+            "low": 2,
+            "mode": 10,
+            "high": 45
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Incremental unresolved remediation after audit finding."
+        },
+        {
+          "name": "internal_gate_fraction",
+          "units": "fraction_of_holds",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.15,
+            "high": 0.5
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Fraction of blocking remediation applicable to internal use."
+        }
+      ],
+      "shared_input_refs": [],
+      "formula_suggestion": {
+        "annual_displaced_rd_workdays": "(setup_and_annual_staff_days+per_release_staff_days*releases_per_year)*research_counterfactual_fraction",
+        "annual_rd_input_loss_fraction": "annual_displaced_rd_workdays/(rd_staff*workdays_per_FTE_year)",
+        "release_lag_excluding_training_days": "blocking_finding_probability*finding_remediation_days",
+        "internal_use_lag_excluding_training_days": "blocking_finding_probability*finding_remediation_days*internal_gate_fraction",
+        "training_lag_per_affected_run_days": "0",
+        "annual_investment_input_loss_fraction": "0"
+      },
+      "narrative": "Audit finding uses same remediation node as evaluation findings; do not count duplicate remediation. Annual event affects releases nearby, not every release.",
+      "source_ids": [
+        "site",
+        "compliance26"
+      ],
+      "recurrence_note": "Release/internal lags are expected shift per affected model, not summed across releases. Labor is first12months total. Country dynamics and serial dependencies handled separately.",
+      "annual_event_internal_delay": true,
+      "annual_event_release_delay": true,
+      "intermediate_estimates": {
+        "annual_displaced_rd_workdays": {
+          "mean": 18.99214247,
+          "p10": 7.60199443,
+          "p50": 16.66178992,
+          "p90": 33.97036755
+        },
+        "annual_rd_input_loss_fraction": {
+          "mean": 5.799e-05,
+          "p10": 1.89e-05,
+          "p50": 4.689e-05,
+          "p90": 0.00011137
+        },
+        "release_lag_excluding_training_days": {
+          "mean": 2.84914153,
+          "p10": 0.72719711,
+          "p50": 2.30534308,
+          "p90": 5.78011157
+        },
+        "internal_use_lag_excluding_training_days": {
+          "mean": 0.61583504,
+          "p10": 0.10370274,
+          "p50": 0.43753226,
+          "p90": 1.36553651
+        },
+        "training_lag_per_affected_run_days": {
+          "mean": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0
+        },
+        "annual_investment_input_loss_fraction": {
+          "mean": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0
+        }
+      }
+    },
+    {
+      "policy_id": "internal-evals",
+      "mechanism": "Coverage of mandatory suite and residual final-checkpoint re-test",
+      "inputs": [
+        {
+          "name": "setup_and_annual_staff_days",
+          "units": "person_workdays_per_lab_year",
+          "distribution": {
+            "type": "triangular",
+            "low": 5,
+            "mode": 20,
+            "high": 60
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Incremental setup/maintenance work beyond voluntary practice; explicit workload prior."
+        },
+        {
+          "name": "per_release_staff_days",
+          "units": "person_workdays_per_model",
+          "distribution": {
+            "type": "triangular",
+            "low": 5,
+            "mode": 20,
+            "high": 70
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Incremental preparation/support/signoff workload beyond voluntary practice; not total existing safety program."
+        },
+        {
+          "name": "research_counterfactual_fraction",
+          "units": "fraction_of_compliance_labor",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.1,
+            "mode": 0.35,
+            "high": 0.7
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "compliance26"
+          ],
+          "rationale": "Share of incremental task hours that actually displaces capability R&D after specialist staffing and substitution; not all safety/legal work competes1for1 with researchers."
+        },
+        {
+          "name": "incremental_test_probability",
+          "units": "probability_per_model",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.05,
+            "mode": 0.2,
+            "high": 0.6
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Mandatory suite causes extra final testing relative to actual voluntary suite."
+        },
+        {
+          "name": "incremental_service_days",
+          "units": "calendar_days",
+          "distribution": {
+            "type": "triangular",
+            "low": 2,
+            "mode": 5,
+            "high": 14
+          },
+          "evidence_status": "calibrated",
+          "source_ids": [
+            "aisi_tiers",
+            "card_gpt55"
+          ],
+          "rationale": "Additional final-checkpoint test/writeup workload; informed by AISI but incremental share is prior."
+        },
+        {
+          "name": "remaining_non_eval_buffer",
+          "units": "calendar_days",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 2,
+            "high": 7
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Time until other launch readiness after additional tests start."
+        },
+        {
+          "name": "internal_gate_fraction",
+          "units": "fraction_of_holds",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.03,
+            "high": 0.15
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Optional holding of internal use absent statutory internal gate."
+        }
+      ],
+      "shared_input_refs": [],
+      "formula_suggestion": {
+        "annual_displaced_rd_workdays": "(setup_and_annual_staff_days+per_release_staff_days*releases_per_year)*research_counterfactual_fraction",
+        "annual_rd_input_loss_fraction": "annual_displaced_rd_workdays/(rd_staff*workdays_per_FTE_year)",
+        "release_lag_excluding_training_days": "incremental_test_probability*maximum(0,incremental_service_days-remaining_non_eval_buffer)",
+        "internal_use_lag_excluding_training_days": "incremental_test_probability*maximum(0,incremental_service_days-remaining_non_eval_buffer)*internal_gate_fraction",
+        "training_lag_per_affected_run_days": "0",
+        "annual_investment_input_loss_fraction": "0"
+      },
+      "narrative": "Existing evaluation effort stays in baseline; extra mandatory coverage is a prior. Evaluation-induced remediation modeled in triggered-redteam, not here.",
+      "source_ids": [
+        "aisi_tiers",
+        "card_gpt55",
+        "met_gpt5"
+      ],
+      "recurrence_note": "Release/internal lags are expected shift per affected model, not summed across releases. Labor is first12months total. Country dynamics and serial dependencies handled separately.",
+      "intermediate_estimates": {
+        "annual_displaced_rd_workdays": {
+          "mean": 95.75486747,
+          "p10": 37.0909649,
+          "p50": 82.93682139,
+          "p90": 171.71149254
+        },
+        "annual_rd_input_loss_fraction": {
+          "mean": 0.00029208,
+          "p10": 9.261e-05,
+          "p50": 0.00023388,
+          "p90": 0.00056419
+        },
+        "release_lag_excluding_training_days": {
+          "mean": 1.15661987,
+          "p10": 0.07279727,
+          "p50": 0.93441766,
+          "p90": 2.49128784
+        },
+        "internal_use_lag_excluding_training_days": {
+          "mean": 0.06954444,
+          "p10": 0.00256221,
+          "p50": 0.04516629,
+          "p90": 0.16642642
+        },
+        "training_lag_per_affected_run_days": {
+          "mean": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0
+        },
+        "annual_investment_input_loss_fraction": {
+          "mean": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0
+        }
+      }
+    },
+    {
+      "policy_id": "third-party-eval",
+      "mechanism": "Evaluation access and report-completion requirement with queue",
+      "inputs": [
+        {
+          "name": "setup_and_annual_staff_days",
+          "units": "person_workdays_per_lab_year",
+          "distribution": {
+            "type": "triangular",
+            "low": 5,
+            "mode": 15,
+            "high": 50
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Incremental setup/maintenance work beyond voluntary practice; explicit workload prior."
+        },
+        {
+          "name": "per_release_staff_days",
+          "units": "person_workdays_per_model",
+          "distribution": {
+            "type": "triangular",
+            "low": 3,
+            "mode": 10,
+            "high": 40
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Incremental preparation/support/signoff workload beyond voluntary practice; not total existing safety program."
+        },
+        {
+          "name": "research_counterfactual_fraction",
+          "units": "fraction_of_compliance_labor",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.1,
+            "mode": 0.25,
+            "high": 0.6
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "compliance26"
+          ],
+          "rationale": "Share of incremental task hours that actually displaces capability R&D after specialist staffing and substitution; not all safety/legal work competes1for1 with researchers."
+        },
+        {
+          "name": "new_eval_probability",
+          "units": "probability_per_model",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.15,
+            "high": 0.4
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Fraction that would lack qualifying external assessment in same voluntary practice."
+        },
+        {
+          "name": "late_report_probability",
+          "units": "probability_per_model",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.25,
+            "high": 0.6
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Already-evaluated release that would proceed before formal report finalization."
+        },
+        {
+          "name": "report_tail_days",
+          "units": "calendar_days",
+          "distribution": {
+            "type": "triangular",
+            "low": 1,
+            "mode": 3,
+            "high": 10
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Added formal report turnaround where release would previously proceed."
+        },
+        {
+          "name": "internal_gate_fraction",
+          "units": "fraction_of_release_holds",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.05,
+            "high": 0.2
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Voluntary internal hold induced by external report regime."
+        }
+      ],
+      "shared_input_refs": [
+        "standard_eval_service",
+        "external_queue",
+        "baseline_access_runway",
+        "earlier_sharing_gain"
+      ],
+      "formula_suggestion": {
+        "annual_displaced_rd_workdays": "(setup_and_annual_staff_days+per_release_staff_days*releases_per_year)*research_counterfactual_fraction",
+        "annual_rd_input_loss_fraction": "annual_displaced_rd_workdays/(rd_staff*workdays_per_FTE_year)",
+        "release_lag_excluding_training_days": "new_eval_probability*maximum(0,standard_eval_service+external_queue-baseline_access_runway-earlier_sharing_gain)+(1-new_eval_probability)*late_report_probability*report_tail_days",
+        "internal_use_lag_excluding_training_days": "(new_eval_probability*maximum(0,standard_eval_service+external_queue-baseline_access_runway-earlier_sharing_gain)+(1-new_eval_probability)*late_report_probability*report_tail_days)*internal_gate_fraction",
+        "training_lag_per_affected_run_days": "0",
+        "annual_investment_input_loss_fraction": "0"
+      },
+      "narrative": "A qualifying existing evaluator is reused. Reports and mandatory minimum access windows are shared nodes, not two independent waits. Need dedicated queues only if evaluator not substitutable.",
+      "source_ids": [
+        "aisi_tiers",
+        "met_gpt5",
+        "met_o3",
+        "access26"
+      ],
+      "recurrence_note": "Release/internal lags are expected shift per affected model, not summed across releases. Labor is first12months total. Country dynamics and serial dependencies handled separately.",
+      "intermediate_estimates": {
+        "annual_displaced_rd_workdays": {
+          "mean": 46.44627151,
+          "p10": 18.57870354,
+          "p50": 39.98116117,
+          "p90": 83.02798988
+        },
+        "annual_rd_input_loss_fraction": {
+          "mean": 0.00014169,
+          "p10": 4.629e-05,
+          "p50": 0.00011356,
+          "p90": 0.00027183
+        },
+        "release_lag_excluding_training_days": {
+          "mean": 1.2387939,
+          "p10": 0.37376492,
+          "p50": 1.04441932,
+          "p90": 2.36492739
+        },
+        "internal_use_lag_excluding_training_days": {
+          "mean": 0.10315677,
+          "p10": 0.01935796,
+          "p50": 0.0755334,
+          "p90": 0.22199934
+        },
+        "training_lag_per_affected_run_days": {
+          "mean": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0
+        },
+        "annual_investment_input_loss_fraction": {
+          "mean": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0
+        }
+      }
+    },
+    {
+      "policy_id": "evaluator-window",
+      "mechanism": "Twenty-business-day qualifying access floor",
+      "inputs": [
+        {
+          "name": "setup_and_annual_staff_days",
+          "units": "person_workdays_per_lab_year",
+          "distribution": {
+            "type": "triangular",
+            "low": 3,
+            "mode": 10,
+            "high": 30
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Incremental setup/maintenance work beyond voluntary practice; explicit workload prior."
+        },
+        {
+          "name": "per_release_staff_days",
+          "units": "person_workdays_per_model",
+          "distribution": {
+            "type": "triangular",
+            "low": 3,
+            "mode": 10,
+            "high": 40
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Incremental preparation/support/signoff workload beyond voluntary practice; not total existing safety program."
+        },
+        {
+          "name": "research_counterfactual_fraction",
+          "units": "fraction_of_compliance_labor",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.1,
+            "mode": 0.25,
+            "high": 0.6
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "compliance26"
+          ],
+          "rationale": "Share of incremental task hours that actually displaces capability R&D after specialist staffing and substitution; not all safety/legal work competes1for1 with researchers."
+        },
+        {
+          "name": "floor_calendar_days",
+          "units": "calendar_days",
+          "distribution": {
+            "type": "triangular",
+            "low": 28,
+            "mode": 28,
+            "high": 28
+          },
+          "evidence_status": "calibrated",
+          "source_ids": [
+            "eu_code"
+          ],
+          "rationale": "20business days modeled as4weeks ignoring holidays; explicit convention, not20calendar days."
+        },
+        {
+          "name": "internal_gate_fraction",
+          "units": "fraction_of_release_holds",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.03,
+            "high": 0.15
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Optional internal hold beyond literal external-release-only gate."
+        }
+      ],
+      "shared_input_refs": [
+        "baseline_access_runway",
+        "earlier_sharing_gain",
+        "late_checkpoint_reset_probability",
+        "late_checkpoint_reset_days"
+      ],
+      "formula_suggestion": {
+        "annual_displaced_rd_workdays": "(setup_and_annual_staff_days+per_release_staff_days*releases_per_year)*research_counterfactual_fraction",
+        "annual_rd_input_loss_fraction": "annual_displaced_rd_workdays/(rd_staff*workdays_per_FTE_year)",
+        "release_lag_excluding_training_days": "maximum(0,floor_calendar_days-baseline_access_runway-earlier_sharing_gain)+late_checkpoint_reset_probability*late_checkpoint_reset_days",
+        "internal_use_lag_excluding_training_days": "(maximum(0,floor_calendar_days-baseline_access_runway-earlier_sharing_gain)+late_checkpoint_reset_probability*late_checkpoint_reset_days)*internal_gate_fraction",
+        "training_lag_per_affected_run_days": "0",
+        "annual_investment_input_loss_fraction": "0"
+      },
+      "narrative": "Eight cases demonstrate heterogeneous access clocks; baseline runway distribution is a coarse prior-informed calibration. Three-day testing window is not asserted to be three-day runway.",
+      "source_ids": [
+        "eu_code",
+        "met_gpt5",
+        "met_opus55",
+        "card_astra"
+      ],
+      "recurrence_note": "Release/internal lags are expected shift per affected model, not summed across releases. Labor is first12months total. Country dynamics and serial dependencies handled separately.",
+      "intermediate_estimates": {
+        "annual_displaced_rd_workdays": {
+          "mean": 43.62918649,
+          "p10": 16.60286711,
+          "p50": 37.17424535,
+          "p90": 79.48037811
+        },
+        "annual_rd_input_loss_fraction": {
+          "mean": 0.00013306,
+          "p10": 4.145e-05,
+          "p50": 0.00010528,
+          "p90": 0.00025855
+        },
+        "release_lag_excluding_training_days": {
+          "mean": 4.71988706,
+          "p10": 0.39614526,
+          "p50": 1.85398114,
+          "p90": 13.29797443
+        },
+        "internal_use_lag_excluding_training_days": {
+          "mean": 0.28318277,
+          "p10": 0.01572446,
+          "p50": 0.10346756,
+          "p90": 0.81731312
+        },
+        "training_lag_per_affected_run_days": {
+          "mean": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0
+        },
+        "annual_investment_input_loss_fraction": {
+          "mean": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0
+        }
+      }
+    },
+    {
+      "policy_id": "triggered-redteam",
+      "mechanism": "Danger threshold and incremental binding remediation",
+      "inputs": [
+        {
+          "name": "setup_and_annual_staff_days",
+          "units": "person_workdays_per_lab_year",
+          "distribution": {
+            "type": "triangular",
+            "low": 5,
+            "mode": 20,
+            "high": 60
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Incremental setup/maintenance work beyond voluntary practice; explicit workload prior."
+        },
+        {
+          "name": "per_release_staff_days",
+          "units": "person_workdays_per_model",
+          "distribution": {
+            "type": "triangular",
+            "low": 5,
+            "mode": 20,
+            "high": 80
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Incremental preparation/support/signoff workload beyond voluntary practice; not total existing safety program."
+        },
+        {
+          "name": "research_counterfactual_fraction",
+          "units": "fraction_of_compliance_labor",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.15,
+            "mode": 0.4,
+            "high": 0.8
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "compliance26"
+          ],
+          "rationale": "Share of incremental task hours that actually displaces capability R&D after specialist staffing and substitution; not all safety/legal work competes1for1 with researchers."
+        },
+        {
+          "name": "danger_trigger_probability",
+          "units": "probability_per_frontier_model",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.5,
+            "mode": 0.8,
+            "high": 1
+          },
+          "evidence_status": "calibrated",
+          "source_ids": [
+            "card_gpt55",
+            "card_astra"
+          ],
+          "rationale": "2026 frontier systems often have High/ASL3 or Critical capability classifications; frequency chosen, not estimated from selective cases."
+        },
+        {
+          "name": "incrementally_binding_fraction",
+          "units": "fraction_of_triggered_models",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.05,
+            "mode": 0.2,
+            "high": 0.5
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Fraction with additional hold relative to already voluntary safeguards, accounting for actual enforcement."
+        },
+        {
+          "name": "remediation_service_days",
+          "units": "calendar_days",
+          "distribution": {
+            "type": "triangular",
+            "low": 7,
+            "mode": 21,
+            "high": 60
+          },
+          "evidence_status": "calibrated",
+          "source_ids": [
+            "aisi_tiers"
+          ],
+          "rationale": "Unprepared elevated testing/mitigation; AISI anchorsweeks but implementation tail is prior."
+        },
+        {
+          "name": "prepared_fraction",
+          "units": "fraction_of_remediation_completed_in_parallel",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.25,
+            "mode": 0.65,
+            "high": 0.9
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Proportion of remediation already prepared before it becomes critical; not a measured fact."
+        },
+        {
+          "name": "internal_gate_fraction",
+          "units": "fraction_of_binding_holds",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.1,
+            "mode": 0.35,
+            "high": 0.8
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Some safeguards needed before internal inference as Astra demonstrates; extent remains prior."
+        }
+      ],
+      "shared_input_refs": [],
+      "formula_suggestion": {
+        "annual_displaced_rd_workdays": "(setup_and_annual_staff_days+per_release_staff_days*releases_per_year)*research_counterfactual_fraction",
+        "annual_rd_input_loss_fraction": "annual_displaced_rd_workdays/(rd_staff*workdays_per_FTE_year)",
+        "release_lag_excluding_training_days": "danger_trigger_probability*incrementally_binding_fraction*remediation_service_days*(1-prepared_fraction)",
+        "internal_use_lag_excluding_training_days": "danger_trigger_probability*incrementally_binding_fraction*remediation_service_days*(1-prepared_fraction)*internal_gate_fraction",
+        "training_lag_per_affected_run_days": "0",
+        "annual_investment_input_loss_fraction": "0"
+      },
+      "narrative": "Threshold incidence is not legal increment. Preserve correlated tails when threshold crossing and remedial difficulty increase together; base numerical sampling treats them independent for inspectability.",
+      "source_ids": [
+        "aisi_tiers",
+        "card_gpt55",
+        "card_astra"
+      ],
+      "recurrence_note": "Release/internal lags are expected shift per affected model, not summed across releases. Labor is first12months total. Country dynamics and serial dependencies handled separately.",
+      "intermediate_estimates": {
+        "annual_displaced_rd_workdays": {
+          "mean": 123.06335255,
+          "p10": 47.60527173,
+          "p50": 105.89461688,
+          "p90": 221.96559919
+        },
+        "annual_rd_input_loss_fraction": {
+          "mean": 0.00037536,
+          "p10": 0.00011932,
+          "p50": 0.00029953,
+          "p90": 0.00072361
+        },
+        "release_lag_excluding_training_days": {
+          "mean": 2.25655229,
+          "p10": 0.71618597,
+          "p50": 1.86630453,
+          "p90": 4.31559093
+        },
+        "internal_use_lag_excluding_training_days": {
+          "mean": 0.93834865,
+          "p10": 0.24736287,
+          "p50": 0.72497922,
+          "p90": 1.89385254
+        },
+        "training_lag_per_affected_run_days": {
+          "mean": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0
+        },
+        "annual_investment_input_loss_fraction": {
+          "mean": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0
+        }
+      }
+    },
+    {
+      "policy_id": "safety-case-deploy",
+      "mechanism": "Independent affirmative signoff; service, queue, re-review and non-approval",
+      "inputs": [
+        {
+          "name": "setup_and_annual_staff_days",
+          "units": "person_workdays_per_lab_year",
+          "distribution": {
+            "type": "triangular",
+            "low": 20,
+            "mode": 60,
+            "high": 200
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Incremental setup/maintenance work beyond voluntary practice; explicit workload prior."
+        },
+        {
+          "name": "per_release_staff_days",
+          "units": "person_workdays_per_model",
+          "distribution": {
+            "type": "triangular",
+            "low": 15,
+            "mode": 40,
+            "high": 120
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Incremental preparation/support/signoff workload beyond voluntary practice; not total existing safety program."
+        },
+        {
+          "name": "research_counterfactual_fraction",
+          "units": "fraction_of_compliance_labor",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.15,
+            "mode": 0.4,
+            "high": 0.8
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "compliance26"
+          ],
+          "rationale": "Share of incremental task hours that actually displaces capability R&D after specialist staffing and substitution; not all safety/legal work competes1for1 with researchers."
+        },
+        {
+          "name": "review_service_days",
+          "units": "calendar_days",
+          "distribution": {
+            "type": "triangular",
+            "low": 7,
+            "mode": 21,
+            "high": 60
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Novel affirmative review; planned parallel document preparation. No measured frontier certification duration."
+        },
+        {
+          "name": "parallel_review_fraction",
+          "units": "fraction_of_service_before_other_readiness",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.25,
+            "mode": 0.5,
+            "high": 0.8
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Rolling review before final checkpoint; full prior."
+        },
+        {
+          "name": "review_queue_days",
+          "units": "calendar_days",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 5,
+            "high": 30
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Dedicated signoff capacity; first-year program may queue."
+        },
+        {
+          "name": "rereview_probability",
+          "units": "probability_per_case",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.1,
+            "mode": 0.25,
+            "high": 0.5
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Evidence deficiencies prompt another round."
+        },
+        {
+          "name": "rereview_days",
+          "units": "calendar_days",
+          "distribution": {
+            "type": "triangular",
+            "low": 7,
+            "mode": 14,
+            "high": 45
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Residual second-review service."
+        },
+        {
+          "name": "nonapproval_probability",
+          "units": "probability_per_case",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.01,
+            "high": 0.08
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Cannot substantiate case, absent in voluntary baseline."
+        },
+        {
+          "name": "nonapproval_wait_days",
+          "units": "calendar_days",
+          "distribution": {
+            "type": "triangular",
+            "low": 30,
+            "mode": 90,
+            "high": 180
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Time to acceptable substitute/reworked release within first-year horizon; not permanent prohibition."
+        },
+        {
+          "name": "internal_gate_fraction",
+          "units": "fraction_of_release_holds",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.05,
+            "high": 0.25
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Policy legally covers external deployment; internal delay is optional spillover."
+        }
+      ],
+      "shared_input_refs": [],
+      "formula_suggestion": {
+        "annual_displaced_rd_workdays": "(setup_and_annual_staff_days+per_release_staff_days*releases_per_year)*research_counterfactual_fraction",
+        "annual_rd_input_loss_fraction": "annual_displaced_rd_workdays/(rd_staff*workdays_per_FTE_year)",
+        "release_lag_excluding_training_days": "review_service_days*(1-parallel_review_fraction)+review_queue_days+rereview_probability*rereview_days+nonapproval_probability*nonapproval_wait_days",
+        "internal_use_lag_excluding_training_days": "(review_service_days*(1-parallel_review_fraction)+review_queue_days+rereview_probability*rereview_days+nonapproval_probability*nonapproval_wait_days)*internal_gate_fraction",
+        "training_lag_per_affected_run_days": "0",
+        "annual_investment_input_loss_fraction": "0"
+      },
+      "narrative": "No direct published approval-time series exists. Numeric best estimate is therefore prior-weighted, with explicit nonapproval tail and shared evidence nodes. Independent signoff distinct from comments on a public report.",
+      "source_ids": [
+        "guerreiro26",
+        "access26",
+        "site"
+      ],
+      "recurrence_note": "Release/internal lags are expected shift per affected model, not summed across releases. Labor is first12months total. Country dynamics and serial dependencies handled separately.",
+      "intermediate_estimates": {
+        "annual_displaced_rd_workdays": {
+          "mean": 226.10359866,
+          "p10": 102.51640664,
+          "p50": 202.35778241,
+          "p90": 382.23190186
+        },
+        "annual_rd_input_loss_fraction": {
+          "mean": 0.00068975,
+          "p10": 0.0002518,
+          "p50": 0.00057103,
+          "p90": 0.00128232
+        },
+        "release_lag_excluding_training_days": {
+          "mean": 35.09922411,
+          "p10": 22.73853496,
+          "p50": 34.37193523,
+          "p90": 48.43088232
+        },
+        "internal_use_lag_excluding_training_days": {
+          "mean": 3.50581668,
+          "p10": 1.08400141,
+          "p50": 3.04729243,
+          "p90": 6.60282092
+        },
+        "training_lag_per_affected_run_days": {
+          "mean": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0
+        },
+        "annual_investment_input_loss_fraction": {
+          "mean": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0
+        }
+      }
+    },
+    {
+      "policy_id": "safety-case-train",
+      "mechanism": "Pre-training licensing with early filing, revision and refusal",
+      "inputs": [
+        {
+          "name": "setup_and_annual_staff_days",
+          "units": "person_workdays_per_lab_year",
+          "distribution": {
+            "type": "triangular",
+            "low": 20,
+            "mode": 60,
+            "high": 200
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Incremental setup/maintenance work beyond voluntary practice; explicit workload prior."
+        },
+        {
+          "name": "per_run_staff_days",
+          "units": "person_workdays_per_qualifying_run",
+          "distribution": {
+            "type": "triangular",
+            "low": 10,
+            "mode": 30,
+            "high": 100
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Incremental preparation/support/signoff workload beyond voluntary practice; not total existing safety program."
+        },
+        {
+          "name": "research_counterfactual_fraction",
+          "units": "fraction_of_compliance_labor",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.1,
+            "mode": 0.3,
+            "high": 0.7
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "compliance26"
+          ],
+          "rationale": "Share of incremental task hours that actually displaces capability R&D after specialist staffing and substitution; not all safety/legal work competes1for1 with researchers."
+        },
+        {
+          "name": "approval_service_days",
+          "units": "calendar_days",
+          "distribution": {
+            "type": "triangular",
+            "low": 14,
+            "mode": 30,
+            "high": 90
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Novel regulator review rather than brief notice; prior."
+        },
+        {
+          "name": "approval_queue_days",
+          "units": "calendar_days",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 10,
+            "high": 45
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "First-year authorization queue; no measured system."
+        },
+        {
+          "name": "filing_advance_days",
+          "units": "calendar_days",
+          "distribution": {
+            "type": "triangular",
+            "low": 7,
+            "mode": 30,
+            "high": 90
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "How far application can precede compute/data readiness; no unobserved actual dates invented."
+        },
+        {
+          "name": "rereview_probability",
+          "units": "probability_per_run",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.1,
+            "mode": 0.25,
+            "high": 0.5
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Conditions or revisions require additional review."
+        },
+        {
+          "name": "rereview_days",
+          "units": "calendar_days",
+          "distribution": {
+            "type": "triangular",
+            "low": 7,
+            "mode": 21,
+            "high": 60
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Residual approval re-review duration."
+        },
+        {
+          "name": "refusal_probability",
+          "units": "probability_per_run",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.02,
+            "high": 0.1
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Refused or withdrawn run replaced by smaller/different run."
+        },
+        {
+          "name": "refusal_substitute_days",
+          "units": "calendar_days",
+          "distribution": {
+            "type": "triangular",
+            "low": 30,
+            "mode": 90,
+            "high": 180
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Time until acceptable replacement research path within first year."
+        },
+        {
+          "name": "parallel_work_fraction",
+          "units": "fraction_of_frontier_progress_preserved_while_waiting",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.1,
+            "mode": 0.35,
+            "high": 0.7
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Algorithmic/data/other runs continue during administrative pause."
+        }
+      ],
+      "shared_input_refs": [],
+      "formula_suggestion": {
+        "annual_displaced_rd_workdays": "(setup_and_annual_staff_days+per_run_staff_days*qualifying_training_runs)*research_counterfactual_fraction",
+        "annual_rd_input_loss_fraction": "annual_displaced_rd_workdays/(rd_staff*workdays_per_FTE_year)",
+        "release_lag_excluding_training_days": "0",
+        "internal_use_lag_excluding_training_days": "0",
+        "training_lag_per_affected_run_days": "(maximum(0,approval_service_days+approval_queue_days-filing_advance_days)+rereview_probability*rereview_days+refusal_probability*refusal_substitute_days)*(1-parallel_work_fraction)",
+        "annual_investment_input_loss_fraction": "0",
+        "raw_training_wait_calendar_days": "(maximum(0,approval_service_days+approval_queue_days-filing_advance_days)+rereview_probability*rereview_days+refusal_probability*refusal_substitute_days)",
+        "progress_preserved_during_wait_fraction": "parallel_work_fraction"
+      },
+      "narrative": "Training output is effective run-level lag after usable parallel research; raw calendar wait also supplied. Do not count release/internal wait again; downstream propagation handled by root. Investment uncertainty treated separately in sensitivity, to avoid hidden duplicate denial costs.",
+      "source_ids": [
+        "site",
+        "guerreiro26",
+        "gans25"
+      ],
+      "recurrence_note": "Release/internal lags are expected shift per affected model, not summed across releases. Labor is first12months total. Country dynamics and serial dependencies handled separately.",
+      "training_note": "Raw calendar waiting and effective frontier-equivalent lag are distinct. Root must choose one representation, never apply preservation twice.",
+      "intermediate_estimates": {
+        "annual_displaced_rd_workdays": {
+          "mean": 85.48411568,
+          "p10": 37.44507574,
+          "p50": 76.53321037,
+          "p90": 145.02643326
+        },
+        "annual_rd_input_loss_fraction": {
+          "mean": 0.000261,
+          "p10": 9.252e-05,
+          "p50": 0.00021466,
+          "p90": 0.00048518
+        },
+        "release_lag_excluding_training_days": {
+          "mean": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0
+        },
+        "internal_use_lag_excluding_training_days": {
+          "mean": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0
+        },
+        "training_lag_per_affected_run_days": {
+          "mean": 22.27618364,
+          "p10": 6.19324261,
+          "p50": 19.43717573,
+          "p90": 42.71046991
+        },
+        "annual_investment_input_loss_fraction": {
+          "mean": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0
+        },
+        "raw_training_wait_calendar_days": {
+          "mean": 36.06961982,
+          "p10": 10.53560081,
+          "p50": 32.84696753,
+          "p90": 67.31263654
+        },
+        "progress_preserved_during_wait_fraction": {
+          "mean": 0.38243099,
+          "p10": 0.22250428,
+          "p50": 0.37456761,
+          "p90": 0.55459313
+        }
+      }
+    },
+    {
+      "policy_id": "training-notice-30",
+      "mechanism": "Thirty-day notice with unplanned changes and substitute research",
+      "inputs": [
+        {
+          "name": "setup_and_annual_staff_days",
+          "units": "person_workdays_per_lab_year",
+          "distribution": {
+            "type": "triangular",
+            "low": 2,
+            "mode": 5,
+            "high": 15
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Incremental setup/maintenance work beyond voluntary practice; explicit workload prior."
+        },
+        {
+          "name": "per_run_staff_days",
+          "units": "person_workdays_per_qualifying_run",
+          "distribution": {
+            "type": "triangular",
+            "low": 1,
+            "mode": 3,
+            "high": 10
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Incremental preparation/support/signoff workload beyond voluntary practice; not total existing safety program."
+        },
+        {
+          "name": "research_counterfactual_fraction",
+          "units": "fraction_of_compliance_labor",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.1,
+            "mode": 0.25,
+            "high": 0.6
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "compliance26"
+          ],
+          "rationale": "Share of incremental task hours that actually displaces capability R&D after specialist staffing and substitution; not all safety/legal work competes1for1 with researchers."
+        },
+        {
+          "name": "notice_days",
+          "units": "calendar_days",
+          "distribution": {
+            "type": "triangular",
+            "low": 30,
+            "mode": 30,
+            "high": 30
+          },
+          "evidence_status": "observed",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Exact frozen policy waiting period."
+        },
+        {
+          "name": "ordinary_notice_advance_days",
+          "units": "calendar_days",
+          "distribution": {
+            "type": "triangular",
+            "low": 14,
+            "mode": 45,
+            "high": 90
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Planned run notice leadtime before otherwise ready; explicit unmeasured prior."
+        },
+        {
+          "name": "reset_probability",
+          "units": "probability_per_run",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.15,
+            "high": 0.4
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Run/recipe changes requiring a fresh notice, assuming material changes reset clock."
+        },
+        {
+          "name": "reset_notice_advance_days",
+          "units": "calendar_days",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 7,
+            "high": 21
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Leadtime remaining for material run changes."
+        },
+        {
+          "name": "parallel_work_fraction",
+          "units": "fraction_of_frontier_progress_preserved_while_waiting",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.1,
+            "mode": 0.4,
+            "high": 0.8
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Alternative research and smaller runs while notice clock runs."
+        }
+      ],
+      "shared_input_refs": [],
+      "formula_suggestion": {
+        "annual_displaced_rd_workdays": "(setup_and_annual_staff_days+per_run_staff_days*qualifying_training_runs)*research_counterfactual_fraction",
+        "annual_rd_input_loss_fraction": "annual_displaced_rd_workdays/(rd_staff*workdays_per_FTE_year)",
+        "release_lag_excluding_training_days": "0",
+        "internal_use_lag_excluding_training_days": "0",
+        "training_lag_per_affected_run_days": "((1-reset_probability)*maximum(0,notice_days-ordinary_notice_advance_days)+reset_probability*maximum(0,notice_days-reset_notice_advance_days))*(1-parallel_work_fraction)",
+        "annual_investment_input_loss_fraction": "0",
+        "raw_training_wait_calendar_days": "((1-reset_probability)*maximum(0,notice_days-ordinary_notice_advance_days)+reset_probability*maximum(0,notice_days-reset_notice_advance_days))",
+        "progress_preserved_during_wait_fraction": "parallel_work_fraction"
+      },
+      "narrative": "No fresh reset for trivial changes; reset scope explicitly part of frozen scenario. A notice rule is not a30day universal lost-output block.",
+      "source_ids": [
+        "site"
+      ],
+      "recurrence_note": "Release/internal lags are expected shift per affected model, not summed across releases. Labor is first12months total. Country dynamics and serial dependencies handled separately.",
+      "training_note": "Raw calendar waiting and effective frontier-equivalent lag are distinct. Root must choose one representation, never apply preservation twice.",
+      "intermediate_estimates": {
+        "annual_displaced_rd_workdays": {
+          "mean": 6.75309181,
+          "p10": 3.00616879,
+          "p50": 5.9886229,
+          "p90": 11.48629605
+        },
+        "annual_rd_input_loss_fraction": {
+          "mean": 2.061e-05,
+          "p10": 7.38e-06,
+          "p50": 1.685e-05,
+          "p90": 3.847e-05
+        },
+        "release_lag_excluding_training_days": {
+          "mean": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0
+        },
+        "internal_use_lag_excluding_training_days": {
+          "mean": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0
+        },
+        "training_lag_per_affected_run_days": {
+          "mean": 2.42033757,
+          "p10": 0.78471131,
+          "p50": 2.0719778,
+          "p90": 4.44608218
+        },
+        "annual_investment_input_loss_fraction": {
+          "mean": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0
+        },
+        "raw_training_wait_calendar_days": {
+          "mean": 4.27241263,
+          "p10": 1.55502972,
+          "p50": 3.80097092,
+          "p90": 7.47401072
+        },
+        "progress_preserved_during_wait_fraction": {
+          "mean": 0.43333676,
+          "p10": 0.24538805,
+          "p50": 0.42642672,
+          "p90": 0.63248033
+        }
+      }
+    },
+    {
+      "policy_id": "strict-liability",
+      "mechanism": "Product-liability risk changes releases, investment and legal labor",
+      "inputs": [
+        {
+          "name": "setup_and_annual_staff_days",
+          "units": "person_workdays_per_lab_year",
+          "distribution": {
+            "type": "triangular",
+            "low": 20,
+            "mode": 60,
+            "high": 200
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Incremental setup/maintenance work beyond voluntary practice; explicit workload prior."
+        },
+        {
+          "name": "per_release_staff_days",
+          "units": "person_workdays_per_model",
+          "distribution": {
+            "type": "triangular",
+            "low": 3,
+            "mode": 10,
+            "high": 40
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Incremental preparation/support/signoff workload beyond voluntary practice; not total existing safety program."
+        },
+        {
+          "name": "research_counterfactual_fraction",
+          "units": "fraction_of_compliance_labor",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.05,
+            "mode": 0.15,
+            "high": 0.4
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "compliance26"
+          ],
+          "rationale": "Share of incremental task hours that actually displaces capability R&D after specialist staffing and substitution; not all safety/legal work competes1for1 with researchers."
+        },
+        {
+          "name": "extra_review_probability",
+          "units": "probability_per_model",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.1,
+            "mode": 0.35,
+            "high": 0.8
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Incremental caution relative to existing tort exposure."
+        },
+        {
+          "name": "extra_review_days",
+          "units": "calendar_days",
+          "distribution": {
+            "type": "triangular",
+            "low": 1,
+            "mode": 7,
+            "high": 30
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Additional launch-risk review and remediation tail; not a legal minimum."
+        },
+        {
+          "name": "internal_gate_fraction",
+          "units": "fraction_of_release_holds",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.05,
+            "high": 0.25
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Liability chiefly external harm; some internal research choices affected."
+        },
+        {
+          "name": "financing_exposed_share",
+          "units": "fraction_of_annual_RnD_investment",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.1,
+            "mode": 0.3,
+            "high": 0.6
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Projects whose funding hurdle responds to extra liability; no universal capital freeze."
+        },
+        {
+          "name": "extra_risk_premium",
+          "units": "annual_rate_fraction",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.01,
+            "high": 0.04
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Extra liability uncertainty/insurance-adjusted financing hurdle:0-100-400bps; entirely analyst prior."
+        },
+        {
+          "name": "trust_demand_investment_offset",
+          "units": "fraction_of_annual_RnD_investment",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.001,
+            "high": 0.005
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "gans26",
+            "gans25"
+          ],
+          "rationale": "Possible credible safety commitment and demand/insurance benefit reallocated to R&D; wholly unmeasured analyst prior. Central0.1percent, support0to0.5percent annualR&D. Permits net investment gain rather than constraining sign."
+        },
+        {
+          "name": "investment_semielasticity",
+          "units": "fractional_investment_change_per_unit_annual_rate",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 1,
+            "high": 5
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Local response of exposed research investment to hurdle rate; not imported from medical-device coefficient."
+        },
+        {
+          "name": "innovation_redirection_offset",
+          "units": "fraction_of_foregone_investment_redeployed_productively",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.3,
+            "high": 0.8
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Safer architectures/research substitutes can retain some capability progress."
+        }
+      ],
+      "shared_input_refs": [],
+      "formula_suggestion": {
+        "annual_displaced_rd_workdays": "(setup_and_annual_staff_days+per_release_staff_days*releases_per_year)*research_counterfactual_fraction",
+        "annual_rd_input_loss_fraction": "annual_displaced_rd_workdays/(rd_staff*workdays_per_FTE_year)",
+        "release_lag_excluding_training_days": "extra_review_probability*extra_review_days",
+        "internal_use_lag_excluding_training_days": "extra_review_probability*extra_review_days*internal_gate_fraction",
+        "training_lag_per_affected_run_days": "0",
+        "annual_investment_input_loss_fraction": "minimum(.5,financing_exposed_share*extra_risk_premium*investment_semielasticity*(1-innovation_redirection_offset))-trust_demand_investment_offset"
+      },
+      "narrative": "Numerical best estimate is analyst-prior expectation. Recent device evidence supports separating releases/research/safety but does not quantify AI investment loss. Capital response can be positive or negative after an explicit demand/trust offset. Neither downside nor upside coefficient is empirically identified; report gross and net sensitivity.",
+      "source_ids": [
+        "galasso26",
+        "gans25",
+        "gans26"
+      ],
+      "recurrence_note": "Release/internal lags are expected shift per affected model, not summed across releases. Labor is first12months total. Country dynamics and serial dependencies handled separately.",
+      "intermediate_estimates": {
+        "annual_displaced_rd_workdays": {
+          "mean": 43.31210896,
+          "p10": 18.58432128,
+          "p50": 38.66318515,
+          "p90": 74.35891427
+        },
+        "annual_rd_input_loss_fraction": {
+          "mean": 0.0001322,
+          "p10": 4.597e-05,
+          "p50": 0.00010886,
+          "p90": 0.0002469
+        },
+        "release_lag_excluding_training_days": {
+          "mean": 5.27420206,
+          "p10": 1.72987422,
+          "p50": 4.51879001,
+          "p90": 9.92738109
+        },
+        "internal_use_lag_excluding_training_days": {
+          "mean": 0.52719929,
+          "p10": 0.10230303,
+          "p50": 0.3846414,
+          "p90": 1.14369808
+        },
+        "training_lag_per_affected_run_days": {
+          "mean": 0.0,
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0
+        },
+        "annual_investment_input_loss_fraction": {
+          "mean": 0.004987,
+          "p10": -0.00098822,
+          "p50": 0.00302836,
+          "p90": 0.01359796
+        }
+      }
+    }
+  ],
+  "bundles": [
+    {
+      "policy_id": "sb-53",
+      "components": [
+        "safety-framework",
+        "transparency-report",
+        "incident-reporting",
+        "whistleblower"
+      ],
+      "mechanism": "Union framework/report/incident/channel tasks; release=max(framework-induced hold, transparency-report gate). No mandatory external evaluation or training approval.",
+      "inputs": [
+        {
+          "name": "common_compliance_labor_overlap",
+          "units": "fraction_of_summed_compliance_work",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.1,
+            "mode": 0.25,
+            "high": 0.45
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Common legal review/control infrastructure reused; not25percent of gates."
+        }
+      ],
+      "narrative": "",
+      "source_ids": [
+        "sb53",
+        "sb53_incident"
+      ],
+      "counterfactual": "Remove this bundle obligation while preserving otherwise-same2026 voluntary practice; not the estimated causal effect of historical enactment.",
+      "overlap_rule": "Union obligations; common evidence production charged once; shared release prerequisites combine by maximum, sequential review after evidence adds only its residual; no independent bundle-price prior."
+    },
+    {
+      "policy_id": "raise-act",
+      "components": [
+        "safety-framework",
+        "transparency-report",
+        "incident-reporting"
+      ],
+      "mechanism": "Same obligation families asSB53 with72hour reporting and separate filings; evaluate as standalone bundle-removal counterfactual, not six extra days on top ofSB53.",
+      "inputs": [
+        {
+          "name": "common_compliance_labor_overlap",
+          "units": "fraction_of_summed_compliance_work",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.1,
+            "mode": 0.25,
+            "high": 0.45
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Reusable framework/system-card processes."
+        },
+        {
+          "name": "extra_state_filing_staff_days",
+          "units": "person_workdays_per_year",
+          "distribution": {
+            "type": "triangular",
+            "low": 2,
+            "mode": 5,
+            "high": 15
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Separate regulator deadlines/forms beyond one common process."
+        }
+      ],
+      "narrative": "If combined withSB53, replace reporting deadline by stricter requirement and charge only extra state filings, not duplicate framework work.",
+      "source_ids": [
+        "site"
+      ],
+      "counterfactual": "Remove this bundle obligation while preserving otherwise-same2026 voluntary practice; not the estimated causal effect of historical enactment.",
+      "overlap_rule": "Union obligations; common evidence production charged once; shared release prerequisites combine by maximum, sequential review after evidence adds only its residual; no independent bundle-price prior."
+    },
+    {
+      "policy_id": "sb-1047",
+      "components": [
+        "safety-framework",
+        "shutdown",
+        "incident-reporting",
+        "third-party-audit",
+        "kyc-compute",
+        "whistleblower",
+        "triggered-redteam"
+      ],
+      "mechanism": "Add self-certified pre-training protocol plus unreasonable-risk release standard. Training starts when existing protections/protocol ready, without regulator approval; release remediation shares triggered-redteam node.",
+      "inputs": [
+        {
+          "name": "common_compliance_labor_overlap",
+          "units": "fraction_of_sum",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.1,
+            "mode": 0.25,
+            "high": 0.45
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Cross-document and audit reuse."
+        },
+        {
+          "name": "pretraining_protocol_residual_probability",
+          "units": "probability_per_run",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.05,
+            "high": 0.2
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Self-certification unusually not ready by planned run."
+        },
+        {
+          "name": "pretraining_protocol_residual_days",
+          "units": "calendar_days",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.5,
+            "mode": 2,
+            "high": 7
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Protocol/security documentation tail; no formal licensing queue."
+        }
+      ],
+      "narrative": "2026 counterfactual for frozen vetoed bill. KYC China effect from diffusion agent; do not add a free-standing liability policy as if statutory regimes identical.",
+      "source_ids": [
+        "site"
+      ],
+      "counterfactual": "Remove this bundle obligation while preserving otherwise-same2026 voluntary practice; not the estimated causal effect of historical enactment.",
+      "overlap_rule": "Union obligations; common evidence production charged once; shared release prerequisites combine by maximum, sequential review after evidence adds only its residual; no independent bundle-price prior."
+    },
+    {
+      "policy_id": "eu-ai-act",
+      "components": [
+        "safety-framework",
+        "internal-evals",
+        "third-party-eval",
+        "evaluator-window",
+        "transparency-report",
+        "incident-reporting",
+        "weight-security"
+      ],
+      "mechanism": "One shared evaluation program plus Model Report; release=max(internal eval tail, external report tail, appropriate access-floor tail, transparency tail). Risk remediation remains shared. EU-only restrictions affect Chinese access only with synchronized global launch.",
+      "inputs": [
+        {
+          "name": "common_compliance_labor_overlap",
+          "units": "fraction_of_sum",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.2,
+            "mode": 0.4,
+            "high": 0.65
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Same test/evidence package supports internal/external evaluation and report."
+        },
+        {
+          "name": "access_floor_applies_probability",
+          "units": "probability_per_model",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.25,
+            "mode": 0.6,
+            "high": 1
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Code says appropriate for most methods, unlike standalone universal floor."
+        },
+        {
+          "name": "global_release_synchronization_probability",
+          "units": "probability_per_model",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.4,
+            "high": 1
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Otherwise EU-only release hold does not delay non-EU access; source gives regional examples, probability is prior."
+        }
+      ],
+      "narrative": "",
+      "source_ids": [
+        "eu_code",
+        "govai26"
+      ],
+      "counterfactual": "Remove this bundle obligation while preserving otherwise-same2026 voluntary practice; not the estimated causal effect of historical enactment.",
+      "overlap_rule": "Union obligations; common evidence production charged once; shared release prerequisites combine by maximum, sequential review after evidence adds only its residual; no independent bundle-price prior."
+    },
+    {
+      "policy_id": "ai-risk-evaluation-act",
+      "components": [
+        "internal-evals",
+        "third-party-eval"
+      ],
+      "mechanism": "DOE compliance/participation, not statutory affirmative safety certification. Reuse ordinary eval where accepted; additional classified onboarding/service/report can determine external-release date.",
+      "inputs": [
+        {
+          "name": "classified_extra_service_days",
+          "units": "calendar_days",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 7,
+            "high": 28
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Security/onboarding/specialized tests beyond normal qualifying evaluation."
+        },
+        {
+          "name": "government_queue_days",
+          "units": "calendar_days",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 7,
+            "high": 45
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "First-year DOE program congestion; analyst prior."
+        },
+        {
+          "name": "completion_required_probability",
+          "units": "probability_per_model",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.25,
+            "mode": 0.75,
+            "high": 1
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Participation compliance interpreted to require completed testing/report before release; statute does not explicitly demand safety approval."
+        },
+        {
+          "name": "common_compliance_labor_overlap",
+          "units": "fraction_of_sum",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.1,
+            "mode": 0.3,
+            "high": 0.5
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Internal results reused by external program."
+        }
+      ],
+      "narrative": "Do not silently upgrade participation duty into a veto based on findings; separate agency-in-practice pressure scenario.",
+      "source_ids": [
+        "s2938",
+        "aisi_tiers",
+        "access26"
+      ],
+      "counterfactual": "Remove this bundle obligation while preserving otherwise-same2026 voluntary practice; not the estimated causal effect of historical enactment.",
+      "overlap_rule": "Union obligations; common evidence production charged once; shared release prerequisites combine by maximum, sequential review after evidence adds only its residual; no independent bundle-price prior."
+    },
+    {
+      "policy_id": "secure-ai-development-act",
+      "components": [
+        "evaluator-window"
+      ],
+      "mechanism": "Replace28day converted floor with21calendar days; model weights/runtime delivery and readiness rather than API-only access. No mandatory safety approval added.",
+      "inputs": [
+        {
+          "name": "required_calendar_access",
+          "units": "calendar_days",
+          "distribution": {
+            "type": "triangular",
+            "low": 21,
+            "mode": 21,
+            "high": 21
+          },
+          "evidence_status": "observed",
+          "source_ids": [
+            "s5061"
+          ],
+          "rationale": "Verified Section3(c)."
+        },
+        {
+          "name": "weights_handoff_extra_days",
+          "units": "calendar_days",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 2,
+            "high": 10
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Incremental secure handoff relative to existing API evaluator access; prior."
+        },
+        {
+          "name": "additional_staff_days",
+          "units": "person_workdays_per_model",
+          "distribution": {
+            "type": "triangular",
+            "low": 2,
+            "mode": 5,
+            "high": 20
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Secure packaging/liaison work beyond access-window overhead."
+        }
+      ],
+      "narrative": "",
+      "source_ids": [
+        "s5061"
+      ],
+      "counterfactual": "Remove this bundle obligation while preserving otherwise-same2026 voluntary practice; not the estimated causal effect of historical enactment.",
+      "overlap_rule": "Union obligations; common evidence production charged once; shared release prerequisites combine by maximum, sequential review after evidence adds only its residual; no independent bundle-price prior."
+    },
+    {
+      "policy_id": "frontier-act",
+      "components": [
+        "safety-framework",
+        "third-party-audit",
+        "transparency-report",
+        "incident-reporting"
+      ],
+      "mechanism": "Shared evidence; annual audits plus six-month independent verifications for very large developers; state-preemption removes duplicate obligations. No routine pre-training approval.",
+      "inputs": [
+        {
+          "name": "audit_frequency_per_year",
+          "units": "audits_per_year",
+          "distribution": {
+            "type": "triangular",
+            "low": 2,
+            "mode": 2,
+            "high": 2
+          },
+          "evidence_status": "observed",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Frozen very-large-developer six-month verification frequency."
+        },
+        {
+          "name": "second_audit_increment_fraction",
+          "units": "fraction_of_first_audit_work",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.3,
+            "mode": 0.5,
+            "high": 0.8
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Evidence reused between annual audit and six-month verification; do not double every fixed task."
+        },
+        {
+          "name": "second_audit_new_finding_fraction",
+          "units": "fraction_of_annual_finding_probability",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.1,
+            "mode": 0.3,
+            "high": 0.6
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Additional six-month verification reuses evidence; incremental binding finding probability relative to first audit is explicitly a prior, distinct from labor reuse."
+        },
+        {
+          "name": "common_compliance_labor_overlap",
+          "units": "fraction_of_sum",
+          "distribution": {
+            "type": "triangular",
+            "low": 0.15,
+            "mode": 0.3,
+            "high": 0.5
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Common reports and governance system."
+        },
+        {
+          "name": "preempted_duplicate_labor_fraction",
+          "units": "fraction_of_common_work",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.1,
+            "high": 0.3
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Marginal state duplication eliminated; no automatic frontier-day credit."
+        },
+        {
+          "name": "emergency_order_probability",
+          "units": "probability_per_lab_year",
+          "distribution": {
+            "type": "triangular",
+            "low": 0,
+            "mode": 0.01,
+            "high": 0.05
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Incremental emergency hold under frozen powers; analyst tail."
+        },
+        {
+          "name": "emergency_order_days",
+          "units": "calendar_days",
+          "distribution": {
+            "type": "triangular",
+            "low": 7,
+            "mode": 30,
+            "high": 90
+          },
+          "evidence_status": "analyst_prior",
+          "source_ids": [
+            "site"
+          ],
+          "rationale": "Resolution/replacement period for rare order."
+        }
+      ],
+      "narrative": "Emergency order is separate annual event, often overlapping a risk-triggered remediation; do not count both.",
+      "source_ids": [
+        "site"
+      ],
+      "counterfactual": "Remove this bundle obligation while preserving otherwise-same2026 voluntary practice; not the estimated causal effect of historical enactment.",
+      "overlap_rule": "Union obligations; common evidence production charged once; shared release prerequisites combine by maximum, sequential review after evidence adds only its residual; no independent bundle-price prior."
+    },
+    {
+      "policy_id": "pause-letter",
+      "components": [
+        "pause-6"
+      ],
+      "mechanism": "Use pause-6 upstream-production model with explicit country scope. No independent bundle estimate.",
+      "inputs": [],
+      "narrative": "The text requests global compliance. If headline preserves site unilateral-US scenario, label it unambiguously; provide universal coordinated scenario separately.",
+      "source_ids": [
+        "site"
+      ],
+      "counterfactual": "Remove this bundle obligation while preserving otherwise-same2026 voluntary practice; not the estimated causal effect of historical enactment.",
+      "overlap_rule": "Union obligations; common evidence production charged once; shared release prerequisites combine by maximum, sequential review after evidence adds only its residual; no independent bundle-price prior."
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "met_o1",
+      "title": "METR preliminary evaluation of o1-preview",
+      "url": "https://metr.org/evaluations/openai-o1-preview-report/",
+      "kind": "primary_evaluation",
+      "verified_on": "2026-09-24",
+      "finding": "o1-preview access September 3 and o1-mini August 28; testing ended September 9, 2024. Earlier related checkpoint August 26. API throughput constrained."
+    },
+    {
+      "source_id": "rel_o1",
+      "title": "OpenAI introducing o1-preview",
+      "url": "https://openai.com/index/introducing-openai-o1-preview/",
+      "kind": "primary_release",
+      "verified_on": "2026-09-24",
+      "finding": "o1-preview and o1-mini first public release September 12, 2024."
+    },
+    {
+      "source_id": "met_o3",
+      "title": "METR preliminary evaluation of o3 and o4-mini",
+      "url": "https://metr.org/evaluations/openai-o3-report/",
+      "kind": "primary_evaluation",
+      "verified_on": "2026-09-24",
+      "finding": "Earlier checkpoints supplied three weeks before release; no specific access start date or full evaluation/report timeline published here."
+    },
+    {
+      "source_id": "rel_o3",
+      "title": "OpenAI introducing o3 and o4-mini",
+      "url": "https://openai.com/index/introducing-o3-and-o4-mini/",
+      "kind": "primary_release",
+      "verified_on": "2026-09-24",
+      "finding": "Public release April 16, 2025."
+    },
+    {
+      "source_id": "met_gpt5",
+      "title": "METR evaluation of GPT-5",
+      "url": "https://metr.org/evaluations/gpt-5-report/",
+      "kind": "primary_evaluation",
+      "verified_on": "2026-09-24",
+      "finding": "First checkpoint July 10; final launch checkpoint July 25; reasoning traces July 26; checklist answers July 29; preliminary report August 1, 2025. Four weeks of pre-release access versus three weeks of evaluation work."
+    },
+    {
+      "source_id": "rel_gpt5",
+      "title": "OpenAI introducing GPT-5",
+      "url": "https://openai.com/index/introducing-gpt-5/",
+      "kind": "primary_release",
+      "verified_on": "2026-09-24",
+      "finding": "Public release August 7, 2025."
+    },
+    {
+      "source_id": "card_gpt55",
+      "title": "GPT-5.5 System Card",
+      "url": "https://deploymentsafety.openai.com/gpt-5-5",
+      "kind": "primary_system_card",
+      "verified_on": "2026-09-24",
+      "finding": "SecureBio assessed two pre-release checkpoints April 2 through April 9, 2026. They differed from deployed version; final-version rerun was planned. High cyber classification with safeguards."
+    },
+    {
+      "source_id": "rel_gpt55",
+      "title": "OpenAI introducing GPT-5.5",
+      "url": "https://openai.com/index/introducing-gpt-5-5/",
+      "kind": "primary_release",
+      "verified_on": "2026-09-24",
+      "finding": "First product release April 23; API availability April 24, 2026."
+    },
+    {
+      "source_id": "card_astra",
+      "title": "GPT-6 Astra System Card",
+      "url": "https://deploymentsafety.openai.com/gpt-6-astra",
+      "kind": "primary_system_card",
+      "verified_on": "2026-09-24",
+      "finding": "Apollo had three days of testing, two with high-throughput reasoning-trace access, on a near-final representative model. Safeguards applied to internal tool-using inference. Published September 3, 2026."
+    },
+    {
+      "source_id": "rel_astra",
+      "title": "OpenAI introducing GPT-6 Astra",
+      "url": "https://openai.com/index/gpt-6-astra/",
+      "kind": "primary_release",
+      "verified_on": "2026-09-24",
+      "finding": "Initial release to limited organizations, broader rollout over following days. Do not code September 3 as established general API availability."
+    },
+    {
+      "source_id": "rel_astra_notes",
+      "title": "ChatGPT release notes September 3 2026",
+      "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+      "kind": "primary_release",
+      "verified_on": "2026-09-24",
+      "finding": "September 3 entry: Astra initially available to limited organizations, not general availability."
+    },
+    {
+      "source_id": "metr_process26",
+      "title": "METR time horizon evaluation process May 2026",
+      "url": "https://metr.org/time-horizons/",
+      "kind": "primary_operational",
+      "verified_on": "2026-09-24",
+      "finding": "Typically at least1-2weeks calendar for access setup, scaffolds, around1000 test runs, restarts and manual review. One theoretical compute day is not complete evaluation service time."
+    },
+    {
+      "source_id": "met_opus55",
+      "title": "METR predeployment evaluation of Claude Opus 5.5",
+      "url": "https://metr.org/blog/2026-09-22-claude-opus-5-5/",
+      "kind": "primary_evaluation",
+      "verified_on": "2026-09-24",
+      "finding": "10 business days of API capability testing; exact calendar endpoints not provided. Report published September 22, 2026."
+    },
+    {
+      "source_id": "rel_opus55",
+      "title": "Anthropic introducing Claude Opus 5.5",
+      "url": "https://www.anthropic.com/claude-opus-5-5",
+      "kind": "primary_release",
+      "verified_on": "2026-09-24",
+      "finding": "Model publicly released September 22, 2026."
+    },
+    {
+      "source_id": "aisi_tiers",
+      "title": "AISI Early lessons from evaluating frontier AI systems",
+      "url": "https://www.aisi.gov.uk/blog/early-lessons-from-evaluating-frontier-ai-systems",
+      "kind": "primary_operational",
+      "verified_on": "2026-09-24",
+      "finding": "Light testing a few days and 1-2 weeks including QA/reporting; standard 1-2 weeks; elevated several weeks. Developing ideal-state tiers, not observed incremental legal delays."
+    },
+    {
+      "source_id": "access26",
+      "title": "Charnock et al., Expanding external access",
+      "url": "https://arxiv.org/abs/2601.11916",
+      "kind": "primary_research",
+      "verified_on": "2026-09-24",
+      "finding": "Access has model, information and timeframe dimensions. Extra access creates operational and security work; no causal delay coefficient."
+    },
+    {
+      "source_id": "gans26",
+      "title": "Gans, Staged Access and Liability for Dual-Use AI",
+      "url": "https://www.nber.org/papers/w35586",
+      "kind": "primary_theory",
+      "verified_on": "2026-09-24",
+      "finding": "August 2026, revised September: release windows and liability interact through strategic defensive and adversarial effort; no US-China calibration."
+    },
+    {
+      "source_id": "gans25",
+      "title": "Gans, Regulating the Direction of Innovation",
+      "url": "https://www.nber.org/papers/w32741",
+      "kind": "primary_theory",
+      "verified_on": "2026-09-24",
+      "finding": "JPubE 2025: regulation can change allocation between research paths; sign of innovation effect is not fixed."
+    },
+    {
+      "source_id": "guerreiro26",
+      "title": "Guerreiro, Rebelo and Teles, Regulating AI",
+      "url": "https://www.nber.org/papers/w31921",
+      "kind": "primary_theory",
+      "verified_on": "2026-09-24",
+      "finding": "May 2026 revision: staged experimentation and release under uncertainty and heterogeneous beliefs. No service-time estimate."
+    },
+    {
+      "source_id": "galasso26",
+      "title": "Galasso and Luo, Product Liability Litigation and Innovation",
+      "url": "https://www.aeaweb.org/articles?id=10.1257/mic.20240255",
+      "kind": "primary_empirical_other_sector",
+      "verified_on": "2026-09-24",
+      "finding": "AEJ Micro August 2026: medical-device introductions fall temporarily in litigated categories, with safer devices. Do not transport coefficients to AI."
+    },
+    {
+      "source_id": "compliance26",
+      "title": "Trebbi, Zhang and Simkovic, Compliance costs",
+      "url": "https://www.nber.org/papers/w30691",
+      "kind": "primary_empirical_other_sector",
+      "verified_on": "2026-09-24",
+      "finding": "Occupation-task compliance costing motivates labor decomposition; no frontier-lab headcount or marginal research elasticity identified."
+    },
+    {
+      "source_id": "breuer25",
+      "title": "Breuer, Leuz and Vanhaverbeke, Reporting and innovation",
+      "url": "https://www.nber.org/papers/w26291",
+      "kind": "primary_empirical_other_sector",
+      "verified_on": "2026-09-24",
+      "finding": "JAE 2025: firm-level innovation changes differ from industry aggregate after reporting requirements; no AI calibration."
+    },
+    {
+      "source_id": "sb53_incident",
+      "title": "California BPC 22757.13",
+      "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=BPC&sectionNum=22757.13",
+      "kind": "primary_legal",
+      "verified_on": "2026-09-24",
+      "finding": "15-day incident report; 24-hour disclosure for imminent harm. No pre-release wait in this section."
+    },
+    {
+      "source_id": "sb53",
+      "title": "California SB53 frozen text",
+      "url": "https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=202520260SB53",
+      "kind": "legal_specification_from_site",
+      "verified_on": "2026-09-24",
+      "finding": "Site definition used for framework/report/whistleblower package. Full statutory re-audit not performed in this calibration."
+    },
+    {
+      "source_id": "eu_code",
+      "title": "EU GPAI Code of Practice safety/security",
+      "url": "https://ec.europa.eu/newsroom/dae/redirection/document/118119",
+      "kind": "legal_specification_from_site_and_primary_research",
+      "verified_on": "2026-09-24",
+      "finding": "20 business days appropriate for most evaluation methods, not an unconditional statutory fixed waiting period. Frozen evaluator-window item explicitly imposes a floor."
+    },
+    {
+      "source_id": "s2938",
+      "title": "AI Risk Evaluation Act S2938 introduced text",
+      "url": "https://www.govinfo.gov/content/pkg/BILLS-119s2938is/html/BILLS-119s2938is.htm",
+      "kind": "primary_legal",
+      "verified_on": "2026-09-24",
+      "finding": "Deployment outside developer custody prohibited absent participation/compliance; testing and formal reports; no explicit statutory safety sign-off or fixed wait."
+    },
+    {
+      "source_id": "s5061",
+      "title": "Secure AI Development Act S5061 introduced text",
+      "url": "https://www.govinfo.gov/content/pkg/BILLS-119s5061is/html/BILLS-119s5061is.htm",
+      "kind": "primary_legal",
+      "verified_on": "2026-09-24",
+      "finding": "Section3(c): make model including weights/runtime available to NSA at least21 calendar days before commerce; no explicit approval gate in this clause."
+    },
+    {
+      "source_id": "govai26",
+      "title": "GovAI, Delays to Frontier AI in EU and UK",
+      "url": "https://www.governance.ai/research-paper/delays-to-frontier-ai-in-the-eu-and-uk",
+      "kind": "primary_descriptive",
+      "verified_on": "2026-09-24",
+      "finding": "375 releases through May2026; regional API versus app distinction; enforcement period after August2026 absent."
+    },
+    {
+      "source_id": "site",
+      "title": "AI Safety Menu data.js snapshot 2026-09-24",
+      "url": "https://elehrer123-arch.github.io/ai-safety-menu/#/",
+      "kind": "policy_specification",
+      "verified_on": "2026-09-24",
+      "finding": "Frozen policy definitions are the modeled intervention; analyst priors are not inherited site prices."
+    }
+  ],
+  "monte_carlo": {
+    "seed": 260924,
+    "draws": 100000,
+    "dependence": "Shared parameters drawn once across policies; within-policy priors independent except formula structure. Positive correlation threshold/remediation is an unmodeled sensitivity."
+  },
+  "data_summary": {
+    "cases": 8,
+    "unique_models": 8,
+    "release_clusters": 6,
+    "warnings": [
+      "Selection-biased public sample; not representative population.",
+      "Astra testing duration is not runway.",
+      "Opus business-day dates are missing; no imputed start date.",
+      "No causal policy delays observed in this dataset.",
+      "Missing report/mitigation/internal dates remain empty.",
+      "GPT5 four-week initial access differs from three-week evaluation workload."
+    ]
+  }
+}
